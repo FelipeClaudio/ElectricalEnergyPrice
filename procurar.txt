@@ -1,0 +1,3 @@
+Diferença entre vazoes.rv1 e vazoes.dat
+Onde achar o arquivo de mlt?
+mlt é para o ano ou para os últimos 12 meses?

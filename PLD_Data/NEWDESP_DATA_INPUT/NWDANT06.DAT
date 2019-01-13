@@ -1,0 +1,71 @@
+n periodos, mes inicial, ano inicial, =1(desp. hidrotermico), =2(valor da agua)
+ xxxx xxxx xxxx xxxx
+    1   06 2001    1
+energia armazenada inicial
+ xxsis1.xxx xxsis2.xxx xxsis3.xxx xxsis4.xxx xxsis5.xxx
+  47123.20   11671.80   13560.80    8830.10       0.000
+energias afluentes passadas      (REFERENTES A 65% DE VOLUME ARMAZENADO)
+mes xxsis1.xxx xxsis2.xxx xxsis3.xxx xxsis4.xxx xxsis5.xxx
+ 05  17090.000   5255.000   2934.000   5699.000      0.000
+ 04  22136.000   4816.000   4002.000  11481.000      0.000
+ 03  29485.000   6957.000   5315.000  10803.000      0.000
+ 02  33656.000  13436.000   5095.000   8407.000      0.000
+ 01  32301.000   7703.000   9717.000   7783.000      0.000
+ 12  35177.000   3495.000  10389.000   6510.000      0.000
+ 11  23971.000   4701.000   4908.000   2693.000      0.000
+ 10
+ 09
+ 08
+ 07
+energias afluentes previstas     (REFERENTES A 65% DE VOLUME ARMAZENADO)
+mes xxsis1.xxx xxsis2.xxx xxsis3.xxx xxsis4.xxx xxsis5.xxx
+ 06  17358.000   5991.000   2675.000   2804.000      0.000
+nada
+ xx   xx      xx   xxxxxx.xxx : (mes,sistema,patamar,mercado)
+ 04   01      01    34240.000
+ 04   02      01     9372.000
+ 04   03      01     7342.000
+ 04   04      01     2795.000
+ 04   01      02    29463.000
+ 04   02      02     7980.000
+ 04   03      02     6390.000
+ 04   04      02     2589.000
+ 04   01      03    23067.000
+ 04   02      03     5763.000
+ 04   03      03     5442.000
+ 04   04      03     2438.000
+ 99
+nada
+gtmax
+ xx   xx      xx   xxxxxx.xxx : (mes,sistema,classe,geracao termica maxima)
+ 03   01      01      600.000
+ 99
+nada
+gtmin
+ xx   xx      xx   xxxxxx.xxx : (mes,sistema,classe,geracao termica minima)
+ 03   01      03      120.000
+ 03   01      04      365.000
+ 03   01      05      200.000
+ 03   02      13      345.000
+ 03   02      14      240.000
+ 03   02      15      170.000
+ 03   02      17       56.000
+ 03   01      01      600.000
+ 99
+nada
+cinter
+ xx xxx xxx xx                : (mes,sistema origem,sistema destino,patamar)
+ xxxxxx.xxx                   : (capacidade de intercambio)
+ 03  01  02 01
+   2200.0
+ 03  02  01 01
+    400.0
+ 03  01  05 01
+    550.0
+ 03  05  01 01
+    550.0
+ 99
+nada
+pqusi
+ xx   xx           xxxxxx.xxx : (mes,sistema,pequenas usinas)
+ 99

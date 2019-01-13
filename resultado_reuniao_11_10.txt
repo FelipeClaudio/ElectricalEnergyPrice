@@ -1,0 +1,8 @@
+Como ler os dados? (manual)
+Como obter os dados de maneira sistemática? (extender código em python  + crawler a fazer)
+Tentar baixar o newave (não é possível a priori: precisa de licença/provavelmente tem que acionar o CEPEL para ver se é possível obter o newave)
+gerar dados de maneira sistemática (mlt, vazões, hidrelétricas) (resolvido)
+gerar um dataframe para o pandas ou df (resolvido) 
+encontrar uma maneira de ler o dadger.rv1 (tentando encontrar solução menos custosa)
+carregar o valor do PLD para python (resolvido)
+entender como funciona o PLD semanal (faltando)

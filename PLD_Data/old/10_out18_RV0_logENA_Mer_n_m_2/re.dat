@@ -1,0 +1,30 @@
+RES   USINAS PERTENCENTES AO CONJUNTO
+XXX   XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
+  1   287 285
+  2   139
+  3   288
+  4   172
+  5   176
+  6   178
+  7   156
+999
+RES MM/AAAA MM/AAAA P       RESTRICAO
+XXX XX XXXX XX XXXX X XXXXXXXXXXXXXXX
+  1 12 2018  1 2019 0 5800.44         ESCOAMENTO MADEIRA      
+  2 12 2018 12 2022 0    0.00         CANDONGA                
+  3 12 2018 11 2019 0 8000.00         BELO MONTE              
+  4 12 2018 01 2019 0  268.74         ITAPARICA               
+  4 05 2019 11 2019 0  268.74         ITAPARICA               
+  5 12 2018 01 2019 0  612.06         COMP PAF-MOX            
+  5 05 2019 11 2019 0  612.06         COMP PAF-MOX            
+  6 12 2018 01 2019 0  650.76         XINGO                   
+  6 05 2019 11 2019 0  650.76         XINGO                   
+  7 12 2018 01 2019 0   34.41         TRES MARIAS             
+  7 05 2019 05 2019 0   47.31         TRES MARIAS             
+  7 06 2019 06 2019 0   91.18         TRES MARIAS             
+  7 07 2019 07 2019 0  104.51         TRES MARIAS             
+  7 08 2019 08 2019 0  114.41         TRES MARIAS             
+  7 09 2019 09 2019 0  113.98         TRES MARIAS             
+  7 10 2019 10 2019 0  123.87         TRES MARIAS             
+  7 11 2019 11 2019 0  126.88         TRES MARIAS             
+999

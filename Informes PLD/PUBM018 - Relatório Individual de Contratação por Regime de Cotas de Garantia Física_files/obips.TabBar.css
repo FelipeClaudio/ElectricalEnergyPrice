@@ -1,0 +1,99 @@
+.tabAreaContainer{
+height:100%;overflow:hidden;
+}
+.tabBar{
+width:100%;
+}
+.tabCell{
+white-space:nowrap;
+}
+.tabImage{
+vertical-align:top;
+}.tabImageStart{background-image:url(l2_tabbar_start.gif);background-repeat:no-repeat;vertical-align:top;}.tabContainer{
+cursor:default;height:25px;
+}.tabContainerSelected{cursor:default;}.primaryTabSelected{background-image:url(l1_seltab_bg.gif);background-repeat:repeat-x;background-position:left top;padding-left:1px;padding-right:1px;padding-top:2px;padding-bottom:6px;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;font-weight:Bold;color:#000;white-space:nowrap;
+}
+.primaryTabEnabled{
+background-image:url(l1_unseltab_bg.gif);background-repeat:repeat-x;background-position:left top;padding-left:1px;padding-right:1px;padding-top:2px;padding-bottom:6px;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;color:#EFF9FF;white-space:nowrap;
+}
+.primaryTabDisabled{
+background-image:url(l1_unseltab_bg.gif);background-repeat:repeat-x;background-position:left top;height:22px;padding-left:1px;padding-right:1px;padding-top:2px;padding-bottom:6px;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;color:#81A4B6;white-space:nowrap;
+}
+.primaryTabBarSpacer{
+background-image:url(l1_spacer_bg.gif);background-repeat:repeat-x;background-position:left top;
+}
+.primaryContentRegion{
+background-color:#b0c4d3;
+}
+.secondaryTabSelected{
+background-image:url(l2_seltab_bg.gif);background-repeat:repeat-x;background-position:left top;padding-left:1px;padding-right:1px;padding-top:2px;padding-bottom:6px;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;font-weight:Bold;color:#000;white-space:nowrap;
+}
+.secondaryTabEnabled{
+background-image:url(l2_unseltab_bg.gif);background-repeat:repeat-x;background-position:left top;padding-left:1px;padding-right:1px;padding-top:2px;padding-bottom:6px;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;color:#000;white-space:nowrap;cursor:pointer;
+}
+.secondaryTabDisabled{
+background-image:url(l2_unseltab_bg.gif);background-repeat:repeat-x;background-position:left top;padding-left:1px;padding-right:1px;padding-top:3px;padding-bottom:0;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;color:#808080;
+}
+.secondaryTabBarSpacer{
+background-image:url(l2_spacer_bg.gif);background-repeat:repeat-x;background-position:left top;
+}
+.secondaryContentRegion{
+background-color:#d7e3f0;height:100%;
+}
+.tertiaryTabSelected{
+background-image:url(l3_seltab_bg.gif);background-repeat:repeat-x;background-position:left top;padding-left:1px;padding-right:1px;padding-top:2px;padding-bottom:6px;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;font-weight:Bold;color:#000;white-space:nowrap;
+}
+.tertiaryTabEnabled{
+background-image:url(l3_unseltab_bg.gif);background-repeat:repeat-x;background-position:left top;padding-left:1px;padding-right:1px;padding-top:2px;padding-bottom:6px;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;color:#000;white-space:nowrap;cursor:pointer;
+}
+.tertiaryTabDisabled{
+background-image:url(l3_unseltab_bg.gif);background-repeat:repeat-x;background-position:left top;padding-left:1px;padding-right:1px;padding-top:2px;padding-bottom:6px;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;color:#808080;
+}
+.tertiaryTabBarSpacer{
+background-image:url(l3_spacer_bg.gif);background-repeat:repeat-x;background-position:left top;background-color:#fff;
+}
+.tertiaryContentRegion{
+background-color:#fff;background-image:url(l3_base_bg.gif);background-repeat:repeat-x;background-position:left bottom;padding-bottom:5px;padding-top:5px;overflow:hidden;
+}
+.tertiaryTabBar{
+background-color:#fff;
+}
+.quaternaryTabSelected{
+padding-left:1px;padding-right:1px;padding-top:2px;padding-bottom:6px;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;font-weight:Bold;color:#039;white-space:nowrap;
+}
+.quaternaryTabEnabled{
+padding-left:1px;padding-right:1px;padding-top:2px;padding-bottom:6px;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;color:#039;white-space:nowrap;
+}
+.quaternaryTabDisabled{
+padding-left:4px;padding-right:4px;padding-top:2px;padding-bottom:4px;margin:0;border:0;vertical-align:middle;font-size:11px;font-family:Tahoma;color:#808080;
+}
+.quaternaryTabBarSpacer{
+background-color:#fff;
+}
+.quaternaryTabBarSeparator{
+background-image:url(l4_spacer_bg.png);background-repeat:no-repeat;background-position:center middle;width:5%;vertical-align:middle;text-align:center;background-color:#fff;
+}
+.quaternaryContentRegion{
+background-color:#fff;padding-bottom:5px;padding-top:5px;overflow:hidden;
+}
+.tabHover{
+text-decoration:underline;
+}
+.obips_tabBody{
+height:100%;overflow:hidden;
+}
+.obipsTabBarOverflow{
+border-top:1px solid transparent;border-bottom:1px solid transparent;border-left:1px solid transparent;border-right:1px solid transparent;padding-top:2px;padding-bottom:2px;padding-left:1px;padding-right:1px;
+}
+.obipsTabBarOverflowOver{
+background-image:url(trainof_bg_mo.png);background-color:#EDFFFF;border-top:1px solid #ACBACF;border-bottom:1px solid #0A0B19;border-left:1px solid #768092;border-right:1px solid #768092;padding-top:2px;padding-bottom:2px;padding-left:1px;padding-right:1px;
+}
+.obipsTabBarOverflowDown{
+background-image:url(trainof_bg_md.png);background-color:#DEEAF1;border-top:1px solid #0A0B19;border-bottom:1px solid #ACBACF;border-left:1px solid #768092;border-right:1px solid #768092;padding-top:2px;padding-bottom:2px;padding-left:1px;padding-right:1px;
+}
+.obipsTabBarCloseButton{
+vertical-align:middle;margin-left:3px;margin-right:4px;
+}
+.obipsTabBarToolbarCell{
+padding-bottom:4px;vertical-align:top;text-align:right;width:32px;white-space:nowrap;
+}
