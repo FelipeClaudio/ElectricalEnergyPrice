@@ -1,0 +1,224 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Dec 29 22:16:53 2018
+
+@author: felip
+"""
+import warnings
+import numpy as np
+import matplotlib.pyplot as plt
+warnings.filterwarnings("ignore")
+plt.style.use('fivethirtyeight')
+import pandas as pd
+import statsmodels.api as sm
+import matplotlib
+from pylab import rcParams
+from scipy import stats
+from sklearn.metrics import mean_squared_error
+from math import sqrt
+import itertools
+
+# MatPlotlib
+import matplotlib.pyplot as plt
+from matplotlib import pylab
+
+rcParams['figure.figsize'] = 18, 8
+
+#setting plotting window parameters
+matplotlib.rcParams['axes.labelsize'] = 14
+matplotlib.rcParams['xtick.labelsize'] = 12
+matplotlib.rcParams['ytick.labelsize'] = 12
+matplotlib.rcParams['text.color'] = 'k'
+
+
+def ExtractTendByPolyFit(x, y, originalX, order, FILE_PATH, figureName, showPlot = False, SAVE_FIGURE = False):
+    '''
+    INPUT:
+        x:          array with horizontal axis info
+        y:          array with vertical axis info
+        orignalX:   array with datetime info aboutX
+        order:      order of polynomial used
+        FILE_PATH:  folder where file will be saved
+        figureName: title shown in figure
+        showPlot:   determine whether a plot will be show
+        SAVE_FIGURE: enables saving plot feature
+    OUTUPUT:
+        mse:        Mean Squared Error of polynomial fit
+        coef:       Coefficients used to fit data
+    '''    
+    #linear regression
+    coef = pylab.polyfit(x, y, order)
+    mse = PlotPolyFit(x, y, originalX, coef, FILE_PATH, figureName, SAVE_FIGURE, showPlot)            
+    return [mse, coef]
+
+
+def PlotPolyFit(x, y, originalX, coef, FILE_PATH, figureName, showPlot = False, SAVE_FIGURE = False):    
+    #uses poly1d to get Y values given coefficients
+    poly = np.poly1d(coef)
+    yPredicted = poly(x)
+    mse = mean_squared_error(y, yPredicted)
+    rmse = sqrt(mse)
+    
+    if showPlot:
+        plt.figure()
+        plt.plot(originalX, y,'o', originalX, yPredicted)
+        plt.title(figureName)
+        plt.xlabel('Month')
+        plt.ylabel('PLD price')
+        ax = plt.gca()
+        ax.set_facecolor((0.898, 0.898, 0.898))
+        
+        #add text box with info about RMSE and MSE
+        textstr = '\n'.join((
+            r'MSE=%.2f' % (mse, ),
+            r'RMSE=%.2f' % (rmse, )
+            ))
+    
+        props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+        ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,
+            verticalalignment='top', bbox=props)
+
+    if SAVE_FIGURE:
+        plt.savefig(FILE_PATH , bbox_inches='tight')
+    return [mse]
+
+def PlotErrorFunction(x, errorValues, INITIAL_ORDER, FINAL_ORDER, filepath, \
+                        figureName, xLabel='Order', \
+                        yLabel='Value', SAVE_FIGURE=False):
+    '''
+    INPUT:
+        x:              array with horizontal axis info
+        errorValues:    array with error for a given prediction
+        INITIAL_ORDER:  order of the lowest polynomial used in error array
+        FINAL_ORDER:    order of the highest polynomial used in error array
+        FILE_PATH:      folder where file will be saved
+        figureName;     title shown in figure
+        xLabel:         label for x axis in plot
+        SAVE_FIGURE:    enables saving plot feature
+    OUTUPUT:
+
+    '''  
+    plotAxis = np.arange(INITIAL_ORDER, FINAL_ORDER)
+    plt.figure()
+    plt.plot(plotAxis, errorValues)
+    plt.title(figureName)
+    plt.xlabel(xLabel)
+    plt.ylabel(yLabel)
+    if (SAVE_FIGURE == True):
+        plt.savefig(filepath, bbox_inches='tight')
+
+def ExtractTrendByMovingAverage(y, windowSize):
+    ma = GetMovingAverage(y, windowSize)
+    pldTEMP = y[windowSize-1:]
+    return mean_squared_error(pldTEMP, ma)
+
+def GetMovingAverage (y, windowSize):
+    return pd.Series(y).rolling(window=windowSize).mean().iloc[windowSize-1:].values
+
+def ExtractTrendByExponentialMovingAverage(y, windowSize):
+    ema = GetExponentialMovingAverage(y, windowSize)
+    pldTEMP = y[windowSize-1:]
+    return mean_squared_error(pldTEMP, ema)
+
+def GetExponentialMovingAverage(y, windowSize):
+    return y.ewm(span=windowSize, adjust=False).mean().iloc[windowSize-1:].values
+
+
+def UseSARIMAToEstimateTemporalSeries(y, PARAM_MAX, INITIAL_TEST_DATE, FILE_PATH,\
+                                      param_sarima = None, \
+                                      seasonal_param_sarima = None, \
+                                      SAVE_FIGURE = False):
+    '''
+    INPUT:
+        y:                  complete data used to fit model
+        PARAM_MAX:          max order of parameter used to fit model
+        INITIAL_TEST_DATE:  parameter used to separate train from test set
+        FILE_PATH:          folder where file will be saved
+        param_sarima:       SARIMA param used when no otimization is needed
+        param_sarima:       SARIMA seasonal param used when no otimization is needed
+        SAVE_FIGURE:        enables saving plot feature
+    OUTPUT:
+    '''
+    #Using ARIMA to extract trend
+    p = d = q = range(0, PARAM_MAX)
+    pdq = list(itertools.product(p, d, q))
+    seasonal_pdq = [(x[0], x[1], x[2], 12) for x in list(itertools.product(p, d, q))]
+
+    yTrain = y[:INITIAL_TEST_DATE]
+    yTrain = yTrain[:-1]
+    lowestAICparam = []
+    lowestAICparamSeasonal = []
+    if (param_sarima is None) and (seasonal_param_sarima is None):
+        print ('AQUI')
+        bestResult = 1000000000
+        for param in pdq:
+            for param_seasonal in seasonal_pdq:
+                try:
+                    mod = sm.tsa.statespace.SARIMAX(yTrain, \
+                                                    order=param, \
+                                                    seasonal_order=param_seasonal, \
+                                                    enforce_stationarity=False, \
+                                                    enforce_invertibility=False)
+                    
+                    results = mod.fit()
+                    if results.aic < bestResult:
+                        bestResult = results.aic
+                        lowestAICparam = param
+                        lowestAICparamSeasonal = param_seasonal
+                    
+                    print('ARIMA{}x{}12 - AIC:{}'.format(param, param_seasonal,\
+                          results.aic))
+                except:
+                    continue
+    else:
+        lowestAICparam = param_sarima
+        lowestAICparamSeasonal = seasonal_param_sarima
+     
+
+    mod = sm.tsa.statespace.SARIMAX(y,
+                                    order=lowestAICparam,
+                                    seasonal_order=lowestAICparamSeasonal,
+                                    enforce_stationarity=False,
+                                    enforce_invertibility=False)
+
+    results = mod.fit()
+    print(results.summary().tables[1])
+    results.plot_diagnostics(figsize=(16, 8))
+    plt.show()
+    figureName = 'DiagnosticBestSARIMA.jpg'
+    if SAVE_FIGURE:
+        plt.savefig(FILE_PATH + figureName, bbox_inches='tight')
+    
+    #best result
+    ## param: (p, d, q) = (0, 2, 2)
+    ## param_seasonal: (p, d, q) = (0, 2, 2, 12)
+    pred = results.get_prediction(start=pd.to_datetime(INITIAL_TEST_DATE), dynamic=False)
+    pred_ci = pred.conf_int()
+    plt.figure()
+    ax = y.plot(label='observed')
+    pred.predicted_mean.plot(ax=ax, label='One-step ahead Forecast', alpha=.7, figsize=(14, 7))
+    ax.fill_between(pred_ci.index,
+                    pred_ci.iloc[:, 0],
+                    pred_ci.iloc[:, 1], color='k', alpha=.2)
+    
+    
+    yPredicted = pred.predicted_mean
+    yObserved = y[INITIAL_TEST_DATE:]
+    
+    mse = mean_squared_error(yObserved, yPredicted)
+    ax.set_xlabel('Price')
+    ax.set_ylabel('Date')
+    plt.legend()
+    rmse = np.sqrt(mse)
+    props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    textstr = '\n'.join((
+        r'MSE=%.2f' % (mse, ),
+        r'RMSE=%.2f' % (rmse, )
+        ))
+    ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,\
+            verticalalignment='top', bbox=props)
+    plt.title('ARIMA ' + str(lowestAICparam)+' S:' + str(lowestAICparamSeasonal) + ' error for test set')
+    plt.show()
+    figureName = 'BestSARIMA.jpg'
+    if SAVE_FIGURE:
+        plt.savefig(FILE_PATH + figureName, bbox_inches='tight')
