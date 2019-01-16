@@ -6,7 +6,8 @@ import numpy as np
 from pylab import rcParams
 import statsmodels.api as sm
 import trendAnalysis as tr
-
+import utilities as util
+from FourierSeriesMinimizer import FourierSeriesMinimizer
 
 warnings.filterwarnings("ignore")
 plt.style.use('fivethirtyeight')
@@ -19,7 +20,7 @@ matplotlib.rcParams['xtick.labelsize'] = 12
 matplotlib.rcParams['ytick.labelsize'] = 12
 matplotlib.rcParams['text.color'] = 'k'
 
-ROOT_FOLDER  = '/home/felipe/Materias/TCC'
+ROOT_FOLDER  = 'D:\Sistemas GIT\ElectricalEnergyPrice'
 
 #loading PLD data
 MAIN_DIR = ROOT_FOLDER + '/PLD_Data/PLD_Outubro_2018'
@@ -195,63 +196,26 @@ tsaSeasonal = decomposition.seasonal
 tsaResidual = decomposition.resid
 tsaR = tsaResidual[~np.isnan(tsaResidual.price)]
 
-#Not organized yet
-SAVE_PLOT = False
-from scipy.fftpack import fft
-# Number of sample points
-N = tsaR.size
-# sample spacing
-T = 1.0
-y = tsaR
-yf = fft(y)
-xf = np.linspace(0.0, 1.0/(2.0*T), N//2)
-plt.figure()
-plt.plot(xf, 2.0/N * np.abs(yf[0:N//2]))
-plt.xlabel('Normalized Frequency')
-plt.ylabel('Magnitude')
-plt.title('FFT of Residual Signal')
-ax = plt.gca()
-props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-ax.text(0.05, 0.95, "0.5rad/s = 2 months", transform=ax.transAxes, fontsize=14,
-    verticalalignment='top', bbox=props)
-plt.grid()
-plt.show()
+#Residual Component Plot
+SAVE_PLOT = True
+SHOW_PLOT = True
+title = 'FFT of Residual Signal'
+X_LABEL = "Normalized Frequency"
+Y_LABEL = "Magnitude"
+figName = 'FFT_residual.jpg'
 
-
-figureName = 'FFT_residual.jpg'
-if SAVE_PLOT:
-    plt.savefig(PLOT_DIR + figureName, bbox_inches='tight')
+util.FFT(tsaR, X_LABEL, Y_LABEL, title, \
+         figureName=PLOT_DIR + figName ,saveFig=SAVE_PLOT, showPlot=SHOW_PLOT)
     
-from FourierSeriesMinimizer import FourierSeriesMinimizer
+#Residual Component Plot After removing senoidal cycles
 fsm = FourierSeriesMinimizer()
 fsm.SetRefenceValue(tsaR.price)
 xTsaR = np.arange(0, tsaR.size, 1)
 fsm.SetTimeVector(xTsaR)
 initialGuess = [4.0, 0, 0.33]
 minimizedCoef = fsm.MinimizeFourierSeriesCoefficients(initialGuess)
-
 an, bn, fn = minimizedCoef[0]
-
 nLinComponent = fsm.ExtractSenoidalInformation(an, bn, fn, originalSerie=tsaR.price)
-N = tsaR.size
-# sample spacing
-T = 1.0
-y = nLinComponent
-yf = fft(y)
-xf = np.linspace(0.0, 1.0/(2.0*T), N//2)
-plt.figure()
-plt.plot(xf, 2.0/N * np.abs(yf[0:N//2]))
-plt.xlabel('Normalized Frequency')
-plt.ylabel('Magnitude')
-plt.title('FFT of NonLinear Residue Signal')
-ax = plt.gca()
-props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-ax.text(0.05, 0.95, "0.5rad/s = 2 months", transform=ax.transAxes, fontsize=14,
-    verticalalignment='top', bbox=props)
-plt.grid()
-plt.show()
-
-plt.figure()
-plt.plot(tsaR.index, nLinComponent)
-plt.title('Non linear residue only')
-plt.show()
+title = "FFT of NonLinear Residue Signal"
+util.FFT(nLinComponent, X_LABEL, Y_LABEL, title, \
+         figureName= PLOT_DIR figName ,saveFig=SAVE_PLOT, showPlot=SHOW_PLOT)

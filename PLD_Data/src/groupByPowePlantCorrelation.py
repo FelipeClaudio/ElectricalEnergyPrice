@@ -27,7 +27,7 @@ matplotlib.rcParams['xtick.labelsize'] = 12
 matplotlib.rcParams['ytick.labelsize'] = 12
 matplotlib.rcParams['text.color'] = 'k'
 
-ROOT_FOLDER  = '/home/felipe/Materias/TCC'
+ROOT_FOLDER  = 'D:/Sistemas GIT/ElectricalEnergyPrice'
 
 #loading PLD data
 MAIN_DIR = ROOT_FOLDER + '/PLD_Data/PLD_Outubro_2018'
@@ -75,11 +75,41 @@ plt.matshow(cor)
 plt.show()
 
 #extend this to all fluviometric station
-THRESHOLD = 0.9
+#THRESHOLD = 2/sqrt(N) where N is the number of samples
+N = AFSEseries.columns.size
+THRESHOLD = 2/np.sqrt(N)
 corrVec = cor.iloc[1, :]
 
 highCorVec = []
+highCorVecIndex = []
 for i in range(0, corrVec.size):
     tempCor = cor.iloc[i, i+1:]
-    tempCor = tempCor.iloc[tempCor.values >= THRESHOLD]
+    tempCor = tempCor.iloc[abs(tempCor.values) >= THRESHOLD]
     highCorVec.append(tempCor)
+    highCorVecIndex.append(corrVec.index.values[i])
+
+
+cor.to_csv("corVec.csv", sep=";")
+
+'''
+file = open ("highCorVec.csv", "w")
+line = 0
+for hc in highCorVec:
+    if line == 0:
+        for val in hc.index.values:
+            file.write(str(val) + ";")
+            file.write("\n")
+    
+    else:
+        file.write(str(highCorVecIndex[line + 1]) + ";")
+        
+    for val in hc.values:
+        file.write(str(val) + ";")
+    file.write("\n")
+    line += 1
+    
+file.close()
+'''
+
+#get total affluent flow
+posto = AFSEseries.sum(axis = 1)
