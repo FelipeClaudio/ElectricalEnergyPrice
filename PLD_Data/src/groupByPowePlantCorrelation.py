@@ -12,10 +12,10 @@ import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
 from pylab import rcParams
-import statsmodels.api as sm
-import trendAnalysis as tr
+import seaborn as sns
+import utilities as util
 
-
+##Settings
 warnings.filterwarnings("ignore")
 plt.style.use('fivethirtyeight')
 
@@ -33,9 +33,24 @@ ROOT_FOLDER  = 'D:/Sistemas GIT/ElectricalEnergyPrice'
 MAIN_DIR = ROOT_FOLDER + '/PLD_Data/PLD_Outubro_2018'
 MAIN_DIR += '/10_out18_RV0_logENA_Mer_d_preco_m_0/'
 
+REGION = ['1 - Sudeste', '2 - Sul', '3 - Nordeste', '4 - Norte']
+regionFilter = REGION[1 - 1]
+
+INITIAL_YEAR = 2015
+INTIAL_DATE = '2015-01-01'
+FINAL_DATE = '2018-10-31'
+SAVE_CORR = True
+REGION_NAME = 'SE'
+COR_MATRIX_FIG_NAME = REGION_NAME + '_corVec_plot.jpg'
+COR_MATRIX_DATA_NAME = REGION_NAME + '_corVec.csv'
+PLOT_TITLE = 'Affluent Flow ' + REGION_NAME
+CORR_PLOT_TITLE = 'Correlation Between FLuviometric Stations - ' + REGION_NAME
+PLOT_FIG_NAME = REGION_NAME + '_affluentFlow.jpg'
+##Settings
+
 #Extract all power stations in southeast region
 hidr = pd.read_csv(MAIN_DIR + 'HIDR.csv', sep=';')
-hidrSE = hidr.loc[hidr.Sistema == '1 - Sudeste']
+hidrSE = hidr.loc[hidr.Sistema == regionFilter]
 
 affluentFlow = pd.read_csv(MAIN_DIR + 'VAZOES_DAT.TXT', sep='\s+', header=None)
 affluentFlow.columns = ['FS_ID', 'Year', 'Jan', 'Feb', 'Mar',\
@@ -43,73 +58,62 @@ affluentFlow.columns = ['FS_ID', 'Year', 'Jan', 'Feb', 'Mar',\
 
 #Extract all affluent flow by fluviometric station in a range of time
 affluentFlowSE = pd.merge(affluentFlow, hidrSE, left_on='FS_ID', right_on='Posto')
-INITIAL_DATE = 2015
-recentAFSE = affluentFlowSE.loc[affluentFlowSE.Year >= INITIAL_DATE]
+recentAFSE = affluentFlowSE.loc[affluentFlowSE.Year >= INITIAL_YEAR]
 recentAFSE = recentAFSE.iloc[:, 0:21]
 years = recentAFSE.Year.unique()
 numberOfYears = years.size
 
-'''
-concatAFSE = pd.DataFrame(np.zeros( shape=(recentAFSE.FS_ID.unique().size, \
-                                             (recentAFSE.columns.size * numberOfYears)\
-                         - (numberOfYears - 1))))
-'''
-
 #Transform data into temporal series
-AFSEseries = recentAFSE.loc[recentAFSE.Year == INITIAL_DATE].iloc[:, 0:14]
+AFSEseries = recentAFSE.loc[recentAFSE.Year == INITIAL_YEAR].iloc[:, 0:14]
 AFSEseries = AFSEseries.reset_index()
 for year in years:
-    if year != INITIAL_DATE:
+    if year != INITIAL_YEAR:
         tempAFSE = recentAFSE.loc[recentAFSE.Year == year].iloc[:, 2:14]
         tempAFSE = tempAFSE.reset_index()
         AFSEseries = pd.concat([AFSEseries, tempAFSE], axis=1)
-
 
 #Get high correlated fluviometric station
 AFSEseries = AFSEseries.drop(columns=['Year', 'index'])
 AFSEseries = AFSEseries.iloc[:, :-2]
 AFSEseries.set_index('FS_ID', inplace=True)
 AFSEseriesT = AFSEseries.transpose()
-cor = AFSEseriesT.corr()
-plt.matshow(cor)
+corr = AFSEseriesT.corr()
+ax = plt.axes()
+sns.heatmap(corr, xticklabels=corr.columns, \
+            yticklabels=corr.columns, cmap='Greens', ax=ax)
+ax.set_title(CORR_PLOT_TITLE)
 plt.show()
+
+if SAVE_CORR:
+    plt.savefig(COR_MATRIX_FIG_NAME, bbox_inches='tight')
+    
+#Plot all affluent flow
+AFSESseriesPlot = AFSEseriesT
+months = util.GetMonthRange(INTIAL_DATE, FINAL_DATE)
+AFSESseriesPlot.index = months
+AFSESseriesPlot.plot(title=PLOT_TITLE, legend=False)
+plt.ylabel('m\u00b3/s')
+plt.xlabel('Year')
+
+if SAVE_CORR:
+    plt.savefig(PLOT_FIG_NAME, bbox_inches='tight')
 
 #extend this to all fluviometric station
 #THRESHOLD = 2/sqrt(N) where N is the number of samples
 N = AFSEseries.columns.size
 THRESHOLD = 2/np.sqrt(N)
-corrVec = cor.iloc[1, :]
+corrVec = corr.iloc[1, :]
 
 highCorVec = []
 highCorVecIndex = []
 for i in range(0, corrVec.size):
-    tempCor = cor.iloc[i, i+1:]
+    tempCor = corr.iloc[i, i+1:]
     tempCor = tempCor.iloc[abs(tempCor.values) >= THRESHOLD]
     highCorVec.append(tempCor)
     highCorVecIndex.append(corrVec.index.values[i])
 
-
-cor.to_csv("corVec.csv", sep=";")
-
-'''
-file = open ("highCorVec.csv", "w")
-line = 0
-for hc in highCorVec:
-    if line == 0:
-        for val in hc.index.values:
-            file.write(str(val) + ";")
-            file.write("\n")
-    
-    else:
-        file.write(str(highCorVecIndex[line + 1]) + ";")
-        
-    for val in hc.values:
-        file.write(str(val) + ";")
-    file.write("\n")
-    line += 1
-    
-file.close()
-'''
+if SAVE_CORR:
+    corr.to_csv(COR_MATRIX_DATA_NAME, sep=";")
 
 #get total affluent flow
-posto = AFSEseries.sum(axis = 1)
+FStation = AFSEseries.sum(axis = 1)

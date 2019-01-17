@@ -10,6 +10,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
 from pylab import rcParams
+from datetime import datetime, timedelta
+from collections import OrderedDict
+
+
 
 rcParams['figure.figsize'] = 18, 8
 
@@ -44,3 +48,13 @@ def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
         
         if saveFig:
             plt.savefig(figureName, bbox_inches='tight')  
+
+def GetMonthRange(initialDate, finalDate):
+    dates = [initialDate, finalDate]
+    start, end = [datetime.strptime(_, "%Y-%m-%d") for _ in dates]
+    total_months = lambda dt: dt.month + 12 * dt.year
+    mlist = []
+    for tot_m in range(total_months(start)-1, total_months(end)):
+        y, m = divmod(tot_m, 12)
+        mlist.append(datetime(y, m+1, 1))
+    return mlist

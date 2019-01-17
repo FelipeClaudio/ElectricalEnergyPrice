@@ -8,6 +8,7 @@ import statsmodels.api as sm
 import trendAnalysis as tr
 import utilities as util
 from FourierSeriesMinimizer import FourierSeriesMinimizer
+import utilities as util
 
 warnings.filterwarnings("ignore")
 plt.style.use('fivethirtyeight')
@@ -169,7 +170,6 @@ tr.PlotErrorFunction(xMA, rmseEMA, MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1, \
                       SAVE_FIGURE=SAVE_PLOT)
 
 
-
 #Using SARIMA time series decomposion
 MAX_ORDER = 2
 INITIAL_TEST_DATE = '2017-01-01'
@@ -217,5 +217,6 @@ minimizedCoef = fsm.MinimizeFourierSeriesCoefficients(initialGuess)
 an, bn, fn = minimizedCoef[0]
 nLinComponent = fsm.ExtractSenoidalInformation(an, bn, fn, originalSerie=tsaR.price)
 title = "FFT of NonLinear Residue Signal"
+figName = 'FFT_NonLinearresidual.jpg'
 util.FFT(nLinComponent, X_LABEL, Y_LABEL, title, \
-         figureName= PLOT_DIR figName ,saveFig=SAVE_PLOT, showPlot=SHOW_PLOT)
+         figureName= PLOT_DIR + figName ,saveFig=SAVE_PLOT, showPlot=SHOW_PLOT)
