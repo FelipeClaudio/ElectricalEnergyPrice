@@ -1,0 +1,14 @@
+ligar secretaria: CEPEL? (não falar sobre o tema do trabalho)
+licensa acadêmica para baixar (email mandado)
+PostoXUsina (O que é?) (Postos Fluviométricos ->
+PLD SUDESTE:
+	mostrar as séries temporais ao longo do tempo (observar posto 269 no vazoes_dat)
+	matriz de autocorrelaçao de todas as séries
+	distribuições das variáveis (histograma dos valores possíveis na série) (como estimar a quantidade de bins do histograma - PDG (particle data group))
+
+Fazer apresentação: com objetivos e metas
+mandar email na terça -> junior marcar reunião com o Caloba
+mandar apresentação na quarta feira
+lps tutorial LPS -> github
+mandar email para criar conta para o Junior
+ICML -> Falar com Évora

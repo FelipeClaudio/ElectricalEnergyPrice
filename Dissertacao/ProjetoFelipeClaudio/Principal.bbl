@@ -1,0 +1,35 @@
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem{Meyer97}
+MEYER, D.~E., KIERAS, D.~E., \emph{Título da nota tecnica}, Report
+  TR-97/ONR-EPIC-08, Department of Psychology, Electrical Engineering \&
+  computer Science Department, University of Michigan, 1997.
+
+\bibitem{Papadimitriou04}
+LEWIS, H.~R., PAPADIMITRIOU, C.~H., \emph{Título do livro}. Porto Alegre,
+  Bookman, 2004.
+
+\bibitem{BrainVoyager06}
+NETTLE, P., \enquote{Título da URL}, http://www.brainvoyager.com/, 2006,
+  (Acesso em 05 Janeiro 2006).
+
+\bibitem{Heeger02}
+HEEGER, D., RESS, D., \enquote{Título do artigo}, \emph{Nature
+  Reviews/Neuroscience}, v.~3, pp.~142--151, 2002.
+
+\bibitem{Canguilhem80}
+CANGUILHEM, G., \enquote{Título do artigo em proceeding}. In: \emph{Georges
+  Canguilhem - Philosophe, historien des sciences: Actes du Colloque}, pp.
+  11--33, Paris, 1993.
+
+\bibitem{Fulano03}
+FULANO, J., \emph{Título da dissertação de mestrado}. M.Sc. dissertation,
+  Universidade Federal do Rio de Janeiro, Julho 2003.
+
+\bibitem{Beltrano99}
+BELTRANO, M., \emph{Título do livro onde se consultou um capítulo}, chapter
+  Membrane potential and action potential, New York, Academic Press, pp.
+  129--154, 1999.
+
+\end{thebibliography}
