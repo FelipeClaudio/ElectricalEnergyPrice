@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.20)  20 JAN 2019 21:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.20)  27 JAN 2019 21:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -431,25 +431,74 @@ Package: multirow 2018/08/03 v2.3 Span multiple rows of a table
 \multirow@cntb=\count176
 \multirow@dima=\skip49
 \bigstrutjot=\dimen170
-)) (/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2018/05/01 v1.1-162 Sub-captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2018/05/01 v3.3-147 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2018/05/27 v1.8a caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+\captionmargin=\dimen171
+\captionmargin@=\dimen172
+\captionwidth=\dimen173
+\caption@tempdima=\dimen174
+\caption@indent=\dimen175
+\caption@parindent=\dimen176
+\caption@hangindent=\dimen177
+)
+\c@ContinuedFloat=\count177
+Package caption Info: rotating package is loaded.
+
+
+! Package caption Error: For a successful cooperation we need at least version
+(caption)                `1995/08/22 v2.10' of package rotating,
+(caption)                but only version
+(caption)                `94/04/15 2 SPQR'
+(caption)                is available.
+
+See the caption package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1653 }{}
+          
+If you do not understand this error, please take a closer look
+at the documentation of the `caption' package, especially the
+section about errors.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+)
+\c@subfigure=\count178
+\c@subtable=\count179
+) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count180
+\float@exts=\toks37
+\float@box=\box34
+\@float@everytoks=\toks38
+\@floatcapt=\box35
+))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip50
 \LTright=\skip51
 \LTpre=\skip52
 \LTpost=\skip53
-\LTchunksize=\count177
-\LTcapwidth=\dimen171
-\LT@head=\box34
-\LT@firsthead=\box35
-\LT@foot=\box36
-\LT@lastfoot=\box37
-\LT@cols=\count178
-\LT@rows=\count179
-\c@LT@tables=\count180
-\c@LT@chunks=\count181
-\LT@p@ftn=\toks37
-)
-(./Principal.aux)
+\LTchunksize=\count181
+\LTcapwidth=\dimen178
+\LT@head=\box36
+\LT@firsthead=\box37
+\LT@foot=\box38
+\LT@lastfoot=\box39
+\LT@cols=\count182
+\LT@rows=\count183
+\c@LT@tables=\count184
+\c@LT@chunks=\count185
+\LT@p@ftn=\toks39
+) (./Principal.aux)
 \openout1 = `Principal.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
@@ -464,20 +513,19 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
 LaTeX Font Info:    ... okay on input line 4.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
 LaTeX Font Info:    ... okay on input line 4.
-
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count182
-\scratchdimen=\dimen172
-\scratchbox=\box38
-\nofMPsegments=\count183
-\nofMParguments=\count184
-\everyMPshowfont=\toks38
-\MPscratchCnt=\count185
-\MPscratchDim=\dimen173
-\MPnumerator=\count186
-\makeMPintoPDFobject=\count187
-\everyMPtoPDFconversion=\toks39
+\scratchcounter=\count186
+\scratchdimen=\dimen179
+\scratchbox=\box40
+\nofMPsegments=\count187
+\nofMParguments=\count188
+\everyMPshowfont=\toks40
+\MPscratchCnt=\count189
+\MPscratchDim=\dimen180
+\MPnumerator=\count190
+\makeMPintoPDFobject=\count191
+\everyMPtoPDFconversion=\toks41
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -529,7 +577,15 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-(./Capa.tex
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: longtable package is loaded.
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
+)
+Package caption Info: End \AtBeginDocument code.
+ (./Capa.tex
 Package epstopdf Info: Source file: <./figuras/Poli.eps>
 (epstopdf)                    date: 2014-03-24 13:17:04
 (epstopdf)                    size: 546883 bytes
@@ -560,7 +616,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 10.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (2.61107pt too wide) in paragraph at lines 9--14
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 9--16
    $[]$
  []
 
@@ -587,7 +643,7 @@ Non-PDF special ignored!
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figuras/Poli-eps-convert
 ed-to.pdf>]
-Overfull \hbox (1.744pt too wide) in paragraph at lines 32--33
+Overfull \hbox (1.744pt too wide) in paragraph at lines 34--35
 \OT1/cmr/m/n/12 PROJETO DE GRADUA[][]AO SUB-ME-TIDO AO CORPO DO-CENTE DO CURSO
  []
 
@@ -609,13 +665,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--16
  [11
 
 ]
-(./Principal.lot
-Overfull \hbox (17.1551pt too wide) in paragraph at lines 4--4
- [][] []\OT1/cmr/m/n/12 Casos de ataques aos com-puta-dores da In-tranet. Fonte
-: DEL/Poli/UFRJ 
- []
-
-)
+(./Principal.lot)
 \tf@lot=\write5
 \openout5 = `Principal.lot'.
 
@@ -629,42 +679,64 @@ Cap\'{\i }tulo 1.
 
 ]) [2]
 Cap\'{\i }tulo 2.
-(./cap2.tex [3
+(./cap2.tex
+<./figuras/matrizEletrica_mundo.png, id=57, 517.4532pt x 520.344pt>
+File: ./figuras/matrizEletrica_mundo.png Graphic file (type png)
+<use ./figuras/matrizEletrica_mundo.png>
+Package pdftex.def Info: ./figuras/matrizEletrica_mundo.png  used on input line
+ 8.
+(pdftex.def)             Requested size: 200.59244pt x 201.71854pt.
+<./figuras/matrizEletrica_brasil.png, id=59, 548.2884pt x 529.4982pt>
+File: ./figuras/matrizEletrica_brasil.png Graphic file (type png)
+<use ./figuras/matrizEletrica_brasil.png>
+Package pdftex.def Info: ./figuras/matrizEletrica_brasil.png  used on input lin
+e 14.
+(pdftex.def)             Requested size: 183.51714pt x 177.22342pt.
+ [3
 
 ]
-Package epstopdf Info: Source file: <./figuras/logo_del.eps>
-(epstopdf)                    date: 2008-09-23 16:33:40
-(epstopdf)                    size: 227930 bytes
-(epstopdf)             Output file: <./figuras/logo_del-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-09-16 13:30:28
-(epstopdf)                    size: 3542 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figuras/logo_del-eps-con
-verted-to.pdf ./figuras/logo_del.eps>
-(epstopdf)             \includegraphics on input line 28.
-Package epstopdf Info: Output file is already uptodate.
-<./figuras/logo_del-eps-converted-to.pdf, id=60, 238.8925pt x 81.30376pt>
-File: ./figuras/logo_del-eps-converted-to.pdf Graphic file (type pdf)
-<use ./figuras/logo_del-eps-converted-to.pdf>
-Package pdftex.def Info: ./figuras/logo_del-eps-converted-to.pdf  used on input
- line 28.
-(pdftex.def)             Requested size: 238.8919pt x 81.30354pt.
+<./figuras/SistemadeTransmissao_Horizonte2017.jpg, id=63, 803.0pt x 771.88374pt
+>
+File: ./figuras/SistemadeTransmissao_Horizonte2017.jpg Graphic file (type jpg)
+<use ./figuras/SistemadeTransmissao_Horizonte2017.jpg>
+Package pdftex.def Info: ./figuras/SistemadeTransmissao_Horizonte2017.jpg  used
+ on input line 33.
+(pdftex.def)             Requested size: 481.80373pt x 463.13382pt.
 
-Overfull \hbox (2.19681pt too wide) in paragraph at lines 33--34
-\OT1/cmr/m/n/12 tra-ta-das es-ta-tis-ti-ca-mente cons-ti-tuindo uma uni-dade au
-t^onoma. Em sua apre-senta^^Xc~ao
+Overfull \hbox (55.01239pt too wide) in paragraph at lines 33--34
+ [] 
  []
 
-[4 <./figuras/logo_del-eps-converted-to.pdf>]
-Underfull \hbox (badness 3792) in paragraph at lines 37--37
-[]\OT1/cmr/m/n/12 Tabela 2.1: Ca-sos de ata-ques aos com-pu-ta-do-res da In-tra
--net. Fonte:
- []
+[4 <./figuras/matrizEletrica_mundo.png> <./figuras/matrizEletrica_brasil.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 47.
 
-[5]) [6]
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 47.
+ [5 <./figuras/SistemadeTransmissao_Horizonte2017.jpg>]) [6]
 Cap\'{\i }tulo 3.
 (./cap3.tex) [7
 
-] (./Principal.bbl) [8
+] (./Principal.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 9--12
+[]\OT1/cmr/m/n/12 ENERG^^SeTICA, E. D. P., ``Ma-triz Energ^^Setica e El^^Setric
+a'',
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--12
+\OT1/cmr/m/n/12 http://www.epe.gov.br/pt/abcdenergia/matriz-energetica-e-eletri
+ca, 2018,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--22
+[]\OT1/cmr/m/n/12 ONS, ``Go-ver-nan^^Xca'', http://ons.org.br/paginas/sobre-o-
+ []
+
+) [8
 
 
 ]
@@ -685,7 +757,7 @@ ted-to.pdf>
 Final-eps-converted-to.pdf ./figuras/Capa_do_Projeto_Final.eps>
 (epstopdf)             \includegraphics on input line 9.
 Package epstopdf Info: Output file is already uptodate.
-<./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf, id=83, 420.57124pt x 520
+<./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf, id=86, 420.57124pt x 520
 .94624pt>
 File: ./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf Graphic file (type p
 df)
@@ -704,23 +776,28 @@ Overfull \hbox (50.6844pt too wide) in paragraph at lines 9--9
 Ap\^endice C.
 (./ApendiceC.tex) [12
 
-] (./Principal.aux) ) 
+] (./Principal.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 11272 strings out of 494566
- 187633 string characters out of 6177021
- 269755 words of memory out of 5000000
- 14665 multiletter control sequences out of 15000+600000
+ 12529 strings out of 494566
+ 210405 string characters out of 6177021
+ 291773 words of memory out of 5000000
+ 15899 multiletter control sequences out of 15000+600000
  10749 words of font info for 40 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 42i,9n,41p,711b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Principal.pdf (24 pages, 165343 bytes).
+ 61i,9n,94p,695b,594s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on Principal.pdf (24 pages, 768922 bytes).
 PDF statistics:
- 159 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
+ 165 PDF objects out of 1000 (max. 8388607)
+ 78 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

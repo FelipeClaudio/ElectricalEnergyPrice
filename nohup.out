@@ -3,3 +3,11 @@ events.js:183
       ^
 
 Error: EBADF: bad file descriptor, read
+[11538:11538:0126/194834.846137:ERROR:zygote_communication_linux.cc(292)] Failed to send GetTerminationStatus message to zygote
+[11538:11538:0126/194834.973306:ERROR:zygote_communication_linux.cc(292)] Failed to send GetTerminationStatus message to zygote
+[11538:11538:0126/194834.978362:ERROR:zygote_communication_linux.cc(292)] Failed to send GetTerminationStatus message to zygote
+[11538:11538:0126/195421.688722:ERROR:child_process_launcher.cc(522)] Failed to launch child process
+[11538:11538:0126/195424.093093:ERROR:child_process_launcher.cc(522)] Failed to launch child process
+[11538:11538:0126/200641.266646:ERROR:child_process_launcher.cc(522)] Failed to launch child process
+[11538:11538:0126/201227.668790:ERROR:child_process_launcher.cc(522)] Failed to launch child process
+[11538:11538:0126/201232.231172:ERROR:child_process_launcher.cc(522)] Failed to launch child process
