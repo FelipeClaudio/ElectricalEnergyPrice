@@ -11,6 +11,11 @@
 \contentsline {paragraph}{}{ix}
 \contentsline {paragraph}{}{ix}
 \contentsline {paragraph}{}{ix}
+\contentsline {paragraph}{}{ix}
+\contentsline {paragraph}{}{ix}
+\contentsline {paragraph}{}{ix}
+\contentsline {paragraph}{}{ix}
+\contentsline {paragraph}{}{ix}
 \contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{1}
 \contentsline {section}{\numberline {1.1}Tema}{1}
 \contentsline {paragraph}{}{1}
@@ -30,17 +35,24 @@
 \contentsline {paragraph}{}{2}
 \contentsline {paragraph}{}{2}
 \contentsline {paragraph}{}{2}
-\contentsline {chapter}{\numberline {2}O mercado de energia el\'etrica brasileiro}{3}
-\contentsline {section}{\numberline {2.1}Como funciona o sistema el\'etrico no brasil}{3}
+\contentsline {chapter}{\numberline {2}O sistema el\'etrico brasileiro}{3}
+\contentsline {section}{\numberline {2.1}Hist\'orico do sistema el\'etrico brasileiro}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{3}
 \contentsline {paragraph}{}{3}
 \contentsline {paragraph}{}{4}
+\contentsline {paragraph}{}{4}
+\contentsline {paragraph}{}{4}
+\contentsline {section}{\numberline {2.2}Como funciona o sistema el\'etrico no brasil}{4}
+\contentsline {paragraph}{}{4}
 \contentsline {paragraph}{}{5}
-\contentsline {chapter}{\numberline {3}Conclus\~oes}{7}
-\contentsline {paragraph}{}{7}
-\contentsline {paragraph}{}{7}
-\contentsline {chapter}{Bibliografia}{8}
-\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{9}
-\contentsline {paragraph}{}{9}
-\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{10}
-\contentsline {chapter}{\numberline {C}O que \'e um anexo}{12}
-\contentsline {paragraph}{}{12}
+\contentsline {paragraph}{}{6}
+\contentsline {chapter}{\numberline {3}Conclus\~oes}{8}
+\contentsline {paragraph}{}{8}
+\contentsline {paragraph}{}{8}
+\contentsline {chapter}{Bibliografia}{9}
+\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{10}
+\contentsline {paragraph}{}{10}
+\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{11}
+\contentsline {chapter}{\numberline {C}O que \'e um anexo}{13}
+\contentsline {paragraph}{}{13}

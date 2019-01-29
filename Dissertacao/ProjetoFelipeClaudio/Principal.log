@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.20)  27 JAN 2019 21:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.20)  29 JAN 2019 01:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -679,45 +679,51 @@ Cap\'{\i }tulo 1.
 
 ]) [2]
 Cap\'{\i }tulo 2.
-(./cap2.tex
-<./figuras/matrizEletrica_mundo.png, id=57, 517.4532pt x 520.344pt>
+(./cap2.tex [3
+
+]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 13.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
+<./figuras/matrizEletrica_mundo.png, id=60, 517.4532pt x 520.344pt>
 File: ./figuras/matrizEletrica_mundo.png Graphic file (type png)
 <use ./figuras/matrizEletrica_mundo.png>
 Package pdftex.def Info: ./figuras/matrizEletrica_mundo.png  used on input line
- 8.
+ 30.
 (pdftex.def)             Requested size: 200.59244pt x 201.71854pt.
-<./figuras/matrizEletrica_brasil.png, id=59, 548.2884pt x 529.4982pt>
+<./figuras/matrizEletrica_brasil.png, id=62, 548.2884pt x 529.4982pt>
 File: ./figuras/matrizEletrica_brasil.png Graphic file (type png)
 <use ./figuras/matrizEletrica_brasil.png>
 Package pdftex.def Info: ./figuras/matrizEletrica_brasil.png  used on input lin
-e 14.
-(pdftex.def)             Requested size: 183.51714pt x 177.22342pt.
- [3
+e 36.
+(pdftex.def)             Requested size: 204.85802pt x 197.83417pt.
 
-]
-<./figuras/SistemadeTransmissao_Horizonte2017.jpg, id=63, 803.0pt x 771.88374pt
+[4]
+<./figuras/SistemadeTransmissao_Horizonte2017.jpg, id=67, 803.0pt x 771.88374pt
 >
 File: ./figuras/SistemadeTransmissao_Horizonte2017.jpg Graphic file (type jpg)
 <use ./figuras/SistemadeTransmissao_Horizonte2017.jpg>
 Package pdftex.def Info: ./figuras/SistemadeTransmissao_Horizonte2017.jpg  used
- on input line 33.
+ on input line 56.
 (pdftex.def)             Requested size: 481.80373pt x 463.13382pt.
 
-Overfull \hbox (55.01239pt too wide) in paragraph at lines 33--34
+Overfull \hbox (55.01239pt too wide) in paragraph at lines 56--57
  [] 
  []
 
-[4 <./figuras/matrizEletrica_mundo.png> <./figuras/matrizEletrica_brasil.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 47.
+[5 <./figuras/matrizEletrica_mundo.png> <./figuras/matrizEletrica_brasil.png>]
+[6 <./figuras/SistemadeTransmissao_Horizonte2017.jpg>]
+Overfull \hbox (6.59021pt too wide) in paragraph at lines 75--76
+[]\OT1/cmr/bx/n/12 Agentes ex-por-ta-do-res\OT1/cmr/m/n/12 : S~ao agen-tes ti-t
+u-la-res de au-to-riza^^Xc~ao para im-planta^^Xc~ao
+ []
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 47.
- [5 <./figuras/SistemadeTransmissao_Horizonte2017.jpg>]) [6]
+) [7]
 Cap\'{\i }tulo 3.
-(./cap3.tex) [7
+(./cap3.tex) [8
 
 ] (./Principal.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 9--12
@@ -732,16 +738,16 @@ ca, 2018,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 19--22
+Underfull \hbox (badness 10000) in paragraph at lines 30--33
 []\OT1/cmr/m/n/12 ONS, ``Go-ver-nan^^Xca'', http://ons.org.br/paginas/sobre-o-
  []
 
-) [8
+) [9
 
 
 ]
 Ap\^endice A.
-(./ApendiceA.tex) [9
+(./ApendiceA.tex) [10
 
 ]
 Ap\^endice B.
@@ -757,7 +763,7 @@ ted-to.pdf>
 Final-eps-converted-to.pdf ./figuras/Capa_do_Projeto_Final.eps>
 (epstopdf)             \includegraphics on input line 9.
 Package epstopdf Info: Output file is already uptodate.
-<./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf, id=86, 420.57124pt x 520
+<./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf, id=89, 420.57124pt x 520
 .94624pt>
 File: ./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf Graphic file (type p
 df)
@@ -770,34 +776,30 @@ Overfull \hbox (50.6844pt too wide) in paragraph at lines 9--9
  [] 
  []
 
-) [10
+) [11
 
-] [11 <./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf>]
+] [12 <./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf>]
 Ap\^endice C.
-(./ApendiceC.tex) [12
+(./ApendiceC.tex) [13
 
-] (./Principal.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./Principal.aux) ) 
 Here is how much of TeX's memory you used:
- 12529 strings out of 494566
- 210405 string characters out of 6177021
- 291773 words of memory out of 5000000
- 15899 multiletter control sequences out of 15000+600000
+ 12539 strings out of 494566
+ 210568 string characters out of 6177021
+ 291782 words of memory out of 5000000
+ 15909 multiletter control sequences out of 15000+600000
  10749 words of font info for 40 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 61i,9n,94p,695b,594s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Principal.pdf (24 pages, 768922 bytes).
+ 61i,9n,94p,778b,594s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on Principal.pdf (25 pages, 775265 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 78 compressed objects within 1 object stream
+ 169 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
