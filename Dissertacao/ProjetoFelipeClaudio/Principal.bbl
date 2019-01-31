@@ -1,14 +1,9 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \newcommand{\enquote}[1]{``#1''}
 
 \bibitem{SIN_MAPAS}
 ONS, \enquote{Mapas}, http://ons.org.br/paginas/sobre-o-sin/mapas, 2019,
   (Acesso em 27 Janeiro 2019).
-
-\bibitem{MatrizEnergetica}
-ENERGéTICA, E. D.~P., \enquote{Matriz Energética e Elétrica},
-  http://www.epe.gov.br/pt/abcdenergia/matriz-energetica-e-eletrica, 2018,
-  (Acesso em 26 Janeiro 2019).
 
 \bibitem{AlteracaoModeloComercializacao}
 SILVA, E. F.~D., \emph{Principais Condicionantes das alterações no modelo de
@@ -21,6 +16,23 @@ SILVA, B. G.~D., \emph{Evolução do setor elétrico brasileiro no contexto
   Ph.D. dissertation, Universidade de São Paulo - Programa de pós-graduação em
   energia EP-FEA-IEE-IF, 2011.
 
+\bibitem{CCEE_COM_QUEM_SE_RELACIONA}
+CCEE, \enquote{Com quem se relaciona}, https://bit.ly/2DKYD3r, 2019, (Acesso em
+  31 Janeiro 2019).
+
+\bibitem{CCEE_RAZAO_SER}
+CCEE, \enquote{A CCE}, https://bit.ly/2WwORcA, 2019, (Acesso em 31 Janeiro
+  2019).
+
+\bibitem{ONS_O_QUE_E}
+ONS, \enquote{O Sistema Interligado Nacional},
+  http://ons.org.br/paginas/sobre-o-ons/o-que-e-ons, 2019, (Acesso em 27
+  Janeiro 2019).
+
+\bibitem{EPE_O_QUE_FAZEMOS}
+EPEP, \enquote{O que fazemos}, http://www.epe.gov.br/pt/a-epe/o-que-fazemos,
+  2019, (Acesso em 31 Janeiro 2019).
+
 \bibitem{SIN}
 ONS, \enquote{O Sistema Interligado Nacional},
   http://ons.org.br/paginas/sobre-o-sin/o-que-e-o-sin, 2019, (Acesso em 27
@@ -30,5 +42,15 @@ ONS, \enquote{O Sistema Interligado Nacional},
 ONS, \enquote{Governança},
   http://ons.org.br/paginas/sobre-o-ons/governanca/assembleia-geral, 2019,
   (Acesso em 27 Janeiro 2019).
+
+\bibitem{PRECO_SPOT}
+CASTRO, N. J.~D., \enquote{Preço spot de eletricidade: teoria e evidências do
+  caso brasileiro}, \emph{IV Encontro de Enconomia Catarinense, 2010,
+  Criciúma}, , 2010.
+
+\bibitem{MatrizEnergetica}
+ENERGéTICA, E. D.~P., \enquote{Matriz Energética e Elétrica},
+  http://www.epe.gov.br/pt/abcdenergia/matriz-energetica-e-eletrica, 2018,
+  (Acesso em 26 Janeiro 2019).
 
 \end{thebibliography}
