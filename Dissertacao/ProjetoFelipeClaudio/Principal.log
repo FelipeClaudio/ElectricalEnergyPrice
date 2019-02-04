@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.20)  31 JAN 2019 11:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.20)  4 FEB 2019 10:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -652,24 +652,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--16
 
  []
 
-[3] [4] [5] [6] [7] [8] [9]) (./Principal.toc)
+[3] [4] [5] [6] [7] [8] [9] [10]) (./Principal.toc)
 \tf@toc=\write3
 \openout3 = `Principal.toc'.
 
- [10
+ [11
 
 ] (./Principal.lof)
 \tf@lof=\write4
 \openout4 = `Principal.lof'.
 
- [11
 
-]
-(./Principal.lot)
+[12
+
+] (./Principal.lot)
 \tf@lot=\write5
 \openout5 = `Principal.lot'.
 
- [12
+ [13
 
 ]
 Cap\'{\i }tulo 1.
@@ -688,14 +688,14 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
-<./figuras/orgaos_governo.jpg, id=60, 803.0pt x 358.33875pt>
+<./figuras/orgaos_governo.jpg, id=63, 803.0pt x 358.33875pt>
 File: ./figuras/orgaos_governo.jpg Graphic file (type jpg)
 <use ./figuras/orgaos_governo.jpg>
 Package pdftex.def Info: ./figuras/orgaos_governo.jpg  used on input line 29.
 (pdftex.def)             Requested size: 426.79134pt x 190.45995pt.
 
 [4]
-<./figuras/SistemadeTransmissao_Horizonte2017.jpg, id=65, 803.0pt x 771.88374pt
+<./figuras/SistemadeTransmissao_Horizonte2017.jpg, id=68, 803.0pt x 771.88374pt
 >
 File: ./figuras/SistemadeTransmissao_Horizonte2017.jpg Graphic file (type jpg)
 <use ./figuras/SistemadeTransmissao_Horizonte2017.jpg>
@@ -715,35 +715,36 @@ u-la-res de au-to-riza^^Xc~ao para im-planta^^Xc~ao
  []
 
 [7]
-<./figuras/matrizEletrica_mundo.png, id=76, 517.4532pt x 520.344pt>
+<./figuras/matrizEletrica_mundo.png, id=79, 517.4532pt x 520.344pt>
 File: ./figuras/matrizEletrica_mundo.png Graphic file (type png)
 <use ./figuras/matrizEletrica_mundo.png>
 Package pdftex.def Info: ./figuras/matrizEletrica_mundo.png  used on input line
- 85.
+ 93.
 (pdftex.def)             Requested size: 200.59244pt x 201.71854pt.
-<./figuras/matrizEletrica_brasil.png, id=78, 548.2884pt x 529.4982pt>
+<./figuras/matrizEletrica_brasil.png, id=81, 548.2884pt x 529.4982pt>
 File: ./figuras/matrizEletrica_brasil.png Graphic file (type png)
 <use ./figuras/matrizEletrica_brasil.png>
 Package pdftex.def Info: ./figuras/matrizEletrica_brasil.png  used on input lin
-e 91.
+e 99.
 (pdftex.def)             Requested size: 204.85802pt x 197.83417pt.
-) [8 <./figuras/matrizEletrica_mundo.png> <./figuras/matrizEletrica_brasil.png>
-]
+ [8]
+<./figuras/PLD_media_mensal_SE.jpg, id=85, 1190.2869pt x 536.2434pt>
+File: ./figuras/PLD_media_mensal_SE.jpg Graphic file (type jpg)
+<use ./figuras/PLD_media_mensal_SE.jpg>
+Package pdftex.def Info: ./figuras/PLD_media_mensal_SE.jpg  used on input line 
+111.
+(pdftex.def)             Requested size: 426.79134pt x 192.27014pt.
+ [9 <./figuras/matrizEletrica_mundo.png> <./figuras/matrizEletrica_brasil.png>]
+ [10 <./figuras/PLD_media_mensal_SE.jpg>]) [11]
 Cap\'{\i }tulo 3.
-(./cap3.tex) [9
+(./cap3.tex) [12
 
 ] (./Principal.bbl
-Underfull \hbox (badness 1675) in paragraph at lines 33--35
-[]\OT1/cmr/m/n/12 EPEP, ``O que fa-ze-mos'', http://www.epe.gov.br/pt/a-epe/o-q
-ue-fazemos,
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 42--45
 []\OT1/cmr/m/n/12 ONS, ``Go-ver-nan^^Xca'', http://ons.org.br/paginas/sobre-o-
  []
 
-[10
+[13
 
 
 ]
@@ -758,9 +759,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--55
 ca, 2018,
  []
 
-) [11]
+) [14]
 Ap\^endice A.
-(./ApendiceA.tex) [12
+(./ApendiceA.tex) [15
 
 ]
 Ap\^endice B.
@@ -776,8 +777,8 @@ ted-to.pdf>
 Final-eps-converted-to.pdf ./figuras/Capa_do_Projeto_Final.eps>
 (epstopdf)             \includegraphics on input line 9.
 Package epstopdf Info: Output file is already uptodate.
-<./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf, id=96, 420.57124pt x 520
-.94624pt>
+<./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf, id=110, 420.57124pt x 52
+0.94624pt>
 File: ./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf Graphic file (type p
 df)
 <use ./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf>
@@ -789,30 +790,34 @@ Overfull \hbox (50.6844pt too wide) in paragraph at lines 9--9
  [] 
  []
 
-) [13
+) [16
 
-] [14 <./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf>]
+] [17 <./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf>]
 Ap\^endice C.
-(./ApendiceC.tex) [15
+(./ApendiceC.tex) [18
 
-] (./Principal.aux) ) 
+] (./Principal.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 12550 strings out of 494566
- 210822 string characters out of 6177021
- 292815 words of memory out of 5000000
- 15919 multiletter control sequences out of 15000+600000
+ 12559 strings out of 494566
+ 211055 string characters out of 6177021
+ 292831 words of memory out of 5000000
+ 15927 multiletter control sequences out of 15000+600000
  10749 words of font info for 40 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 61i,9n,94p,812b,594s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Principal.pdf (27 pages, 889554 bytes).
+ 61i,9n,94p,824b,594s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on Principal.pdf (31 pages, 1043079 bytes).
 PDF statistics:
- 176 PDF objects out of 1000 (max. 8388607)
- 85 compressed objects within 1 object stream
+ 190 PDF objects out of 1000 (max. 8388607)
+ 94 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

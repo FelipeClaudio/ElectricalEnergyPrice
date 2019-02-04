@@ -32,7 +32,7 @@
 \end{itemize} 
 
 
-\paragraph{}Outra medida tomada para facilitar o gerenciamento de toda a rede de geração, transmissão, e consumo de energia elétrica, o Sistema Interligado Nacional - SIN\cite{SIN} foi divido em quatro subsistemas. Esses são: Norte, Nordeste, Sudeste/Centro-Oeste e Sul. Vale ressaltar que existe conexão entre as partes, de forma que um subsistema pode auxiliar o suprimento da demanda de energia de outro em períodos de seca, como será visto posteriormente. 
+\paragraph{}Outra medida tomada para facilitar o gerenciamento de toda a rede de geração, transmissão, e consumo de energia elétrica, o Sistema Interligado Nacional - SIN\cite{SIN} foi divido em quatro subsistemas. Esses são: Norte, Nordeste, Sudeste/Centro-Oeste e Sul. Vale ressaltar que existe conexão entre as partes, de forma que um subsistema pode auxiliar o suprimento da demanda de energia de outro em períodos de seca. 
 
 
 \begin{figure}[H]
@@ -75,10 +75,16 @@
 
 \paragraph{}A reestruturação também dividiu o mercado de energia elétrica brasileiro em dois ambientes de comercialização: Ambiente de Contratação Regulada - ACR e Ambiente de Contratação Livre - ACL. O primeiro ambiente é focado na contratação de energia para consumidores residenciais e indústrias de baixo consumo em geral. As negociações são feitas através de leilões onde geralmente os contratos de fornecimento de energia tem foco no médio e longo prazo (duração maior que 5 anos). As distribuidoras são obrigadas a comprar 100\% da energia utilizada através desse meio. O segundo ambiente é focado em contratações bilaterais, de forma a trazer benefícios para grande consumidores pois podem negociar o preço da energia direto com os geradores\cite{PRECO_SPOT}.
 
-\paragraph{} PLD
+\section{O Mercado de Curto Prazo}
+\paragraph{} Dado o dinamismo do consumo, dificilmente a energia utilizada será igual a contratada. Uma das funções da CCEE é realizar medições tanto do que é produzido quanto o que é consumido. Esta instituição concentra todos os contratos do setor, e de posse dessa informação, realiza cálculos mensais com base na diferença entre o que foi negociado nos contratos e o que realmente foi utilizado. Esse valor será liquidado utilizando como multiplicador o Preço de Liquidação das Diferença - PLD. Esse valor é calculado semanalmente com base nos custos marginais de operação. Mensalmente esse cálculo é realizado e determina-se quanto cada um dos agentes deverá receber ou pagar.
 
-\section{Sistema elétrico brasileiro atual}
-\paragraph{}O Brasil possui uma matriz elétrica diferente do que em geral é observado no mundo. Em média 65,2\% da energia utilizada no país vem de fontes hidráulicas, diferente do que ocorre em média no resto do mundo (aproximadamente 16,6\%), assim como visto em\cite{MatrizEnergetica}. Essa fonte além de ser renovável, não polui o meio ambiente e tem custos menores quando comparado com fontes baseadas em combustíveis fósseis, assim como visto mais adiante. Apesar de todas essas vantagens, este tipo de geração necessita cuidado e planejamento, já que a energia produzida pelas hidrelétricas depende da disponibilidade de água nas barragens.
+\paragraph{}Esse processo de liquidação das diferenças é realizado no Mercado de Curto Prazo - MCP, também de base mensal regulado pela CCEE. A importância do PLD não se resume somente ao MCP, pois muitos dos contratos do mercado livre são baseados nesse valor. Isto permite que os agentes tomem estratégias diferentes para aumentar o lucro ou diminuir o prejuízo. Um exemplo disso seria um agente consumidor, que ao prever o aumento de preços nos próximos meses, pode buscar realizar contratos para abastecimento futuro a um preço menor do que seria pago. Outro exemplo seria um distribuidor, que ao prever um baixo PLD no MCP do mês atual, decide vender o excedente de energia contratada no mercado livre ao invés de receber o valor proporcional ao PLD.
+
+\section{O Cálculo do Preço da Liquidação das Diferenças}
+O grande desafio do setor é utilizar a energia de maneira eficiente, reduzindo não só risco de déficit energético como o custo da mesma não só no mês atual, como nos meses seguintes. Isto demanda planejamento com base nos cenários possíveis. [TODO -Figura operação]
+Conforme observado [TODO - Citar figura], o preço depende diretamente da quantidade de água nos reservatórios e a previsão de quanto água estará armazenada nos meses futuros. 
+
+\paragraph{}O Brasil atualmente possui uma matriz elétrica diferente do que em geral é observado no mundo. Em média 65,2\% da energia utilizada no país vem de fontes hidráulicas, diferente do que ocorre em média no resto do mundo (aproximadamente 16,6\%), assim como visto em\cite{MatrizEnergetica}. Essa fonte além de ser renovável, tem impacto menor no meio ambiente e custos menores quando comparado com fontes baseadas em combustíveis fósseis. O grande ponto negativo e a característica volátil desse recurso, pois depende baste de condições climática, o que dificulta o planejamento para períodos longos.
 
 \begin{figure}[H]
 	\centering
@@ -98,19 +104,32 @@
 \end{figure}
 
 
-Mercado de Curto Prazo
+\paragraph{}Utilizar as usinas hidrelétricas - UHE na capacidade máxima gerará o menor custo de energia possível no mês atual, porém, se no futuro for necessário utilizar outras fontes para suprir a demanda energética, o custo pode ser muito maior do que em uma situação onde a produção energética da UHE foi distribuída durantes os meses consecutivos. Por um outro lado, caso a a quantidade de a?ua armazenada em um reservatório supere o limiar máximo do mesmo, torna-se necessário liberar o excedente para o rio, situação chamada de "vertimento". Isto é indesejável, pois resulta em um desperdício de energia barata. Sendo assim, planejamento equivocado pode causar altas no PLD, o que afeta diretamente os agentes que participam do mercado de energia elétrico brasileiro.
 
-Como funciona a PLD
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{PLD_media_mensal_SE.jpg}
+	\caption[\small{Instituições do setor elétrico brasileiro \cite{}.}]{\label{PLDMensal} \small{Instituições do setor elétrico brasileiro. Fonte: CCEE \cite{CCEE_PRECO_PLD}.}}
+\end{figure}
 
-Histórico da PLD
+\paragraph{}Assim como visto no gráfico acima, existem pontos onde o SIN foi afetado por crises, fazendo com que o PLD aumentasse abruptamente. No ano de 2007 ocorreu a primeira mostrada no gráfico. O SEB tinha passado por uma recente reestruturação da organização, a qual não foi suficiente para evitar o acontecimento. Durante o período de racionamento (2001/06 - 2002/02) a demanda foi menor do que a oferta, porém com o passar do anos ela voltou a se aproximar da curva de oferta. Após abril de 2005, houve um período sem investimento na capacidade energética sistema. Junto com esse fato, ocorreu um período de baixa afluência nas usinas hidrelétricas.
 
-\paragraph{} Mesmo com essa reestruturação da organização, o SEB ainda passou por crises energéticas. Durante o período de racionamento (2001/06 - 2002/02) a foi menor do que a oferta, porém com o passar do anos ela voltou a se aproximar da curva de oferta. Após abril de 2005, houve um período sem investimento na capacidade. Junto com esse fato, ocorreu um período de baixa afluência nas usinas hidrelétricas, 
+\paragraph{}Outra crise notável graficamente ocorreu no ano de 
 
-\paragraph{} Crise de 2014-2017
 
-NEWAVE
 
-DECOMP
+\paragraph{}O PLD é calculado semanalmente e disponibilizado sexta-feira pela CCEE, com vigência na semana seguinte. Para cada um dos submercados do SIN são divulgados valores para os três patamares de carga: leve, médio e pesado. Esses estão relacionados com a hora do dia e o consumo, sendo que o patamar é pesado em horários de alto consumo e leve nos período de baixo demanda energética. O preço utilizado no MCP é uma média dos preços semanais (PLD médio mensal).
 
-Pesquisas na área	
+O planejamento e o cálculo do PLD é feito com base em programas desenvolvidos especificamente para o SEB. 
+Algum deles são:
+\begin{itemize}
+	\item{TODO -SIGLA - NEWAVE: Responsável pelo planejamento }
+	\item{TODO -DECOMP:}
+\end{itemize}
+cálculo do PLD é feito pelo programa DECOMP[ TODO - citar material sobre o DECOMP], o qual utiliza
+...
+
+
+Pesquisas na área
+
 

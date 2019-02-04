@@ -3,47 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: Principal.aux
 The style file: coppe.bst
 Database file #1: biblio.bib
-Warning--I'm ignoring PRECO_SPOT's extra "author" field
---line 168 of file biblio.bib
-You've used 11 entries,
+You've used 12 entries,
             2465 wiz_defined-function locations,
-            617 strings with 5699 characters,
-and the built_in function-call counts, 1636 in all, are:
-= -- 175
-> -- 44
+            621 strings with 5806 characters,
+and the built_in function-call counts, 1798 in all, are:
+= -- 191
+> -- 52
 < -- 0
-+ -- 22
-- -- 11
-* -- 70
-:= -- 291
-add.period$ -- 13
-call.type$ -- 11
-change.case$ -- 11
++ -- 25
+- -- 13
+* -- 79
+:= -- 317
+add.period$ -- 14
+call.type$ -- 12
+change.case$ -- 12
 chr.to.int$ -- 0
-cite$ -- 11
-duplicate$ -- 86
-empty$ -- 195
-format.name$ -- 11
-if$ -- 393
+cite$ -- 12
+duplicate$ -- 93
+empty$ -- 213
+format.name$ -- 13
+if$ -- 432
 int.to.chr$ -- 0
-int.to.str$ -- 11
+int.to.str$ -- 12
 missing$ -- 1
-newline$ -- 37
-num.names$ -- 11
-pop$ -- 47
+newline$ -- 40
+num.names$ -- 12
+pop$ -- 53
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 23
+skip$ -- 26
 stack$ -- 0
 substring$ -- 0
-swap$ -- 23
+swap$ -- 25
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 11
-width$ -- 13
-write$ -- 114
-(There was 1 warning)
+while$ -- 12
+width$ -- 14
+write$ -- 124

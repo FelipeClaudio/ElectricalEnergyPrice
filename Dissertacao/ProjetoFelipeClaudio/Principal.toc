@@ -22,6 +22,10 @@
 \contentsline {paragraph}{}{ix}
 \contentsline {paragraph}{}{ix}
 \contentsline {paragraph}{}{ix}
+\contentsline {paragraph}{}{ix}
+\contentsline {paragraph}{}{ix}
+\contentsline {paragraph}{}{ix}
+\contentsline {paragraph}{}{x}
 \contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{1}
 \contentsline {section}{\numberline {1.1}Tema}{1}
 \contentsline {paragraph}{}{1}
@@ -50,16 +54,21 @@
 \contentsline {paragraph}{}{5}
 \contentsline {paragraph}{}{6}
 \contentsline {paragraph}{}{7}
-\contentsline {section}{\numberline {2.2}Sistema el\'etrico brasileiro atual}{7}
+\contentsline {section}{\numberline {2.2}O Mercado de Curto Prazo}{7}
 \contentsline {paragraph}{}{7}
 \contentsline {paragraph}{}{8}
+\contentsline {section}{\numberline {2.3}O C\'alculo do Pre\c co da Liquida\c c\~ao das Diferen\c cas}{8}
 \contentsline {paragraph}{}{8}
-\contentsline {chapter}{\numberline {3}Conclus\~oes}{9}
 \contentsline {paragraph}{}{9}
-\contentsline {paragraph}{}{9}
-\contentsline {chapter}{Bibliografia}{10}
-\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{12}
+\contentsline {paragraph}{}{10}
+\contentsline {paragraph}{}{10}
+\contentsline {paragraph}{}{10}
+\contentsline {chapter}{\numberline {3}Conclus\~oes}{12}
 \contentsline {paragraph}{}{12}
-\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{13}
-\contentsline {chapter}{\numberline {C}O que \'e um anexo}{15}
+\contentsline {paragraph}{}{12}
+\contentsline {chapter}{Bibliografia}{13}
+\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{15}
 \contentsline {paragraph}{}{15}
+\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{16}
+\contentsline {chapter}{\numberline {C}O que \'e um anexo}{18}
+\contentsline {paragraph}{}{18}
