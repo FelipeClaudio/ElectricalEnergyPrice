@@ -129,20 +129,20 @@ for wSize in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
     tr.ExtractTrendByMovingAverage(pldPrices, wSize)
 
 
-SAVE_PLOT = False
+SAVE_PLOT = True
 figureName = 'MSE_MA.jpg'
 imageName = 'MSE for moving average using complete dataset'
 xMA = np.arange(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1)
 tr.PlotErrorFunction(xMA, mseMA, MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1, \
-                      PLOT_DIR + figureName, imageName, yLabel='RMSE', \
-                      SAVE_FIGURE=SAVE_PLOT)
+                      PLOT_DIR + figureName, imageName, xLabel='Window Size', \
+                      yLabel='RMSE', SAVE_FIGURE=SAVE_PLOT)
 
 figureName = 'RMSE_MA.jpg'
 imageName = 'RMSE for moving average using complete dataset'
 rmseMA = np.sqrt(mseMA)
 tr.PlotErrorFunction(xMA, rmseMA, MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1, \
-                      PLOT_DIR + figureName, imageName, yLabel='RMSE', \
-                      SAVE_FIGURE=SAVE_PLOT)
+                      PLOT_DIR + figureName, imageName, xLabel='Window Size', \
+                      yLabel='RMSE', SAVE_FIGURE=SAVE_PLOT)
 
 #Exponential moving average trend extraction
 MIN_WINDOW_SIZE = 2
@@ -154,26 +154,27 @@ for wSize in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
     mseEMA[wSize - MIN_WINDOW_SIZE] = \
     tr.ExtractTrendByExponentialMovingAverage(pldPrices, wSize)
 
-SAVE_PLOT = False
+SAVE_PLOT = True
 figureName = 'MSE_EMA.jpg'
 imageName = 'MSE for exponential moving average using complete dataset'
 xMA = np.arange(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1)
 tr.PlotErrorFunction(xMA, mseEMA, MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1, \
-                      PLOT_DIR + figureName, imageName, yLabel='RMSE', \
-                      SAVE_FIGURE=SAVE_PLOT)
+                      PLOT_DIR + figureName, imageName, xLabel='Window Size', \
+                      yLabel='RMSE', SAVE_FIGURE=SAVE_PLOT)
+
 
 figureName = 'RMSE_EMA.jpg'
 imageName = 'RMSE for exponential moving average using complete dataset'
 rmseEMA = np.sqrt(mseEMA)
 tr.PlotErrorFunction(xMA, rmseEMA, MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1, \
-                      PLOT_DIR + figureName, imageName, yLabel='RMSE', \
-                      SAVE_FIGURE=SAVE_PLOT)
+                      PLOT_DIR + figureName, imageName, xLabel='Window Size', \
+                      yLabel='RMSE', SAVE_FIGURE=SAVE_PLOT)
 
 
 #Using SARIMA time series decomposion
 MAX_ORDER = 2
-INITIAL_TEST_DATE = '2017-01-01'
-SAVE_PLOT = False
+INITIAL_TEST_DATE = '2018-01-01'
+SAVE_PLOT = True
 #param= (0, 2, 2)
 #seasonal_param= (0, 2, 2)
 tr.UseSARIMAToEstimateTemporalSeries(pldPrices, MAX_ORDER, \
@@ -185,7 +186,7 @@ tr.UseSARIMAToEstimateTemporalSeries(pldPrices, MAX_ORDER, \
 #Time Series decomposition
 figureName = 'TSA_additiveDecomposition.jpg'
 decomposition = sm.tsa.seasonal_decompose(trainValidationSet, model='additive')
-SAVE_PLOT = False
+SAVE_PLOT = True
 if SAVE_PLOT:
     fig = decomposition.plot()
     plt.show()
