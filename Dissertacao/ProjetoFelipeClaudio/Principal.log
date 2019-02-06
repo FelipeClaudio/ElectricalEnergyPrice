@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.20)  4 FEB 2019 10:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.20)  4 FEB 2019 10:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -796,25 +796,21 @@ Overfull \hbox (50.6844pt too wide) in paragraph at lines 9--9
 Ap\^endice C.
 (./ApendiceC.tex) [18
 
-] (./Principal.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./Principal.aux) ) 
 Here is how much of TeX's memory you used:
  12559 strings out of 494566
  211055 string characters out of 6177021
- 292831 words of memory out of 5000000
+ 292832 words of memory out of 5000000
  15927 multiletter control sequences out of 15000+600000
  10749 words of font info for 40 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  61i,9n,94p,824b,594s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Principal.pdf (31 pages, 1043079 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on Principal.pdf (31 pages, 1044404 bytes).
 PDF statistics:
  190 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream

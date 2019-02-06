@@ -14,6 +14,8 @@ import numpy as np
 from pylab import rcParams
 import seaborn as sns
 import utilities as util
+import trendAnalysis as tr
+import statsmodels.api as sm
 
 ##Settings
 warnings.filterwarnings("ignore")
@@ -35,27 +37,31 @@ MAIN_DIR += '/10_out18_RV0_logENA_Mer_d_preco_m_0/'
 
 REGION = ['1 - Sudeste', '2 - Sul', '3 - Nordeste', '4 - Norte']
 REGION_ABBREVIATION = ['SE', 'S', 'NE', 'N']
-REGION_INDEX = 3
+REGION_INDEX = 1
 regionFilter = REGION[REGION_INDEX - 1]
 
 INITIAL_YEAR = 2015
 INTIAL_DATE = '2015-01-01'
 FINAL_DATE = '2018-10-31'
-SAVE_CORR = True
+SAVE_CORR = False
 REGION_NAME = REGION_ABBREVIATION[REGION_INDEX - 1]
-#COR_MATRIX_FIG_NAME = REGION_NAME + '_corVec_plot.jpg'
-COR_MATRIX_FIG_NAME = 'SaoFrancisco_corVec_plot.jpg'
-#COR_MATRIX_DATA_NAME = REGION_NAME + '_corVec.csv'
-COR_MATRIX_DATA_NAME ='SaoFrancisco_corVec.csv'
-#PLOT_TITLE = 'Affluent Flow ' + REGION_NAME
-PLOT_TITLE = 'Affluent Flow São Francisco River' 
-#CORR_PLOT_TITLE = 'Correlation Between FLuviometric Stations - ' + REGION_NAME
-CORR_PLOT_TITLE = 'Correlation Between FLuviometric Stations - São Francisco River'
+COR_MATRIX_FIG_NAME = REGION_NAME + '_corVec_plot.jpg'
+#COR_MATRIX_FIG_NAME = 'SaoFrancisco_corVec_plot.jpg'
+COR_MATRIX_DATA_NAME = REGION_NAME + '_corVec.csv'
+#COR_MATRIX_DATA_NAME ='SaoFrancisco_corVec.csv'
+PLOT_TITLE = 'Affluent Flow ' + REGION_NAME
+#PLOT_TITLE = 'Affluent Flow São Francisco River' 
+CORR_PLOT_TITLE = 'Correlation Between FLuviometric Stations - ' + REGION_NAME
+#CORR_PLOT_TITLE = 'Correlation Between FLuviometric Stations - São Francisco River'
 #PLOT_FIG_NAME = REGION_NAME + '_affluentFlow.jpg'
 PLOT_FIG_NAME =  'SaoFrancisco_affluentFlow.jpg'
-FILTER_BY_FS = True
+FILTER_BY_FS = False
+psID = []
 #psID = [156, 158, 172, 173, 175, 176, 178, 300] #São Francisco
-psID = [191, 253, 257, 270, 271, 275] #Tocantins
+#psID = [191, 253, 257, 270, 271, 275] #Tocantins
+plt.close('all')
+
+MIN_WINDOW_SIZE = 3
 ##Settings
 
 #Extract all power stations in southeast region
@@ -129,4 +135,61 @@ if SAVE_CORR:
     corr.to_csv(COR_MATRIX_DATA_NAME, sep=";")
 
 #get total affluent flow
-FStation = AFFilteredseries.sum(axis = 1)
+FStation = AFFilteredSseriesPlot.sum(axis = 1)
+
+BEST_WINDOW_SIZE_MA = 16
+
+AFTrend = tr.GetMovingAverage(FStation, BEST_WINDOW_SIZE_MA)
+decomposition = sm.tsa.seasonal_decompose(FStation, model='additive')
+AFSeasonal = decomposition.seasonal
+AFResidue = FStation - AFTrend - AFSeasonal
+
+decomposition.plot()
+
+SAVE_FIG = False
+figureName = "tsaAF_original.jpg"
+if SAVE_FIG:
+    plt.savefig(figureName, bbox_inches='tight')
+
+
+figureName = "tsaAF_MA16.jpg"
+plt.figure()
+plt.suptitle('Temporal series analysis for afluent flow sum')
+
+plt.subplot(4, 1, 1)
+plt.plot(FStation)
+plt.ylabel('Original')
+
+plt.subplot(4, 1, 2)
+plt.plot(FStation.index, AFTrend)
+plt.ylabel('Trend')
+
+plt.subplot(4, 1, 3)
+plt.plot(FStation.index, AFSeasonal)
+plt.ylabel('Seasonal')
+
+plt.subplot(4, 1, 4)
+plt.plot(FStation.index, AFResidue)
+plt.ylabel('Residual')
+
+if SAVE_FIG:
+    plt.savefig(figureName, bbox_inches='tight')
+    
+
+MAX_WINDOW_SIZE = FStation.size
+mseMA = np.zeros((MAX_WINDOW_SIZE - MIN_WINDOW_SIZE) + 1)
+for wSize in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
+    mseMA[wSize - MIN_WINDOW_SIZE] = \
+    tr.GetTrendMSEExponentialMovingAverage(FStation, wSize)
+
+plt.figure()
+plt.stem(mseMA)
+
+mseMAS = np.zeros((MAX_WINDOW_SIZE - MIN_WINDOW_SIZE) + 1)
+for wSize in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
+    mseMAS[wSize - MIN_WINDOW_SIZE] = \
+    tr.GetTrendMSEExponentialMovingAverage(AFSeasonal, wSize)
+    
+plt.figure()
+plt.title()
+plt.stem(mseMAS)

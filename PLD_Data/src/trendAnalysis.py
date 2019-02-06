@@ -107,22 +107,43 @@ def PlotErrorFunction(x, errorValues, INITIAL_ORDER, FINAL_ORDER, filepath, \
     if (SAVE_FIGURE == True):
         plt.savefig(filepath, bbox_inches='tight')
 
-def ExtractTrendByMovingAverage(y, windowSize):
+def GetTrendMSEMovingAverage(y, windowSize):
     ma = GetMovingAverage(y, windowSize)
-    pldTEMP = y[windowSize-1:]
-    return mean_squared_error(pldTEMP, ma)
+    return mean_squared_error(y, ma)
 
 def GetMovingAverage (y, windowSize):
-    return pd.Series(y).rolling(window=windowSize).mean().iloc[windowSize-1:].values
+    yTemp = PredictFirstWindowPoints(y, windowSize)
+    yMA = pd.Series(y).rolling(window=windowSize).mean().iloc[windowSize-1:-1].values
+    return np.concatenate((yTemp, yMA))
 
-def ExtractTrendByExponentialMovingAverage(y, windowSize):
+def GetTrendMSEExponentialMovingAverage(y, windowSize):
     ema = GetExponentialMovingAverage(y, windowSize)
-    pldTEMP = y[windowSize-1:]
-    return mean_squared_error(pldTEMP, ema)
+    return mean_squared_error(y, ema)
 
 def GetExponentialMovingAverage(y, windowSize):
-    return y.ewm(span=windowSize, adjust=False).mean().iloc[windowSize-1:].values
+    yTemp = PredictFirstWindowPoints(y, windowSize)
+    yEMA = y.ewm(span=windowSize, adjust=False).mean().iloc[windowSize-1:-1].values
+    return np.concatenate((yTemp, yEMA))
 
+def GetPeriodicMovingAverage(y, windowSize):
+    yTemp = PredictFirstWindowPointsPeriodic(y, windowSize)
+    yMa = []
+    return np.concatenate((yTemp, yMA))
+
+def PredictFirstWindowPoints(y, windowSize):
+    yWithNoMean = y[0:windowSize - 1]
+    yTemp = [0] * windowSize
+    for i in range(0, windowSize):
+        if i <= 1:
+            yTemp[i] = yWithNoMean[i]
+        else:
+            fit = np.polyfit(np.arange(0, i), yWithNoMean[0:i], 1)
+            fit_fn = np.poly1d(fit)
+            yTemp[i] = fit_fn(i)
+    return yTemp
+    
+def PredictFirstWindowPointsPeriodic(y, windoSize):
+    return False
 
 def UseSARIMAToEstimateTemporalSeries(y, PARAM_MAX, INITIAL_TEST_DATE, FILE_PATH,\
                                       param_sarima = None, \

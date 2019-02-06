@@ -1,0 +1,24 @@
+Monografia:
+	smart grids e novas energia
+	PLD
+	NEWAVE E DECOMP
+	procurar flag para undescore latex
+
+Gráficos:
+	EXTRAIR Tendência precisa considerar já o começo da série - mudar a forma como a tendência é extraida (ma prevendo t+1) -OK
+	Sazionalidade Utilizar a que já vem com o TSA (e aplicar a lógica acima?)
+	FFT para analisar - parece errado
+
+
+secçao de trabalhos relacionados:
+	monografia UFOP
+	Outros trabalhos na área
+
+github privado -OK
+
+Nova Análises
+	Analise de vazões somando tudo. Usar tendência e sazionalidade modificada - OK	
+	Gráfico com o mínimo da sazionalidade e do mse para o gráfico agrupando as vazões
+	Matriz de autocorrelação com os dados
+	vazão total
+	"vazão efetiva"

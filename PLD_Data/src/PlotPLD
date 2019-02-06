@@ -49,6 +49,6 @@ mPLDSE.columns = ['Mês', 'Preço']
 mPLDSE.set_index('Mês', inplace=True)
 mPLDSE = mPLDSE.sort_index()
 mPLDSE.plot(title=PLOT_TITLE, legend=True)
-plt.ylabel('Preço')
+plt.ylabel('Preço (R$/MWh)')
 plt.xlabel('Ano')
 plt.savefig(PLOT_FIG_NAME, bbox_inches='tight')

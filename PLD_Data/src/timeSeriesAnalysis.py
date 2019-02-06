@@ -21,8 +21,7 @@ matplotlib.rcParams['xtick.labelsize'] = 12
 matplotlib.rcParams['ytick.labelsize'] = 12
 matplotlib.rcParams['text.color'] = 'k'
 
-ROOT_FOLDER  = 'D:\Sistemas GIT\ElectricalEnergyPrice'
-
+ROOT_FOLDER  = '/home/felipe/Materias/TCC/'
 #loading PLD data
 MAIN_DIR = ROOT_FOLDER + '/PLD_Data/PLD_Outubro_2018'
 MAIN_DIR += '/10_out18_RV0_logENA_Mer_d_preco_m_0/'
@@ -119,17 +118,17 @@ tr.PlotErrorFunction(xTest, rmseTest, INITIAL_ORDER, FINAL_ORDER, \
                       xLabel='Degree', SAVE_FIGURE=SAVE_PLOT)
 
 pldPrices = mPLDSE.price
-MIN_WINDOW_SIZE = 2
-MAX_WINDOW_SIZE = round(pldPrices.size * 0.8)
+MIN_WINDOW_SIZE = 3
+MAX_WINDOW_SIZE = pldPrices.size
 mseMA = np.zeros((MAX_WINDOW_SIZE - MIN_WINDOW_SIZE) + 1)
 
 #Simple moving average trend extraction
 for wSize in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
     mseMA[wSize - MIN_WINDOW_SIZE] = \
-    tr.ExtractTrendByMovingAverage(pldPrices, wSize)
+    tr.GetTrendMSEMovingAverage(pldPrices, wSize)
 
 
-SAVE_PLOT = True
+SAVE_PLOT = False
 figureName = 'MSE_MA.jpg'
 imageName = 'MSE for moving average using complete dataset'
 xMA = np.arange(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1)
@@ -145,16 +144,16 @@ tr.PlotErrorFunction(xMA, rmseMA, MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1, \
                       yLabel='RMSE', SAVE_FIGURE=SAVE_PLOT)
 
 #Exponential moving average trend extraction
-MIN_WINDOW_SIZE = 2
-MAX_WINDOW_SIZE = round(pldPrices.size * 0.8)
+MIN_WINDOW_SIZE = 3
+MAX_WINDOW_SIZE = pldPrices.size
 mseEMA = np.zeros((MAX_WINDOW_SIZE - MIN_WINDOW_SIZE) + 1)
 
 #Simple moving average trend extraction
 for wSize in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
     mseEMA[wSize - MIN_WINDOW_SIZE] = \
-    tr.ExtractTrendByExponentialMovingAverage(pldPrices, wSize)
+    tr.GetTrendMSEExponentialMovingAverage(pldPrices, wSize)
 
-SAVE_PLOT = True
+SAVE_PLOT = False
 figureName = 'MSE_EMA.jpg'
 imageName = 'MSE for exponential moving average using complete dataset'
 xMA = np.arange(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1)
@@ -174,7 +173,7 @@ tr.PlotErrorFunction(xMA, rmseEMA, MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1, \
 #Using SARIMA time series decomposion
 MAX_ORDER = 2
 INITIAL_TEST_DATE = '2018-01-01'
-SAVE_PLOT = True
+SAVE_PLOT = False
 #param= (0, 2, 2)
 #seasonal_param= (0, 2, 2)
 tr.UseSARIMAToEstimateTemporalSeries(pldPrices, MAX_ORDER, \
@@ -186,7 +185,7 @@ tr.UseSARIMAToEstimateTemporalSeries(pldPrices, MAX_ORDER, \
 #Time Series decomposition
 figureName = 'TSA_additiveDecomposition.jpg'
 decomposition = sm.tsa.seasonal_decompose(trainValidationSet, model='additive')
-SAVE_PLOT = True
+SAVE_PLOT = False
 if SAVE_PLOT:
     fig = decomposition.plot()
     plt.show()
@@ -198,8 +197,8 @@ tsaResidual = decomposition.resid
 tsaR = tsaResidual[~np.isnan(tsaResidual.price)]
 
 #Residual Component Plot
-SAVE_PLOT = True
-SHOW_PLOT = True
+SAVE_PLOT = False
+SHOW_PLOT = False
 title = 'FFT of Residual Signal'
 X_LABEL = "Normalized Frequency"
 Y_LABEL = "Magnitude"

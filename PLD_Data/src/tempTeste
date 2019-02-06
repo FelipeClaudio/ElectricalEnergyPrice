@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Feb  6 06:22:20 2019
+
+@author: felipe
+"""
+
+import trendAnalysis as tr
+import pandas as pd
+import numpy as np
+
+
+T = 3
+vetorTeste = np.arange(10) + 1
+pandasSeries = pd.Series(vetorTeste)
+#vetorT = pandasSeries.loc[pandasSeries.index % 3 == 0]
+resp = np.zeros(10)
+for i in range (0, pandasSeries.size):
+    tempV = pandasSeries[0:i]
+    tempVunder = tempV.loc[tempV.index % T == 0]
+    print (tempVunder)
+    resp[i] = np.mean(tempVunder)
