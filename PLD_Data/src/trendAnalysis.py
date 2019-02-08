@@ -125,10 +125,31 @@ def GetExponentialMovingAverage(y, windowSize):
     yEMA = y.ewm(span=windowSize, adjust=False).mean().iloc[windowSize-1:-1].values
     return np.concatenate((yTemp, yEMA))
 
-def GetPeriodicMovingAverage(y, windowSize):
-    yTemp = PredictFirstWindowPointsPeriodic(y, windowSize)
-    yMa = []
-    return np.concatenate((yTemp, yMA))
+def GetPeriodicMovingAveragePrediction (y, T):
+    ySize = y.size
+    mask = np.zeros(ySize)
+    pred = np.zeros(ySize)
+    for i in range (0, ySize):
+        mask = np.roll(mask, 1)
+        if i % T == 0:
+            mask[0] = 1
+        else:
+            mask[0] = 0
+        
+        idx = np.nonzero(mask)
+        vecIdx = y.iloc[idx]
+        
+        if (i / T) <= 2:
+            pred[i] = y[i]
+        else:
+            fit = np.polyfit(np.arange(0, vecIdx.size - 1), vecIdx[:-1], 1)
+            fit_fn = np.poly1d(fit)
+            pred[i] = fit_fn(i // T)          
+    return pred
+
+def GetMSEfoPeriodicMovingAveragePrediction(y, T):
+    pred = GetPeriodicMovingAveragePrediction(y, T)
+    return mean_squared_error (y, pred)
 
 def PredictFirstWindowPoints(y, windowSize):
     yWithNoMean = y[0:windowSize - 1]
@@ -142,8 +163,6 @@ def PredictFirstWindowPoints(y, windowSize):
             yTemp[i] = fit_fn(i)
     return yTemp
     
-def PredictFirstWindowPointsPeriodic(y, windoSize):
-    return False
 
 def UseSARIMAToEstimateTemporalSeries(y, PARAM_MAX, INITIAL_TEST_DATE, FILE_PATH,\
                                       param_sarima = None, \

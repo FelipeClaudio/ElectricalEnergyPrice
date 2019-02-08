@@ -3,16 +3,15 @@ Monografia:
 	PLD
 	NEWAVE E DECOMP
 	procurar flag para undescore latex
+	secçao de trabalhos relacionados:
+		monografia UFOP
+		Outros trabalhos na área
 
 Gráficos:
 	EXTRAIR Tendência precisa considerar já o começo da série - mudar a forma como a tendência é extraida (ma prevendo t+1) -OK
-	Sazionalidade Utilizar a que já vem com o TSA (e aplicar a lógica acima?)
+	Sazionalidade Utilizar a que já vem com o TSA (e aplicar a lógica acima?) -OK
 	FFT para analisar - parece errado
 
-
-secçao de trabalhos relacionados:
-	monografia UFOP
-	Outros trabalhos na área
 
 github privado -OK
 

@@ -5,7 +5,6 @@ Created on Sun Jan 13 20:15:10 2019
 
 @author: felipe
 """
-
 import warnings
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -137,11 +136,13 @@ if SAVE_CORR:
 #get total affluent flow
 FStation = AFFilteredSseriesPlot.sum(axis = 1)
 
-BEST_WINDOW_SIZE_MA = 16
+BEST_WINDOW_SIZE_MA = 7
+BEST_T = 9
 
 AFTrend = tr.GetMovingAverage(FStation, BEST_WINDOW_SIZE_MA)
 decomposition = sm.tsa.seasonal_decompose(FStation, model='additive')
-AFSeasonal = decomposition.seasonal
+#AFSeasonal = decomposition.seasonal
+AFSeasonal = tr.GetPeriodicMovingAveragePrediction(decomposition.seasonal, BEST_T)
 AFResidue = FStation - AFTrend - AFSeasonal
 
 decomposition.plot()
@@ -184,12 +185,20 @@ for wSize in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
 
 plt.figure()
 plt.stem(mseMA)
+plt.title('MSE for sum of trend feature prediction of affluent flow for SE region')
+plt.ylabel('MSE')
+plt.xlabel('Window Size')
 
 mseMAS = np.zeros((MAX_WINDOW_SIZE - MIN_WINDOW_SIZE) + 1)
 for wSize in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
     mseMAS[wSize - MIN_WINDOW_SIZE] = \
-    tr.GetTrendMSEExponentialMovingAverage(AFSeasonal, wSize)
+    tr.GetMSEfoPeriodicMovingAveragePrediction(AFSeasonal, wSize)
     
 plt.figure()
-plt.title()
 plt.stem(mseMAS)
+plt.title('MSE for sum of affluent seasonal feature predecition of affluent flow for SE region')
+plt.ylabel('MSE')
+plt.xlabel('Window Size')
+
+##BEST_WINDOW = 7
+##BEST_T = 

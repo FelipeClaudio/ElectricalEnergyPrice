@@ -15,8 +15,6 @@ from pylab import rcParams
 import statsmodels.api as sm
 import trendAnalysis as tr
 import utilities as util
-from FourierSeriesMinimizer import FourierSeriesMinimizer
-import utilities as util
 
 
 ##Settings
@@ -40,7 +38,6 @@ meanPLD = pd.read_csv(MAIN_DIR + 'PLD_medio.csv', \
                       parse_dates=['Mês'], sep="\\s+",\
                       date_parser=mydateparser)
 
-
 PLOT_DIR = ROOT_FOLDER + '/PLD_Data/src/plots/SeriesTemporais/'
 INITIAL_DATE = '01/2015'
 mPLDSE = meanPLD[['Mês', 'SE/CO']]
@@ -52,9 +49,11 @@ mPLDSE = mPLDSE.loc[mPLDSE.index >= INITIAL_DATE]
 mPLDSE.index.inferred_freq
 
 BEST_WINDOW_SIZE_MA = 16
+T_SEASONAL = 12
 plt.close('all')
-SAVE_FIG = True
+SAVE_FIG = False
 #Settings
+
 
 pldTrend = tr.GetMovingAverage(mPLDSE.price, BEST_WINDOW_SIZE_MA)
 decomposition = sm.tsa.seasonal_decompose(mPLDSE, model='additive')
@@ -63,12 +62,22 @@ tsaSeasonal = decomposition.seasonal
 MIN_WINDOW_SIZE = 1
 MAX_WINDOW_SIZE = tsaSeasonal.size
 mseMA = np.zeros((MAX_WINDOW_SIZE - MIN_WINDOW_SIZE) + 1)
-for wSize in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
-    mseMA[wSize - MIN_WINDOW_SIZE] = \
-    tr.GetTrendMSEMovingAveragePeriodic(tsaSeasonal, wSize)
+for T in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
+    mseMA[T - MIN_WINDOW_SIZE] = \
+    tr.GetMSEfoPeriodicMovingAveragePrediction(tsaSeasonal.price, T)
 
-pldSeasonal = []
-pldResidue = mPLDSE.price - pldTrend - pldSeasonal.price
+plt.figure()
+mseMA = np.array(mseMA)
+mseMA = np.concatenate((np.zeros(MIN_WINDOW_SIZE), mseMA))
+plt.stem(mseMA)
+plt.title('MSE for seasonal prediction using moving average by time lag')
+plt.ylabel('MSE')
+plt.xlabel('Time lag in months')
+
+
+pldSeasonal  = tr.GetPeriodicMovingAveragePrediction(tsaSeasonal.price, T_SEASONAL)
+
+pldResidue = mPLDSE.price - pldTrend - pldSeasonal
 
 decomposition.plot()
 figureName = "tsa_original.jpg"
