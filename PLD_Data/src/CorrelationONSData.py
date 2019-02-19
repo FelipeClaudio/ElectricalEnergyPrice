@@ -16,6 +16,7 @@ import trendAnalysis as tr
 import utilities as util
 import locale
 import seaborn as sns
+import math
 locale.setlocale(locale.LC_TIME, "en_US.UTF-8") 
 
 ##Settings
@@ -74,25 +75,34 @@ def ReadONSEditedCSV(filename, columnName, dateParser=None):
     
 
 totalStoredEnergy = ReadONSEditedCSV('/Simples_Energia_Armazenada_Mês_data_editado.csv', 'Total Stored Energy')
-uheStoredEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_UHE_editado.csv', 'UHE Stored Energy')
-unStoredEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_UN_editado.csv', 'UN Stored Energy')
-uteStoredEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_UTE_editado.csv', 'UTE Stored Energy')
+uheGeneratedEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_UHE_editado.csv', 'UHE Generated Energy')
+unGeneratedEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_UN_editado.csv', 'UN Generated Energy')
+uteGeneratedEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_UTE_editado.csv', 'UTE Generated Energy')
+solarGeneratedEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_solar_editado.csv', 'Solar Generated Energy')
+windGeneratedEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_eolica_editado.csv', 'Wind Generated Energy')
 loadEnergy = ReadONSEditedCSV('/Simples_Carga_de_Energia_Barra_Mês_data_editado.csv', 'Load Energy')
 ena = ReadONSEditedCSV('/Simples_Energia_Natural_Afluente_Subsistema_Barra__data_editado.csv', 'ENA')
 mydateparser = lambda x: pd.datetime.strptime(x, "%Y-%m-%d")
 afSum = ReadONSEditedCSV('/FStation.csv', 'Afluent Flow Sum', mydateparser)
+afSumUseful = ReadONSEditedCSV('/AFSum_useful.csv', 'Useful Afluent Flow Sum', mydateparser)
 
 cor = pd.concat([mPLDSE, totalStoredEnergy], axis=1)
-cor = pd.concat([cor, uheStoredEnergy], axis=1)
-cor = pd.concat([cor, uteStoredEnergy], axis=1)
+cor = pd.concat([cor, uheGeneratedEnergy], axis=1)
+cor = pd.concat([cor, uteGeneratedEnergy], axis=1)
+cor = pd.concat([cor, solarGeneratedEnergy], axis=1)
+cor = pd.concat([cor, windGeneratedEnergy], axis=1)
 cor = pd.concat([cor, loadEnergy], axis=1)
 cor = pd.concat([cor, ena], axis=1)
 cor = pd.concat([cor, afSum], axis=1)
+cor = pd.concat([cor, afSumUseful], axis=1)
 
 ax = plt.axes()
 correlation = cor.corr()
 correlation.to_csv('corr_ons.csv')
 sns.heatmap(correlation, xticklabels=correlation.columns, \
-            yticklabels=correlation.columns, cmap='RdBu', ax=ax)
+            yticklabels=correlation.columns, cmap='RdBu', ax=ax,\
+            annot=True, fmt=".2f")
+
+#sns.scatterplot(correlation)
 ax.set_title("Correlation between ONS DATA and PLD")
 plt.show()

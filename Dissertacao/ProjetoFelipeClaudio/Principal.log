@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.20)  4 FEB 2019 10:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.20)  10 FEB 2019 18:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -658,12 +658,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--16
 
  [11
 
-] (./Principal.lof)
+] (./Principal.lof
+
+LaTeX Warning: Citation `DECISAO' on page xii undefined on input line 6.
+
+)
 \tf@lof=\write4
 \openout4 = `Principal.lof'.
 
-
-[12
+ [12
 
 ] (./Principal.lot)
 \tf@lot=\write5
@@ -688,14 +691,14 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
-<./figuras/orgaos_governo.jpg, id=63, 803.0pt x 358.33875pt>
+<./figuras/orgaos_governo.jpg, id=64, 803.0pt x 358.33875pt>
 File: ./figuras/orgaos_governo.jpg Graphic file (type jpg)
 <use ./figuras/orgaos_governo.jpg>
 Package pdftex.def Info: ./figuras/orgaos_governo.jpg  used on input line 29.
 (pdftex.def)             Requested size: 426.79134pt x 190.45995pt.
 
 [4]
-<./figuras/SistemadeTransmissao_Horizonte2017.jpg, id=68, 803.0pt x 771.88374pt
+<./figuras/SistemadeTransmissao_Horizonte2017.jpg, id=69, 803.0pt x 771.88374pt
 >
 File: ./figuras/SistemadeTransmissao_Horizonte2017.jpg Graphic file (type jpg)
 <use ./figuras/SistemadeTransmissao_Horizonte2017.jpg>
@@ -715,32 +718,60 @@ u-la-res de au-to-riza^^Xc~ao para im-planta^^Xc~ao
  []
 
 [7]
-<./figuras/matrizEletrica_mundo.png, id=79, 517.4532pt x 520.344pt>
+
+LaTeX Warning: Citation `PrevizaoPrecoFuturoACL' on page 8 undefined on input l
+ine 81.
+
+<./figuras/decisao.jpg, id=80, 900.36375pt x 390.45876pt>
+File: ./figuras/decisao.jpg Graphic file (type jpg)
+<use ./figuras/decisao.jpg>
+Package pdftex.def Info: ./figuras/decisao.jpg  used on input line 91.
+(pdftex.def)             Requested size: 427.67723pt x 185.46983pt.
+
+Overfull \hbox (0.8859pt too wide) in paragraph at lines 91--92
+ [] 
+ []
+
+
+LaTeX Warning: Citation `PrevisaoMultiPassos' on page 8 undefined on input line
+ 93.
+
+
+LaTeX Warning: Citation `PrevisaoMultiPassos' on page 8 undefined on input line
+ 93.
+
+[8]
+<./figuras/matrizEletrica_mundo.png, id=84, 517.4532pt x 520.344pt>
 File: ./figuras/matrizEletrica_mundo.png Graphic file (type png)
 <use ./figuras/matrizEletrica_mundo.png>
 Package pdftex.def Info: ./figuras/matrizEletrica_mundo.png  used on input line
- 93.
+ 112.
 (pdftex.def)             Requested size: 200.59244pt x 201.71854pt.
-<./figuras/matrizEletrica_brasil.png, id=81, 548.2884pt x 529.4982pt>
+<./figuras/matrizEletrica_brasil.png, id=86, 548.2884pt x 529.4982pt>
 File: ./figuras/matrizEletrica_brasil.png Graphic file (type png)
 <use ./figuras/matrizEletrica_brasil.png>
 Package pdftex.def Info: ./figuras/matrizEletrica_brasil.png  used on input lin
-e 99.
+e 118.
 (pdftex.def)             Requested size: 204.85802pt x 197.83417pt.
- [8]
-<./figuras/PLD_media_mensal_SE.jpg, id=85, 1190.2869pt x 536.2434pt>
+ [9 <./figuras/decisao.jpg>]
+<./figuras/PLD_media_mensal_SE.jpg, id=90, 1190.2869pt x 536.2434pt>
 File: ./figuras/PLD_media_mensal_SE.jpg Graphic file (type jpg)
 <use ./figuras/PLD_media_mensal_SE.jpg>
 Package pdftex.def Info: ./figuras/PLD_media_mensal_SE.jpg  used on input line 
-111.
+128.
 (pdftex.def)             Requested size: 426.79134pt x 192.27014pt.
- [9 <./figuras/matrizEletrica_mundo.png> <./figuras/matrizEletrica_brasil.png>]
- [10 <./figuras/PLD_media_mensal_SE.jpg>]) [11]
+ [10 <./figuras/matrizEletrica_mundo.png> <./figuras/matrizEletrica_brasil.png>
+ <./figuras/PLD_media_mensal_SE.jpg>]
+Overfull \hbox (52.29561pt too wide) in paragraph at lines 150--162
+ [] 
+ []
+
+) [11]
 Cap\'{\i }tulo 3.
 (./cap3.tex) [12
 
 ] (./Principal.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 42--45
+Underfull \hbox (badness 10000) in paragraph at lines 43--46
 []\OT1/cmr/m/n/12 ONS, ``Go-ver-nan^^Xca'', http://ons.org.br/paginas/sobre-o-
  []
 
@@ -748,16 +779,116 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--45
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 52--55
+! Missing $ inserted.
+<inserted text> 
+                $
+l.53 ...das Diferenças_Anexo_1.0_formatado - CCEE}
+                                                  ,
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.56 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.56 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--56
+[]\OT1/cmr/m/n/12 CCEE, ``Pre^^Xco de Li-quida^^Xc~ao das Di-fe-ren^^Xcas$[]\OM
+L/cmm/m/it/12 nexo[]:\OT1/cmr/m/n/12 0[]\OML/cmm/m/it/12 ormatado \OMS/cmsy/m/n
+/12 ^^@
+ []
+
+
+Overfull \hbox (99.88031pt too wide) in paragraph at lines 53--56
+\OML/cmm/m/it/12 CCEE[]; www:ccee:org:br=ccee=documentos=ccee[]\OT1/cmr/m/n/12 
+059061\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 2019\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12
+ (\OML/cmm/m/it/12 Acessoem\OT1/cmr/m/n/12 10\OML/cmm/m/it/12 deFevereirode\OT1
+/cmr/m/n/12 2019)\OML/cmm/m/it/12 :[]$ 
+ []
+
+! Extra }, or forgotten \endgroup.
+\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.56 
+     
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--61
 []\OT1/cmr/m/n/12 ENERG^^SeTICA, E. D. P., ``Ma-triz Energ^^Setica e El^^Setric
 a'',
  []
 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.64 ...l/faces/pages\_publico/o-que-fazemos/como_
+                                                  ccee_atua/precos/precos\_m...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--55
-\OT1/cmr/m/n/12 http://www.epe.gov.br/pt/abcdenergia/matriz-energetica-e-eletri
-ca, 2018,
+! Missing $ inserted.
+<inserted text> 
+                $
+l.66 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.66 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (26.88954pt too wide) in paragraph at lines 63--66
+[]\OT1/cmr/m/n/12 CCEE, ``Pre^^Xco M^^Sedio da CCEE'', https://www.ccee.org.br/
+portal/faces/pages[]publico/o-
  []
+
+
+Overfull \hbox (32.8244pt too wide) in paragraph at lines 63--66
+\OT1/cmr/m/n/12 que-fazemos/como$[]\OML/cmm/m/it/12 cee[]tua=precos=precos[]med
+ios; \OT1/cmr/m/n/12 2019\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A
+cessoem\OT1/cmr/m/n/12 4\OML/cmm/m/it/12 deFevereirode\OT1/cmr/m/n/12 2019)\OML
+/cmm/m/it/12 :[]$ 
+ []
+
+! Extra }, or forgotten \endgroup.
+\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.66 
+     
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
 
 ) [14]
 Ap\^endice A.
@@ -777,7 +908,7 @@ ted-to.pdf>
 Final-eps-converted-to.pdf ./figuras/Capa_do_Projeto_Final.eps>
 (epstopdf)             \includegraphics on input line 9.
 Package epstopdf Info: Output file is already uptodate.
-<./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf, id=110, 420.57124pt x 52
+<./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf, id=117, 420.57124pt x 52
 0.94624pt>
 File: ./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf Graphic file (type p
 df)
@@ -796,24 +927,34 @@ Overfull \hbox (50.6844pt too wide) in paragraph at lines 9--9
 Ap\^endice C.
 (./ApendiceC.tex) [18
 
-] (./Principal.aux) ) 
+] (./Principal.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 12559 strings out of 494566
- 211055 string characters out of 6177021
- 292832 words of memory out of 5000000
- 15927 multiletter control sequences out of 15000+600000
- 10749 words of font info for 40 fonts, out of 8000000 for 9000
+ 12580 strings out of 494566
+ 211413 string characters out of 6177021
+ 292906 words of memory out of 5000000
+ 15946 multiletter control sequences out of 15000+600000
+ 11057 words of font info for 41 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 61i,9n,94p,824b,594s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Principal.pdf (31 pages, 1044404 bytes).
+ 61i,12n,94p,838b,594s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+i12.pfb>
+Output written on Principal.pdf (31 pages, 1158096 bytes).
 PDF statistics:
- 190 PDF objects out of 1000 (max. 8388607)
- 94 compressed objects within 1 object stream
+ 216 PDF objects out of 1000 (max. 8388607)
+ 112 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

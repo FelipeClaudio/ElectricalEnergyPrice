@@ -3,44 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: Principal.aux
 The style file: coppe.bst
 Database file #1: biblio.bib
-You've used 12 entries,
+You've used 13 entries,
             2465 wiz_defined-function locations,
-            621 strings with 5806 characters,
-and the built_in function-call counts, 1798 in all, are:
-= -- 191
-> -- 52
+            626 strings with 6107 characters,
+and the built_in function-call counts, 1938 in all, are:
+= -- 205
+> -- 56
 < -- 0
-+ -- 25
-- -- 13
-* -- 79
-:= -- 317
-add.period$ -- 14
-call.type$ -- 12
-change.case$ -- 12
++ -- 27
+- -- 14
+* -- 85
+:= -- 340
+add.period$ -- 15
+call.type$ -- 13
+change.case$ -- 13
 chr.to.int$ -- 0
-cite$ -- 12
-duplicate$ -- 93
-empty$ -- 213
-format.name$ -- 13
-if$ -- 432
+cite$ -- 13
+duplicate$ -- 100
+empty$ -- 231
+format.name$ -- 14
+if$ -- 466
 int.to.chr$ -- 0
-int.to.str$ -- 12
+int.to.str$ -- 13
 missing$ -- 1
-newline$ -- 40
-num.names$ -- 12
-pop$ -- 53
+newline$ -- 43
+num.names$ -- 13
+pop$ -- 58
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 26
+skip$ -- 28
 stack$ -- 0
 substring$ -- 0
-swap$ -- 25
+swap$ -- 27
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 12
-width$ -- 14
-write$ -- 124
+while$ -- 13
+width$ -- 15
+write$ -- 134

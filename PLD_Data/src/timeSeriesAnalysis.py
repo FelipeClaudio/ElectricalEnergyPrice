@@ -76,7 +76,7 @@ for order in range(INITIAL_ORDER, FINAL_ORDER):
     + 'º order polynomial regression'
 
     #plot train set trend
-    mse, coef = tr.ExtractTendByPolyFit(xTrain, yTrain, trainValidationSet.index,\
+    mse, coef = tr.ExtractTrendByPolyFit(xTrain, yTrain, trainValidationSet.index,\
                                    order, PLOT_DIR + figureName,\
                                    imageName, SHOW_PLOT, SAVE_PLOT)
     mseTraining[order - INITIAL_ORDER] = mse[0]

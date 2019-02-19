@@ -15,7 +15,7 @@ from pylab import rcParams
 import statsmodels.api as sm
 import trendAnalysis as tr
 import utilities as util
-
+from scipy import signal
 
 ##Settings
 warnings.filterwarnings("ignore")
@@ -52,60 +52,96 @@ BEST_WINDOW_SIZE_MA = 16
 T_SEASONAL = 12
 plt.close('all')
 SAVE_FIG = False
+
+MIN_WINDOW_SIZE = 3
 #Settings
 
 
+util.PlotDistribution(mPLDSE.price, xTitle='PLD Price', yTitle='Number of occurences',\
+                      plotTitle='PLD distribution',\
+                      filepath=PLOT_DIR+'distributionPLD.jpg',\
+                      SAVE_FIGURE = SAVE_FIG)
+util.FFT(mPLDSE.price, xlabel='Normalized Frequency', ylabel='Magnitude', \
+         title='FFT of PLD original temporal series', figureName=PLOT_DIR+'fftPLD.jpg', \
+         showPlot=True, SAVE_FIGURE=SAVE_FIG)
+
+
 pldTrend = tr.GetMovingAverage(mPLDSE.price, BEST_WINDOW_SIZE_MA)
+util.PlotDistribution(pldTrend, xTitle='PLD Price', yTitle='Number of occurences',\
+                      plotTitle='Trend extraction distribution',\
+                      filepath=PLOT_DIR+'distributionTrend.jpg',\
+                      SAVE_FIGURE = SAVE_FIG)
+util.FFT(pldTrend, xlabel='Normalized Frequency', ylabel='Magnitude', \
+         title='FFT of trend extraction', figureName=PLOT_DIR+'fftTrend.jpg', \
+         showPlot=True, SAVE_FIGURE=SAVE_FIG)
+
 decomposition = sm.tsa.seasonal_decompose(mPLDSE, model='additive')
 tsaSeasonal = decomposition.seasonal
 
-MIN_WINDOW_SIZE = 1
-MAX_WINDOW_SIZE = tsaSeasonal.size
-mseMA = np.zeros((MAX_WINDOW_SIZE - MIN_WINDOW_SIZE) + 1)
-for T in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
-    mseMA[T - MIN_WINDOW_SIZE] = \
-    tr.GetMSEfoPeriodicMovingAveragePrediction(tsaSeasonal.price, T)
+bestWLinFit, minMSELinFit = tr.GetTrendAnalysisByMovingAverageLinFit(mPLDSE.price, \
+                                         title='MSE for trend extraction for PLD price using moving average and linear fit by window size',\
+                                         MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
+                                         filepath=PLOT_DIR+'mseTrendLinFitAnalysis.jpg',\
+                                         SAVE_FIGURE = SAVE_FIG)
 
-plt.figure()
-mseMA = np.array(mseMA)
-mseMA = np.concatenate((np.zeros(MIN_WINDOW_SIZE), mseMA))
-plt.stem(mseMA)
-plt.title('MSE for seasonal prediction using moving average by time lag')
-plt.ylabel('MSE')
-plt.xlabel('Time lag in months')
+bestWMA,  minMSEMA = tr.GetTrendAnalysisByMovingAverageOnly(mPLDSE.price, \
+                                         title='MSE for trend extraction for PLD price using moving average by window size',\
+                                         MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
+                                         filepath=PLOT_DIR+'mseTrendMAOnlyAnalysis.jpg',\
+                                         SAVE_FIGURE = SAVE_FIG)
+
+bestTLinFit,  minTLinFit = tr.GetSeasonAnalysisByMovingAverageLinFit(tsaSeasonal.price, \
+                                         title='MSE for seasonal extraction for PLD price using moving average and linear fit by lag time',\
+                                         MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
+                                         filepath=PLOT_DIR+'mseSeasonalLinFitAnalysis.jpg',\
+                                         SAVE_FIGURE = SAVE_FIG)
+
+bestTMA,  minTMa = tr.GetSeasonAnalysisByMovingAverageOnly(tsaSeasonal.price, \
+                                         title='MSE for seasonal extraction for PLD price using moving average by lag time',\
+                                         MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
+                                         filepath=PLOT_DIR+'mseSeasonalMAOnlyAnalysis.jpg',\
+                                         SAVE_FIGURE = SAVE_FIG)
 
 
-pldSeasonal  = tr.GetPeriodicMovingAveragePrediction(tsaSeasonal.price, T_SEASONAL)
-
+#pldSeasonal  = tr.GetPeriodicMovingAveragePrediction(tsaSeasonal.price, T_SEASONAL)
+pldSeasonal  = tr.GetPeriodicMovingAverageOnlyPrediction(tsaSeasonal.price, T_SEASONAL)
 pldResidue = mPLDSE.price - pldTrend - pldSeasonal
+util.PlotDistribution(pldSeasonal, xTitle='PLD Price', yTitle='Number of occurences',\
+                      plotTitle='Seasonal extraction distribution',\
+                      filepath=PLOT_DIR+'distributionSeasonal.jpg',\
+                      SAVE_FIGURE = SAVE_FIG)
 
-decomposition.plot()
-figureName = "tsa_original.jpg"
-if SAVE_FIG:
-    plt.savefig(PLOT_DIR + figureName, bbox_inches='tight')
+util.FFT(pldSeasonal, xlabel='Normalized Frequency', ylabel='Magnitude', \
+         title='FFT of seasonal extraction', figureName=PLOT_DIR+'fftSeasonal.jpg', \
+         showPlot=True, SAVE_FIGURE=SAVE_FIG)
 
+util.PlotDistribution(pldResidue, xTitle='PLD Price', yTitle='Number of occurences',\
+                      plotTitle='Residual extraction distribution',\
+                      filepath=PLOT_DIR+'distributionResidual.jpg',\
+                      SAVE_FIGURE = SAVE_FIG)
 
-figureName = "tsa_MA16.jpg"
-plt.figure()
-plt.suptitle('Temporal series analysis for PLD prices')
+util.FFT(pldResidue, xlabel='Normalized Frequency', ylabel='Normalized Magnitude', \
+         title='FFT of residual extraction', figureName=PLOT_DIR+'fftResidual.jpg', \
+         showPlot=True, SAVE_FIGURE=SAVE_FIG)
 
-plt.subplot(4, 1, 1)
-plt.plot(mPLDSE)
-plt.ylabel('Original')
+util.PlotTSA(mPLDSE, pldTrend, pldSeasonal,\
+             originalPlotTitle='Original temporal series analysis for PLD prices',\
+             originalPlotFileName=PLOT_DIR+'originalPLD_tsa.jpg', \
+             resultPlotTitle='Result temporal series analysis for PLD prices',
+             resultPlotFileName=PLOT_DIR+'resultPld_tsa.jpg',
+             SAVE_FIGURE=SAVE_FIG)
 
-plt.subplot(4, 1, 2)
-plt.plot(mPLDSE.index, pldTrend)
-plt.ylabel('Trend')
-
-plt.subplot(4, 1, 3)
-plt.plot(mPLDSE.index, pldSeasonal)
-plt.ylabel('Seasonal')
-
-plt.subplot(4, 1, 4)
-plt.plot(mPLDSE.index, pldResidue)
-plt.ylabel('Residual')
-
-if SAVE_FIG:
-    plt.savefig(PLOT_DIR + figureName, bbox_inches='tight')
-    
-
+normRes = util.NormalizeSeries(pldResidue.values.reshape(-1,1))
+w0 = 0.08  # Frequency to be removed from signal (Hz)
+Q = 0.1  # Quality factor
+# Design notch filter
+b, a = signal.iirnotch(w0, Q)
+filteredResidual = signal.lfilter(b, a, normRes)
+util.PlotDistribution(filteredResidual, xTitle='Normalized Price', yTitle='Ocurrences', \
+                      plotTitle='Distribution for filtered residual', \
+                      filepath=PLOT_DIR+'filteredResidualDistribution.jpg', \
+                      SAVE_FIGURE=SAVE_FIG)
+util.FFT(filteredResidual, xlabel='Normalized Frequency', ylabel='Magnitude', \
+         title='FFT of extracted residue after filtering', \
+         figureName=PLOT_DIR+'filterResidualFFT.jpg', showPlot=True,\
+         SAVE_FIGURE=SAVE_FIG)

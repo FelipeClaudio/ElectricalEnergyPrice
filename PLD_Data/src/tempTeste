@@ -9,6 +9,7 @@ Created on Wed Feb  6 06:22:20 2019
 import trendAnalysis as tr
 import pandas as pd
 import numpy as np
+import utilities as util
 
 
 def GetPeriodicMovingAveragePrediction (y, T):
@@ -67,3 +68,35 @@ vetorTeste = np.arange(10) + 1
 vetorTeste = np.append(vetorTeste, [8.5, 6.4, 5.3, 8.7, 4.9])
 pandasSeries = pd.Series(vetorTeste)
 resp = GetPeriodicMovingAveragePrediction(pandasSeries, 3)
+
+from sklearn.preprocessing import normalize
+a = np.array([1, 2, 5])
+b = normalize(a.reshape(-1, 1), norm='max', axis=0)
+b = np.array(b.T)[0]
+
+from scipy import signal
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+
+plt.close('all')
+w0 = 0.08  # Frequency to be removed from signal (Hz)
+Q = 0.1  # Quality factor
+#Q = math.sqrt(2)
+# Design notch filter
+b, a = signal.iirnotch(w0, Q)
+t = pldResidue.values
+t = util.NormalizeSeries(t.reshape(-1,1))
+util.FFT(t, 'a', 'b', 'c1', 'd', showPlot=True)
+resp = signal.lfilter(b, a, t)
+util.PlotDistribution(resp, 'ax1', 'yx1', 'px1', 'df')
+util.FFT(resp, 'a', 'b', 'c2', 'd', showPlot=True)
+
+
+w0 = 0.32  # Frequency to be removed from signal (Hz)
+Q = 0.1  # Quality factor
+# Design notch filter
+b, a = signal.iirnotch(w0, Q)
+resp = signal.lfilter(b, a, t)
+util.PlotDistribution(resp, 'ax2', 'yx2', 'px2', 'df')
+util.FFT(resp, 'a', 'b', 'c3', 'd', showPlot=True)

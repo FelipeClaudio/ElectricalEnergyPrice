@@ -31,26 +31,53 @@ matplotlib.rcParams['ytick.labelsize'] = 12
 matplotlib.rcParams['text.color'] = 'k'
 
 
-def ExtractTendByPolyFit(x, y, originalX, order, FILE_PATH, figureName, showPlot = False, SAVE_FIGURE = False):
-    '''
-    INPUT:
-        x:          array with horizontal axis info
-        y:          array with vertical axis info
-        orignalX:   array with datetime info aboutX
-        order:      order of polynomial used
-        FILE_PATH:  folder where file will be saved
-        figureName: title shown in figure
-        showPlot:   determine whether a plot will be show
-        SAVE_FIGURE: enables saving plot feature
-    OUTUPUT:
-        mse:        Mean Squared Error of polynomial fit
-        coef:       Coefficients used to fit data
-    '''    
-    #linear regression
-    coef = pylab.polyfit(x, y, order)
-    mse = PlotPolyFit(x, y, originalX, coef, FILE_PATH, figureName, SAVE_FIGURE, showPlot)            
-    return [mse, coef]
+#OTHERS
+def PredictFirstWindowPoints(y, windowSize):
+    yWithNoMean = y[0:windowSize - 1]
+    yTemp = [0] * windowSize
+    for i in range(0, windowSize):
+        if i <= 1:
+            yTemp[i] = yWithNoMean[i]
+        else:
+            fit = np.polyfit(np.arange(0, i), yWithNoMean[0:i], 1)
+            fit_fn = np.poly1d(fit)
+            yTemp[i] = fit_fn(i)
+    return yTemp
 
+def PredictFirstWindowPointsMA(y, windowSize):
+    yWithNoMean = y[0:windowSize - 1]
+    yTemp = [0] * windowSize
+    for i in range(0, windowSize):
+        if i <= 1:
+            yTemp[i] = yWithNoMean[i]
+        else:
+            yTemp[i] = np.mean(yWithNoMean[0:i])
+            
+    return yTemp     
+    
+    
+def ParameterVariationAnalysis(y, paramFunction, MIN_WINDOW_SIZE,
+                               MAX_WINDOW_SIZE):   
+    mse = np.zeros((MAX_WINDOW_SIZE - MIN_WINDOW_SIZE) + 1)
+    for param in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
+        mse[param - MIN_WINDOW_SIZE] = paramFunction(y, param)
+        
+    return mse
+
+
+def StemPlotErrorAnalysis(y, MIN_WINDOW_SIZE, xTitle, yTitle, figTitle, filepath, SAVE_FIGURE=False):
+    plt.figure()
+    y = np.array(y)
+    #Remove zero elements in right side of plot
+    y = y[np.nonzero(y)[0]]
+    #Add zeros into the beginnig of the plot in order to facilitate visualization
+    y = np.concatenate((np.zeros(MIN_WINDOW_SIZE), y))    
+    plt.stem(y)
+    plt.title(figTitle)
+    plt.ylabel(yTitle)
+    plt.xlabel(xTitle)
+    if SAVE_FIGURE:
+        plt.savefig(filepath, bbox_inches='tight')    
 
 def PlotPolyFit(x, y, originalX, coef, FILE_PATH, figureName, showPlot = False, SAVE_FIGURE = False):    
     #uses poly1d to get Y values given coefficients
@@ -106,13 +133,60 @@ def PlotErrorFunction(x, errorValues, INITIAL_ORDER, FINAL_ORDER, filepath, \
     plt.ylabel(yLabel)
     if (SAVE_FIGURE == True):
         plt.savefig(filepath, bbox_inches='tight')
+        
+def SelectBestParam(mseVec, MIN_ORDER):
+    mseBefore = 0
+    mseAfter = 0
+    minMse = np.max(mseVec)
+    minIndex = 0
+    
+    for i in range(1, mseVec.size - 1):
+        mseBefore = mseVec[i-1]
+        mseAfter = mseVec[i+1]
+        msePoint = mseVec[i]
+        
+        if (msePoint < mseAfter) and \
+        (msePoint < mseBefore) and \
+        (msePoint < minMse):
+            minMse = msePoint
+            minIndex = i
+         
+    return [minIndex + MIN_ORDER, minMse]
+    
+#OTHERS
+
+##TREND
+def ExtractTrendByPolyFit(x, y, originalX, order, FILE_PATH, figureName, showPlot = False, SAVE_FIGURE = False):
+    '''
+    INPUT:
+        x:          array with horizontal axis info
+        y:          array with vertical axis info
+        orignalX:   array with datetime info aboutX
+        order:      order of polynomial used
+        FILE_PATH:  folder where file will be saved
+        figureName: title shown in figure
+        showPlot:   determine whether a plot will be show
+        SAVE_FIGURE: enables saving plot feature
+    OUTUPUT:
+        mse:        Mean Squared Error of polynomial fit
+        coef:       Coefficients used to fit data
+    '''    
+    #linear regression
+    coef = pylab.polyfit(x, y, order)
+    mse = PlotPolyFit(x, y, originalX, coef, FILE_PATH, figureName, SAVE_FIGURE, showPlot)            
+    return [mse, coef]
+
 
 def GetTrendMSEMovingAverage(y, windowSize):
     ma = GetMovingAverage(y, windowSize)
     return mean_squared_error(y, ma)
 
-def GetMovingAverage (y, windowSize):
-    yTemp = PredictFirstWindowPoints(y, windowSize)
+def GetTrendMSEMovingAverageOnly(y, windowSize):
+    ma = GetMovingAverage(y, windowSize,  PredictFirstWindowPointsMA)
+    return mean_squared_error(y, ma)
+
+def GetMovingAverage (y, windowSize, predFunction=PredictFirstWindowPoints):
+    yTemp = predFunction(y, windowSize)
     yMA = pd.Series(y).rolling(window=windowSize).mean().iloc[windowSize-1:-1].values
     return np.concatenate((yTemp, yMA))
 
@@ -120,6 +194,27 @@ def GetTrendMSEExponentialMovingAverage(y, windowSize):
     ema = GetExponentialMovingAverage(y, windowSize)
     return mean_squared_error(y, ema)
 
+
+def GetTrendAnalysisByMovingAverageLinFit(y, title, MIN_WINDOW_SIZE, \
+                                          filepath=None, SAVE_FIGURE=False):
+    mseMA = ParameterVariationAnalysis(y, GetTrendMSEMovingAverage, MIN_WINDOW_SIZE, y.size)
+    StemPlotErrorAnalysis(mseMA, MIN_WINDOW_SIZE, xTitle="Window Size",\
+                         yTitle="MSE", figTitle=title, filepath=filepath,\
+                         SAVE_FIGURE=SAVE_FIGURE)
+    return SelectBestParam(mseMA, MIN_WINDOW_SIZE)
+    
+def GetTrendAnalysisByMovingAverageOnly(y, title, MIN_WINDOW_SIZE, \
+                                      filepath=None, SAVE_FIGURE=False):
+
+    mseMA = ParameterVariationAnalysis(y, GetTrendMSEMovingAverageOnly, MIN_WINDOW_SIZE, y.size)
+    StemPlotErrorAnalysis(mseMA, MIN_WINDOW_SIZE, xTitle="Window Size",\
+                         yTitle="MSE", figTitle=title, filepath=filepath,\
+                         SAVE_FIGURE=SAVE_FIGURE)
+    return SelectBestParam(mseMA, MIN_WINDOW_SIZE)
+
+##TREND
+
+#SEASONAL
 def GetExponentialMovingAverage(y, windowSize):
     yTemp = PredictFirstWindowPoints(y, windowSize)
     yEMA = y.ewm(span=windowSize, adjust=False).mean().iloc[windowSize-1:-1].values
@@ -147,23 +242,56 @@ def GetPeriodicMovingAveragePrediction (y, T):
             pred[i] = fit_fn(i // T)          
     return pred
 
+def GetPeriodicMovingAverageOnlyPrediction (y, T):
+    ySize = y.size
+    mask = np.zeros(ySize)
+    pred = np.zeros(ySize)
+    for i in range (0, ySize):
+        mask = np.roll(mask, 1)
+        if i % T == 0:
+            mask[0] = 1
+        else:
+            mask[0] = 0
+        
+        idx = np.nonzero(mask)
+        vecIdx = y.iloc[idx]
+        
+        if (i / T) <= 2:
+            pred[i] = y[i]
+        else:
+            pred[i] = np.mean(vecIdx[:-1].values)
+            
+    return pred
+
 def GetMSEfoPeriodicMovingAveragePrediction(y, T):
     pred = GetPeriodicMovingAveragePrediction(y, T)
     return mean_squared_error (y, pred)
 
-def PredictFirstWindowPoints(y, windowSize):
-    yWithNoMean = y[0:windowSize - 1]
-    yTemp = [0] * windowSize
-    for i in range(0, windowSize):
-        if i <= 1:
-            yTemp[i] = yWithNoMean[i]
-        else:
-            fit = np.polyfit(np.arange(0, i), yWithNoMean[0:i], 1)
-            fit_fn = np.poly1d(fit)
-            yTemp[i] = fit_fn(i)
-    return yTemp
+def GetMSEfoPeriodicMovingAverageOnlyPrediction(y, T):
+    pred = GetPeriodicMovingAverageOnlyPrediction(y, T)
+    return mean_squared_error (y, pred)
+
+def GetSeasonAnalysisByMovingAverageLinFit(y, title, MIN_WINDOW_SIZE,\
+                                          filepath=None, SAVE_FIGURE=False):
+    mseMA = ParameterVariationAnalysis(y, GetMSEfoPeriodicMovingAveragePrediction, MIN_WINDOW_SIZE, y.size)
+    StemPlotErrorAnalysis(mseMA, MIN_WINDOW_SIZE, xTitle="Time Lag",\
+                         yTitle="MSE", figTitle=title, filepath=filepath,\
+                         SAVE_FIGURE=SAVE_FIGURE)
+    return SelectBestParam(mseMA, MIN_WINDOW_SIZE)
     
 
+def GetSeasonAnalysisByMovingAverageOnly(y, title, MIN_WINDOW_SIZE,\
+                                          filepath=None, SAVE_FIGURE=False):
+    mseMA = ParameterVariationAnalysis(y, GetMSEfoPeriodicMovingAverageOnlyPrediction, MIN_WINDOW_SIZE, y.size)
+    StemPlotErrorAnalysis(mseMA, MIN_WINDOW_SIZE, xTitle="Time Lag",\
+                         yTitle="MSE", figTitle=title, filepath=filepath,\
+                         SAVE_FIGURE=SAVE_FIGURE)
+    return SelectBestParam(mseMA, MIN_WINDOW_SIZE)
+
+#SEASONAL
+
+
+#SARIMA
 def UseSARIMAToEstimateTemporalSeries(y, PARAM_MAX, INITIAL_TEST_DATE, FILE_PATH,\
                                       param_sarima = None, \
                                       seasonal_param_sarima = None, \
@@ -262,3 +390,7 @@ def UseSARIMAToEstimateTemporalSeries(y, PARAM_MAX, INITIAL_TEST_DATE, FILE_PATH
     figureName = 'BestSARIMA.jpg'
     if SAVE_FIGURE:
         plt.savefig(FILE_PATH + figureName, bbox_inches='tight')
+
+#SARIMA
+        
+        

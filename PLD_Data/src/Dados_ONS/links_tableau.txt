@@ -1,0 +1,17 @@
+Links Tableau:
+1 - Energia Armazenada - OK:
+    https://tableau.ons.org.br/t/ONS_Publico/views/EnergiaArmazenada/HistricoEnergiaArmazenada?:embed=y&:showAppBanner=false&:showShareOptions=false&:display_count=no&:showVizHome=no
+2 - Demanda Máxima - OK:
+    https://tableau.ons.org.br/t/ONS_Publico/views/DemandaMxima/HistricoDemandaMxima?:embed=y&:showAppBanner=false&:showShareOptions=true&:display_count=no&:showVizHome=no
+3 - Carga Energia - OK:
+    https://tableau.ons.org.br/t/ONS_Publico/views/CargadeEnergia/HistricoCargadeEnergia?:embed=y&:showAppBanner=false&:showShareOptions=true&:display_count=no&:showVizHome=no
+4 - ENA X Subsistema - OK:
+    https://tableau.ons.org.br/t/ONS_Publico/views/EnergiaNaturalAfluenteSubsistema/HistricoEnergiaNaturalAfluenteSubsistema?:embed=y&:showAppBanner=false&:showShareOptions=true&:display_count=no&:showVizHome=no
+5 - Geração de Energia:
+    https://tableau.ons.org.br/t/ONS_Publico/views/GeraodeEnergia/HistricoGeraodeEnergia?:embed=y&:showAppBanner=false&:showShareOptions=true&:display_count=no&:showVizHome=no
+        Total - OK:
+        Hidroelétrica- - OK:
+        Térmica - OK:
+        Nuclear - OK:
+6 - Custo Marginal De Operação - Media Semanal - Ok:
+    http://ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/cmo.aspx

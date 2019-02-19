@@ -1,0 +1,30 @@
+Pontos Reunião 13/02
+
+Utilizar Média ao invés de linFIT - OK
+
+Comparar método acima com o linFIT -OK
+
+fft de cada etapa de extração - OK
+
+distribuições de cada etapa - OK
+
+Tirar os pontos com zeros à direita - OK
+	-Anotação sobre o que foi analisado
+		-Aumento da distância = perda da estacionaridade
+
+Utilizar T = 6 e realizar a análise -OK
+
+Normalizar os resíduos - OK
+
+Colocar valor da correlção - OK
+
+Consertar os gráficos de vazões - OK
+
+Fazer análise com vazão útil -OK
+
+Flag - pt/us
+
+Estudar LSTM e SVR
+
+
+
