@@ -63,6 +63,13 @@ def GetPeriodicMovingAveragePredictionWithWindow (y, T, windowSize = 2):
             
     return pred
 
+'''
+ROOT_FOLDER  = '/home/felipe/Materias/TCC/'
+ONS_DIR = ROOT_FOLDER + 'PLD_Data/ONS_DATA'
+t = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Energia_Armazenada_Mês_data_editado.csv', 'Total Stored Energy')
+a = util.ExtractTrainTestSetFromTemporalSeries(t, '01/2015', '12/2018', '01/2018')[1]
+c = util.ExtractTrainTestSetFromTemporalSeries(t, '01/2015', '12/2016', '12/2015')
+
 T = 3
 vetorTeste = np.arange(10) + 1
 vetorTeste = np.append(vetorTeste, [8.5, 6.4, 5.3, 8.7, 4.9])
@@ -100,3 +107,37 @@ b, a = signal.iirnotch(w0, Q)
 resp = signal.lfilter(b, a, t)
 util.PlotDistribution(resp, 'ax2', 'yx2', 'px2', 'df')
 util.FFT(resp, 'a', 'b', 'c3', 'd', showPlot=True)
+'''
+import matplotlib.pyplot as plt
+
+y = np.arange(20) + 1
+ySize = y.size
+windowTest = ySize
+windowSize = 3
+weightsNumber = 10
+yFinal = tr.GetSmoothMovingAverage(y, windowSize, weightsNumber=10)
+'''
+yTemp = tr.PredictFirstWindowPoints(y, windowTest)
+yMA = pd.Series(y).rolling(window=windowSize).mean().iloc[windowSize-1:-1].values
+yMA = np.concatenate( (np.zeros(windowSize), yMA) )
+weights = np.linspace(0.1, 1, weightsNumber)
+
+yFinal = [0]*y.size
+for i in range (0, ySize):
+    if i < windowSize:
+        yFinal[i] = yTemp[i]
+    elif (i>=windowSize) and (i < windowSize + weightsNumber):
+        wValue = weights[i-windowSize]
+        yFinal[i] = yTemp[i] * (1 - wValue) + yMA[i] * wValue
+    else:
+        yFinal[i] = yMA[i]
+'''
+plt.figure()
+yOld = tr.GetMovingAverage(y, windowSize)
+plt.subplot(2,1,1)
+plt.plot(yOld)
+plt.subplot(2,1,2)
+plt.plot(yFinal)
+y[10:]
+
+

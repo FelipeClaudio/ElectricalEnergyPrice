@@ -44,11 +44,13 @@ meanPLD = pd.read_csv(MAIN_DIR + 'PLD_medio.csv', \
 
 PLOT_DIR = ROOT_FOLDER + '/PLD_Data/src/plots/SeriesTemporais/'
 INITIAL_DATE = '01/2015'
+FINAL_DATE = '12/2017'
 mPLDSE = meanPLD[['Mês', 'SE/CO']]
 mPLDSE.columns = ['month', 'price']
 mPLDSE.set_index('month', inplace=True)
 mPLDSE = mPLDSE.sort_index()
 mPLDSE = mPLDSE.loc[mPLDSE.index >= INITIAL_DATE]
+mPLDSE = mPLDSE.loc[mPLDSE.index <= FINAL_DATE]
 
 mPLDSE.index.inferred_freq
 
@@ -56,35 +58,21 @@ BEST_WINDOW_SIZE_MA = 16
 T_SEASONAL = 12
 plt.close('all')
 SAVE_FIG = False
+FINAL_DATE = '12/2017'
 #Settings
 
 
-def ReadONSEditedCSV(filename, columnName, dateParser=None):
-    if dateParser is None:
-        mydateparser = lambda x: pd.datetime.strptime(x, "%B %Y")
-    else:
-        mydateparser = dateParser   
-    data = pd.read_csv(ONS_DIR + filename,\
-                           parse_dates=['month'], \
-                           date_parser=mydateparser)
-    data.set_index('month', inplace=True)
-    data.columns = [columnName]
-    data = data.sort_index()
-    data = data.loc[data.index < '20181001']
-    return data
-    
-
-totalStoredEnergy = ReadONSEditedCSV('/Simples_Energia_Armazenada_Mês_data_editado.csv', 'Total Stored Energy')
-uheGeneratedEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_UHE_editado.csv', 'UHE Generated Energy')
-unGeneratedEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_UN_editado.csv', 'UN Generated Energy')
-uteGeneratedEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_UTE_editado.csv', 'UTE Generated Energy')
-solarGeneratedEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_solar_editado.csv', 'Solar Generated Energy')
-windGeneratedEnergy = ReadONSEditedCSV('/Simples_Geração_de_Energia_Barra_Mês_data_eolica_editado.csv', 'Wind Generated Energy')
-loadEnergy = ReadONSEditedCSV('/Simples_Carga_de_Energia_Barra_Mês_data_editado.csv', 'Load Energy')
-ena = ReadONSEditedCSV('/Simples_Energia_Natural_Afluente_Subsistema_Barra__data_editado.csv', 'ENA')
+totalStoredEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Energia_Armazenada_Mês_data_editado.csv', 'Total Stored Energy', FINAL_DATE=FINAL_DATE)[0]
+uheGeneratedEnergy = util.ReadONSEditedCSV (ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_UHE_editado.csv', 'UHE Generated Energy', FINAL_DATE=FINAL_DATE)[0]
+unGeneratedEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_UN_editado.csv', 'UN Generated Energy', FINAL_DATE=FINAL_DATE)[0]
+uteGeneratedEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_UTE_editado.csv', 'UTE Generated Energy', FINAL_DATE=FINAL_DATE)[0]
+solarGeneratedEnergy = util.ReadONSEditedCSV(ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_solar_editado.csv', 'Solar Generated Energy', FINAL_DATE=FINAL_DATE)[0]
+windGeneratedEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_eolica_editado.csv', 'Wind Generated Energy', FINAL_DATE=FINAL_DATE)[0]
+loadEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Carga_de_Energia_Barra_Mês_data_editado.csv', 'Load Energy', FINAL_DATE=FINAL_DATE)[0]
+ena = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Energia_Natural_Afluente_Subsistema_Barra__data_editado.csv', 'ENA', FINAL_DATE=FINAL_DATE)[0]
 mydateparser = lambda x: pd.datetime.strptime(x, "%Y-%m-%d")
-afSum = ReadONSEditedCSV('/FStation.csv', 'Afluent Flow Sum', mydateparser)
-afSumUseful = ReadONSEditedCSV('/AFSum_useful.csv', 'Useful Afluent Flow Sum', mydateparser)
+afSum = util.ReadONSEditedCSV( ONS_DIR + '/FStation.csv', 'Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
+afSumUseful = util.ReadONSEditedCSV( ONS_DIR + '/AFSum_useful.csv', 'Useful Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
 
 cor = pd.concat([mPLDSE, totalStoredEnergy], axis=1)
 cor = pd.concat([cor, uheGeneratedEnergy], axis=1)
@@ -104,5 +92,5 @@ sns.heatmap(correlation, xticklabels=correlation.columns, \
             annot=True, fmt=".2f")
 
 #sns.scatterplot(correlation)
-ax.set_title("Correlation between ONS DATA and PLD")
+ax.set_title("Correlation between ONS DATA and PLD between in traning set")
 plt.show()

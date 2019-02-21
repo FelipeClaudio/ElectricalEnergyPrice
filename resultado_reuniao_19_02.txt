@@ -1,0 +1,19 @@
+Resolver transição brusca na média móvel - OK
+
+Colocar os slides de tendência e sazionalidade no trabalho
+
+utilizar os dados até o final de 2017 para treinamento e após isso para teste - OK
+
+Verificar energia solar e eólica (ambas tem ordem de grandeza 1000x menor que UTE e UHE) - OK	
+	-Solar:
+		Tendência crescente, assim como o preço no cenário atual
+	-Eólica
+		Custo maior que o das hidrelétricas, mas mais barato que as térmicas
+
+Tirar UTE das análises
+
+Colocar W e T em todas as figuras do slide - OK
+
+adicionar slide com a série original e a fft da série original - OK
+
+Aumentar o número de bins para 4 * sqrt(N) - OK

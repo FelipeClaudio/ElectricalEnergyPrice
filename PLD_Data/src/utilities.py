@@ -16,6 +16,7 @@ import statsmodels.api as sm
 from sklearn.preprocessing import normalize
 import math
 import seaborn as sns
+import pandas as pd
 
 rcParams['figure.figsize'] = 18, 8
 
@@ -53,7 +54,7 @@ def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
 def PlotDistribution(y, xTitle, yTitle, plotTitle, filepath, SAVE_FIGURE=False):
     fig = plt.figure()
     ax = fig.gca()
-    sns.distplot(y, bins=math.ceil(math.sqrt(y.size)), ax=ax)
+    sns.distplot(y, bins=math.ceil(4*math.sqrt(y.size)), ax=ax)
     ax.set_title(plotTitle)
     plt.xlabel(xTitle)
     plt.ylabel(yTitle)
@@ -76,7 +77,7 @@ def NormalizeSeries(y):
     yNormalized = normalize(y, norm='max', axis=0)
     return np.array(yNormalized.T)[0]
 
-def PlotTSA(original, trend, seasonal, \
+def PlotTSA(original, trend, seasonal, residual, \
             originalPlotTitle, originalPlotFileName, \
             resultPlotTitle, resultPlotFileName, SAVE_FIGURE=False):
 
@@ -86,7 +87,6 @@ def PlotTSA(original, trend, seasonal, \
     if SAVE_FIGURE:
         plt.savefig(originalPlotFileName, bbox_inches='tight')
     
-    residual = original.values - trend - seasonal
     plt.figure()
     plt.suptitle(resultPlotTitle)
     
@@ -107,4 +107,38 @@ def PlotTSA(original, trend, seasonal, \
     plt.ylabel('Residual')
     
     if SAVE_FIGURE:
-        plt.savefig(resultPlotFileName, bbox_inches='tight')    
+        plt.savefig(resultPlotFileName, bbox_inches='tight')
+        
+def ExtractTrainTestSetFromTemporalSeries (data, initialDate = None, \
+                                           finalDate = None, timeSplit = None):
+    if initialDate is None:
+        initialDate = data.index[0]
+    
+    if finalDate is None:
+        finalDate = data.index[-1]
+        
+    if timeSplit is None:
+        timeSplit = finalDate
+        
+    data = data.loc[data.index >= initialDate]
+    data = data.loc[data.index <= finalDate]
+    dataTrain = data.loc[data.index <= timeSplit]
+    dataTest = data.loc[data.index > timeSplit]
+    return [dataTrain, dataTest]
+
+def ReadONSEditedCSV(filename, columnName, dateParser=None, INITIAL_DATE = None, \
+                     FINAL_DATE = None, TIME_SPLIT = None):
+    if dateParser is None:
+        mydateparser = lambda x: pd.datetime.strptime(x, "%B %Y")
+    else:
+        mydateparser = dateParser   
+    data = pd.read_csv(filename,\
+                           parse_dates=['month'], \
+                           date_parser=mydateparser)
+    data.set_index('month', inplace=True)
+    data.columns = [columnName]
+    data = data.sort_index()
+    return ExtractTrainTestSetFromTemporalSeries(data, initialDate=INITIAL_DATE,\
+                                                 finalDate = FINAL_DATE, \
+                                                 timeSplit = TIME_SPLIT)
+    

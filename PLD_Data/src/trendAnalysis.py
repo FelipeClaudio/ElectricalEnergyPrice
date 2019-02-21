@@ -57,10 +57,10 @@ def PredictFirstWindowPointsMA(y, windowSize):
     
     
 def ParameterVariationAnalysis(y, paramFunction, MIN_WINDOW_SIZE,
-                               MAX_WINDOW_SIZE):   
+                               MAX_WINDOW_SIZE, transitionType=None):   
     mse = np.zeros((MAX_WINDOW_SIZE - MIN_WINDOW_SIZE) + 1)
     for param in range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE + 1):
-        mse[param - MIN_WINDOW_SIZE] = paramFunction(y, param)
+        mse[param - MIN_WINDOW_SIZE] = paramFunction(y, param, transitionType)
         
     return mse
 
@@ -151,8 +151,22 @@ def SelectBestParam(mseVec, MIN_ORDER):
             minMse = msePoint
             minIndex = i
          
-    return [minIndex + MIN_ORDER, minMse]
+    return [minIndex + MIN_ORDER, minMse, mseVec]
     
+def GetSmoothTransition (x, y, windowSize, weightsNumber=5):
+    ySize = y.size
+    result = np.zeros(ySize)
+    weights = np.linspace(0.1, 1, weightsNumber) 
+    for i in range (0, ySize):
+        if i < windowSize:
+            result[i] = x[i]
+        elif (i>=windowSize) and (i < windowSize + weightsNumber):
+            wValue = weights[i-windowSize]
+            result[i] = x[i] * (1 - wValue) + y[i] * wValue
+        else:
+            result[i] = y[i]
+    
+    return result
 #OTHERS
 
 ##TREND
@@ -177,27 +191,33 @@ def ExtractTrendByPolyFit(x, y, originalX, order, FILE_PATH, figureName, showPlo
     return [mse, coef]
 
 
-def GetTrendMSEMovingAverage(y, windowSize):
-    ma = GetMovingAverage(y, windowSize)
+def GetTrendMSEMovingAverage(y, windowSize, transitionType=None):
+    ma = GetMovingAverage(y, windowSize, transitionType=transitionType)
     return mean_squared_error(y, ma)
 
-def GetTrendMSEMovingAverageOnly(y, windowSize):
+def GetTrendMSEMovingAverageOnly(y, windowSize, transitionType=None):
     ma = GetMovingAverage(y, windowSize,  PredictFirstWindowPointsMA)
     return mean_squared_error(y, ma)
 
-def GetMovingAverage (y, windowSize, predFunction=PredictFirstWindowPoints):
-    yTemp = predFunction(y, windowSize)
+def GetMovingAverage (y, windowSize, predFunction=PredictFirstWindowPoints, transitionType=None, weightsNumber=5):
+    yTemp = predFunction(y, y.size)
     yMA = pd.Series(y).rolling(window=windowSize).mean().iloc[windowSize-1:-1].values
-    return np.concatenate((yTemp, yMA))
+    yMA = np.concatenate( (np.zeros(windowSize), yMA))
+    if transitionType == 'smooth':
+        return GetSmoothTransition(yTemp, yMA, windowSize, weightsNumber)
+    else:
+        return np.concatenate((yTemp[0:windowSize], yMA[windowSize:]))
+
 
 def GetTrendMSEExponentialMovingAverage(y, windowSize):
     ema = GetExponentialMovingAverage(y, windowSize)
     return mean_squared_error(y, ema)
 
 
-def GetTrendAnalysisByMovingAverageLinFit(y, title, MIN_WINDOW_SIZE, \
-                                          filepath=None, SAVE_FIGURE=False):
-    mseMA = ParameterVariationAnalysis(y, GetTrendMSEMovingAverage, MIN_WINDOW_SIZE, y.size)
+def GetTrendAnalysisByMovingAverageLinFit(y, title, MIN_WINDOW_SIZE,\
+                                          transitionType=None, filepath=None, \
+                                          SAVE_FIGURE=False):
+    mseMA = ParameterVariationAnalysis(y, GetTrendMSEMovingAverage, MIN_WINDOW_SIZE, y.size, transitionType=transitionType)
     StemPlotErrorAnalysis(mseMA, MIN_WINDOW_SIZE, xTitle="Window Size",\
                          yTitle="MSE", figTitle=title, filepath=filepath,\
                          SAVE_FIGURE=SAVE_FIGURE)
@@ -220,7 +240,8 @@ def GetExponentialMovingAverage(y, windowSize):
     yEMA = y.ewm(span=windowSize, adjust=False).mean().iloc[windowSize-1:-1].values
     return np.concatenate((yTemp, yEMA))
 
-def GetPeriodicMovingAveragePrediction (y, T):
+
+def GetPeriodicMovingAveragePrediction (y, T, transitionType=None):
     ySize = y.size
     mask = np.zeros(ySize)
     pred = np.zeros(ySize)
@@ -239,7 +260,8 @@ def GetPeriodicMovingAveragePrediction (y, T):
         else:
             fit = np.polyfit(np.arange(0, vecIdx.size - 1), vecIdx[:-1], 1)
             fit_fn = np.poly1d(fit)
-            pred[i] = fit_fn(i // T)          
+            pred[i] = fit_fn(i // T)
+        
     return pred
 
 def GetPeriodicMovingAverageOnlyPrediction (y, T):
@@ -263,11 +285,11 @@ def GetPeriodicMovingAverageOnlyPrediction (y, T):
             
     return pred
 
-def GetMSEfoPeriodicMovingAveragePrediction(y, T):
+def GetMSEfoPeriodicMovingAveragePrediction(y, T, transitionType=None):
     pred = GetPeriodicMovingAveragePrediction(y, T)
     return mean_squared_error (y, pred)
 
-def GetMSEfoPeriodicMovingAverageOnlyPrediction(y, T):
+def GetMSEfoPeriodicMovingAverageOnlyPrediction(y, T, transitionType=None):
     pred = GetPeriodicMovingAverageOnlyPrediction(y, T)
     return mean_squared_error (y, pred)
 
