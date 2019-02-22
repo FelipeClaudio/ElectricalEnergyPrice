@@ -26,6 +26,8 @@ matplotlib.rcParams['xtick.labelsize'] = 12
 matplotlib.rcParams['ytick.labelsize'] = 12
 matplotlib.rcParams['text.color'] = 'k'
 
+defaultMask = np.array([2, 3, 4, 5, 13, 14, 15, 16, 17, 18, 19, 20])
+
 def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
         axText="0.5rad/s = 2 months", \
         showPlot=False, SAVE_FIGURE=False):
@@ -142,3 +144,33 @@ def ReadONSEditedCSV(filename, columnName, dateParser=None, INITIAL_DATE = None,
                                                  finalDate = FINAL_DATE, \
                                                  timeSplit = TIME_SPLIT)
     
+def GetFilteredSeriesByMask(data, shiftLeft=0, mask=None):
+    rowsNumber = data.iloc[:,0].size
+    filteredSeries = data.reset_index()
+    if mask is None:
+        mask = rowsNumber - (defaultMask -1 + shiftLeft) - 1
+        filteredSeries = filteredSeries.iloc[mask]
+        
+    indexColumn = data.index.name
+    filteredSeries.set_index(indexColumn, inplace=True)
+    filteredSeries = filteredSeries.sort_index()
+    if shiftLeft == 0:
+        latestValue = data[-1:]
+    else:
+        latestValue = data[(-shiftLeft-1):-shiftLeft]
+    return [latestValue, filteredSeries]
+
+def TransposeAndSetColumnNames(data, prefix, mask=None):
+    if mask is None:
+        mask = defaultMask
+    
+    columnNames = [''] * mask.size
+    for col in range (0, mask.size):
+        columnNames[col] = prefix + str(mask[col])
+    
+    data = data.transpose()
+    data.columns = columnNames
+    return data.reset_index(drop=True)
+
+def GetDefaultMask():
+    return defaultMask

@@ -11,3 +11,10 @@ Error: EBADF: bad file descriptor, read
 [11538:11538:0126/200641.266646:ERROR:child_process_launcher.cc(522)] Failed to launch child process
 [11538:11538:0126/201227.668790:ERROR:child_process_launcher.cc(522)] Failed to launch child process
 [11538:11538:0126/201232.231172:ERROR:child_process_launcher.cc(522)] Failed to launch child process
+usage: anaconda [-h] [--disable-ssl-warnings] [--show-traceback] [-v] [-q]
+                [-V] [-t TOKEN] [-s SITE]
+                ...
+anaconda: error: A sub command must be given. To show all available sub commands, run:
+
+	 anaconda -h
+
