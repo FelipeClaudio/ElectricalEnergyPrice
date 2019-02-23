@@ -17,6 +17,7 @@ from sklearn.preprocessing import normalize
 import math
 import seaborn as sns
 import pandas as pd
+import copy
 
 rcParams['figure.figsize'] = 18, 8
 
@@ -26,7 +27,8 @@ matplotlib.rcParams['xtick.labelsize'] = 12
 matplotlib.rcParams['ytick.labelsize'] = 12
 matplotlib.rcParams['text.color'] = 'k'
 
-defaultMask = np.array([2, 3, 4, 5, 13, 14, 15, 16, 17, 18, 19, 20])
+#defaultMask = np.array([2, 3, 4, 5, 13, 14, 15, 16, 17, 18, 19, 20])
+defaultMask = np.array([0, 1, 2, 3, 4, 5, 6, 7, 15, 16, 17, 18, 19])
 
 def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
         axText="0.5rad/s = 2 months", \
@@ -143,27 +145,37 @@ def ReadONSEditedCSV(filename, columnName, dateParser=None, INITIAL_DATE = None,
     return ExtractTrainTestSetFromTemporalSeries(data, initialDate=INITIAL_DATE,\
                                                  finalDate = FINAL_DATE, \
                                                  timeSplit = TIME_SPLIT)
-    
+       
 def GetFilteredSeriesByMask(data, shiftLeft=0, mask=None):
-    rowsNumber = data.iloc[:,0].size
+    #get indexed data to perform operations
     filteredSeries = data.reset_index()
     if mask is None:
-        mask = rowsNumber - (defaultMask -1 + shiftLeft) - 1
-        filteredSeries = filteredSeries.iloc[mask]
+        #Need to deep copy in order to no alter global variable in every interaction
+        mask = copy.deepcopy(defaultMask)
         
+    mask += shiftLeft
+    filteredSeries = filteredSeries.iloc[mask] 
     indexColumn = data.index.name
     filteredSeries.set_index(indexColumn, inplace=True)
     filteredSeries = filteredSeries.sort_index()
+    '''
     if shiftLeft == 0:
         latestValue = data[-1:]
     else:
         latestValue = data[(-shiftLeft-1):-shiftLeft]
-    return [latestValue, filteredSeries]
+    '''
+    #The latest elemnt is um after the lats element of mask
+    latestValue = data.iloc[[np.max(mask) + 1]]
+    
+    return [latestValue, filteredSeries.sort_index(ascending=False)]
 
 def TransposeAndSetColumnNames(data, prefix, mask=None):
     if mask is None:
-        mask = defaultMask
+        mask = copy.deepcopy(defaultMask)
     
+    mask = np.fliplr([mask])[0]
+    mask -= (np.max(mask) + 1)
+    mask = np.abs(mask)
     columnNames = [''] * mask.size
     for col in range (0, mask.size):
         columnNames[col] = prefix + str(mask[col])

@@ -56,7 +56,7 @@ mPLDSE = util.ExtractTrainTestSetFromTemporalSeries(mPLDSE, initialDate=INITIAL_
                                                     finalDate=FINAL_DATE)[0]
 
 SAVE_FIG = False
-SAVE_INPUT = False
+SAVE_INPUT = True
 #Settings
 ax = autocorrelation_plot(mPLDSE)
 if SAVE_FIG:
@@ -79,12 +79,11 @@ mydateparser = lambda x: pd.datetime.strptime(x, "%Y-%m-%d")
 afSumOriginal = util.ReadONSEditedCSV( ONS_DIR + '/FStation.csv', 'Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
 afSumUsefulOriginal = util.ReadONSEditedCSV( ONS_DIR + '/AFSum_useful.csv', 'Useful Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
 
-numberOfLags = mPLDSE.size - max(util.GetDefaultMask())
+numberOfLags = mPLDSE.size - max(util.GetDefaultMask()) - 1
 NUMBER_OF_VARIABLES = 10
 
 for lag in range(0, numberOfLags):
     shiftLeft = lag
-    pldData = util.GetFilteredSeriesByMask(mPLDSE)
     totalStoredEnergy = util.GetFilteredSeriesByMask(totalStoredEnergyOriginal, shiftLeft=shiftLeft)
     uheGeneratedEnergy = util.GetFilteredSeriesByMask(uheGeneratedEnergyOriginal, shiftLeft=shiftLeft)
     unGeneratedEnergy = util.GetFilteredSeriesByMask(unGeneratedEnergyOriginal, shiftLeft=shiftLeft)
@@ -94,8 +93,7 @@ for lag in range(0, numberOfLags):
     loadEnergy = util.GetFilteredSeriesByMask(loadEnergyOriginal, shiftLeft=shiftLeft)
     ena = util.GetFilteredSeriesByMask(enaOriginal, shiftLeft=shiftLeft)
     afSum = util.GetFilteredSeriesByMask(afSumOriginal, shiftLeft=shiftLeft)
-    afSumUseful = util.GetFilteredSeriesByMask(afSumUsefulOriginal, shiftLeft=shiftLeft)
-    
+    afSumUseful = util.GetFilteredSeriesByMask(afSumUsefulOriginal, shiftLeft=shiftLeft)  
     
     inputDataOld = util.TransposeAndSetColumnNames(totalStoredEnergy[1], 'tEn')
     inputDataOld = pd.concat([inputDataOld, util.TransposeAndSetColumnNames(uheGeneratedEnergy[1],  'gUHE')], axis=1)
@@ -128,10 +126,15 @@ for lag in range(0, numberOfLags):
         finalInput = pd.concat([finalInput, inputData])
         finalInputOld = pd.concat([finalInputOld, inputDataOld])
 
+#Order by input by temporal time
+#Older predicions comes first
 finalInput = finalInput.reset_index(drop=True)
+
 finalInputOld = finalInputOld.reset_index(drop=True)
 
-
+finalOutput = mPLDSE
+finalOutput = finalOutput.reset_index(drop=True)
 if SAVE_INPUT:
     finalInput.to_csv('input.csv')
     finalInputOld.to_csv('inputOld.csv')
+    finalOutput.to_csv('output.csv')

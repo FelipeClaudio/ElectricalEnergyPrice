@@ -107,7 +107,7 @@ b, a = signal.iirnotch(w0, Q)
 resp = signal.lfilter(b, a, t)
 util.PlotDistribution(resp, 'ax2', 'yx2', 'px2', 'df')
 util.FFT(resp, 'a', 'b', 'c3', 'd', showPlot=True)
-'''
+
 import matplotlib.pyplot as plt
 
 y = np.arange(20) + 1
@@ -116,7 +116,6 @@ windowTest = ySize
 windowSize = 3
 weightsNumber = 10
 yFinal = tr.GetSmoothMovingAverage(y, windowSize, weightsNumber=10)
-'''
 yTemp = tr.PredictFirstWindowPoints(y, windowTest)
 yMA = pd.Series(y).rolling(window=windowSize).mean().iloc[windowSize-1:-1].values
 yMA = np.concatenate( (np.zeros(windowSize), yMA) )
@@ -131,7 +130,7 @@ for i in range (0, ySize):
         yFinal[i] = yTemp[i] * (1 - wValue) + yMA[i] * wValue
     else:
         yFinal[i] = yMA[i]
-'''
+
 plt.figure()
 yOld = tr.GetMovingAverage(y, windowSize)
 plt.subplot(2,1,1)
@@ -139,5 +138,10 @@ plt.plot(yOld)
 plt.subplot(2,1,2)
 plt.plot(yFinal)
 y[10:]
-
-
+'''
+val = index=np.arange(10)
+mask = np.array([1, 4, 5])
+a = pd.DataFrame(index = val, columns = ['Valor'])
+a['Valor'] = val
+a.index.name = 'idx'
+b = util.GetFilteredSeriesByMask(a, mask=mask, shiftLeft=0)[1]
