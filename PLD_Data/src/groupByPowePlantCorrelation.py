@@ -65,17 +65,15 @@ plt.close('all')
 
 MIN_WINDOW_SIZE = 3
 hidrBase=pd.read_csv(MAIN_DIR + 'HIDR_BASE.csv')
-REMOVE_MIN_VOLUME=False
-SAVE_FIG=True
-
-
+REMOVE_MIN_VOLUME=True
+SAVE_FIG=False
 #For total volume
 #BEST_WINDOW_SIZE_MA = 14
 #BEST_T = 12
 
 #For useful volume
-BEST_WINDOW_SIZE_MA = 12
-T_SEASONAL =12
+BEST_WINDOW_SIZE_MA = 14
+T_SEASONAL =6
 
 bestParamString = ' W=' + str(BEST_WINDOW_SIZE_MA) + ' T=' + str(T_SEASONAL)
 ##Settings
@@ -164,6 +162,7 @@ if SAVE_CORR:
 
 #get total affluent flow
 FStation = AFFilteredSseriesPlot.sum(axis = 1)
+FStation.to_csv('AFSum_useful.csv')
 
 util.PlotDistribution(FStation, xTitle='Affluent flow sum SE', yTitle='Number of occurences',\
                       plotTitle='Affluent flow sum SE distribution' + bestParamString,\

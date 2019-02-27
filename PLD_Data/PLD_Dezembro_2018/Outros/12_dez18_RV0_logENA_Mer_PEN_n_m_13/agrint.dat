@@ -1,0 +1,75 @@
+AGRUPAMENTOS DE INTERCÂMBIO
+ #AG A   B   COEF
+ XXX XXX XXX XX.XXXX
+   1   1   3  1.0000
+   1  11   3  1.0000
+   2   3   1  1.0000
+   2   3  11  1.0000
+   4  11   1  1.0000
+   4  11   3  1.0000
+   5   4   1  1.0000
+   5  11   1  1.0000
+   6   1   4  1.0000
+   6   1  11  1.0000
+   7  11   1  1.0000
+   7   4   1  1.0000
+   7  11   3  1.0000
+   8   1   3  1.0000
+   8   1  11  1.0000
+   8   1   4  1.0000
+   9   1   3  1.0000
+   9   1  11  1.0000
+   9   1   4  1.0000
+   9  11   3  1.0000
+  10   1   3  1.0000
+  10   1  11  1.0000
+  10  11   3  1.0000   
+ 999
+LIMITES POR GRUPO
+  #AG MI ANOI MF ANOF LIM_P1  LIM_P2  LIM_P3
+ XXX  XX XXXX XX XXXX XXXXXX. XXXXXX. XXXXXX.
+   1  12 2018 12 2018   4000.   4000.   3300.     RECEBIMENTO NE                                                 
+   1   1 2019  1 2019   4200.   4200.   3300.     RECEBIMENTO NE                                                 
+   1   2 2019  6 2019   4800.   4800.   3800.     RECEBIMENTO NE                                                 
+   1   7 2019  9 2019   3800.   3800.   3700.     RECEBIMENTO NE                                                 
+   1  10 2019 12 2019   4500.   4500.   4500.     RECEBIMENTO NE                                                 
+   1   1 2020  6 2020   5400.   5400.   4500.     RECEBIMENTO NE                                                 
+   1   7 2020 12 2020   4800.   4800.   4650.     RECEBIMENTO NE                                                 
+   1   1 2021  5 2021   5500.   5500.   4650.     RECEBIMENTO NE                                                 
+   1   6 2021  6 2021   6500.   6500.   4800.     RECEBIMENTO NE                                                 
+   1   7 2021 12 2021   5500.   5500.   4800.     RECEBIMENTO NE                                                 
+   1   1 2022  2 2022   6500.   6500.   4800.     RECEBIMENTO NE                                                 
+   1   3 2022  6 2022   7800.   7800.   6400.     RECEBIMENTO NE                                                 
+   1   7 2022           7100.   7100.   6600.     RECEBIMENTO NE                                                 
+   2  12 2018  1 2019   4500.   4500.   4400.     EXPORTACAO  NE                                                 
+   2   2 2019  5 2021   5500.   5500.   5300.     EXPORTACAO  NE                                                 
+   2   6 2021  2 2022   5800.   5800.   5800.     EXPORTACAO  NE                                                 
+   2   3 2022          11000.  11000.  10000.     EXPORTACAO  NE                                                 
+   4  12 2018  2 2022   6000.   6000.   5700.     EXPORTACAO IMP-SENE                                            
+   4   3 2022           7400.   7400.   6800.     EXPORTACAO IMP-SENE                                            
+   5  12 2018  4 2019   5651.   5651.   4551.     FNS+XINGU->SE/CO
+   5   5 2019  9 2019   6058.   6058.   4958.     FNS+XINGU->SE/CO
+   5  10 2019 10 2019  10458.  10458.  10158.     FNS+XINGU->SE/CO
+   5  11 2019  4 2020  10051.  10051.   9751.     FNS+XINGU->SE/CO
+   5   5 2020 10 2020  10458.  10458.  10158.     FNS+XINGU->SE/CO
+   5  11 2020  4 2021  10051.  10051.   9751.     FNS+XINGU->SE/CO
+   5   5 2021 10 2021  10458.  10458.  10158.     FNS+XINGU->SE/CO
+   5  11 2021  2 2022  10051.  10051.   9751.     FNS+XINGU->SE/CO
+   5   3 2022  4 2022  10151.  10151.  10151.     FNS+XINGU->SE/CO
+   5   5 2022 10 2022  10558.  10558.  10558.     FNS+XINGU->SE/CO
+   5  11 2022          10151.  10151.  10151.     FNS+XINGU->SE/CO   
+   6  12 2018           5400.   5400.   5200.     FMCCO+SE/CO->XINGU 
+   7  12 2018  9 2019   9200.   9200.   8000.     EXPORTACAO NORTE
+   7  10 2019  2 2022  14000.  14000.  13300.     EXPORTACAO NORTE
+   7   3 2022          15400.  15400.  14800.     EXPORTACAO NORTE
+   8  12 2018  9 2019   6000.   6000.   6000.     EXPORTACAO SE-NNE + Bipolo                                           
+   8  10 2019  6 2020   6400.   6400.   6300.     EXPORTACAO SE-NNE + Bipolo                                          
+   8   7 2020  2 2022   6800.   6800.   6700.     EXPORTACAO SE-NNE + Bipolo                                          
+   8   3 2022           9100.   9100.   8100.     EXPORTACAO SE-NNE + Bipolo
+   9  12 2018  9 2019   7800.   7800.   7800.     RNE NO CENARIO SE/CO EXPORTADOR
+   9  10 2019  6 2020   8000.   8000.   8000.     RNE NO CENARIO SE/CO EXPORTADOR
+   9   7 2020  5 2021   8200.   8200.   8500.     RNE NO CENARIO SE/CO EXPORTADOR
+   9   6 2021  2 2022   9000.   9000.   9400.     RNE NO CENARIO SE/CO EXPORTADOR
+   9   3 2022          11200.  11200.   9500.     RNE NO CENARIO SE/CO EXPORTADOR
+  10  12 2018  1 2019   8000.   8000.   7000.     FMCCO + RNE
+ 999

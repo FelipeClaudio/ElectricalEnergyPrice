@@ -28,7 +28,12 @@ matplotlib.rcParams['ytick.labelsize'] = 12
 matplotlib.rcParams['text.color'] = 'k'
 
 #defaultMask = np.array([2, 3, 4, 5, 13, 14, 15, 16, 17, 18, 19, 20])
-defaultMask = np.array([0, 1, 2, 3, 4, 5, 6, 7, 15, 16, 17, 18, 19])
+#older to newer - REVERSERD ORDER
+#ex:
+#a = [1, 2, 3, 17, 18, 19 ,20]
+#b = [19, 18, 17, 3, 2, 1, 0]
+#c = [0, 1, 2, 3, 17, 18, 19]
+defaultMask = np.array([0, 1, 2, 3, 17, 18, 19])
 
 def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
         axText="0.5rad/s = 2 months", \
@@ -66,9 +71,9 @@ def PlotDistribution(y, xTitle, yTitle, plotTitle, filepath, SAVE_FIGURE=False):
     if SAVE_FIGURE:
         plt.savefig(filepath, bbox_inches='tight')
 
-def GetMonthRange(initialDate, finalDate):
+def GetMonthRange(initialDate, finalDate, dateFormat='%Y-%m-%d'):
     dates = [initialDate, finalDate]
-    start, end = [datetime.strptime(_, "%Y-%m-%d") for _ in dates]
+    start, end = [datetime.strptime(_, dateFormat) for _ in dates]
     total_months = lambda dt: dt.month + 12 * dt.year
     mlist = []
     for tot_m in range(total_months(start)-1, total_months(end)):
@@ -166,6 +171,8 @@ def GetFilteredSeriesByMask(data, shiftLeft=0, mask=None):
     '''
     #The latest elemnt is um after the lats element of mask
     latestValue = data.iloc[[np.max(mask) + 1]]
+    latestValue = latestValue.reset_index()
+    latestValue.set_index(indexColumn, inplace=True)
     
     return [latestValue, filteredSeries.sort_index(ascending=False)]
 

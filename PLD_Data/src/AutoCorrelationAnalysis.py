@@ -39,13 +39,13 @@ INPUT_DIR = ROOT_FOLDER + 'PLD_Data/src/inputNN/'
 MAIN_DIR = ROOT_FOLDER + '/PLD_Data/PLD_Outubro_2018'
 MAIN_DIR += '/10_out18_RV0_logENA_Mer_d_preco_m_0/'
 mydateparser = lambda x: pd.datetime.strptime(x, "%m/%Y")
-meanPLD = pd.read_csv(MAIN_DIR + 'PLD_medio.csv', \
+meanPLD = pd.read_csv('PLD_medio.csv', \
                       parse_dates=['Mês'], sep="\\s+",\
                       date_parser=mydateparser)
 
 
 
-FINAL_DATE = '12/2017'
+FINAL_DATE = '10/2018'
 PLOT_DIR = ROOT_FOLDER + '/PLD_Data/src/plots/SeriesTemporais/'
 INITIAL_DATE = '01/2015'
 mPLDSE = meanPLD[['Mês', 'SE/CO']]
@@ -56,7 +56,7 @@ mPLDSE = util.ExtractTrainTestSetFromTemporalSeries(mPLDSE, initialDate=INITIAL_
                                                     finalDate=FINAL_DATE)[0]
 
 SAVE_FIG = False
-SAVE_INPUT = True
+SAVE_INPUT = False
 #Settings
 ax = autocorrelation_plot(mPLDSE)
 if SAVE_FIG:
@@ -80,14 +80,14 @@ afSumOriginal = util.ReadONSEditedCSV( ONS_DIR + '/FStation.csv', 'Afluent Flow 
 afSumUsefulOriginal = util.ReadONSEditedCSV( ONS_DIR + '/AFSum_useful.csv', 'Useful Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
 
 numberOfLags = mPLDSE.size - max(util.GetDefaultMask()) - 1
-NUMBER_OF_VARIABLES = 10
+NUMBER_OF_VARIABLES = 9
 
 for lag in range(0, numberOfLags):
     shiftLeft = lag
     totalStoredEnergy = util.GetFilteredSeriesByMask(totalStoredEnergyOriginal, shiftLeft=shiftLeft)
     uheGeneratedEnergy = util.GetFilteredSeriesByMask(uheGeneratedEnergyOriginal, shiftLeft=shiftLeft)
     unGeneratedEnergy = util.GetFilteredSeriesByMask(unGeneratedEnergyOriginal, shiftLeft=shiftLeft)
-    uteGeneratedEnergy = util.GetFilteredSeriesByMask(uteGeneratedEnergyOriginal, shiftLeft=shiftLeft)
+    #uteGeneratedEnergy = util.GetFilteredSeriesByMask(uteGeneratedEnergyOriginal, shiftLeft=shiftLeft)
     solarGeneratedEnergy = util.GetFilteredSeriesByMask(solarGeneratedEnergyOriginal, shiftLeft=shiftLeft)
     windGeneratedEnergy = util.GetFilteredSeriesByMask(windGeneratedEnergyOriginal, shiftLeft=shiftLeft)
     loadEnergy = util.GetFilteredSeriesByMask(loadEnergyOriginal, shiftLeft=shiftLeft)
@@ -98,7 +98,7 @@ for lag in range(0, numberOfLags):
     inputDataOld = util.TransposeAndSetColumnNames(totalStoredEnergy[1], 'tEn')
     inputDataOld = pd.concat([inputDataOld, util.TransposeAndSetColumnNames(uheGeneratedEnergy[1],  'gUHE')], axis=1)
     inputDataOld = pd.concat([inputDataOld, util.TransposeAndSetColumnNames(unGeneratedEnergy[1],  'gUN')], axis=1)
-    inputDataOld = pd.concat([inputDataOld, util.TransposeAndSetColumnNames(uteGeneratedEnergy[1],  'gUTE')], axis=1)
+    #inputDataOld = pd.concat([inputDataOld, util.TransposeAndSetColumnNames(uteGeneratedEnergy[1],  'gUTE')], axis=1)
     inputDataOld = pd.concat([inputDataOld, util.TransposeAndSetColumnNames(solarGeneratedEnergy[1],  'gUSolar')], axis=1)
     inputDataOld = pd.concat([inputDataOld, util.TransposeAndSetColumnNames(windGeneratedEnergy[1],  'gUWind')], axis=1)
     inputDataOld = pd.concat([inputDataOld, util.TransposeAndSetColumnNames(loadEnergy[1],  'load')], axis=1)
@@ -109,7 +109,7 @@ for lag in range(0, numberOfLags):
     inputData = totalStoredEnergy[0]
     inputData = pd.concat([inputData, uheGeneratedEnergy[0]], axis=1)
     inputData = pd.concat([inputData, unGeneratedEnergy[0]], axis=1)
-    inputData = pd.concat([inputData, uteGeneratedEnergy[0]], axis=1)
+    #inputData = pd.concat([inputData, uteGeneratedEnergy[0]], axis=1)
     inputData = pd.concat([inputData, solarGeneratedEnergy[0]], axis=1)
     inputData = pd.concat([inputData, windGeneratedEnergy[0]], axis=1)
     inputData = pd.concat([inputData, loadEnergy[0]], axis=1)
@@ -117,7 +117,8 @@ for lag in range(0, numberOfLags):
     inputData = pd.concat([inputData, afSum[0]], axis=1)
     inputData = pd.concat([inputData, afSumUseful[0]], axis=1)
     inputData = inputData.reset_index(drop=True)
-    inputData.columns = ['tEn', 'gUHE', 'gUN', 'gUTE', 'gUSolar', 'gUWind', 'load', 'ENA', 'AfSum', 'uAfSum']
+    #inputData.columns = ['tEn', 'gUHE', 'gUN', 'gUTE', 'gUSolar', 'gUWind', 'load', 'ENA', 'AfSum', 'uAfSum']
+    inputData.columns = ['tEn', 'gUHE', 'gUN', 'gUSolar', 'gUWind', 'load', 'ENA', 'AfSum', 'uAfSum']
     
     if lag == 0:
         finalInput = inputData
@@ -129,11 +130,17 @@ for lag in range(0, numberOfLags):
 #Order by input by temporal time
 #Older predicions comes first
 finalInput = finalInput.reset_index(drop=True)
+#Recover dates related to each row
+numElem = finalInput.index.size
+dateRange = util.GetMonthRange(INITIAL_DATE, FINAL_DATE, '%m/%Y')
+indexDates = dateRange[-numElem:]
+finalInput.index = indexDates
 
 finalInputOld = finalInputOld.reset_index(drop=True)
 
 finalOutput = mPLDSE
 finalOutput = finalOutput.reset_index(drop=True)
+finalOutput = finalOutput.iloc[-numberOfLags:,:]
 if SAVE_INPUT:
     finalInput.to_csv('input.csv')
     finalInputOld.to_csv('inputOld.csv')
