@@ -65,17 +65,21 @@ def ParameterVariationAnalysis(y, paramFunction, MIN_WINDOW_SIZE,
     return mse
 
 
-def StemPlotErrorAnalysis(y, MIN_WINDOW_SIZE, xTitle, yTitle, figTitle, filepath, SAVE_FIGURE=False):
-    plt.figure()
+def StemPlotErrorAnalysis(y, MIN_WINDOW_SIZE, xTitle, yTitle, figTitle, filepath, ax=None, SAVE_FIGURE=False):
+    if ax is None:
+        fig = plt.figure()
+        ax = fig.gca()
     y = np.array(y)
     #Remove zero elements in right side of plot
-    y = y[np.nonzero(y)[0]]
+    nZeroElems = np.nonzero(y)[0]
+    y = y[0:np.max(nZeroElems)]
     #Add zeros into the beginnig of the plot in order to facilitate visualization
-    y = np.concatenate((np.zeros(MIN_WINDOW_SIZE), y))    
-    plt.stem(y)
-    plt.title(figTitle)
-    plt.ylabel(yTitle)
-    plt.xlabel(xTitle)
+    y = np.concatenate((np.zeros(MIN_WINDOW_SIZE), y))
+
+    ax.stem(y)
+    ax.set_title(figTitle)
+    ax.set_ylabel(yTitle)
+    ax.set_xlabel(xTitle)
     if SAVE_FIGURE:
         plt.savefig(filepath, bbox_inches='tight')    
 
@@ -216,20 +220,20 @@ def GetTrendMSEExponentialMovingAverage(y, windowSize):
 
 def GetTrendAnalysisByMovingAverageLinFit(y, title, MIN_WINDOW_SIZE,\
                                           transitionType=None, filepath=None, \
-                                          SAVE_FIGURE=False):
+                                          ax=None, SAVE_FIGURE=False):
     mseMA = ParameterVariationAnalysis(y, GetTrendMSEMovingAverage, MIN_WINDOW_SIZE, y.size, transitionType=transitionType)
     StemPlotErrorAnalysis(mseMA, MIN_WINDOW_SIZE, xTitle="Window Size",\
                          yTitle="MSE", figTitle=title, filepath=filepath,\
-                         SAVE_FIGURE=SAVE_FIGURE)
+                         ax=ax, SAVE_FIGURE=SAVE_FIGURE)
     return SelectBestParam(mseMA, MIN_WINDOW_SIZE)
     
 def GetTrendAnalysisByMovingAverageOnly(y, title, MIN_WINDOW_SIZE, \
-                                      filepath=None, SAVE_FIGURE=False):
+                                      ax=None, filepath=None, SAVE_FIGURE=False):
 
     mseMA = ParameterVariationAnalysis(y, GetTrendMSEMovingAverageOnly, MIN_WINDOW_SIZE, y.size)
     StemPlotErrorAnalysis(mseMA, MIN_WINDOW_SIZE, xTitle="Window Size",\
                          yTitle="MSE", figTitle=title, filepath=filepath,\
-                         SAVE_FIGURE=SAVE_FIGURE)
+                         ax=ax, SAVE_FIGURE=SAVE_FIGURE)
     return SelectBestParam(mseMA, MIN_WINDOW_SIZE)
 
 ##TREND
@@ -294,19 +298,19 @@ def GetMSEfoPeriodicMovingAverageOnlyPrediction(y, T, transitionType=None):
     return mean_squared_error (y, pred)
 
 def GetSeasonAnalysisByMovingAverageLinFit(y, title, MIN_WINDOW_SIZE,\
-                                          filepath=None, SAVE_FIGURE=False):
+                                          ax=None, filepath=None, SAVE_FIGURE=False):
     mseMA = ParameterVariationAnalysis(y, GetMSEfoPeriodicMovingAveragePrediction, MIN_WINDOW_SIZE, y.size)
     StemPlotErrorAnalysis(mseMA, MIN_WINDOW_SIZE, xTitle="Time Lag",\
-                         yTitle="MSE", figTitle=title, filepath=filepath,\
+                         ax=ax, yTitle="MSE", figTitle=title, filepath=filepath,\
                          SAVE_FIGURE=SAVE_FIGURE)
     return SelectBestParam(mseMA, MIN_WINDOW_SIZE)
     
 
 def GetSeasonAnalysisByMovingAverageOnly(y, title, MIN_WINDOW_SIZE,\
-                                          filepath=None, SAVE_FIGURE=False):
+                                          ax=None, filepath=None, SAVE_FIGURE=False):
     mseMA = ParameterVariationAnalysis(y, GetMSEfoPeriodicMovingAverageOnlyPrediction, MIN_WINDOW_SIZE, y.size)
     StemPlotErrorAnalysis(mseMA, MIN_WINDOW_SIZE, xTitle="Time Lag",\
-                         yTitle="MSE", figTitle=title, filepath=filepath,\
+                         ax=ax, yTitle="MSE", figTitle=title, filepath=filepath,\
                          SAVE_FIGURE=SAVE_FIGURE)
     return SelectBestParam(mseMA, MIN_WINDOW_SIZE)
 

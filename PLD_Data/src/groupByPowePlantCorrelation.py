@@ -66,14 +66,14 @@ plt.close('all')
 MIN_WINDOW_SIZE = 3
 hidrBase=pd.read_csv(MAIN_DIR + 'HIDR_BASE.csv')
 REMOVE_MIN_VOLUME=True
-SAVE_FIG=False
+SAVE_FIG=True
 #For total volume
 #BEST_WINDOW_SIZE_MA = 14
 #BEST_T = 12
 
 #For useful volume
 BEST_WINDOW_SIZE_MA = 14
-T_SEASONAL =6
+T_SEASONAL = 12
 
 bestParamString = ' W=' + str(BEST_WINDOW_SIZE_MA) + ' T=' + str(T_SEASONAL)
 ##Settings
@@ -164,78 +164,132 @@ if SAVE_CORR:
 FStation = AFFilteredSseriesPlot.sum(axis = 1)
 FStation.to_csv('AFSum_useful.csv')
 
+figureName = PLOT_DIR + 'fftAndDistribution_original.jpg'
+fig = plt.figure()
+ax1 = plt.subplot(1, 2, 1)
 util.PlotDistribution(FStation, xTitle='Affluent flow sum SE', yTitle='Number of occurences',\
                       plotTitle='Affluent flow sum SE distribution' + bestParamString,\
                       filepath=PLOT_DIR+'distributionOriginal_AF.jpg',\
-                      SAVE_FIGURE = SAVE_FIG)
+                      ax=ax1, SAVE_FIGURE = SAVE_FIG)
+
+ax2 = plt.subplot(1, 2, 2)
 util.FFT(FStation, xlabel='Normalized Frequency', ylabel='Magnitude', \
          title='FFT of affluent fLow sum SE' + bestParamString, figureName=PLOT_DIR+'fftOriginal_AF.jpg', \
-         showPlot=True, SAVE_FIGURE=SAVE_FIG)
+         ax=ax2, showPlot=True, SAVE_FIGURE=SAVE_FIG)
 
+fig.suptitle('Original Affluent Flow distribution and FFT')
+
+if SAVE_FIG:
+    plt.savefig(figureName, bbox_inches='tight')
+    
 AFTrend = tr.GetMovingAverage(FStation, BEST_WINDOW_SIZE_MA, transitionType='smooth') 
 #AFTrend = tr.GetMovingAverage(FStation, BEST_WINDOW_SIZE_MA, tr.GetTrendMSEMovingAverageOnly)
 decomposition = sm.tsa.seasonal_decompose(FStation, model='additive')
 
+
+figureName = PLOT_DIR + 'fftAndDistribution_trend.jpg'
+fig = plt.figure()
+ax1 = plt.subplot(1, 2, 1)
 util.PlotDistribution(AFTrend, xTitle='Affluent flow sum SE trend extraction', yTitle='Number of occurences',\
                       plotTitle='Affluent flow sum SE trend extraction distribution' + bestParamString,\
                       filepath=PLOT_DIR+'distributionTrend_AF.jpg',\
-                      SAVE_FIGURE = SAVE_FIG)
+                      ax=ax1, SAVE_FIGURE = False)
+
+ax2 = plt.subplot(1, 2, 2)
 util.FFT(AFTrend, xlabel='Normalized Frequency', ylabel='Magnitude', \
          title='FFT of Affluent fLow sum SE trend extraction' + bestParamString, figureName=PLOT_DIR+'fftTrend_AF.jpg', \
-         showPlot=True, SAVE_FIGURE=SAVE_FIG)
+         ax=ax2, showPlot=True, SAVE_FIGURE=False)
+
+fig.suptitle('Trend extraction distribution and FFT')
+
+if SAVE_FIG:
+    plt.savefig(figureName, bbox_inches='tight')
 
 AFSeasonal = decomposition.seasonal
 
 
+figureName = PLOT_DIR + 'fftAndDistribution_seasonal.jpg'
+fig = plt.figure()
+ax1 = plt.subplot(1, 2, 1)
 util.PlotDistribution(AFSeasonal, xTitle='Affluent flow sum SE seasonal extraction', yTitle='Number of occurences',\
                       plotTitle='Affluent flow sum SE seasonal extraction distribution' + bestParamString,\
                       filepath=PLOT_DIR+'distributionSeasonal_AF.jpg',\
-                      SAVE_FIGURE = SAVE_FIG)
+                      ax=ax1, SAVE_FIGURE = False)
+
+ax2 = plt.subplot(1, 2, 2)
 util.FFT(AFSeasonal, xlabel='Normalized Frequency', ylabel='Magnitude', \
          title='FFT of Affluent fLow sum SE seasonal extraction' + bestParamString, figureName=PLOT_DIR+'fftSeasonal_AF.jpg', \
-         showPlot=True, SAVE_FIGURE=SAVE_FIG)
+         ax=ax2, showPlot=True, SAVE_FIGURE=False)
  
+fig.suptitle('Seasonal extraction distribution and FFT')
+if SAVE_FIG:
+    plt.savefig(figureName, bbox_inches='tight')
 
+
+figureName = PLOT_DIR + 'mseComparation_trend.jpg'
+fig = plt.figure()
+ax1 = plt.subplot(2, 1, 1)
 bestWLinFit, minMSELinFit, mseLinFit = tr.GetTrendAnalysisByMovingAverageLinFit(FStation, \
                                          title='MSE for trend extraction for PLD price using moving average and linear fit by window size',\
                                          MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
                                          transitionType='smooth',\
                                          filepath=PLOT_DIR+'mseTrendLinFitAnalysis_AF_SUM.jpg',\
-                                         SAVE_FIGURE = SAVE_FIG)
-
+                                         ax=ax1, SAVE_FIGURE = False)
+ax2 = plt.subplot(2, 1, 2)
 bestWMA,  minMSEMA, mseMA = tr.GetTrendAnalysisByMovingAverageOnly(FStation, \
                                          title='MSE for trend extraction for PLD price using moving average by window size',\
                                          MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
                                          filepath=PLOT_DIR+'mseTrendMAOnlyAnalysis_AF_SUM.jpg',\
-                                         SAVE_FIGURE = SAVE_FIG)
+                                         ax=ax2, SAVE_FIGURE = False)
+
+plt.subplots_adjust(hspace=0.3)
+if SAVE_FIG:
+    plt.savefig(figureName, bbox_inches='tight')
 
 AFSeasonal = pd.Series(AFSeasonal)
+
+figureName = PLOT_DIR + 'mseComparation_tseasonal.jpg'
+fig = plt.figure()
+ax1 = plt.subplot(2, 1, 1)
 bestTLinFit,  minTLinFit, mseTLinFit = tr.GetSeasonAnalysisByMovingAverageLinFit(AFSeasonal, \
                                          title='MSE for seasonal extraction for PLD price using moving average and linear fit by lag time',\
                                          MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
                                          filepath=PLOT_DIR+'mseSeasonalLinFitAnalysis_AF_SUM.jpg',\
-                                         SAVE_FIGURE = SAVE_FIG)
+                                         ax=ax1, SAVE_FIGURE = False)
 
+ax2 = plt.subplot(2, 1, 2)
 bestTMA,  minTMa, mseTMA = tr.GetSeasonAnalysisByMovingAverageOnly(AFSeasonal, \
                                          title='MSE for seasonal extraction for PLD price using moving average by lag time',\
                                          MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
                                          filepath=PLOT_DIR+'mseSeasonalMAOnlyAnalysis_AF_SUM.jpg',\
-                                         SAVE_FIGURE = SAVE_FIG)
+                                         ax=ax2, SAVE_FIGURE = False)
 
-
+plt.subplots_adjust(hspace=0.3)
+if SAVE_FIG:
+    plt.savefig(figureName, bbox_inches='tight')
 
 AFSeasonalBest = tr.GetPeriodicMovingAverageOnlyPrediction(AFSeasonal, T_SEASONAL)
 AFResidue = FStation - AFTrend - AFSeasonalBest
-
 normRes = util.NormalizeSeries(AFResidue.values.reshape(-1,1))
+
+figureName = PLOT_DIR + 'fftAndDistribution_residual.jpg'
+fig = plt.figure()
+ax1 = plt.subplot(1, 2, 1)
 util.PlotDistribution(normRes, xTitle='Normalized affluent flow', yTitle='Ocurrences', \
                       plotTitle='Distribution for residual extraction' + bestParamString, \
                       filepath=PLOT_DIR+'ResidualDistribution_AF.jpg', \
-                      SAVE_FIGURE=SAVE_FIG)
+                      ax=ax1, SAVE_FIGURE=False)
+
+
+ax2 = plt.subplot(1, 2, 2)
 util.FFT(normRes, xlabel='Normalized Frequency', ylabel='Magnitude', \
          title='FFT of extracted residual of affluent flow sum' + bestParamString, \
          figureName=PLOT_DIR+'ResidualFFT_AF.jpg', showPlot=True,\
-         SAVE_FIGURE=SAVE_FIG)
+         ax=ax2, SAVE_FIGURE=False)
+
+fig.suptitle('Residual extraction distribution and FFT')
+if SAVE_FIG:
+    plt.savefig(figureName, bbox_inches='tight')
 
 
 w0 = 0.08  # Frequency to be removed from signal (Hz)
@@ -243,14 +297,24 @@ Q = 0.1  # Quality factor
 # Design notch filter
 b, a = signal.iirnotch(w0, Q)
 filteredResidual = signal.lfilter(b, a, normRes)
+
+figureName = PLOT_DIR + 'fftAndDistribution_filteredResidual.jpg'
+fig = plt.figure()
+ax1 = plt.subplot(1, 2, 1)
 util.PlotDistribution(filteredResidual, xTitle='Normalized affluent flow', yTitle='Ocurrences', \
                       plotTitle='Distribution for filtered residual Q='+ str(Q) + ' W0='+ str(w0) +' rad/sample' , \
                       filepath=PLOT_DIR+'filteredResidualDistribution_AF.jpg', \
-                      SAVE_FIGURE=SAVE_FIG)
+                      ax=ax1, SAVE_FIGURE=False)
+
+ax2 = plt.subplot(1, 2, 2)
 util.FFT(filteredResidual, xlabel='Normalized Frequency', ylabel='Magnitude', \
          title='FFT of filtered extracted residual of affluent flow sum Q='+ str(Q) + ' W0='+ str(w0) +' rad/sample', \
          figureName=PLOT_DIR+'filteredResidualFFT_AF.jpg', showPlot=True,\
-         SAVE_FIGURE=SAVE_FIG)
+         ax=ax2, SAVE_FIGURE=False)
+
+fig.suptitle('Residual extraction after filtering Q='+ str(Q) + ' W0='+ str(w0) +' distribution and FFT')
+if SAVE_FIG:
+    plt.savefig(figureName, bbox_inches='tight')
 
 util.PlotTSA(FStation, AFTrend, AFSeasonalBest.reshape(-1,1), filteredResidual.reshape(-1,1),\
              originalPlotTitle='Original temporal series analysis of affluent flow sum SE',\

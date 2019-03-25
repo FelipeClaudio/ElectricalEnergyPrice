@@ -1,0 +1,29 @@
+Séries Temporais:
+- O que são e decomposição
+-Tendência
+-Sazonalidade
+-Ciclo Senoidais
+-Resíduo
+
+Procesamento de sinais:
+-Tipos de filtro (Por conta do filtro notch utilizado)
+       - filtro notch e características
+
+SVR (só se for utilizado)
+-Como Funciona
+-Kernel
+
+Redes neurais MLP:
+- definição e características 
+-Funções de ativação
+-Funções Custo
+-Aprendizado de máquina para séries temporais
+
+LSTM:
+- definições (redes neurais recursivas) e características 
+-Como funciona
+-Topologias utilizadas na literatura
+
+No método:
+ - normalização dos dados
+ - aprendizado de máquina em um ambiente com classes desbalanceadas.

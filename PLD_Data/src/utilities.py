@@ -33,11 +33,11 @@ matplotlib.rcParams['text.color'] = 'k'
 #a = [1, 2, 3, 17, 18, 19 ,20]
 #b = [19, 18, 17, 3, 2, 1, 0]
 #c = [0, 1, 2, 3, 17, 18, 19]
-defaultMask = np.array([0, 1, 2, 3, 17, 18, 19])
+defaultMask = np.array([0, 1, 2, 3, 4, 18, 19, 20])
 
 def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
         axText="0.5rad/s = 2 months", \
-        showPlot=False, SAVE_FIGURE=False):
+        ax=None, showPlot=False, SAVE_FIGURE=False):
     # Number of sample points
     N = y.size
     # sample spacing
@@ -45,11 +45,12 @@ def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
     xf = np.linspace(0.0, 1.0/(2.0*T), N//2)
     
     if showPlot:
-        plt.figure()
+        if ax is None:
+            plt.figure()
+            plt.title(title)
         plt.stem(xf, 2.0/N * np.abs(yf[0:N//2]))
         plt.xlabel(xlabel)
-        plt.ylabel(ylabel)
-        plt.title(title)
+        plt.ylabel(ylabel)        
         ax = plt.gca()
         props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
         ax.text(0.05, 0.95, axText, transform=ax.transAxes, fontsize=14,\
@@ -60,16 +61,19 @@ def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
         if SAVE_FIGURE:
             plt.savefig(figureName, bbox_inches='tight')  
 
-def PlotDistribution(y, xTitle, yTitle, plotTitle, filepath, SAVE_FIGURE=False):
-    fig = plt.figure()
-    ax = fig.gca()
-    sns.distplot(y, bins=math.ceil(4*math.sqrt(y.size)), ax=ax)
-    ax.set_title(plotTitle)
+def PlotDistribution(y, xTitle, yTitle, plotTitle, filepath, ax=None, SAVE_FIGURE=False):
+    if ax is None:
+        fig = plt.figure()
+        ax = fig.gca()
+        ax.set_title(plotTitle)
+    sns.distplot(y, bins=math.ceil(4*math.sqrt(y.size)), ax=ax)  
     plt.xlabel(xTitle)
     plt.ylabel(yTitle)
     plt.show()
     if SAVE_FIGURE:
         plt.savefig(filepath, bbox_inches='tight')
+    
+    
 
 def GetMonthRange(initialDate, finalDate, dateFormat='%Y-%m-%d'):
     dates = [initialDate, finalDate]

@@ -30,6 +30,7 @@
 \contentsline {paragraph}{}{x}
 \contentsline {paragraph}{}{x}
 \contentsline {paragraph}{}{x}
+\contentsline {paragraph}{}{x}
 \contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{1}
 \contentsline {section}{\numberline {1.1}Tema}{1}
 \contentsline {paragraph}{}{1}
@@ -75,12 +76,34 @@
 \contentsline {paragraph}{}{13}
 \contentsline {paragraph}{}{13}
 \contentsline {paragraph}{}{13}
-\contentsline {chapter}{\numberline {3}Conclus\~oes}{16}
+\contentsline {chapter}{\numberline {3}Series Temporais e Aprendizado de M\'aquina}{16}
+\contentsline {paragraph}{}{16}
+\contentsline {section}{\numberline {3.1}S\'eries Temporais}{16}
 \contentsline {paragraph}{}{16}
 \contentsline {paragraph}{}{16}
-\contentsline {chapter}{Bibliografia}{17}
-\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{20}
-\contentsline {paragraph}{}{20}
-\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{21}
-\contentsline {chapter}{\numberline {C}O que \'e um anexo}{23}
-\contentsline {paragraph}{}{23}
+\contentsline {paragraph}{}{17}
+\contentsline {paragraph}{}{17}
+\contentsline {paragraph}{}{17}
+\contentsline {subsection}{\numberline {3.1.1}Tend\^encia}{17}
+\contentsline {paragraph}{}{17}
+\contentsline {paragraph}{}{18}
+\contentsline {paragraph}{}{18}
+\contentsline {paragraph}{}{18}
+\contentsline {paragraph}{}{18}
+\contentsline {paragraph}{}{18}
+\contentsline {paragraph}{}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {subsection}{\numberline {3.1.2}Sazonalidade}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {chapter}{\numberline {4}Conclus\~oes}{21}
+\contentsline {paragraph}{}{21}
+\contentsline {paragraph}{}{21}
+\contentsline {chapter}{Bibliografia}{22}
+\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{25}
+\contentsline {paragraph}{}{25}
+\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{26}
+\contentsline {chapter}{\numberline {C}O que \'e um anexo}{28}
+\contentsline {paragraph}{}{28}

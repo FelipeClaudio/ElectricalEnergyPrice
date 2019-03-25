@@ -56,7 +56,7 @@ mPLDSE = util.ExtractTrainTestSetFromTemporalSeries(mPLDSE, initialDate=INITIAL_
                                                     finalDate=FINAL_DATE)[0]
 
 SAVE_FIG = False
-SAVE_INPUT = False
+SAVE_INPUT = True
 #Settings
 ax = autocorrelation_plot(mPLDSE)
 if SAVE_FIG:
