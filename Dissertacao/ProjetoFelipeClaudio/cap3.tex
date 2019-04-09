@@ -27,9 +27,9 @@ Falar sobre a estacionalidade utilizada?
 tend_t = \alpha + \beta t + \epsilon_t
 \end{equation}
 
-\paragraph{}Onde $\alpha$ e $\beta$ são constantes a serem estimadas e $\epsilon_t$ denota um erro aleatório com média zero. Geralmente chama-se o termo $m_t = \alpha + \beta t$ de termo de tendência. Alguns autores chamam o termo $\beta$ de tendência, já que $\beta = m_t - m_{t-1}$. Essa variável indica a inclinação da função durante o tempo.
+\paragraph{}Onde $\alpha$ e $\beta$ são constantes a serem estimadas e $\epsilon_t$ denota um erro aleatório com média zero. Geralmente chama-se o termo $m_t = \alpha + \beta t$ de termo de tendência, mas alguns autores chamam o termo $\beta$ de tendência, já que $\beta = m_t - m_{t-1}$. Essa variável indica a inclinação da função durante o tempo.
 
-\paragraph{}A função utilizada na aproximação da tendência é pode ser escolhida de acordo com a série que está sendo analisada. Uma forma bastante comum é a utilização de tendência polinomial na extração de tendência.
+\paragraph{}A função utilizada na aproximação da tendência é pode ser escolhida de acordo com a série que está sendo analisada. Uma forma bastante comum é a utilização de uma função polinomial na extração de tendência.
 
 \paragraph{}Na tendência polinomial \ref{eqTendPoli}, busca-se fazer uma extração boa o suficiente para obter-se ao final do processamento a componente residual estacionária com média zero. Para séries monotonicamente crescente ou decrescente, utilizar $p = 1$ (função linear)  ou $p = 2$ (função quadrática) geralmente é suficiente para a extração da tendência, porém caso a série seja mais complexa, pode ser necessário utilizar funções de ordem mais altas
 
@@ -57,7 +57,7 @@ y_t = \dfrac{1}{2q + 1} \sum_{j = -q}^{q} x_{t + j}
 	y_t =  \dfrac{1}{2q + 1} \sum_{j = -2q}^{0} x_{t+j}
 \end{equation} 
 
-\paragraph{}Outro problema observado nas abordagens de média móvel descritos acima é que somente é que só se obtém a tendência para $N - 2q$ pontos. Caso seja necessário obter a tendência para todos os pontos da série, pode-se aplicar métodos de extrapolação sobre o resultado obtido.
+\paragraph{}Outro problema observado nas abordagens de média móvel descritas acima é que somente é que só se obtém a tendência para $N - 2q$ pontos. Caso seja necessário obter a tendência para todos os pontos da série, pode-se aplicar métodos de extrapolação sobre o resultado obtido.
 
 \paragraph{}Uma terceira abordagem para extração de tendência é utilizar um filtro com pesos que decaem geometricamente, com j, priorizando assim, as amostras mais recentes da série temporal:
 
@@ -74,4 +74,63 @@ y_t = x_t - x_{t-1} = \nabla x_t
 \subsection{Sazonalidade}
 \paragraph{}É comum encontrar nas séries observadas alguns padrões que se repetem periodicamente. Esse efeito é denominado sazonalidade e deve ser removido para que se obtenha ao final do processamento uma série residual estacionária [citar Calôba].
 
+\paragraph{}Segundo [Citar apostila do Calôba], a sazonalidade pode ser determinada pela seguinte fórmula:
+
+\begin{equation}
+sz_t = \dfrac{1}{Int(N/P)} \sum_{k = 0}^{Int(N/P)} s_i (i + kP) \quad \quad i=1,...,P
+\end{equation}
+
+\paragraph{} Onde $N$ é o número de amostras, $P$ é o período sazonal, $Int(N/P)$ é o resultado inteiro da divisão de $N/P$ e $s_i$ é o sinal com a tendência previamente removida. Sendo assim, é feito uma média dos pontos da série temporal espaçados pelo período $P$. A sazonalidade se repete durante a série temporal, então, caso seja desejado obter a sazonalidade em um tempo $0 < t < N$ utiliza-se a seguinte fórmula:
+
+\begin{equation}
+sz_t = sz[Resto(t/P)]
+\end{equation}
+
 \paragraph{}A periodicidade do fenômeno sazonal pode ser obtida através do conhecimento prévio da série que está sendo analisada ex: Espera-se que a venda de protetores solares seja maior no período de verão, pois é quando as pessoas costumam ir mais às praias. O número de pessoas que frequentam o metrô deve diminuir durante o fim de semana, pois a maioria trabalha durante a semana etc.
+
+\paragraph{}Outra forma de se obter o período é fazendo uma inspeção visual sobre o gráfico da série após a remoção da tendência. Em alguns casos serão visíveis os padrões periódicos.
+
+\paragraph{}Também pode-se obter a informação sobre o período através da observação do gráfico de autocorrelação, onde picos de magnitude seguindo um padrão de espaçamento podem indicar a periodicidade da sazonalidade.
+
+\paragraph{} Colocar figura da autocorrelação, colocar equação da autocorrelação?
+
+\subsection{Ciclos Senoidais}
+\paragraph{} Os ciclos senoidais representam um caso bem específico de sazonalidade, sendo representados por senoides de período $P$. Essa senoide é extraída através da análise do espectrograma dado pela \textit{Fast Fourier Transform}. Os parâmetros de sáida são os termos a e b, conforme vistos nas equações abaixo:[Citar 2014033101] [Falta terminar]
+
+\begin{equation}
+cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
+\end{equation}
+
+\paragraph{}[COLOCAR figura figura ciclos senoidais]
+
+\paragraph{}Os pontos onde a magnitude do sinal ($\sqrt{a² + b²}$) são muito maiores que os outros indicam provável ciclos senoidais que devem ser removidos.
+
+\subsection{Componente Residual}
+\paragraph{}Caso o processo de extração de componentes descrito nos tópicos acima seja realizado com sucesso, será obtida uma componente residual estacionária. Seguindo esta abordagem, este sinal é a única parte aleatória do modelo. Sendo assim, o problema se reduz a prever o comportamento da parte residual da série temporal.
+
+\paragraph{}[Colocar imagem da componente residual]
+
+\section{Processamento de Sinais}
+\paragraph{}Para remover os ciclos senoidais do espectrograma visto em [citar figura do espectrograma] é necessário realizar algum tipo de filtragem sobre sinal.
+
+\paragraph{}Uma das formas de se classificar um filtro é pela sua resposta em frequência, sendo as mais comuns: passa-baixa, passa-alta, passa-banda e rejeita-banda, assim como visto na figura abaixo.
+
+\paragraph{}No problema de remoção de ciclos senoidais, busca-se um filtro que remova somente a frequência com maior magnitude, sem afetar muito as magnitudes das outras frequências presentes no espectrograma. Para isso procura-se um filtro que seja rejeita-banda com a banda de rejeição bem estreita e banda de passagem aproximadamente plana.
+
+\paragraph{}Um filtro bastante conhecido na literatura que atende a esse critério é o Notch, o qual a função de transferência é dada pela seguinte fórmula. A escolha pela versão IIRs se dá pela possibilidade de obter atenuações maiores e banda de rejeição mais estreita para um mesma ordem $N$ quando comparado com os filtros FIRs. A função de transferência do filtro Notch de segunda ordem se dá pela equação a seguir: [citar livro orfandis]:
+
+\begin{equation}
+H(z) = b \cdot \frac{1 - 2\cos \omega_0 z^{-1} + z^{-2}}{1 - 2b\cos \omega_0 z^{-1} + (2b - 1) z^{-2}}
+\end{equation}
+
+e 
+
+\begin{equation}
+b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\Delta \omega}{2})}
+\end{equation}
+
+
+\paragraph{}Onde $\omega_0$ é a frequência que se deseja rejeitar, $\Delta \omega$ é a banda de rejeição, $G_b$ é a atenuação na frequência de corte. Geralmente utiliza-se $G_b = 3dB$
+
+\section{Redes Neurais Artificiais}
+\section{LSTM}
