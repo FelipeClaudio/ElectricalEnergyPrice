@@ -5,23 +5,37 @@
 
 \paragraph{}Assim como o tempo, os valores da variável $X_t$ podem ser contínuos ou discretos de acordo com o fenômeno que se observa. Alguns exemplos de fenômenos temporais com valores contínuos são a temperatura em um determinada região, volume de água em uma bacia hidrográfica e o peso de um indivíduo. Já como exemplo de fenômenos temporais com valores discretos podem ser citados o número  viagens de avião, quantidade de nascimentos, de carros produzidos por uma montadora e etc. Todos esse casos estão relacionados com um período de observação próprio, podendo ser uma janela de meses, anos, até mesmo décadas de observações de uma determinada variável.
 
-\paragraph{}A análise de séries temporais pode ser feita com diferentes intuitos, sendo os mais comuns a predição de valores futuros com base no histórico já conhecido, o controle de um processo, a explicação e descrição de fenômenos [citar STEMP].
+\paragraph{}A análise de séries temporais pode ser feita com diferentes intuitos, sendo os mais comuns a predição de valores futuros com base no histórico já conhecido, o controle de um processo, a explicação e descrição de fenômenos \cite{sTemp}.
 
-GRÁFICO com os 4 exemplos  
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{exemplo_tsa.jpg}
+				
+				\caption[\small{Exemplo de decomposição de série temporal \cite{shampooSales} }]{\label{exemploTSA} \small{Exemplo de decomposição de série temporal. Fonte:	Makridakis, Wheelwright and Hyndman (1998) \cite{shampooSales}}}
+				
+			\end{center}
+			
+		}
+		
+	\end{center}
+	
+\end{figure}
 
 Falar sobre a estacionalidade utilizada?
 
-\paragraph{}Buscando tornar a análise das séries temporais mais simples, além de facilitar a extração de informações importantes de maneira gráfica, é comum decompor a série em outras mais simples. A decomposição utilizada será a seguinte:
+\paragraph{}Buscando tornar a análise das séries temporais mais simples, além de facilitar a extração de informações importantes de maneira gráfica, é comum decompor a série em outras mais simples. A decomposição utilizada será a seguinte, conforme visto em \cite{apostilaCaloba}:
 
-[CITAR APOSTILA DO CALÔBA]
 \begin{equation*}
 	X_t = tend_t + sz_t + cs_t + res_t
 \end{equation*}
 
-\paragraph{}Onde $tend_t$ é a tendência, $sz_t$ é a sazonalidade, $cs_t$ é o ciclo senoidal e $res_t$ é o resíduo. Tanto a tendência, quanto a sazonalidade e os ciclos senoidais são determinísticos. Conforme [citar tcc Danilo], boa parte das séries temporais são não estacionárias, sendo que as componentes de tendência e sazonalidade são as maiores responsáveis por esse efeito. Para que o modelo com redes neurais faça boas previsões, que é o que se busca nesse trabalho, é necessário utilizar séries estacionárias, portanto somente a parte residual será usada na entrada das redes neurais.
+\paragraph{}Onde $tend_t$ é a tendência, $sz_t$ é a sazonalidade, $cs_t$ é o ciclo senoidal e $res_t$ é o resíduo. Tanto a tendência, quanto a sazonalidade e os ciclos senoidais são determinísticos. Conforme \cite{tccDanilo}, boa parte das séries temporais são não estacionárias, sendo que as componentes de tendência e sazonalidade são as maiores responsáveis por esse efeito. Para que o modelo com redes neurais faça boas previsões, que é o que se busca nesse trabalho, é necessário utilizar séries estacionárias, portanto somente a parte residual será usada na entrada das redes neurais.
 
 \subsection{Tendência}
-\paragraph{}Segundo [citar sTEMP], a tendência pode ser vista como "uma mudança de longo prazo no nível médio da série" e a forma mais simples de modelar pode ser vista pela equação a seguir. 
+\paragraph{}Segundo \cite{sTemp}, a tendência pode ser vista como "uma mudança de longo prazo no nível médio da série" e a forma mais simples de modelar pode ser vista pela equação a seguir. 
 
 \begin{equation}
 tend_t = \alpha + \beta t + \epsilon_t
@@ -43,9 +57,7 @@ tend_t = \epsilon_t + \sum_{n=0}^{p} \beta_n t^n
 y_t = \sum_{j = -q}^{s} a_jx_{t+j}
 \end{equation}
 
-\paragraph{}Onde $a_j$ são os pesos que multiplicam o sinal $x_{t+j}$. Para o filtro de médias móveis geralmente utiliza-se $q=s$ e $a_{-r} = a_r$, garantindo a simetria do filtro. Além disso faz-se que $\sum_{j = -q}^{s} a_j = 1$, de modo que $min\{x_t\} \leq y_t \leq max\{x_t\}$.
-
-Sendo o caso mais simples de média móvel aquele onde todos os pesos tem o mesmo valor:
+\paragraph{}Onde $a_j$ são os pesos que multiplicam o sinal $x_{t+j}$. Para o filtro de médias móveis geralmente utiliza-se $q=s$ e $a_{-r} = a_r$, garantindo a simetria do filtro. Além disso faz-se que $\sum_{j = -q}^{s} a_j = 1$, de modo que $min\{x_t\} \leq y_t \leq max\{x_t\}$. O caso mais simples de média móvel é aquele onde todos os pesos tem o mesmo valor:
 
 \begin{equation}
 y_t = \dfrac{1}{2q + 1} \sum_{j = -q}^{q} x_{t + j}
@@ -65,16 +77,33 @@ y_t = \dfrac{1}{2q + 1} \sum_{j = -q}^{q} x_{t + j}
 y_t = \sum_{j=0}^{\infty} \alpha (1 - \alpha)^j x_{t-j}
 \end{equation}
 
-\paragraph{}Outra forma de extrair a tendência é através da diferenciação. Para dados não sazonais, a primeira diferença costuma ser suficiente para garantir a estacionariedade aproximada da série  restante [citar sTEMP]:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{exemplo2_tendencia.jpg}
+				
+				\caption[\small{Exemplo de extração de tendência com filtro de média\cite{birthNY} }]{\label{bNYtend} \small{Exemplo de extração de tendência com filtro de média. Fonte: Newton (1998). \cite{birthNY}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
+
+\paragraph{}Outra forma de extrair a tendência é através da diferenciação. Para dados não sazonais, a primeira diferença costuma ser suficiente para garantir a estacionariedade aproximada da série  restante \cite{sTemp}:
 
 \begin{equation}
 y_t = x_t - x_{t-1} = \nabla x_t
 \end{equation}
 
-\subsection{Sazonalidade}
-\paragraph{}É comum encontrar nas séries observadas alguns padrões que se repetem periodicamente. Esse efeito é denominado sazonalidade e deve ser removido para que se obtenha ao final do processamento uma série residual estacionária [citar Calôba].
 
-\paragraph{}Segundo [Citar apostila do Calôba], a sazonalidade pode ser determinada pela seguinte fórmula:
+\subsection{Sazonalidade}
+\paragraph{}É comum encontrar nas séries observadas alguns padrões que se repetem periodicamente. Esse efeito é denominado sazonalidade e deve ser removido para que se obtenha ao final do processamento uma série residual estacionária\cite{apostilaCaloba}.
+
+\paragraph{}Segundo \cite{apostilaCaloba}, a sazonalidade pode ser determinada pela seguinte fórmula:
 
 \begin{equation}
 sz_t = \dfrac{1}{Int(N/P)} \sum_{k = 0}^{Int(N/P)} s_i (i + kP) \quad \quad i=1,...,P
@@ -90,25 +119,105 @@ sz_t = sz[Resto(t/P)]
 
 \paragraph{}Outra forma de se obter o período é fazendo uma inspeção visual sobre o gráfico da série após a remoção da tendência. Em alguns casos serão visíveis os padrões periódicos.
 
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{exemplo2_sazonalidade.jpg}
+				
+				\caption[\small{Extração de sazonalidade com periodicidade anual ($P=12$) para o dataset de nascimentos em Nova York\cite{birthNY} }]{\label{bNYsaz} \small{Extração de sazonalidade com periodicidade anual ($P=12$) para o dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
+
+
 \paragraph{}Também pode-se obter a informação sobre o período através da observação do gráfico de autocorrelação, onde picos de magnitude seguindo um padrão de espaçamento podem indicar a periodicidade da sazonalidade.
 
-\paragraph{} Colocar figura da autocorrelação, colocar equação da autocorrelação?
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{exemplo2_autocorrelacao.jpg}
+				
+				\caption[\small{Autocorrelação para o sinal residual do dataset de nascimentos em Nova York\cite{birthNY} }]{\label{bNYautocorr} \small{Autocorrelação para o sinal residual do dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
+
 
 \subsection{Ciclos Senoidais}
-\paragraph{} Os ciclos senoidais representam um caso bem específico de sazonalidade, sendo representados por senoides de período $P$. Essa senoide é extraída através da análise do espectrograma dado pela \textit{Fast Fourier Transform}. Os parâmetros de sáida são os termos a e b, conforme vistos nas equações abaixo:[Citar 2014033101] [Falta terminar]
+\paragraph{} Os ciclos senoidais representam um caso bem específico de sazonalidade, sendo representados por senoides de período $P$. Essa senoide é extraída através da análise do espectrograma dado pela FFT-\textit{Fast Fourier Transform}. Os parâmetros de sáida são os termos a e b, conforme vistos nas equações abaixo\cite{introSP}:
 
 \begin{equation}
 cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 \end{equation}
 
-\paragraph{}[COLOCAR figura figura ciclos senoidais]
-
 \paragraph{}Os pontos onde a magnitude do sinal ($\sqrt{a² + b²}$) são muito maiores que os outros indicam provável ciclos senoidais que devem ser removidos.
 
-\subsection{Componente Residual}
-\paragraph{}Caso o processo de extração de componentes descrito nos tópicos acima seja realizado com sucesso, será obtida uma componente residual estacionária. Seguindo esta abordagem, este sinal é a única parte aleatória do modelo. Sendo assim, o problema se reduz a prever o comportamento da parte residual da série temporal.
+\subsection{Componente Residual} \label{Residuo}
+\paragraph{}Caso o processo de extração de componentes descrito nos tópicos acima seja realizado com sucesso, será obtida uma componente residual estacionária. Busca-se também uma distribuição próxima da normal para facilitar a análise. Seguindo esta abordagem, este sinal residual é a única parte aleatória do modelo. Sendo assim, o problema se reduz a prever o comportamento da parte residual da série temporal.
 
-\paragraph{}[Colocar imagem da componente residual]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{exemplo2_residual.jpg}
+				
+				\caption[\small{Residuo sem remoção de ciclos senoidasi para o dataset de nascimentos em Nova York\cite{birthNY} }]{\label{bNYres} \small{esiduo sem remoção de ciclos senoidasi para o dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[scale=0.3]{exemplo2_residual_filtrado.jpg}
+				
+				\caption[\small{Residuo com remoção de ciclos senoidas para o dataset de nascimentos em Nova York. Filtro Notch com $\omega_0 = 0.135rad\\amostra$ e $Q=0.2$ \cite{birthNY} }]{\label{bNYresFilt} \small{Residuo com remoção de ciclos senoidais para o dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
+
+
+\paragraph{}Como pode-se observar, o sinal residual após a remoção de ciclos senoidais diminuiu-se a discrepância gerada pelas frequências próximas de $\omega_0 = 0.135rad\\amostra$ além de deixar a distribuição menos espaçada (O desvio padrão mudou de aproximadamente $\sigma=0.37$ para $\sigma=0.14$).
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{exemplo2_residual_tempo.jpg}
+				
+				\caption[\small{Sinal residual no tempo para o dataset de nascimentos em Nova York \cite{birthNY} }]{\label{bNYresFilt} \small{Sinal residual no tempo para o dataset de nascimentos em Nova York Fonte: Newton (1988). \cite{birthNY}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
+
 
 \section{Processamento de Sinais}
 \paragraph{}Para remover os ciclos senoidais do espectrograma visto em [citar figura do espectrograma] é necessário realizar algum tipo de filtragem sobre sinal.
@@ -117,7 +226,7 @@ cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 
 \paragraph{}No problema de remoção de ciclos senoidais, busca-se um filtro que remova somente a frequência com maior magnitude, sem afetar muito as magnitudes das outras frequências presentes no espectrograma. Para isso procura-se um filtro que seja rejeita-banda com a banda de rejeição bem estreita e banda de passagem aproximadamente plana.
 
-\paragraph{}Um filtro bastante conhecido na literatura que atende a esse critério é o Notch, o qual a função de transferência é dada pela seguinte fórmula. A escolha pela versão IIRs se dá pela possibilidade de obter atenuações maiores e banda de rejeição mais estreita para um mesma ordem $N$ quando comparado com os filtros FIRs. A função de transferência do filtro Notch de segunda ordem se dá pela equação a seguir: [citar livro orfandis]:
+\paragraph{}Um filtro bastante conhecido na literatura que atende a esse critério é o Notch, o qual a função de transferência é dada pela seguinte fórmula. A escolha pela versão IIRs se dá pela possibilidade de obter atenuações maiores e banda de rejeição mais estreita para um mesma ordem $N$ quando comparado com os filtros FIRs. A função de transferência do filtro Notch de segunda ordem se dá pela equação a seguir: \cite{introSP}:
 
 \begin{equation}
 H(z) = b \cdot \frac{1 - 2\cos \omega_0 z^{-1} + z^{-2}}{1 - 2b\cos \omega_0 z^{-1} + (2b - 1) z^{-2}}
@@ -130,7 +239,23 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 \end{equation}
 
 
-\paragraph{}Onde $\omega_0$ é a frequência que se deseja rejeitar, $\Delta \omega$ é a banda de rejeição, $G_b$ é a atenuação na frequência de corte. Geralmente utiliza-se $G_b = 3dB$
+\paragraph{}Onde $\omega_0$ é a frequência que se deseja rejeitar, $\Delta \omega$ é a banda de rejeição, $G_b$ é a atenuação na frequência de corte. Geralmente utiliza-se $G_b = 3dB$. O parâmetro $Q$ citado na seção \ref{Residuo} pode ser definido também como $Q = \frac{\omega_0}{bw}$. $bw$ por sua vez é a banda de rejeição do filtro Notch.
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[scale=0.45]{notch.png}
+				
+				\caption[\small{Filtro Notch IIR digital\cite{introSP} }]{\label{Notch} \small{Filtro Notch IIR digital Fonte: Introduction to Signal Processing. \cite{introSP}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
 
 \section{Redes Neurais Artificiais}
 \section{LSTM}

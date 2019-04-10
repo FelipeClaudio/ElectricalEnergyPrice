@@ -35,7 +35,7 @@ matplotlib.rcParams['text.color'] = 'k'
 #c = [0, 1, 2, 3, 17, 18, 19]
 defaultMask = np.array([0, 1, 2, 3, 4, 18, 19, 20])
 
-def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
+def FFT(y, xlabel, ylabel, title, figureName=None, T=1.0, \
         axText="0.5rad/s = 2 months", \
         ax=None, showPlot=False, SAVE_FIGURE=False):
     # Number of sample points
@@ -47,7 +47,8 @@ def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
     if showPlot:
         if ax is None:
             plt.figure()
-            plt.title(title)
+        
+        plt.title(title)
         plt.stem(xf, 2.0/N * np.abs(yf[0:N//2]))
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)        
@@ -61,11 +62,12 @@ def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
         if SAVE_FIGURE:
             plt.savefig(figureName, bbox_inches='tight')  
 
-def PlotDistribution(y, xTitle, yTitle, plotTitle, filepath, ax=None, SAVE_FIGURE=False):
+def PlotDistribution(y, xTitle, yTitle, plotTitle, filepath=None, ax=None, SAVE_FIGURE=False):
     if ax is None:
         fig = plt.figure()
         ax = fig.gca()
-        ax.set_title(plotTitle)
+        
+    ax.set_title(plotTitle)
     sns.distplot(y, bins=math.ceil(4*math.sqrt(y.size)), ax=ax)  
     plt.xlabel(xTitle)
     plt.ylabel(yTitle)

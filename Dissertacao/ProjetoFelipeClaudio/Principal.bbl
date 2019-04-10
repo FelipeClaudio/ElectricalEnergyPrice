@@ -1,117 +1,138 @@
 \begin{thebibliography}{10}
+\newcommand{\enquote}[1]{``#1''}
 
 \bibitem{SIN_MAPAS}
-ONS, ``Mapas.'' http://ons.org.br/paginas/sobre-o-sin/mapas, 2019.
-\newblock (Acesso em 27 Janeiro 2019).
+ONS, \enquote{Mapas}, http://ons.org.br/paginas/sobre-o-sin/mapas, 2019,
+  (Acesso em 27 Janeiro 2019).
 
 \bibitem{PrevisaoMultiPassos}
-J.~C.~R. Filho, {\em Previsão multi-passo a frente do preço de energia elétrica
-  de curto prazo no mercado brasileiro}.
-\newblock PhD thesis, Universidade Federal do Pará - Instituto de Tecnologia,
-  programa de pós-graduação em engenharia elétrica, 2014.
+FILHO, J. C.~R., \emph{Previsão multi-passo a frente do preço de energia
+  elétrica de curto prazo no mercado brasileiro}. Ph.D. dissertation,
+  Universidade Federal do Pará - Instituto de Tecnologia, programa de
+  pós-graduação em engenharia elétrica, 2014.
+
+\bibitem{shampooSales}
+MAKRIDAKIS, W., HYNDMAN, \enquote{Sales of shampoo over a three year period},
+  https://datamarket.com/data/set/22r0/sales-of-shampoo-over-a-three-year-period\#!ds=22r0\&display=line,
+  1998, (Acesso em 9 de Abril 2019).
+
+\bibitem{birthNY}
+(1988), N., \enquote{Monthly New York City births: unknown scale. Jan 1946 ?
+  Dec 1959},
+  https://datamarket.com/data/set/22nv/monthly-new-york-city-births-unknown-scale-jan-1946-dec-1959\#!ds=22nv\&display=line,
+  1988, (Acesso em 9 de Abril 2019).
 
 \bibitem{CCEE_VISAO_GERAL}
-CCEE, ``Visão geral das operações ccee.''
+CCEE, \enquote{Visão Geral das Operações CCEE},
   http://www.ufjf.br/andre\_marcato/files/2010/06/Visao\_Geral\_das\_Operacoes\_CCEE\_2010.pdf,
-  2010.
-\newblock (Acesso em 24 de Fevereiro de 2019).
+  2010, (Acesso em 24 de Fevereiro de 2019).
 
 \bibitem{CCEE_PLD_ANEXO}
-CCEE, ``Preço de liquidação das diferenças_anexo\_1.0\_formatado - ccee.''
-  www.ccee.org.br/ccee/documentos/ccee\_059061, 2019.
-\newblock (Acesso em 10 de Fevereiro de 2019).
+CCEE, \enquote{Preço de Liquidação das Diferenças\_Anexo\_1.0\_formatado -
+  CCEE}, www.ccee.org.br/ccee/documentos/ccee\_059061, 2019, (Acesso em 10 de
+  Fevereiro de 2019).
 
 \bibitem{CCEE_METODOLOGIA_PRECOS}
-CCEE, ``Metodologia de preços.''
+CCEE, \enquote{Metodologia de Preços},
   https://www.ccee.org.br/portal/faces/pages\_publico/o-que-fazemos/como\_ccee\_atua/precos/metodologia\_de\_precos?,
-  2019.
-\newblock (Acesso em 25 de Fevereiro de 2019).
+  2019, (Acesso em 25 de Fevereiro de 2019).
 
 \bibitem{AlteracaoModeloComercializacao}
-E.~F. da~Silva, ``Principais condicionantes das alterações no modelo de
-  comercialização,'' Master's thesis, Escola Politécnica da Universidade de São
-  Paulo, 2008.
+SILVA, E. F.~D., \emph{Principais Condicionantes das alterações no modelo de
+  comercialização}. M.Sc. dissertation, Escola Politécnica da Universidade de
+  São Paulo, 2008.
 
 \bibitem{EvolucaoSetorEletrico}
-B.~G.~D. Silva, {\em Evolução do setor elétrico brasileiro no contexto
+SILVA, B. G.~D., \emph{Evolução do setor elétrico brasileiro no contexto
   econômico nacional: Uma análise histórica e econométrica de longo prazo}.
-\newblock PhD thesis, Universidade de São Paulo - Programa de pós-graduação em
+  Ph.D. dissertation, Universidade de São Paulo - Programa de pós-graduação em
   energia EP-FEA-IEE-IF, 2011.
 
 \bibitem{CCEE_COM_QUEM_SE_RELACIONA}
-CCEE, ``Com quem se relaciona.'' https://bit.ly/2DKYD3r, 2019.
-\newblock (Acesso em 31 Janeiro 2019).
+CCEE, \enquote{Com quem se relaciona},
+  https://www.ccee.org.br/portal/faces/pages\_publico/onde-atuamos/com\_quem\_se\_relaciona,
+  2019, (Acesso em 31 Janeiro 2019).
 
 \bibitem{CCEE_RAZAO_SER}
-CCEE, ``A cce.''
+CCEE, \enquote{A CCE},
   https://www.ccee.org.br/portal/faces/pages\_publico/quem-somos/razao-de-ser,
-  2019.
-\newblock (Acesso em 31 Janeiro 2019).
+  2019, (Acesso em 31 Janeiro 2019).
 
 \bibitem{ONS_O_QUE_E}
-ONS, ``O sistema interligado nacional.''
-  http://ons.org.br/paginas/sobre-o-ons/o-que-e-ons, 2019.
-\newblock (Acesso em 27 Janeiro 2019).
+ONS, \enquote{O Sistema Interligado Nacional},
+  http://ons.org.br/paginas/sobre-o-ons/o-que-e-ons, 2019, (Acesso em 27
+  Janeiro 2019).
 
 \bibitem{EPE_O_QUE_FAZEMOS}
-EPE, ``O que fazemos.'' http://www.epe.gov.br/pt/a-epe/o-que-fazemos, 2019.
-\newblock (Acesso em 31 Janeiro 2019).
+EPE, \enquote{O que fazemos}, http://www.epe.gov.br/pt/a-epe/o-que-fazemos,
+  2019, (Acesso em 31 Janeiro 2019).
 
 \bibitem{SIN}
-ONS, ``O sistema interligado nacional.''
-  http://ons.org.br/paginas/sobre-o-sin/o-que-e-o-sin, 2019.
-\newblock (Acesso em 27 Janeiro 2019).
+ONS, \enquote{O Sistema Interligado Nacional},
+  http://ons.org.br/paginas/sobre-o-sin/o-que-e-o-sin, 2019, (Acesso em 27
+  Janeiro 2019).
 
 \bibitem{SIN_GOVERNANCIA}
-ONS, ``Governança.''
-  http://ons.org.br/paginas/sobre-o-ons/governanca/assembleia-geral, 2019.
-\newblock (Acesso em 27 Janeiro 2019).
+ONS, \enquote{Governança},
+  http://ons.org.br/paginas/sobre-o-ons/governanca/assembleia-geral, 2019,
+  (Acesso em 27 Janeiro 2019).
 
 \bibitem{PRECO_SPOT}
-N.~J. de~Castro and A.~L. da~Silva~Leite, ``Preço spot de eletricidade: teoria
-  e evidências do caso brasileiro,'' {\em IV Encontro de Enconomia Catarinense,
-  2010, Criciúma}, 2010.
+CASTRO, N. J.~D., LEITE, A. L. D.~S., \enquote{Preço spot de eletricidade:
+  teoria e evidências do caso brasileiro}, \emph{IV Encontro de Enconomia
+  Catarinense, 2010, Criciúma}, , 2010.
 
 \bibitem{PrevisaoPrecoFuturoACL}
-M.~A. Cavaliere, ``Previsão de preços futuros de energia eleétrica no ambiente
-  de contratação livre - uma abordagem de equilíbrio de mercado sob
-  incertezas,'' 2017.
+CAVALIERE, M.~A., \enquote{Previsão de preços futuros de energia eleétrica no
+  ambiente de contratação livre - uma abordagem de equilíbrio de mercado sob
+  incertezas}, 2017.
 
 \bibitem{MatrizEnergetica}
-E.~de~Pesquisa~Energética, ``Matriz energética e elétrica.''
-  http://www.epe.gov.br/pt/abcdenergia/matriz-energetica-e-eletrica, 2018.
-\newblock (Acesso em 26 Janeiro 2019).
+ENERGéTICA, E. D.~P., \enquote{Matriz Energética e Elétrica},
+  http://www.epe.gov.br/pt/abcdenergia/matriz-energetica-e-eletrica, 2018,
+  (Acesso em 26 Janeiro 2019).
 
 \bibitem{SmartGrid}
-E.~P. B.~M. Barretto, ``Smart grid: Eficiência energética e a geração
-  distribuida a partir das redes inteligentes,'' 2018.
+BARRETTO, E. P. B.~M., \enquote{Smart grid: Eficiência energética e a geração
+  distribuida a partir das redes inteligentes}, 2018.
 
 \bibitem{RES_NORMA_482}
-ANEEL, ``Resolução normativa nº 482, de 17 de abrid de 2012.''
-  http://www2.aneel.gov.br/cedoc/ren2012482.pdf, 2019.
-\newblock (Acesso em 26 Fevereiro 2019).
+ANEEL, \enquote{Resolução normativa nº 482, de 17 de abrid de 2012},
+  http://www2.aneel.gov.br/cedoc/ren2012482.pdf, 2019, (Acesso em 26 Fevereiro
+  2019).
 
 \bibitem{CCEE_PRECO_PLD}
-CCEE, ``Preço médio da ccee.''
+CCEE, \enquote{Preço Médio da CCEE},
   https://www.ccee.org.br/portal/faces/pages\_publico/o-que-fazemos/como\_ccee\_atua/precos/precos\_medios,
-  2019.
-\newblock (Acesso em 4 de Fevereiro de 2019).
+  2019, (Acesso em 4 de Fevereiro de 2019).
 
 \bibitem{CRISE_2014}
-E.~I. UFJF, ``Especial: A crise energética brasileira.''
+UFJF, E.~I., \enquote{Especial: A crise energética brasileira},
   http://energiainteligenteufjf.com/especial/especial-a-crise-energetica-brasileira/,
-  2019.
-\newblock (Acesso em 26 Fevereiro 2019).
+  2019, (Acesso em 26 Fevereiro 2019).
 
 \bibitem{MANUAIS}
-CEPEL, ``Documentação técnica das metodologias e modelos de otimização
-  energética do cepel.''
+CEPEL, \enquote{Documentação Técnica das metodologias e modelos de otimização
+  energética do CEPEL},
   http://www.cepel.br/sala-de-imprensa/noticias/menu/noticias/documentacao-tecnica-das-metodologias-e-modelos-de-otimizacao-energetica-do-cepel.htm,
-  2019.
-\newblock (Acesso em 26 Fevereiro 2019).
+  2019, (Acesso em 26 Fevereiro 2019).
 
 \bibitem{TCC_PLD}
-A.~P.~S. Silva, ``Previsão do preço de liquidação das diferenças por meio de
-  redes neurais artificiais,'' 2018.
+SILVA, A. P.~S., \enquote{Previsão do preço de liquidação das diferenças por
+  meio de redes neurais artificiais}, 2018.
+
+\bibitem{sTemp}
+EHLERS, R.~S., \emph{Análise de Séries Temporais}, 2009.
+
+\bibitem{apostilaCaloba}
+CALôBA, L.~P., \emph{Introdução ao Uso de Redes Neurais na Modelagem de
+  Sistemas Dinâmicos e Séries Temporais.}, 2002.
+
+\bibitem{tccDanilo}
+FINANCEIRO, A. D. M. E. A. P. P. A. à. D. N.~M., \enquote{Danilo Filippo
+  Reiszel Pereira}, 2018.
+
+\bibitem{introSP}
+ORFANIDIS, S.~J., \emph{Introduction to Signal Processing}, 2002.
 
 \end{thebibliography}
