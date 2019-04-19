@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.4.9)  9 APR 2019 22:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.4.9)  16 APR 2019 12:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Principal.tex
-(./Principal.tex
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/Principal.tex
 LaTeX2e <2018-04-01> patch level 5
 (/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
@@ -22,7 +22,8 @@ File: bk12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-) (./TesePack.tex
+)
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/TesePack.tex
 (/usr/share/texlive/texmf-dist/tex/latex/tools/layout.sty
 Package: layout 2014/10/28 v1.2c Show layout parameters
 \oneinch=\count89
@@ -85,7 +86,8 @@ Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
 \l@brazil = a dialect from \language\l@portuges 
 Package babel Info: Making " an active character on input line 145.
 ))
-(./pagina.sty) (./indentfirst.sty
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/pagina.sty)
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/indentfirst.sty
 Package: indentfirst 1994/05/23 v1.02 Indent first paragraph (DPC)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
@@ -406,7 +408,7 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(./portland.sty
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/portland.sty
 \paperheight=\dimen155
 \phoffset=\dimen156
 \pvoffset=\dimen157
@@ -422,13 +424,15 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 \ltopmargin=\dimen167
 \loddsidemargin=\dimen168
 \levensidemargin=\dimen169
-) (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2018/08/03 v2.3 Span multiple rows of a table
 \multirow@colwidth=\skip48
 \multirow@cntb=\count176
 \multirow@dima=\skip49
 \bigstrutjot=\dimen170
-) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2018/05/01 v1.1-162 Sub-captions (AR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
@@ -819,7 +823,7 @@ Package: l3keys2e 2018-05-12 LaTeX2e option processing using LaTeX3 keys
 (/usr/share/texlive/texmf-dist/tex/latex/translator/translator.sty
 Package: translator 2018/01/04 v1.12 Easy translation of strings in LaTeX
 )))
-(./Principal.aux
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/Principal.aux
 
 LaTeX Warning: Label `bNYresFilt' multiply defined.
 
@@ -1002,7 +1006,8 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 4.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./Capa.tex
+)
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/Capa.tex
 Package epstopdf Info: Source file: <./figuras/Poli.eps>
 (epstopdf)                    date: 2014-03-24 13:17:04
 (epstopdf)                    size: 546883 bytes
@@ -1056,43 +1061,49 @@ Overfull \hbox (1.744pt too wide) in paragraph at lines 34--35
 \OT1/cmr/m/n/12 PROJETO DE GRADUA[][]AO SUB-ME-TIDO AO CORPO DO-CENTE DO CURSO
  []
 
-) [2] (./Preambulo.tex
+) [2] (/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/Preambulo.tex
+
 Underfull \hbox (badness 10000) in paragraph at lines 8--16
 
  []
 
-[3] [4] [5] [6] [7] [8] [9] [10]) [11] (./Principal.toc [12
+[3] [4] [5] [6] [7] [8] [9] [10]) [11]
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/Principal.toc
+[12
 
 ])
 \tf@toc=\write3
 \openout3 = `Principal.toc'.
 
  [13]
-(./Principal.lof)
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/Principal.lof)
 \tf@lof=\write4
 \openout4 = `Principal.lof'.
 
- [14
 
-] (./Principal.lot)
+[14
+
+] (/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/Principal.lot)
 \tf@lot=\write5
 \openout5 = `Principal.lot'.
 
- [15
+[15
 
 ]
 Cap\'{\i }tulo 1.
-(./cap1.tex [1
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/cap1.tex [1
 
 
 
-]) [2]
+])
+[2]
 Cap\'{\i }tulo 2.
-(./cap2.tex [3
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/cap2.tex [3
 
 ]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 13.
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
@@ -1102,8 +1113,7 @@ File: ./figuras/orgaos_governo.jpg Graphic file (type jpg)
 <use ./figuras/orgaos_governo.jpg>
 Package pdftex.def Info: ./figuras/orgaos_governo.jpg  used on input line 29.
 (pdftex.def)             Requested size: 426.79134pt x 190.45995pt.
-
-[4]
+ [4]
 Overfull \hbox (4.69717pt too wide) in paragraph at lines 48--49
 []\OT1/cmr/bx/n/12 Agentes ex-por-ta-do-res\OT1/cmr/m/n/12 : s~ao agen-tes ti-t
 u-la-res de au-to-riza^^Xc~ao para im-planta^^Xc~ao
@@ -1233,7 +1243,7 @@ sed on input line 332.
 e_co.jpg> <./figuras/divisoes_previsao_tese.jpg> <./figuras/resultado_classific
 ador_tese_previsao.jpg>]
 Cap\'{\i }tulo 3.
-(./cap3.tex [16
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/cap3.tex [16
 
 ]
 <./figuras/exemplo_tsa.jpg, id=134, 1387.584pt x 636.6987pt>
@@ -1241,7 +1251,8 @@ File: ./figuras/exemplo_tsa.jpg Graphic file (type jpg)
 <use ./figuras/exemplo_tsa.jpg>
 Package pdftex.def Info: ./figuras/exemplo_tsa.jpg  used on input line 15.
 (pdftex.def)             Requested size: 426.79134pt x 195.82983pt.
- [17 <./figuras/exemplo_tsa.jpg>]
+
+[17 <./figuras/exemplo_tsa.jpg>]
 Overfull \hbox (4.22919pt too wide) in paragraph at lines 54--55
  [] \OT1/cmr/m/n/12 Al-guns m^^Setodos de fil-tra-gem po-dem ser uti-li-zado ta
 mb^^Sem na ex-tra^^Xc~ao de tend^encia.
@@ -1308,118 +1319,120 @@ Package pdftex.def Info: ./figuras/notch.png  used on input line 249.
 (pdftex.def)             Requested size: 209.58105pt x 157.63748pt.
 ) [25 <./figuras/notch.png>]
 Cap\'{\i }tulo 4.
-(./cap6.tex) [26
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/cap6.tex) [26
 
-] (./Principal.bbl
-Underfull \hbox (badness 1527) in paragraph at lines 15--18
-\OT1/cmr/m/n/12 riod'', https://datamarket.com/data/set/22r0/sales-of-shampoo-o
-ver-a-three-
+]
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/Principal.bbl
+Overfull \hbox (71.12517pt too wide) in paragraph at lines 16--19
+[]\OT1/cmr/m/n/12 CCEE, ``Com quem se re-la-ci-ona'', https://www.ccee.org.br/p
+ortal/faces/pages[]publico/onde-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 26--29
-[]\OT1/cmr/m/n/12 CCEE, ``Vis~ao Ge-ral das Opera^^Xc~oes CCEE'',
- []
-
-
-Overfull \hbox (81.31949pt too wide) in paragraph at lines 26--29
-\OT1/cmr/m/n/12 http://www.ufjf.br/andre[]marcato/files/2010/06/Visao[]Geral[]d
-as[]Operacoes[]CCEE[]2010.pdf,
- []
-
-
-Overfull \hbox (51.3726pt too wide) in paragraph at lines 36--39
-[]\OT1/cmr/m/n/12 CCEE, ``Me-to-do-lo-gia de Pre^^Xcos'', https://www.ccee.org.
-br/portal/faces/pages[]publico/o-
- []
-
-
-Underfull \hbox (badness 2837) in paragraph at lines 36--39
-\OT1/cmr/m/n/12 que-fazemos/como[]ccee[]atua/precos/metodologia[]de[]precos?, 2
-019, (Acesso
+Underfull \hbox (badness 10000) in paragraph at lines 40--43
+[]\OT1/cmr/m/n/12 ONS, ``Go-ver-nan^^Xca'', http://ons.org.br/paginas/sobre-o-
  []
 
 [27
 
 
 ]
-Overfull \hbox (71.12517pt too wide) in paragraph at lines 52--55
-[]\OT1/cmr/m/n/12 CCEE, ``Com quem se re-la-ci-ona'', https://www.ccee.org.br/p
-ortal/faces/pages[]publico/onde-
+Underfull \hbox (badness 10000) in paragraph at lines 54--57
+[]\OT1/cmr/m/n/12 CCEE, ``Vis~ao Ge-ral das Opera^^Xc~oes CCEE'',
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 76--79
-[]\OT1/cmr/m/n/12 ONS, ``Go-ver-nan^^Xca'', http://ons.org.br/paginas/sobre-o-
+Overfull \hbox (81.31949pt too wide) in paragraph at lines 54--57
+\OT1/cmr/m/n/12 http://www.ufjf.br/andre[]marcato/files/2010/06/Visao[]Geral[]d
+as[]Operacoes[]CCEE[]2010.pdf,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--94
+Underfull \hbox (badness 10000) in paragraph at lines 70--73
 []\OT1/cmr/m/n/12 ENERG^^SeTICA, E. D. P., ``Ma-triz Energ^^Setica e El^^Setric
 a'',
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--94
+Underfull \hbox (badness 10000) in paragraph at lines 70--73
 \OT1/cmr/m/n/12 http://www.epe.gov.br/pt/abcdenergia/matriz-energetica-e-eletri
 ca, 2018,
  []
 
-[28]
-Underfull \hbox (badness 4569) in paragraph at lines 100--103
+
+Underfull \hbox (badness 4569) in paragraph at lines 79--82
 []\OT1/cmr/m/n/12 ANEEL, ``Re-solu^^Xc~ao nor-ma-tiva n$[]$ 482, de 17 de abrid
  de 2012'',
  []
 
 
-Overfull \hbox (51.04207pt too wide) in paragraph at lines 105--108
+Overfull \hbox (51.04207pt too wide) in paragraph at lines 84--87
 []\OT1/cmr/m/n/12 CCEE, ``Pre^^Xco M^^Sedio da CCEE'', https://www.ccee.org.br/
 portal/faces/pages[]publico/o-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--113
+Underfull \hbox (badness 10000) in paragraph at lines 89--92
 []\OT1/cmr/m/n/12 UFJF, E. I., ``Es-pe-cial: A crise energ^^Setica bra-si-leira
 '',
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--113
+Underfull \hbox (badness 10000) in paragraph at lines 89--92
 \OT1/cmr/m/n/12 http://energiainteligenteufjf.com/especial/especial-a-crise-ene
 rgetica-
  []
 
+[28]
+Overfull \hbox (51.3726pt too wide) in paragraph at lines 99--102
+[]\OT1/cmr/m/n/12 CCEE, ``Me-to-do-lo-gia de Pre^^Xcos'', https://www.ccee.org.
+br/portal/faces/pages[]publico/o-
+ []
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--119
+
+Underfull \hbox (badness 2837) in paragraph at lines 99--102
+\OT1/cmr/m/n/12 que-fazemos/como[]ccee[]atua/precos/metodologia[]de[]precos?, 2
+019, (Acesso
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--108
 []\OT1/cmr/m/n/12 CEPEL, ``Do-cu-menta^^Xc~ao T^^Secnica das me-to-do-lo-gias e
  mo-de-los de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--119
+Underfull \hbox (badness 10000) in paragraph at lines 104--108
 \OT1/cmr/m/n/12 oti-miza^^Xc~ao energ^^Setica do CE-PEL'', http://www.cepel.br/
 sala-de-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--119
+Underfull \hbox (badness 10000) in paragraph at lines 104--108
 \OT1/cmr/m/n/12 imprensa/noticias/menu/noticias/documentacao-tecnica-das-metodo
 logias-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--119
+Underfull \hbox (badness 10000) in paragraph at lines 104--108
 \OT1/cmr/m/n/12 e-modelos-de-otimizacao-energetica-do-cepel.htm, 2019, (Acesso 
 em 26
  []
 
+
+Underfull \hbox (badness 1527) in paragraph at lines 117--120
+\OT1/cmr/m/n/12 riod'', https://datamarket.com/data/set/22r0/sales-of-shampoo-o
+ver-a-three-
+ []
+
 ) [29]
 Ap\^endice A.
-(./ApendiceA.tex) [30
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/ApendiceA.tex)
+[30
 
 ]
 Ap\^endice B.
-(./ApendiceB.tex
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/ApendiceB.tex
 Package epstopdf Info: Source file: <./figuras/Capa_do_Projeto_Final.eps>
 (epstopdf)                    date: 2009-07-15 10:31:18
 (epstopdf)                    size: 638238 bytes
@@ -1448,16 +1461,17 @@ Overfull \hbox (50.6844pt too wide) in paragraph at lines 9--9
 
 ] [32 <./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf>]
 Ap\^endice C.
-(./ApendiceC.tex) [33
+(/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/ApendiceC.tex)
+[33
 
-] (./Principal.aux)
+] (/home/felipe/Materias/TCC/Dissertacao/ProjetoFelipeClaudio/Principal.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 24267 strings out of 494493
- 461430 string characters out of 6175440
+ 24268 strings out of 494493
+ 463809 string characters out of 6175440
  492086 words of memory out of 5000000
  27575 multiletter control sequences out of 15000+600000
  542887 words of font info for 64 fonts, out of 8000000 for 9000
@@ -1475,7 +1489,7 @@ amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Principal.pdf (48 pages, 2838697 bytes).
+Output written on Principal.pdf (48 pages, 2838650 bytes).
 PDF statistics:
  296 PDF objects out of 1000 (max. 8388607)
  156 compressed objects within 2 object streams

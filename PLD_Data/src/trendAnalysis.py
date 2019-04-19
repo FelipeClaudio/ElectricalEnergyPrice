@@ -21,6 +21,7 @@ import itertools
 # MatPlotlib
 import matplotlib.pyplot as plt
 from matplotlib import pylab
+from pandas.core.nanops import nanmean as pd_nanmean
 
 rcParams['figure.figsize'] = 18, 8
 
@@ -239,6 +240,18 @@ def GetTrendAnalysisByMovingAverageOnly(y, title, MIN_WINDOW_SIZE, \
 ##TREND
 
 #SEASONAL
+def seasonal_mean(x, freq=12):
+    """
+    Return means for each period in x. freq is an int that gives the
+    number of periods per cycle. E.g., 12 for monthly. NaNs are ignored
+    in the mean.
+    """
+    nobs = len(x)
+    period_averages = np.array([pd_nanmean(x[i::freq], axis=0) for i in range(freq)])
+    period_averages -= np.mean(period_averages, axis=0)
+
+    return np.tile(period_averages.T, nobs // freq + 1).T[:nobs]    
+
 def GetExponentialMovingAverage(y, windowSize):
     yTemp = PredictFirstWindowPoints(y, windowSize)
     yEMA = y.ewm(span=windowSize, adjust=False).mean().iloc[windowSize-1:-1].values

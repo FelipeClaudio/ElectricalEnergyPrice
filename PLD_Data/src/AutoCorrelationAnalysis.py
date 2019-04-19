@@ -45,7 +45,7 @@ meanPLD = pd.read_csv('PLD_medio.csv', \
 
 
 
-FINAL_DATE = '10/2018'
+FINAL_DATE = '12/2018'
 PLOT_DIR = ROOT_FOLDER + '/PLD_Data/src/plots/SeriesTemporais/'
 INITIAL_DATE = '01/2015'
 mPLDSE = meanPLD[['Mês', 'SE/CO']]
@@ -76,7 +76,7 @@ windGeneratedEnergyOriginal = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Geraç�
 loadEnergyOriginal = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Carga_de_Energia_Barra_Mês_data_editado.csv', 'Load Energy', FINAL_DATE=FINAL_DATE)[0]
 enaOriginal = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Energia_Natural_Afluente_Subsistema_Barra__data_editado.csv', 'ENA', FINAL_DATE=FINAL_DATE)[0]
 mydateparser = lambda x: pd.datetime.strptime(x, "%Y-%m-%d")
-afSumOriginal = util.ReadONSEditedCSV( ONS_DIR + '/FStation.csv', 'Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
+afSumOriginal = util.ReadONSEditedCSV( ONS_DIR + '/AFSum.csv', 'Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
 afSumUsefulOriginal = util.ReadONSEditedCSV( ONS_DIR + '/AFSum_useful.csv', 'Useful Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
 
 numberOfLags = mPLDSE.size - max(util.GetDefaultMask()) - 1

@@ -32,8 +32,8 @@ matplotlib.rcParams['text.color'] = 'k'
 ROOT_FOLDER  = '/home/felipe/Materias/TCC/'
 
 #loading PLD data
-MAIN_DIR = ROOT_FOLDER + '/PLD_Data/PLD_Outubro_2018'
-MAIN_DIR += '/10_out18_RV0_logENA_Mer_d_preco_m_0/'
+MAIN_DIR = ROOT_FOLDER + '/PLD_Data/PLD_Dezembro_2018'
+MAIN_DIR += '/12_dez18_RV0_logENA_Mer_PEN_d_preco_m_0/'
 
 PLOT_DIR = ROOT_FOLDER + '/PLD_Data/src/plots/SeriesTemporais/Vazoes/'
 
@@ -44,7 +44,7 @@ regionFilter = REGION[REGION_INDEX - 1]
 
 INITIAL_YEAR = 2015
 INTIAL_DATE = '2015-01-01'
-FINAL_DATE = '2018-10-31'
+FINAL_DATE = '2018-12-31'
 SAVE_CORR = False
 REGION_NAME = REGION_ABBREVIATION[REGION_INDEX - 1]
 COR_MATRIX_FIG_NAME = REGION_NAME + '_corVec_plot.jpg'
@@ -65,7 +65,7 @@ plt.close('all')
 
 MIN_WINDOW_SIZE = 3
 hidrBase=pd.read_csv(MAIN_DIR + 'HIDR_BASE.csv')
-REMOVE_MIN_VOLUME=True
+REMOVE_MIN_VOLUME=False
 SAVE_FIG=True
 #For total volume
 #BEST_WINDOW_SIZE_MA = 14
@@ -107,7 +107,7 @@ for year in years:
 
 #Get high correlated fluviometric station
 AFFilteredseries = AFFilteredseries.drop(columns=['Year', 'index'])
-AFFilteredseries = AFFilteredseries.iloc[:, :-2]
+#AFFilteredseries = AFFilteredseries.iloc[:, :-2]
 AFFilteredseries.set_index('FS_ID', inplace=True)
 
 def NoNegative(x):
@@ -162,7 +162,7 @@ if SAVE_CORR:
 
 #get total affluent flow
 FStation = AFFilteredSseriesPlot.sum(axis = 1)
-FStation.to_csv('AFSum_useful.csv')
+FStation.to_csv('AFSum.csv')
 
 figureName = PLOT_DIR + 'fftAndDistribution_original.jpg'
 fig = plt.figure()

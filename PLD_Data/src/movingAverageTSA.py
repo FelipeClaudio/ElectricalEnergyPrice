@@ -105,14 +105,13 @@ if SAVE_FIG:
     plt.savefig(figureName, bbox_inches='tight')
 
 decomposition = sm.tsa.seasonal_decompose(mPLDSE, model='additive')
+
 '''
-freq = 12
-period_averages = sm.tsa.seasonal_mean(pldTrend, freq)
-period_averages -= np.mean(period_averages, axis=0)
-nobs = pldTrend.size
-tsaSeasonal = pd.DataFrame(np.tile(period_averages.T, nobs // freq + 1).T[:nobs], columns=['price'])
-tsaSeasonal = tsaSeasonal.set_index(mPLDSE.index, drop=True)
+tsaSeasonalprice = tr.seasonal_mean(mPLDSE.price)
+tsaSeasonal = pd.DataFrame(data = {'price': tsaSeasonalprice})
+tsaSeasonal.index = mPLDSE.index
 '''
+
 tsaSeasonal = decomposition.seasonal
 
 figureName = PLOT_DIR + 'mseComparation_trend.jpg'
