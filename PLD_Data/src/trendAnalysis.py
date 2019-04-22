@@ -17,6 +17,7 @@ from scipy import stats
 from sklearn.metrics import mean_squared_error
 from math import sqrt
 import itertools
+from scipy import signal
 
 # MatPlotlib
 import matplotlib.pyplot as plt
@@ -172,6 +173,16 @@ def GetSmoothTransition (x, y, windowSize, weightsNumber=5):
             result[i] = y[i]
     
     return result
+
+def GetResidualExtraction (X, W, T, w0, Q):
+    decomposition = sm.tsa.seasonal_decompose(X, model='additive')
+    X_trend = GetMovingAverage(X.iloc[:,0], W, transitionType='smooth')
+    X_sazonal = GetPeriodicMovingAverageOnlyPrediction(decomposition.seasonal.iloc[:,0], T)
+    X_residual = X.iloc[:,0] - X_trend - X_sazonal
+    b, a = signal.iirnotch(w0, Q)
+    X_filt_res = signal.lfilter(b, a, X_residual)
+    
+    return X_filt_res
 #OTHERS
 
 ##TREND

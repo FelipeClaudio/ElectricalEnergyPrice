@@ -138,10 +138,16 @@ finalInput.index = indexDates
 
 finalInputOld = finalInputOld.reset_index(drop=True)
 
-finalOutput = mPLDSE
+finalOutput= mPLDSE
+finalOutputTemp = tr.GetResidualExtraction(X=mPLDSE, W=12, T=6, w0=0.08, Q=0.1)
+finalOutputResidual = pd.DataFrame(columns=['price'], index=mPLDSE.index)
+finalOutputResidual.price = finalOutputTemp
 finalOutput = finalOutput.reset_index(drop=True)
 finalOutput = finalOutput.iloc[-numberOfLags:,:]
+finalOutputResidual = finalOutputResidual.reset_index(drop=True)
+finalOutputResidual = finalOutputResidual.iloc[-numberOfLags:,:]
 if SAVE_INPUT:
     finalInput.to_csv('input.csv')
     finalInputOld.to_csv('inputOld.csv')
     finalOutput.to_csv('output.csv')
+    finalOutputResidual.to_csv('output_residual.csv')
