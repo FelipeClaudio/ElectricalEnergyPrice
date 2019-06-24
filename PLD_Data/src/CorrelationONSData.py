@@ -27,10 +27,12 @@ plt.style.use('fivethirtyeight')
 rcParams['figure.figsize'] = 18, 8
 
 #setting plotting window parameters
+'''
 matplotlib.rcParams['axes.labelsize'] = 14
 matplotlib.rcParams['xtick.labelsize'] = 12
 matplotlib.rcParams['ytick.labelsize'] = 12
 matplotlib.rcParams['text.color'] = 'k'
+'''
 
 ROOT_FOLDER  = '/home/felipe/Materias/TCC/'
 #loading PLD data
@@ -45,7 +47,7 @@ meanPLD = pd.read_csv(MAIN_DIR + 'PLD_medio.csv', \
 
 PLOT_DIR = ROOT_FOLDER + '/PLD_Data/src/plots/SeriesTemporais/'
 INITIAL_DATE = '01/2015'
-FINAL_DATE = '12/2017'
+FINAL_DATE = '12/2018'
 mPLDSE = meanPLD[['Mês', 'SE/CO']]
 mPLDSE.columns = ['month', 'price']
 mPLDSE.set_index('month', inplace=True)
@@ -58,8 +60,15 @@ mPLDSE.index.inferred_freq
 BEST_WINDOW_SIZE_MA = 16
 T_SEASONAL = 12
 plt.close('all')
-SAVE_FIG = False
-FINAL_DATE = '12/2017'
+SAVE_FIG = True
+FINAL_DATE = '12/2018'
+
+language = util.language.PT.value
+suffix = "_pt"
+textVec = {
+            "correlation_matrix": ["Correlation between ONS DATA and PLD between in traning set",\
+                                   "Correalção entre os dados fornecidos pela ONS e o PLD"]
+        }
 #Settings
 
 
@@ -72,7 +81,7 @@ windGeneratedEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Geração_de_En
 loadEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Carga_de_Energia_Barra_Mês_data_editado.csv', 'Load Energy', FINAL_DATE=FINAL_DATE)[0]
 ena = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Energia_Natural_Afluente_Subsistema_Barra__data_editado.csv', 'ENA', FINAL_DATE=FINAL_DATE)[0]
 mydateparser = lambda x: pd.datetime.strptime(x, "%Y-%m-%d")
-afSum = util.ReadONSEditedCSV( ONS_DIR + '/FStation.csv', 'Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
+afSum = util.ReadONSEditedCSV( ONS_DIR + '/AFSum.csv', 'Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
 afSumUseful = util.ReadONSEditedCSV( ONS_DIR + '/AFSum_useful.csv', 'Useful Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
 
 cor = pd.concat([mPLDSE, totalStoredEnergy], axis=1)
@@ -93,5 +102,7 @@ sns.heatmap(correlation, xticklabels=correlation.columns, \
             annot=True, fmt=".2f")
 
 #sns.scatterplot(correlation)
-ax.set_title("Correlation between ONS DATA and PLD between in traning set")
+ax.set_title(textVec["correlation_matrix"][language])
 plt.show()
+if SAVE_FIG:
+    plt.savefig("corr_plot"+ suffix + ".jpg", bbox_inches='tight')

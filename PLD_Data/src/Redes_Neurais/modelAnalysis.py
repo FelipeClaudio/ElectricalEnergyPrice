@@ -52,17 +52,38 @@ matplotlib.rcParams['text.color'] = 'k'
 
 ROOT_FOLDER  = '/home/felipe/Materias/TCC/PLD_Data/src/Redes_Neurais'
 INPUT_FOLDER = ROOT_FOLDER + '/InputNN'
-MODELS_FOLDER = ROOT_FOLDER + '/Modelos/'
+MODELS_FOLDER = ROOT_FOLDER + '/Modelos_'
+#MODELS_FOLDER = ROOT_FOLDER + '/Modelos_adadelta_100epocas/'
 #CLEAR_SESSION = False
 
 N_TEST_ROWS = 3
+
+#load trend and residue
+pldTrend = pd.read_csv('pld_trend.csv', index_col=0, header=None)
+pldTrend.columns = ['values']
+pldSeasonal = pd.read_csv('pld_seasonal.csv', index_col=0, header=None)
+pldSeasonal.columns = ['values']
+
+
+#param for normalizes signal composed by residual + senoidal cycle
+#w=5 / w=12
+choosen_w = 1
+est_amp = [94.17675855003894, 69.43507704543539][choosen_w]
+est_freq = [0.7968374985966099, 0.8044090221275024][choosen_w]
+est_mean = [-5.11368411253407, 24.509257889433268][choosen_w]
+est_phase = [-0.2651449626303616, -0.5876011432492424][choosen_w]
+
+t = np.arange(pldTrend.size)
+senoidalCycle=est_amp*np.sin(est_freq*t+est_phase)+est_mean
 
 # import some data to play with
 X_old = pd.read_csv(INPUT_FOLDER + '/inputOld.csv').iloc[:, 1:]
 X_current = pd.read_csv(INPUT_FOLDER + '/input.csv').iloc[:, 1:]
 X = pd.concat([X_old, X_current], axis=1)
-#y = pd.read_csv(INPUT_FOLDER + '/output.csv').iloc[:, 1:]
+y_original = pd.read_csv(INPUT_FOLDER + '/output.csv').iloc[:, 1:]
 y = pd.read_csv(INPUT_FOLDER + '/output_residual.csv').iloc[:, 1:]
+
+y_no_residual = y_original - y
 
 norm = 'mapminmax'
 if norm == 'mapstd':
@@ -86,109 +107,223 @@ y_test = y_norm.iloc[-N_TEST_ROWS:, :]
 
 
 # train a simple classifier
-n_folds = 8
+n_folds = 3
 n_inits = 3
-MIN_NEURONS = 120 #best = 37
+MIN_NEURONS = 1 #best = 37
 MAX_NEURONS = 120
-norm = 'mapstd'
 
+#partition by folder
 kf = model_selection.KFold(n_splits=n_folds, shuffle=True, random_state=0)
 CVO = kf.split(X_train, y_train)
 CVO = list(CVO)
 
-mse_matrix = pd.DataFrame(columns=['fold','n_neurons', 'mse_val'])
+mse_matrix = pd.DataFrame(columns=['fold','n_neurons', 
+                                   'mse_val_norm', 'mse_val',
+                                   'mse_test_norm','mse_test',
+                                   'val_rmse', 'val_std',
+                                   'a', 'b'])
+    
+mse_comp = pd.DataFrame(columns=['mse'])
+mse_comp.index.name = '#Neurons'
+
 line = 0
 hasModel = False
-OPTIMIZER = 'sgd'
+OPTIMIZER = 'adadelta'
 ACTIVATION_HIDDEN_LAYER = 'relu'
 line = 0
 PLOT = False
 SHOW_HISTORY = True
 READ_BEST_MODEL = True
+results = pd.DataFrame(columns=['rmse', 'std', 'a', 'b'], index=np.arange(MAX_NEURONS) + 1)
+resultsFolds = pd.DataFrame(columns=['rmse', 'std', 'a(mean)', 'b(mean)'], index=np.arange(MAX_NEURONS) + 1)
 
 for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
+    subplotidx = 1
     if PLOT:
         plt.figure()
         
+    #Read each model or best model for each folder
     for ifold in range(n_folds):
-        train_id, test_id = CVO[ifold]
-        modelPath = MODELS_FOLDER + str(n_neurons) + 'neurons_' + \
+        train_id, validation_id = CVO[ifold]
+        modelPath = MODELS_FOLDER + str(n_folds) + "/" + str(n_neurons) + 'neurons_' + \
                     ACTIVATION_HIDDEN_LAYER + 'hiddenlayer_' + str(ifold) \
                     +'fold_' + OPTIMIZER
-                    
-        K.clear_session()       
+        print(modelPath)
+        K.clear_session()
+        
+        #choose between best model or last model
         if READ_BEST_MODEL:
             model = load_model(modelPath + 'best_weights.h5')
         else:
             model = load_model(modelPath + '.h5')
 
-        '''
-        y_pred_train = y_scaler.inverse_transform(model.predict(X_train.iloc[test_id]))
-        y_pred_test = y_scaler.inverse_transform(model.predict(X_test))
-        mse_matrix.loc[line] = [ifold, n_neurons,
-                      mean_squared_error(y.iloc[test_id], y_pred_train),
-                      mean_squared_error(y_test, y_pred_test)]
-        '''
+
+        y_val_fold_norm = y_train.iloc[validation_id]
+        y_val_fold =  y_scaler.inverse_transform(y_val_fold_norm)
+        y_pred_fold_val_norm = model.predict(X_train.iloc[validation_id])
+        y_pred_fold_val = y_scaler.inverse_transform(y_pred_fold_val_norm)
+
+        #get test data error
+        y_test_norm = y_test
+        y_pred_test_norm = model.predict(X_test)
+        y_pred_test = y_scaler.inverse_transform(y_pred_test_norm)
+        y_test_original = y_scaler.inverse_transform(y_test)
+        params = np.polyfit(y_pred_fold_val_norm.reshape(-1), y_val_fold_norm, 1)
+        mse_matrix.loc[line] =\
+                      [
+                              ifold, 
+                              n_neurons,
+                              mean_squared_error(y_val_fold_norm, y_pred_fold_val_norm),
+                              mean_squared_error(y_val_fold, y_pred_fold_val),
+                              mean_squared_error(y_test_norm, y_pred_test_norm),
+                              mean_squared_error(y_test_original, y_pred_test),
+                              np.sqrt(mean_squared_error(y_val_fold, y_pred_fold_val)),
+                              np.std(y_val_fold - y_pred_fold_val),
+                              params[0][0],
+                              params[1][0]
+                      ]
         
+        
+        #load train history
         hist = util.loadHist(modelPath + '_history.txt')
-        min_mse = np.min(hist['val_mean_squared_error'])
-        mse_matrix.loc[line] = [ifold, n_neurons, min_mse]
+        ##min_mse = np.min(hist['val_mean_squared_error'])
+        ##mse_matrix.loc[line] = [ifold, n_neurons, min_mse]
+         
         
         line += 1
-        del model       
-        if SHOW_HISTORY:
-            plt.subplot(np.ceil(n_folds/2), 2, line)
-            plt.plot(hist['val_mean_squared_error'])         
-
-    if PLOT:
-        plt.show()
+        del model 
         
-    print (str(n_neurons) + ' neurons')
-  
+        
+        if SHOW_HISTORY:
+            ax1 = plt.subplot(np.ceil(n_folds/2), 2, subplotidx)
+            plt.plot(np.sqrt(hist['mean_squared_error']), label='train error')
+            plt.plot(np.sqrt(hist['val_mean_squared_error']), label='validation error')
+            plt.legend()
+            ax1.set_title('Fold ' + str(subplotidx))
+            plt.suptitle('RMSE na validação cruzada para  ' + str(n_neurons) + ' neurônios na camada intermediária')
+            subplotidx += 1
+        
+     
+    #plot mse for validation set in folder
+    plt.savefig(str(n_neurons) + '_convergence.jpg')
+    plt.close('all')
+    
+    #plot mean mse by neurons number
+    #plt.figure()
+    plt.title('RMSE médio no conjunto de validação normalizado por número de neurônios na camada intermediária')    
+    mse_mean = mse_matrix.groupby(['n_neurons']).mean().drop(columns=['fold'])
+    plt.plot(np.sqrt(mse_mean['mse_val_norm']))
+    plt.savefig(str(n_neurons) + '_val_norm_mse.jpg')
+    plt.close('all')
+    
+    #plt.figure()
+    plt.title('RMSE médio no conjunto de validação por número de neurônios na camada intermediária')    
+    plt.plot(np.sqrt(mse_mean['mse_val']))
+    plt.savefig(str(n_neurons) + '_val_mse.jpg')
+    plt.close('all')
+    
+    #plt.figure()
+    plt.title('RMSE médio no conjunto de teste normalizado por número de neurônios na camada intermediária')    
+    plt.plot(np.sqrt(mse_mean['mse_test_norm']))
+    plt.savefig(str(n_neurons) + '_test_norm_mse.jpg')
+    plt.close('all')
+    
+    #plt.figure()
+    plt.title('RMSE médio no conjunto de teste por número de neurônios na camada intermediária')    
+    plt.plot(np.sqrt(mse_mean['mse_test']))
+    plt.savefig(str(n_neurons) + '_test_mse.jpg')
+    plt.close('all')
+    
+    
+    #plot histogram
+    #plt.figure()
+    plt.title('RMSE médio entre os folds para o conjunto de validação')
+    plt.hist(np.sqrt(mse_mean['mse_val']), bins=int(4*np.round(np.sqrt(mse_mean.index.size))))
+    plt.savefig(str(n_neurons) + '_hist.jpg')
+    plt.close('all')
+    
+    #plt.figure()
+    plt.title('RMSE médio entre os folds para o conjunto de teste')
+    plt.hist(np.sqrt(mse_mean['mse_test']), bins=int(4*np.round(np.sqrt(mse_mean.index.size))))
+    plt.savefig(str(n_neurons) + '_hist.jpg')
+    plt.close('all')
+    
+    #scatter plot
+    #plt.figure()
+
+    model = load_model(modelPath + 'complete_best_weights.h5')
+                    
+    #mse_comp.loc[n_neurons]= [y_original.iloc[-N_TEST_ROWS:,:] - y_pred_comp]
+    #mse_comp.plot(title='Erro absoluto no conjunto de teste')
+    idxs = np.arange(n_neurons) + 1
+    
+    resultsFolds.loc[n_neurons] = [
+                                mse_mean.loc[n_neurons]['val_rmse'], 
+                                mse_mean.loc[n_neurons]['val_std'],
+                                mse_mean.loc[n_neurons]['a'],
+                                mse_mean.loc[n_neurons]['b']
+                             ]    
+
+    
+    results.plot(title="RMSE absoluto no conjunto de teste por número de neurônios na camada intermediária")
+    plt.savefig('rmse_test_set.jpg')
+    plt.close('all')
+                                    
+    plt.title('Scatter Série prevista X residual para o conjunto completo')
+    y_comp = model.predict(X_norm)
+    plt.scatter(y_comp, y_norm)
+    plt.xlabel('Série prevista')
+    plt.ylabel('Série original')
+    params = np.polyfit(y_comp.reshape(-1), y_norm, 1)
+    y_fit = params[0] * y_comp + params[1]
+    results.loc[n_neurons] = [np.sqrt(mean_squared_error(y_original.iloc[-N_TEST_ROWS:,:], y_comp[-N_TEST_ROWS:])), \
+               np.std(y_original.iloc[-N_TEST_ROWS:,:] - y_comp[-N_TEST_ROWS:]), params[0], params[1]]
+    plt.plot(y_comp, y_fit, 'r', label='a=' + str(params[0])+ ' b=' + str(params[1]) )
+    plt.legend()
+    plt.savefig(str(n_neurons) + '_residual_scatter.jpg')
+    plt.close('all')
+    del model
+    print(n_neurons + " neurons")
+    
+resultsFolds.to_csv('./resultsFold.csv')
+
+
+reco = y_scaler.inverse_transform(y_comp) + pldTrend.iloc[-28:].values + pldSeasonal.iloc[-28:].values + \
+senoidalCycle[-28:].reshape(-1, 1)
+#plt.plot(t, senoidalCycle)
+
+reco2 = pldTrend.iloc[-28:].values + pldSeasonal.iloc[-28:].values # + \
+#senoidalCycle[-28:].reshape(-1, 1)
+
+y2 = y_original - y - senoidalCycle[-28:].reshape(-1, 1)
+t2 = np.arange(y2.size)
 
 plt.figure()
-plt.title('MSE médio no conjunto de validação por número de neurônios na camada intermediária')    
-mse_mean = mse_matrix.groupby(['n_neurons']).mean().drop(columns= ['fold'])
-plt.plot(mse_mean.iloc[:, -1])
+plt.plot(t2, reco2, 'r')
+plt.plot(t2, y2, 'b')
+plt.show()
 
-'''        
-if not CLEAR_SESSION:
-    CHOOSEN_CLASSIFIER = 0
-    
-    #X_scaler = preprocessing.StandardScaler().fit(X_validation)
-    X_scaler = preprocessing.StandardScaler().fit(X)
-    y_scaler = preprocessing.StandardScaler().fit(y)
-    X_norm = X_scaler.transform(X)
-    model_validation = classifiers[CHOOSEN_CLASSIFIER]
-    y_pred = y_scaler.inverse_transform(model_validation.predict(X_norm))
-    
-    #plt.plot(y_validation.reset_index(drop=True), label='y_val')
-    plt.plot(y, label='y_val')
-    plt.plot(y_pred, label='y_pred')
-    plt.legend()
-    plt.show()
-    
-    
-    plt.figure()
-    X_norm = X_scaler.transform(X_test)
-    y_pred = y_scaler.inverse_transform(model_validation.predict(X_test_norm))
-    plt.plot(y_test.reset_index(drop=True), label='y_val')
-    plt.plot(y_pred, label='y_pred')
-    plt.legend()
-    plt.show()
-
-mse_matrix = mse_matrix.groupby(['n_neurons']).mean().drop(columns= ['fold'])
-mse_matrix = mse_matrix.replace([np.inf, -np.inf], 0)
-
-#plt.figure()
-#plt.subplot(2, 1, 1)
-#plt.stem(mse_matrix.index, mse_matrix.iloc[:,0], label='mse_train')
-#plt.legend()
-#plt.subplot(2, 1, 2)
-#plt.stem(mse_matrix.index, mse_matrix.iloc[:,1], label='mse_validation')
-mse_matrix.plot(title='MSE na validação cruzada e no dataset de teste para o resíduo do PLD usando relu(x) na camada escondida')
-plt.xlabel('Número Neurônios')
-plt.ylabel('MSE')
+plt.figure()
+plt.scatter(reco, y_original)
+plt.title('previsto X original para ' + str(MAX_NEURONS) + " neurônios")
+plt.xlabel('previsto')
+plt.ylabel('original')
+params = np.polyfit(reco.reshape(-1), y_original, 1)
+y_fit = params[0] * reco + params[1]
+plt.plot(reco, y_fit, label='a=' + str(params[0])+ ' b=' + str(params[1]))
 plt.legend()
 plt.show()
-'''
+
+np.max(np.abs(y_original - reco))
+np.std(y_original - reco)
+np.min(np.abs(y_original - reco))
+
+plt.figure()
+plt.plot(y_original.index, reco, 'r', label='reco')
+plt.plot(y_original.index, y_original, 'b', label='original')
+plt.errorbar(y_original.index, reco, yerr=resultsFolds.loc[MAX_NEURONS]['std'], fmt='r', ecolor='black')
+plt.legend()
+plt.xlabel('Amostra')
+plt.ylabel('Valor PLD')
+plt.title('PLD médio mensal previsto X real para o mês atual '+ str(MAX_NEURONS) + ' neurônios')
+plt.show() 

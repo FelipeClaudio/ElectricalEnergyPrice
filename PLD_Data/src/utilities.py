@@ -18,6 +18,7 @@ import math
 import seaborn as sns
 import pandas as pd
 import copy
+from enum import Enum
 
 rcParams['figure.figsize'] = 18, 8
 
@@ -27,13 +28,17 @@ matplotlib.rcParams['xtick.labelsize'] = 12
 matplotlib.rcParams['ytick.labelsize'] = 12
 matplotlib.rcParams['text.color'] = 'k'
 
+class language(Enum):
+    US=0
+    PT=1
+
 #defaultMask = np.array([2, 3, 4, 5, 13, 14, 15, 16, 17, 18, 19, 20])
 #older to newer - REVERSERD ORDER
 #ex:
 #a = [1, 2, 3, 17, 18, 19 ,20]
 #b = [19, 18, 17, 3, 2, 1, 0]
 #c = [0, 1, 2, 3, 17, 18, 19]
-defaultMask = np.array([0, 1, 2, 3, 4, 18, 19, 20])
+defaultMask = np.array([0, 1, 2, 3, 4, 5, 6, 18, 19])
 
 def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
         axText="0.5rad/s = 2 months", \
@@ -43,6 +48,8 @@ def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
     # sample spacing
     yf = fft(y)
     xf = np.linspace(0.0, 1.0/(2.0*T), N//2)
+    #print(xf)
+    #print(yf)
     
     if showPlot:
         if ax is None:
@@ -96,6 +103,7 @@ def PlotTSA(original, trend, seasonal, residual, \
 
     decomposition = sm.tsa.seasonal_decompose(original, model='additive')
     decomposition.plot()
+    plt.suptitle(originalPlotTitle)
 
     if SAVE_FIGURE:
         plt.savefig(originalPlotFileName, bbox_inches='tight')

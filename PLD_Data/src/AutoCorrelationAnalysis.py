@@ -36,8 +36,8 @@ ONS_DIR = ROOT_FOLDER + 'PLD_Data/ONS_DATA'
 INPUT_DIR = ROOT_FOLDER + 'PLD_Data/src/inputNN/'
 
 #loading PLD data
-MAIN_DIR = ROOT_FOLDER + '/PLD_Data/PLD_Outubro_2018'
-MAIN_DIR += '/10_out18_RV0_logENA_Mer_d_preco_m_0/'
+MAIN_DIR = ROOT_FOLDER + '/PLD_Data/PLD_Dezembro_2018'
+MAIN_DIR += '/12_dez18_RV0_logENA_Mer_PEN_d_preco_m_0/'
 mydateparser = lambda x: pd.datetime.strptime(x, "%m/%Y")
 meanPLD = pd.read_csv('PLD_medio.csv', \
                       parse_dates=['Mês'], sep="\\s+",\
@@ -80,7 +80,6 @@ afSumOriginal = util.ReadONSEditedCSV( ONS_DIR + '/AFSum.csv', 'Afluent Flow Sum
 afSumUsefulOriginal = util.ReadONSEditedCSV( ONS_DIR + '/AFSum_useful.csv', 'Useful Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
 
 numberOfLags = mPLDSE.size - max(util.GetDefaultMask()) - 1
-NUMBER_OF_VARIABLES = 9
 
 for lag in range(0, numberOfLags):
     shiftLeft = lag
@@ -139,7 +138,7 @@ finalInput.index = indexDates
 finalInputOld = finalInputOld.reset_index(drop=True)
 
 finalOutput= mPLDSE
-finalOutputTemp = tr.GetResidualExtraction(X=mPLDSE, W=12, T=6, w0=0.08, Q=0.1)
+finalOutputTemp = tr.GetResidualExtraction(X=mPLDSE, W=12, T=6, w0=0.2, Q=0.1)
 finalOutputResidual = pd.DataFrame(columns=['price'], index=mPLDSE.index)
 finalOutputResidual.price = finalOutputTemp
 finalOutput = finalOutput.reset_index(drop=True)

@@ -1,0 +1,158 @@
+\documentclass[a4paper,12pt,oneside,openany]{report}	
+\input{FormatoPack}
+
+\begin{document}
+
+\begin{center}
+\textbf{UNIVERSIDADE FEDERAL DO RIO DE JANEIRO}
+\vspace{-0.2cm}
+
+\textbf{ESCOLA POLITÉCNICA}
+\vspace{-0.2cm}
+
+\textbf{DEPARTAMENTO DE ENGENHARIA ELETRÔNICA E DE COMPUTAÇÃO}
+\vspace{0.8cm}
+
+\underline{\textbf{PROPOSTA DE PROJETO DE GRADUAÇÃO}}
+
+Aluno: Felipe Claudio da Silva Santos
+\vspace{-0.2cm}
+
+felipesantos956@poli.ufrj.br
+
+Orientador: Luiz Pereira Calôba\newline
+Coorientador: Natanael Nunes de Moura Junior
+\end{center}
+
+\textbf{1. TÍTULO}
+
+Estimação do valor do preço de mercado da energia elétrica através de modelos não-lineares
+
+\vspace{0.4cm}
+\textbf{2. ÊNFASE}
+
+Computação
+
+\vspace{0.4cm}
+\textbf{3. TEMA}
+
+O tema do trabalho é uma análise do funcionamento do setor elétrico brasileiro-SEB e como a disponibilidade de recursos afeta o preço da energia elétrica no mercado de curto prazo. As empresas geradoras negociam em leilões uma quantidade de energia relacionada com as respectivas garantias físicas. Ao final do mês, nem sempre a produção é igual ao que foi contratado. O excedente ou deficit é negociado no mercado de curto prazo utilizando o PLD - Preço da Liquidação das Diferenças como multiplicador nas transações \cite{CCEE}.
+
+\vspace{0.4cm}
+\textbf{4. DELIMITAÇÃO}
+
+O objeto do estudo é o PLD. Sendo assim, o modelo computacional utilizará como entrada os dados fornecidos pelos órgão reguladores do setor e buscará prever o preço médio para os meses futuros.
+
+\vspace{0.4cm}
+\textbf{5. JUSTIFICATIVA}
+
+O SEB é diferente de muitos outros setores elétricos pelo mundo por conta da grande abundância de energia hidroelétrica presente. Isto torna mais barato e sustentável o custo. Como há necessidade de água armazenada nos reservatórios para que a energia seja produzida, existe um grau de risco associado à previsão dos cenários futuros.
+
+Busca-se sempre o menor custo no consumo de energia elétrica. O custo será pequeno no curto prazo caso seja consumido toda a energia proveniente de fontes hídricas antes de utilizar as fontes térmicas, porém muito maior assim que as fontes hídricas se esgotarem. O caminho contrário também é problemático, visto que a economia de recursos hídricos pode causar vertimento da barragem(vazamento), além de aumentar o custo final pois será necessário recorrer à fontes de energia mais caras. Sendo assim, cabe um planejamento adequado que busque minimizar o preço a longo prazo.
+
+PLD do mês atual é calculado de forma que se remunere adequadamente todos os operadores do setor no mercado de curto prazo. Tendo em vista este fato, o planejamento para o SEB afeta diretamente o PLD, pois a quantidade de recursos e os cenários previstos irão determinar o valor calculado.
+
+Entender como os recursos influenciam o preço do PLD num mês futuro pode ser útil tanto para fins de planejamento, como também para a avaliação de risco para empresas que trabalham no setor ou estão associadas, de alguma forma, à dinâmica do setor elétrico.
+
+\vspace{0.4cm}
+\textbf{6. OBJETIVO}
+
+O objetivo geral é entender a relação entre as os dados presentes e históricos fornecidos pelos regulares e o preço do PLD. Além disso busca-se um modelo que consiga prever, com uma margem satisfatória de erro, o preço futuro do PLD.
+
+\vspace{0.4cm}
+\textbf{7. METODOLOGIA}
+
+A primeira parte do trabalho consistirá em entender como funciona o SEB, extrair  e pré-processar os dados que serão futuramente utilizados pela rede neural. O pré-processamento terá como objetivo obter a parte aleatória da série temporal (resíduo). Serão feitas análises buscando a melhor forma de extrair a tendência, a sazonalidade e os componentes senoidais do sinal. 
+
+Os dados tratados serão utilizados como entrada de uma rede neural Perceptron multicamadas. A partir disso será feita uma análise para determinar qual a complexidade da rede neural que mapeia as entradas no valor do PLD. A partir do resultado anterior será treinada uma rede neural para fazer previsões do valor do PLD médios para os meses seguintes. Os resultados obtidos serão analisados e comparados com os trabalhos já feitos na área.
+
+\vspace{0.4cm}
+\textbf{8. MATERIAIS}
+
+Computador, python, dados do ONS \cite{ONS} e da CCEE \cite{CCEE}
+
+\vspace{0.4cm}
+\textbf{9. CRONOGRAMA}
+
+Apresentado graficamente conforme a Figura \ref{Cronograma}.
+
+Fase 1: Estudo sobre o setor elétrico.
+
+Fase 2: Escrita sobre o setor elétrico.
+
+Fase 3: Extração e preparação dos dados para aplicação dos Modelos.
+
+Fase 4: Estudo sobre modelos não lineares e séries temporais.
+
+Fase 5: Escrita sobre modelos não lineares e séries temporais.
+
+Fase 6: Avaliação dos modelos escolhidos
+
+Fase 7: Escrita sobre o método e resultados.
+
+\begin{figure}[H]
+	\centering
+	\begin{ganttchart}[hgrid, vgrid,
+		time slot format=isodate-yearmonth,
+		bar/.append style={fill=black!50},
+		milestone/.append style={fill=black, rounded corners=3pt},
+		time slot unit=month
+		]{2018-10}{2019-07}
+		\gantttitle{Cronograma}{10}\\
+		\gantttitlecalendar{year, month} \\
+		\ganttbar[bar/.append style={fill=black}]{Fase 1}{2018-10}{2018-10}\\
+		\ganttbar[bar/.append style={fill=black}]{Fase 2}{2018-11}{2018-11}\\
+		\ganttbar[bar/.append style={fill=black}]{Fase 3}{2018-12}{2018-12}\\
+		\ganttbar[bar/.append style={fill=black}]{Fase 4}{2019-01}{2019-01}\\
+		\ganttbar[bar/.append style={fill=black}]{Fase 5}{2019-02}{2019-02}\\
+		\ganttbar[bar/.append style={fill=black}]{Fase 6}{2019-03}{2019-05}\\
+		\ganttbar[bar/.append style={fill=black}]{Fase 7}{2019-06}{2019-07}
+		\ganttlink{elem0}{elem1}
+		\ganttlink{elem2}{elem3}
+		\ganttlink{elem3} {elem4}
+		\ganttlink{elem1} {elem4}
+		\ganttlink{elem4} {elem5}
+		\ganttlink{elem5} {elem6}
+	\end{ganttchart}
+	\caption[\small{cronograma}]{\label{Cronograma} \small{Cronograma}}
+\end{figure}
+
+
+\begin{thebibliography}{}
+
+\bibitem{CCEE}"CCEE" - https://www.ccee.org.br/ (Acesso em 04 Maio 2019).
+
+\bibitem{ONS}"ONS" - http://ons.org.br/ (Acesso em 04 Maio 2019).
+
+\end{thebibliography}
+
+      \vspace{2cm}
+      \noindent
+Rio de Janeiro, 21 de julho de 2008
+
+      \vspace{0.5cm}
+      \begin{flushright}
+         \parbox{10cm}{
+            \hrulefill
+
+            \vspace{-.375cm}
+            \centering{Felipe Claudio da Silva Santos - Aluno}
+
+            \vspace{0.9cm}
+            \hrulefill
+
+            \vspace{-.375cm}
+            \centering{Luiz Pereira Calôba - Orientador}
+            
+            \vspace{0.9cm}
+            \hrulefill
+            
+            \vspace{-.375cm}
+            \centering{Natanael Nunes de Moura Junior - Coorientador}
+ 
+            \vspace{0.9cm}
+         }
+      \end{flushright}
+      \vfill
+      
+\end{document}

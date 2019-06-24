@@ -42,8 +42,8 @@ REGION_ABBREVIATION = ['SE', 'S', 'NE', 'N']
 REGION_INDEX = 1
 regionFilter = REGION[REGION_INDEX - 1]
 
-INITIAL_YEAR = 2015
-INTIAL_DATE = '2015-01-01'
+INITIAL_YEAR = 2002
+INTIAL_DATE = '2002-01-01'
 FINAL_DATE = '2018-12-31'
 SAVE_CORR = False
 REGION_NAME = REGION_ABBREVIATION[REGION_INDEX - 1]
@@ -76,6 +76,7 @@ BEST_WINDOW_SIZE_MA = 14
 T_SEASONAL = 12
 
 bestParamString = ' W=' + str(BEST_WINDOW_SIZE_MA) + ' T=' + str(T_SEASONAL)
+
 ##Settings
 
 #Extract all power stations in southeast region
@@ -162,7 +163,7 @@ if SAVE_CORR:
 
 #get total affluent flow
 FStation = AFFilteredSseriesPlot.sum(axis = 1)
-FStation.to_csv('AFSum.csv')
+FStation.to_csv('AFSum_useful.csv')
 
 figureName = PLOT_DIR + 'fftAndDistribution_original.jpg'
 fig = plt.figure()

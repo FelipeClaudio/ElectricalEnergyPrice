@@ -18,6 +18,7 @@ from sklearn.metrics import mean_squared_error
 from math import sqrt
 import itertools
 from scipy import signal
+from scipy.optimize import leastsq
 
 # MatPlotlib
 import matplotlib.pyplot as plt
@@ -174,15 +175,52 @@ def GetSmoothTransition (x, y, windowSize, weightsNumber=5):
     
     return result
 
-def GetResidualExtraction (X, W, T, w0, Q):
+def GetResidualExtraction (X, W, T, w0, Q, filterOutput=False):
     decomposition = sm.tsa.seasonal_decompose(X, model='additive')
     X_trend = GetMovingAverage(X.iloc[:,0], W, transitionType='smooth')
     X_sazonal = GetPeriodicMovingAverageOnlyPrediction(decomposition.seasonal.iloc[:,0], T)
     X_residual = X.iloc[:,0] - X_trend - X_sazonal
     b, a = signal.iirnotch(w0, Q)
-    X_filt_res = signal.lfilter(b, a, X_residual)
+    if filterOutput:
+        return signal.lfilter(b, a, X_residual)
+    else:
+        return X_residual
+
+#def GetCompleteExtraction(X, W, T, w0, Q):
     
-    return X_filt_res
+
+def GetTemporalSeriesCompleteAnalysis(X, PLOT_DIR, title="PLD price",  SAVE_FIGURE=False):
+    plt.figure()
+    ax1 = plt.subplot(2, 1, 1)
+    MIN_WINDOW_SIZE=3
+    bestWLinFit, minMSELinFit, mseLinFit = GetTrendAnalysisByMovingAverageLinFit(X.value, \
+                                             title='MSE for trend extraction for ' + str(title) + ' using moving average and linear fit by window size',\
+                                             MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
+                                             transitionType='smooth',\
+                                             filepath=PLOT_DIR+ str(title) + '_mseTrendLinFitAnalysis.jpg',\
+                                             ax=ax1, SAVE_FIGURE=SAVE_FIGURE)
+    
+    decomposition = sm.tsa.seasonal_decompose(X, model='additive')
+    tsaSeasonal = decomposition.seasonal
+    ax2 = plt.subplot(2, 1, 2)
+    bestTMA,  minTMA, mseTMA = GetSeasonAnalysisByMovingAverageOnly(tsaSeasonal.value, \
+                                             title='MSE for seasonal extraction for ' + str(title) + ' using moving average by lag time',\
+                                             MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
+                                             filepath=PLOT_DIR + str(title) + '_mseSeasonalMAOnlyAnalysis.jpg',\
+                                             ax=ax2, SAVE_FIGURE = False)
+
+    return bestWLinFit, minMSELinFit, mseLinFit, bestTMA,  minTMA, mseTMA
+
+def EstimateSenoidalCycle(signal, guess_amp=1, guess_freq=0.08, guess_phase=0, guess_mean=0):
+    t = np.arange(signal.size)
+    # Define the function to optimize, in this case, we want to minimize the difference
+    # between the actual data and our "guessed" parameters
+    optimize_func = lambda x: x[0]*np.sin(x[1]*t +x[2]) + x[3] - signal
+    est_amp, est_freq, est_phase, est_mean = leastsq(optimize_func, [guess_amp, guess_freq, guess_phase, guess_mean])[0]
+
+    # recreate the fitted curve using the optimized parameters
+    return est_amp*np.sin(est_freq*t+est_phase) + est_mean
+    
 #OTHERS
 
 ##TREND

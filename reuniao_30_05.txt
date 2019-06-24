@@ -1,0 +1,11 @@
+- Colocar desvio padrão nos gráficos
+- Prever X(t+1) a partir de X(t)
+	-Obter a maior quantidade de entradas possíveis - OK
+	-Programar algoritmo genérico para fazer a análise das entradas -OK
+	-Analisar as entradas e extrair o resíduo de cada entrada -OK
+	-Treinar a rede neural -OK
+- Prever y(t+1) usando X(t)
+- Estudar divergência KL - Usar nas distribuições obtidas? -OK
+- Aplicar divergência KL
+- Fazer slide para apresentar para o Calôba e o Trabalho - OK
+- Análise por estimação: erro da estimação de T(t) e ^T(t), Sz(t) e ^Sz(t), Cs(t) e ^Cs(t), R(t) e ^R(t)
