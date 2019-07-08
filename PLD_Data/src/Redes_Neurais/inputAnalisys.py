@@ -152,8 +152,8 @@ y_test = y_norm.iloc[-N_TEST_ROWS:, :]
 # train a simple classifier
 n_folds = 8
 n_inits = 3
-MIN_NEURONS = 41 #best = 37
-MAX_NEURONS = 41
+MIN_NEURONS = 1 #best = 37
+MAX_NEURONS = 120
 
 #partition by folder
 kf = model_selection.KFold(n_splits=n_folds, shuffle=True, random_state=0)
@@ -177,6 +177,8 @@ READ_BEST_MODEL = True
 resultsFolds = pd.DataFrame(columns=['output', 'rmse', 'std', 'a(mean)', 'b(mean)'], index=np.arange(MAX_NEURONS) + 1)
 histVec = [None] * MAX_NEURONS
 NUMBER_OUTPUTS = 8
+
+results_res = pd.DataFrame(columns=['n_neurons', 'output', 'a_comp', 'b_comp'])
 
 for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
     subplotidx = 1
@@ -277,6 +279,16 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
     plt.close()
     
     for out_idx in range(0, NUMBER_OUTPUTS):
+        #all parts of decomposition in order to get original signal
+        plt.subplot(round(NUMBER_OUTPUTS/2), 2, out_idx+1)   
+        plt.plot(plot_x, y.iloc[:, out_idx], 'r', label='Original')
+        plt.plot(plot_x, y_comp[:, out_idx], 'b', label='Previsto')
+        plt.legend()
+
+    plt.savefig(str(n_neurons) + '_previsoes_residuos.jpg')
+    plt.close()
+    
+    for out_idx in range(0, NUMBER_OUTPUTS):
         plt.subplot(round(NUMBER_OUTPUTS/2), 2, out_idx+1)
         #all parts of decomposition in order to get original signal
         y_pred_comp[out_idx] = y_comp[:, out_idx] + X_aux.iloc[:, 3*out_idx: 3*(out_idx)+3].sum(axis=1)
@@ -288,6 +300,18 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
     plt.savefig(str(n_neurons) + '_fit.jpg')
     plt.close()
     
+    for out_idx in range(0, NUMBER_OUTPUTS):
+        plt.subplot(round(NUMBER_OUTPUTS/2), 2, out_idx+1)
+        #all parts of decomposition in order to get original signal
+        plt.scatter(y_comp[:, out_idx], y.iloc[:, out_idx])
+        params = np.polyfit(y.iloc[:, out_idx], y_comp[:, out_idx], 1)
+        y_fit = params[0] * y_comp[:, out_idx] + params[1]
+        plt.plot(y_comp[:, out_idx], y_fit, 'r', label='a=' + str(params[0])+ ' b=' + str(params[1]) )
+        plt.legend()
+        results_res.loc[out_idx % NUMBER_OUTPUTS + (n_neurons -1) * NUMBER_OUTPUTS]  = [n_neurons, out_idx, params[0], params[1]]
+    plt.savefig(str(n_neurons) + '_fit_residuos.jpg')
+    plt.close()
+    
     #del model
     del hist
     print(str(n_neurons) + " neurons")
@@ -295,8 +319,8 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
     #salvar o A, B, std e média obtidos em um csv
     
 mse_mean = mse_matrix.groupby(['n_neurons', 'output']).mean().drop(columns=['fold'])
-
 mse_mean.to_csv('./resultsFold_input.csv')
+results_res.to_csv('./results_input_residual.csv')
 
 
 for output in range(0, NUMBER_OUTPUTS):

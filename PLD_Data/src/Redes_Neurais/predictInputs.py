@@ -1,29 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Jun 22 17:54:28 2019
-
-@author: felipe
-"""
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu May 30 02:22:24 2019
-
-@author: felipe
-"""
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Apr 19 20:10:19 2019
-
-@author: felipe
-"""
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Created on Fri Apr 19 19:23:34 2019
 
@@ -54,6 +28,10 @@ import util_neural_network as util
 from keras.callbacks import ModelCheckpoint
 import time
 from keras.models import load_model
+import sys
+sys.path.append("..")
+import locale
+locale.setlocale(locale.LC_TIME, "en_US.UTF-8") 
 import utilities
 
 plt.close('all')
@@ -78,7 +56,7 @@ FINAL_DATE = '12/2018'
 INITIAL_DATE = '01/2002'
 #CLEAR_SESSION = False
 
-TEST_ROWS = 3
+TEST_ROWS = 12
 
 # import some data to play with
 X = pd.read_csv(INPUT_FOLDER+'/ENA_tsa_decomposition.csv')['residual']
@@ -154,12 +132,12 @@ plt.figure()
 X_pred_comp = [None] * NUMBER_OUTPUTS
 for col in range(0, n_outputs):
     plt.subplot(np.ceil(n_outputs/2), 2, col + 1)
-    X_pred_comp[col] = X_pred.iloc[:, col] + X_aux.iloc[-(TEST_ROWS+1):-1, 3*col: 3*(col)+3].sum(axis=1).reset_index(drop=True)
+    X_pred_comp[col] = X_pred.iloc[:, col] + X_aux.iloc[-(TEST_ROWS):, 3*col: 3*(col)+3].sum(axis=1).reset_index(drop=True)
     plt.scatter(X_pred_comp[col], y_original[col][-TEST_ROWS:])
     params = np.polyfit(X_pred_comp[col], y_original[col][-TEST_ROWS:], 1)
     x_fit = params[0] * X_pred_comp[col] + params[1]
     #plt.scatter(X_pred.iloc[:, col], X_expected.iloc[:,col])
-    #print ( (X_pred.iloc[:, col].values - X_expected.iloc[:,col].values) / X_expected.iloc[:,col].values)
+    print ( (X_pred.iloc[:, col].values - X_expected.iloc[:,col].values) / X_expected.iloc[:,col].values)
     #params = np.polyfit(X_pred.iloc[:,col], X_expected.iloc[:,col], 1)
     #x_fit = params[0] * X_pred.iloc[:, col] + params[1]
     plt.plot(X_pred_comp[col], x_fit, 'r', label='a=' + str(params[0])+ ' b=' + str(params[1]) )

@@ -258,5 +258,105 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 \end{figure}
 
 \section{Redes Neurais Artificiais}
-\paragraph{}Redes Neurais artificiais são sistemas inspirados no princípio de funcionamento do cérebro
-\section{LSTM}
+\paragraph{}Redes Neurais artificiais são modelos computacionais que tentam reproduzir o comportamento observado na estrutura cerebral dos seres vivos. O neurônio pode ser considerado como a célula básica de processamento do cérebro humano. Sua estrutura é divida em três partes principais:
+
+[colocar imagem de neurônio biológico]
+
+\begin{itemize}
+	\item {\textbf{Dendritos: } São responsáveis por receber estímulos elétricos de outros neurônios}
+	\item {\textbf{Corpo celular: } Processa as informações recebidas pelos dendritos e determina se será disparado um impulso elétrico}
+	\item {\textbf{Axônio: } Transmite o impulso elétrico, e, através das sinapses, envia a informação para outros neurônios. Isto ocorre sem contato entre os neurônios}
+\end{itemize}
+
+\paragraph{}A representação matemática desse modelo é dada pela seguinte estrutura:
+[colocar imagem de neurônio artificial]
+
+
+\paragraph{}A entrada do neurônio é um vetor $X = [x_1, x_2 ..., x_n]$
+análogo ao sinais elétricos transmitidos no cérebro humano. Essa entrada é ponderada por um conjunto de pesos $W = [w_1, w_2, ..., w_N]$ e somada em um combinador linear junto com um limiar de ativação $\theta$. O somatório das entradas gera um potencial de ativação $u$, o qual passa por uma função de ativação e gera um sinal de saída que poderá ser propagado para outros neurônios. As informações descritas acima se resumem nas seguintes equações:
+
+\begin{equation} \label{eq_neuronio}
+ u_j = \sum_{i = 1}^{N} w_{ji} \cdot x_i - \theta
+\end{equation}
+
+\begin{equation}
+y = g(u)
+\end{equation}
+
+\paragraph{}Sendo que se considerar $x_0 = 1$ e $w_0 = -\theta$, pode-se definir a equação \ref{eq_neuronio} como:
+
+\begin{equation}
+u = \sum_{i = 0}^{n} w_i \cdot x_i
+\end{equation}
+
+\paragraph{}A função de ativação pode ter diferentes formatos. Caso seja identidade, obtém se um regressor linear [citar bishop]. Este tipo de abordagem traz uma grande desvantagem, pois a saída do sistema sempre será linear. Isto vem do fato de que uma composição de transformações lineares é também uma transformação linear. Sendo assim, nas redes neurais são utilizadas funções não-lineares. Alguns exemplos são:
+\begin{itemize}
+	\item {\textbf{Função Logística: } 
+		\begin{equation} \label{func_logistica}
+			g(u) = \frac{1}{1 + e^{-\beta u}}
+		\end{equation}
+		Onde $\beta$ é uma constante real que modifica a inclinação da reta.
+	}
+
+[colocar figura da função logística]
+	\item {\textbf{Tangente Hiperbólica: }
+		\begin{equation} \label{func_tanh}
+			g(u) = \frac{1 - e^{-\beta u}}{1 + e^{-\beta u}}
+		\end{equation}
+		Onde $-1 \leq g(u) \leq$ para qualquer u e assim como em \ref{funcao_logistica}, $\beta$ também modifica a inclinação da reta.
+	}
+
+[Colocar figura da tangente hiperbólica]
+
+	\item {\textbf{Unidade Linear Retificada - ReLU: [citar Kaming he]}
+		\begin{equation} \label{func_relu}
+			g(u) = \max(0, u)
+		\end{equation}
+		Esta função é linear na parte positiva e zero na parte negativa.
+	}
+
+[Colocar figura da relu]
+
+
+\end{itemize}
+
+\paragraph{}As funções de ativação \ref{func_logistica} e \ref{func_tanh} são deriváveis em todos os pontos e a \ref{func_relu} só não é derivável no ponto zero, porém contorna-se essa limitação fazendo $g'(0) = 0$. A ReLU tem sido essenciais para o estado da arte de redes neurais [citar kaming he]. Essa propriedade será utilizada pelos algoritmos de treinamento baseados no gradiente do erro.
+
+\subsection{Backpropagation}
+\paragraph{}O algoritmo de backpropagtion é bastante utilizado no treinamento de de redes neurais e utiliza o gradiente do erro como base dos cálculos, assim como mencionado anteriormente. Busca-se mover o vetor dos pesos na direção do mínimo local. A expressão de atualização dos pesos é da seguinte forma:
+\begin{equation} \label{grad_desc}
+ w^{(\tau + 1)} = w^{(\tau)} - \eta\nabla E_n w^{(\tau)}
+\end{equation}
+
+\paragraph{}O qual deve ser repetido até que o erro se torne suficientemente pequeno. O gradiente do erro nessa fórmula é dado por:
+
+\begin{equation}
+\nabla E^{(\tau)} = \frac{\partial E}{\partial W_{ji}^{(\tau)}} = \frac{\partial E}{\partial Y_{j}^{(\tau)}} \cdot \frac{\partial Yj^{(\tau)}}{\partial u_j^{(\tau)}} \cdot \frac{\partial u_j^{(\tau)}}{\partial W_{ji}^{(\tau)}}
+\end{equation}
+
+\paragraph{}Têm-se como ideia principal do mesmo avaliar quanto que um determinado peso em uma camada influência no erro da saída e assim, modificá-lo de forma a tornar esse erro menor. Um ponto importante para o sucesso do algoritmo é a normalização da entrada, visto que diminui o tempo de convergência 
+%\paragraph{}Na última camada têm-se que $\frac{\partial E}{\partial Y_j^{(\tau)}} = -(d_{j} - Y_{j}^{(\tau)})$ e nas camadas intermediárias têm-se que $\frac{\partial E}{\partial Y_j^{(\tau)}} = \sum_{k = 1}^{n_{\tau}} \frac{\partial E}{\partial u_{k}^{(\tau)}} \cdot W_{kj}^(\tau)$.
+%
+
+\subsection{Treinamento}
+\paragraph{}Para que a rede consiga de fato "aprender" com os dados é necessário realizar o treinamento da rede neural. Para que o mesmo seja bem sucedido é necessário atentar para alguns fatores como: 
+\begin{itemize}
+	\item {\textbf{Inicialização dos pesos: }Os pesos não devem se iniciados com o mesmo valor, pois isto faria com que cada neurônio interprete a entrada da mesma forma, gerando então uma estrutura simétrica.[citar kaiming he, yam e ryanhsiao]}
+	\item {\textbf{Taxa de aprendizado: }Caso o fator $\eta$ da fórmula \ref{grad_desc} seja um valor muito grande, o algoritmo não conseguirá convergir para um mínimo, porém se $\eta$ for um número muito grande, o treinamento pode levar muita épocas até convergir. Cabe então a que especifica os parâmetros da rede neural escolher um $\eta$ adequado de forma com que a convergência ocorra e não demore demais.}
+	\item {\textbf{Divisão dos dados de entrada: }Uma prática comum para se obter resultados consistentes é dividir os dados em um conjunto de testes e outro de validação, de forma que o conjunto de testes não seja usado no treinamento, sendo assim usado para verificar o quão boa a rede é em mapear saídas para dados desconhecidos. Outra prática comum é dividir o conjunto de treinamento em treino e validação e utilizar a validação cruzada, de forma a realizar vários treinos com a mesma estrutura, permitindo um maior conhecimento sobre o comportamento da rede [citar papers de cross validation].}
+	\item {\textbf{Curva de aprendizado: }É comum também utilizar um gráfico do erro na saída em função da época de treinamento para o conjunto de treinamento e validação. Através do mesmo é possível observar características como overfitting e underfitting e selecionar o conjunto de pesos que tem o melhor compromisso.}
+	\item {\textbf{Quantidade de dados $X$ complexidade da rede: } Outro fator importante a ser observado é a quantidade de dados disponível para treinamento, visto que quanto maior a complexidade estrutural da rede, maior a capacidade de gerar funções complexa, portanto torna-se necessário uma maior quantidade de dados para que a mesma seja treinada sem o efeito de overfitting.}
+\end{itemize}
+
+\subsection{Rede perceptron multicamadas - MLP}
+\paragraph{}Assim como no cérebro, os neurônios artificiais podem ser agrupados em estrutura mais complexas. Para uma camada inicial com N entradas e J saída têm-se:
+\begin{equation}
+Y^{(1)} = g(\sum_{i = 0}^{N} W_{ji}^{(1)} \cdot X_i)
+\end{equation}
+
+\paragraph{}Nas camadas seguintes utiliza-se a saída da camada anterior ($M$ saídas )com entrada na camada atual (camada $H$ com $P$ neurônios). 
+\begin{equation}
+Y^{(p)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
+\end{equation}
+
+
