@@ -119,25 +119,26 @@
 \contentsline {section}{\numberline {3.3}Redes Neurais Artificiais}{25}
 \contentsline {paragraph}{}{25}
 \contentsline {paragraph}{}{26}
-\contentsline {paragraph}{}{26}
-\contentsline {paragraph}{}{26}
-\contentsline {paragraph}{}{26}
-\contentsline {paragraph}{}{27}
-\contentsline {subsection}{\numberline {3.3.1}Backpropagation}{27}
 \contentsline {paragraph}{}{27}
 \contentsline {paragraph}{}{27}
-\contentsline {paragraph}{}{28}
-\contentsline {subsection}{\numberline {3.3.2}Treinamento}{28}
-\contentsline {paragraph}{}{28}
-\contentsline {subsection}{\numberline {3.3.3}Rede perceptron multicamadas - MLP}{29}
+\contentsline {paragraph}{}{27}
+\contentsline {paragraph}{}{29}
+\contentsline {subsection}{\numberline {3.3.1}Backpropagation}{29}
 \contentsline {paragraph}{}{29}
 \contentsline {paragraph}{}{29}
-\contentsline {chapter}{\numberline {4}Conclus\~oes}{30}
+\contentsline {paragraph}{}{29}
+\contentsline {subsection}{\numberline {3.3.2}Rede perceptron multicamadas - MLP}{29}
+\contentsline {paragraph}{}{29}
+\contentsline {paragraph}{}{29}
 \contentsline {paragraph}{}{30}
+\contentsline {subsection}{\numberline {3.3.3}Treinamento}{30}
 \contentsline {paragraph}{}{30}
-\contentsline {chapter}{Bibliografia}{31}
-\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{34}
-\contentsline {paragraph}{}{34}
-\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{35}
-\contentsline {chapter}{\numberline {C}O que \'e um anexo}{37}
+\contentsline {chapter}{\numberline {4}Conclus\~oes}{32}
+\contentsline {paragraph}{}{32}
+\contentsline {paragraph}{}{32}
+\contentsline {chapter}{Bibliografia}{33}
+\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{37}
 \contentsline {paragraph}{}{37}
+\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{38}
+\contentsline {chapter}{\numberline {C}O que \'e um anexo}{40}
+\contentsline {paragraph}{}{40}

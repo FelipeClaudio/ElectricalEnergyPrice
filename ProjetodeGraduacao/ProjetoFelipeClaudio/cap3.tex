@@ -260,7 +260,21 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 \section{Redes Neurais Artificiais}
 \paragraph{}Redes Neurais artificiais são modelos computacionais que tentam reproduzir o comportamento observado na estrutura cerebral dos seres vivos. O neurônio pode ser considerado como a célula básica de processamento do cérebro humano. Sua estrutura é divida em três partes principais:
 
-[colocar imagem de neurônio biológico]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[height=0.25\textheight]{neuronio_biologico.jpg}
+				
+				\caption[\small{Neurônio \cite{neuronio} }]{\label{neuronio_biologico} \small{Neurônio. \cite{neuronio}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
 
 \begin{itemize}
 	\item {\textbf{Dendritos: } São responsáveis por receber estímulos elétricos de outros neurônios}
@@ -269,7 +283,21 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 \end{itemize}
 
 \paragraph{}A representação matemática desse modelo é dada pela seguinte estrutura:
-[colocar imagem de neurônio artificial]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{neuronio_artificial.jpg}
+				
+				\caption[\small{Neurônio \cite{neuronio_artificial} }]{\label{neuronio_artificial} \small{Neurônio Artificial. \cite{neuronio_artificial}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
 
 
 \paragraph{}A entrada do neurônio é um vetor $X = [x_1, x_2 ..., x_n]$
@@ -298,7 +326,21 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 		Onde $\beta$ é uma constante real que modifica a inclinação da reta.
 	}
 
-[colocar figura da função logística]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=0.5\textwidth]{logistic_func.jpg}
+				
+				\caption[\small{Função logística \cite{funcoes_ativacao} }]{\label{logistic_func} \small{Neurônio Artificial. Fonte: \cite{funcoes_ativacao}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
 	\item {\textbf{Tangente Hiperbólica: }
 		\begin{equation} \label{func_tanh}
 			g(u) = \frac{1 - e^{-\beta u}}{1 + e^{-\beta u}}
@@ -306,7 +348,22 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 		Onde $-1 \leq g(u) \leq$ para qualquer u e assim como em \ref{funcao_logistica}, $\beta$ também modifica a inclinação da reta.
 	}
 
-[Colocar figura da tangente hiperbólica]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=0.5\textwidth]{tanh.jpg}
+				
+				\caption[\small{Tangente hiberbólica \cite{tanh} }]{\label{tanh} \small{Tangente Hiperbólica. Fonte: \cite{tanh}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
+
 
 	\item {\textbf{Unidade Linear Retificada - ReLU: [citar Kaming he]}
 		\begin{equation} \label{func_relu}
@@ -315,7 +372,7 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 		Esta função é linear na parte positiva e zero na parte negativa.
 	}
 
-[Colocar figura da relu]
+
 
 
 \end{itemize}
@@ -338,8 +395,21 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 %\paragraph{}Na última camada têm-se que $\frac{\partial E}{\partial Y_j^{(\tau)}} = -(d_{j} - Y_{j}^{(\tau)})$ e nas camadas intermediárias têm-se que $\frac{\partial E}{\partial Y_j^{(\tau)}} = \sum_{k = 1}^{n_{\tau}} \frac{\partial E}{\partial u_{k}^{(\tau)}} \cdot W_{kj}^(\tau)$.
 %
 
+\subsection{Rede perceptron multicamadas - MLP}
+\paragraph{}Assim como no cérebro, os neurônios artificiais podem ser agrupados em estrutura mais complexas. Para uma camada inicial com N entradas e J saída têm-se:
+\begin{equation}
+Y^{(1)} = g(\sum_{i = 0}^{N} W_{ji}^{(1)} \cdot X_i)
+\end{equation}
+
+\paragraph{}Nas camadas seguintes utiliza-se a saída da camada anterior ($M$ saídas) com entrada na camada atual ($P$-ésimo neurônio da camada $H$). 
+\begin{equation}
+Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
+\end{equation}
+
+\paragraph{}As redes MLP tem sido utilizadas em diferentes classes de problemas como classificação de elementos e previsão de séries temporais. [citar exemplos] [citar calôba]. Com o grande crescimento do número de dados disponível para utilização e o desenvolvimento das tecnologias computacionais, têm-se atualmente redes com muitas camadas e neurônios em busca de obter maior capacidade de separação, previsão, além de poder obter informações relevantes sobre neurônios intermediários da rede. [citar trabalhos com deep learning].
+
 \subsection{Treinamento}
-\paragraph{}Para que a rede consiga de fato "aprender" com os dados é necessário realizar o treinamento da rede neural. Para que o mesmo seja bem sucedido é necessário atentar para alguns fatores como: 
+\paragraph{}Para que a rede consiga de fato "aprender" com os dados é necessário realizar o treinamento. Para que o mesmo seja bem sucedido é necessário atentar para alguns fatores como: 
 \begin{itemize}
 	\item {\textbf{Inicialização dos pesos: }Os pesos não devem se iniciados com o mesmo valor, pois isto faria com que cada neurônio interprete a entrada da mesma forma, gerando então uma estrutura simétrica.[citar kaiming he, yam e ryanhsiao]}
 	\item {\textbf{Taxa de aprendizado: }Caso o fator $\eta$ da fórmula \ref{grad_desc} seja um valor muito grande, o algoritmo não conseguirá convergir para um mínimo, porém se $\eta$ for um número muito grande, o treinamento pode levar muita épocas até convergir. Cabe então a que especifica os parâmetros da rede neural escolher um $\eta$ adequado de forma com que a convergência ocorra e não demore demais.}
@@ -347,16 +417,5 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 	\item {\textbf{Curva de aprendizado: }É comum também utilizar um gráfico do erro na saída em função da época de treinamento para o conjunto de treinamento e validação. Através do mesmo é possível observar características como overfitting e underfitting e selecionar o conjunto de pesos que tem o melhor compromisso.}
 	\item {\textbf{Quantidade de dados $X$ complexidade da rede: } Outro fator importante a ser observado é a quantidade de dados disponível para treinamento, visto que quanto maior a complexidade estrutural da rede, maior a capacidade de gerar funções complexa, portanto torna-se necessário uma maior quantidade de dados para que a mesma seja treinada sem o efeito de overfitting.}
 \end{itemize}
-
-\subsection{Rede perceptron multicamadas - MLP}
-\paragraph{}Assim como no cérebro, os neurônios artificiais podem ser agrupados em estrutura mais complexas. Para uma camada inicial com N entradas e J saída têm-se:
-\begin{equation}
-Y^{(1)} = g(\sum_{i = 0}^{N} W_{ji}^{(1)} \cdot X_i)
-\end{equation}
-
-\paragraph{}Nas camadas seguintes utiliza-se a saída da camada anterior ($M$ saídas )com entrada na camada atual (camada $H$ com $P$ neurônios). 
-\begin{equation}
-Y^{(p)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
-\end{equation}
 
 

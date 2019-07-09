@@ -3,48 +3,48 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: Principal.aux
 The style file: coppe.bst
 Database file #1: biblio.bib
+Warning--empty publisher in introSP
 Warning--empty publisher in sTemp
 Warning--empty publisher in apostilaCaloba
-Warning--empty publisher in introSP
-You've used 28 entries,
+You've used 32 entries,
             2465 wiz_defined-function locations,
-            707 strings with 8942 characters,
-and the built_in function-call counts, 4138 in all, are:
-= -- 427
-> -- 120
+            722 strings with 9457 characters,
+and the built_in function-call counts, 4682 in all, are:
+= -- 479
+> -- 136
 < -- 0
-+ -- 58
-- -- 30
-* -- 167
-:= -- 696
-add.period$ -- 31
-call.type$ -- 28
-change.case$ -- 28
++ -- 66
+- -- 34
+* -- 187
+:= -- 784
+add.period$ -- 35
+call.type$ -- 32
+change.case$ -- 32
 chr.to.int$ -- 0
-cite$ -- 31
-duplicate$ -- 219
-empty$ -- 515
-format.name$ -- 30
-if$ -- 1011
+cite$ -- 35
+duplicate$ -- 247
+empty$ -- 587
+format.name$ -- 34
+if$ -- 1143
 int.to.chr$ -- 0
-int.to.str$ -- 28
+int.to.str$ -- 32
 missing$ -- 7
-newline$ -- 88
-num.names$ -- 28
-pop$ -- 141
+newline$ -- 100
+num.names$ -- 32
+pop$ -- 161
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 66
+skip$ -- 78
 stack$ -- 0
 substring$ -- 0
-swap$ -- 57
+swap$ -- 65
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 3
-while$ -- 28
-width$ -- 30
-write$ -- 270
+while$ -- 32
+width$ -- 34
+write$ -- 306
 (There were 3 warnings)

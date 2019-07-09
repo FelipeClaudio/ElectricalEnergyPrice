@@ -1,6 +1,64 @@
 \begin{thebibliography}{10}
 \newcommand{\enquote}[1]{``#1''}
 
+\bibitem{SIN_MAPAS}
+ONS, \enquote{Mapas}, http://ons.org.br/paginas/sobre-o-sin/mapas, 2019,
+  (Acesso em 27 Janeiro 2019).
+
+\bibitem{PrevisaoMultiPassos}
+FILHO, J. C.~R., \emph{Previsão multi-passo a frente do preço de energia
+  elétrica de curto prazo no mercado brasileiro}. Ph.D. dissertation,
+  Universidade Federal do Pará - Instituto de Tecnologia, programa de
+  pós-graduação em engenharia elétrica, 2014.
+
+\bibitem{shampooSales}
+MAKRIDAKIS, W., HYNDMAN, \enquote{Sales of shampoo over a three year period},
+  https://datamarket.com/data/set/22r0/sales-of-shampoo-over-a-three-year-period\#!ds=22r0\&display=line,
+  1998, (Acesso em 9 de Abril 2019).
+
+\bibitem{birthNY}
+(1988), N., \enquote{Monthly New York City births: unknown scale. Jan 1946 ?
+  Dec 1959},
+  https://datamarket.com/data/set/22nv/monthly-new-york-city-births-unknown-scale-jan-1946-dec-1959\#!ds=22nv\&display=line,
+  1988, (Acesso em 9 de Abril 2019).
+
+\bibitem{introSP}
+ORFANIDIS, S.~J., \emph{Introduction to Signal Processing}, 2002.
+
+\bibitem{neuronio}
+ESCOLA, B., \enquote{O que é neurônio?},
+  https://brasilescola.uol.com.br/o-que-e/biologia/o-que-e-neuronio.htm, 2019.
+
+\bibitem{neuronio_artificial}
+VINICIUS, A., \enquote{Redes Neurais Artificiais},
+  https://medium.com/@avinicius.adorno/redes-neurais-artificiais-418a34ea1a39,
+  2017.
+
+\bibitem{funcoes_ativacao}
+SHARMA, S., \enquote{Redes Neurais Artificiais},
+  https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6,
+  2017.
+
+\bibitem{tanh}
+BHATTARAI, S., \enquote{tanh-activation-function},
+  https://saugatbhattarai.com.np/what-is-activation-functions-in-neural-network-nn/logistic-sigmoid-unipolar-tanh-bipolar/,
+  2018.
+
+\bibitem{CCEE_VISAO_GERAL}
+CCEE, \enquote{Visão Geral das Operações CCEE},
+  http://www.ufjf.br/andre\_marcato/files/2010/06/Visao\_Geral\_das\_Operacoes\_CCEE\_2010.pdf,
+  2010, (Acesso em 24 de Fevereiro de 2019).
+
+\bibitem{CCEE_PLD_ANEXO}
+CCEE, \enquote{Preço de Liquidação das Diferenças\_Anexo\_1.0\_formatado -
+  CCEE}, www.ccee.org.br/ccee/documentos/ccee\_059061, 2019, (Acesso em 10 de
+  Fevereiro de 2019).
+
+\bibitem{CCEE_METODOLOGIA_PRECOS}
+CCEE, \enquote{Metodologia de Preços},
+  https://www.ccee.org.br/portal/faces/pages\_publico/o-que-fazemos/como\_ccee\_atua/precos/metodologia\_de\_precos?,
+  2019, (Acesso em 25 de Fevereiro de 2019).
+
 \bibitem{AlteracaoModeloComercializacao}
 SILVA, E. F.~D., \emph{Principais Condicionantes das alterações no modelo de
   comercialização}. M.Sc. dissertation, Escola Politécnica da Universidade de
@@ -41,30 +99,15 @@ ONS, \enquote{Governança},
   http://ons.org.br/paginas/sobre-o-ons/governanca/assembleia-geral, 2019,
   (Acesso em 27 Janeiro 2019).
 
-\bibitem{SIN_MAPAS}
-ONS, \enquote{Mapas}, http://ons.org.br/paginas/sobre-o-sin/mapas, 2019,
-  (Acesso em 27 Janeiro 2019).
-
 \bibitem{PRECO_SPOT}
 CASTRO, N. J.~D., LEITE, A. L. D.~S., \enquote{Preço spot de eletricidade:
   teoria e evidências do caso brasileiro}, \emph{IV Encontro de Enconomia
   Catarinense, 2010, Criciúma}, , 2010.
 
-\bibitem{CCEE_VISAO_GERAL}
-CCEE, \enquote{Visão Geral das Operações CCEE},
-  http://www.ufjf.br/andre\_marcato/files/2010/06/Visao\_Geral\_das\_Operacoes\_CCEE\_2010.pdf,
-  2010, (Acesso em 24 de Fevereiro de 2019).
-
 \bibitem{PrevisaoPrecoFuturoACL}
 CAVALIERE, M.~A., \enquote{Previsão de preços futuros de energia eleétrica no
   ambiente de contratação livre - uma abordagem de equilíbrio de mercado sob
   incertezas}, 2017.
-
-\bibitem{PrevisaoMultiPassos}
-FILHO, J. C.~R., \emph{Previsão multi-passo a frente do preço de energia
-  elétrica de curto prazo no mercado brasileiro}. Ph.D. dissertation,
-  Universidade Federal do Pará - Instituto de Tecnologia, programa de
-  pós-graduação em engenharia elétrica, 2014.
 
 \bibitem{MatrizEnergetica}
 ENERGéTICA, E. D.~P., \enquote{Matriz Energética e Elétrica},
@@ -90,16 +133,6 @@ UFJF, E.~I., \enquote{Especial: A crise energética brasileira},
   http://energiainteligenteufjf.com/especial/especial-a-crise-energetica-brasileira/,
   2019, (Acesso em 26 Fevereiro 2019).
 
-\bibitem{CCEE_PLD_ANEXO}
-CCEE, \enquote{Preço de Liquidação das Diferenças\_Anexo\_1.0\_formatado -
-  CCEE}, www.ccee.org.br/ccee/documentos/ccee\_059061, 2019, (Acesso em 10 de
-  Fevereiro de 2019).
-
-\bibitem{CCEE_METODOLOGIA_PRECOS}
-CCEE, \enquote{Metodologia de Preços},
-  https://www.ccee.org.br/portal/faces/pages\_publico/o-que-fazemos/como\_ccee\_atua/precos/metodologia\_de\_precos?,
-  2019, (Acesso em 25 de Fevereiro de 2019).
-
 \bibitem{MANUAIS}
 CEPEL, \enquote{Documentação Técnica das metodologias e modelos de otimização
   energética do CEPEL},
@@ -113,26 +146,12 @@ SILVA, A. P.~S., \enquote{Previsão do preço de liquidação das diferenças por
 \bibitem{sTemp}
 EHLERS, R.~S., \emph{Análise de Séries Temporais}, 2009.
 
-\bibitem{shampooSales}
-MAKRIDAKIS, W., HYNDMAN, \enquote{Sales of shampoo over a three year period},
-  https://datamarket.com/data/set/22r0/sales-of-shampoo-over-a-three-year-period\#!ds=22r0\&display=line,
-  1998, (Acesso em 9 de Abril 2019).
-
 \bibitem{apostilaCaloba}
 CALôBA, L.~P., \emph{Introdução ao Uso de Redes Neurais na Modelagem de
   Sistemas Dinâmicos e Séries Temporais.}, 2002.
 
 \bibitem{tccDanilo}
-FINANCEIRO, A. D. M. E. A. P. P. A. à. D. N.~M., \enquote{Danilo Filippo
-  Reiszel Pereira}, 2018.
-
-\bibitem{birthNY}
-(1988), N., \enquote{Monthly New York City births: unknown scale. Jan 1946 ?
-  Dec 1959},
-  https://datamarket.com/data/set/22nv/monthly-new-york-city-births-unknown-scale-jan-1946-dec-1959\#!ds=22nv\&display=line,
-  1988, (Acesso em 9 de Abril 2019).
-
-\bibitem{introSP}
-ORFANIDIS, S.~J., \emph{Introduction to Signal Processing}, 2002.
+PEREIRA, D. F.~R., \enquote{Aprendizado de máquina e aprendizado profundo para
+  apoio à decisão no mercado financeiro}, 2018.
 
 \end{thebibliography}
