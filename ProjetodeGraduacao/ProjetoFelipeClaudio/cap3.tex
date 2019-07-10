@@ -258,7 +258,7 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 \end{figure}
 
 \section{Redes Neurais Artificiais}
-\paragraph{}Redes Neurais artificiais são modelos computacionais que tentam reproduzir o comportamento observado na estrutura cerebral dos seres vivos. O neurônio pode ser considerado como a célula básica de processamento do cérebro humano. Sua estrutura é divida em três partes principais:
+\paragraph{}Redes Neurais artificiais são modelos computacionais que tentam reproduzir o comportamento observado na estrutura cerebral dos seres vivos. O neurônio pode ser considerado como a célula básica de processamento do cérebro humano. Sua estrutura é divida em três partes principais \cite{ivan_nunes}:
 
 \begin{figure}[H]
 	\begin{center}
@@ -288,7 +288,7 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 		{
 			\begin{center}
 				
-				\includegraphics[width=\textwidth]{neuronio_artificial.jpg}
+				\includegraphics[width=0.8\textwidth]{neuronio_artificial.jpg}
 				
 				\caption[\small{Neurônio \cite{neuronio_artificial} }]{\label{neuronio_artificial} \small{Neurônio Artificial. \cite{neuronio_artificial}}}
 				
@@ -372,7 +372,21 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 		Esta função é linear na parte positiva e zero na parte negativa.
 	}
 
-
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=0.5\textwidth]{relu.jpg}
+				
+				\caption[\small{ReLU \cite{relu} }]{\label{relu} \small{ReLU. Fonte: \cite{relu}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
 
 
 \end{itemize}
@@ -391,9 +405,23 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 \nabla E^{(\tau)} = \frac{\partial E}{\partial W_{ji}^{(\tau)}} = \frac{\partial E}{\partial Y_{j}^{(\tau)}} \cdot \frac{\partial Yj^{(\tau)}}{\partial u_j^{(\tau)}} \cdot \frac{\partial u_j^{(\tau)}}{\partial W_{ji}^{(\tau)}}
 \end{equation}
 
-\paragraph{}Têm-se como ideia principal do mesmo avaliar quanto que um determinado peso em uma camada influência no erro da saída e assim, modificá-lo de forma a tornar esse erro menor. Um ponto importante para o sucesso do algoritmo é a normalização da entrada, visto que diminui o tempo de convergência 
-%\paragraph{}Na última camada têm-se que $\frac{\partial E}{\partial Y_j^{(\tau)}} = -(d_{j} - Y_{j}^{(\tau)})$ e nas camadas intermediárias têm-se que $\frac{\partial E}{\partial Y_j^{(\tau)}} = \sum_{k = 1}^{n_{\tau}} \frac{\partial E}{\partial u_{k}^{(\tau)}} \cdot W_{kj}^(\tau)$.
-%
+\paragraph{}Têm-se como ideia principal do mesmo avaliar quanto que um determinado peso em uma camada influência no erro da saída e assim, modificá-lo de forma a tornar esse erro menor. Um ponto importante para o sucesso do algoritmo é a normalização da entrada, visto que diminui o tempo de convergência.
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{grad_desc.jpg}
+				
+				\caption[\small{Tangente hiberbólica \cite{relu} }]{\label{grad_desc_fig} \small{Gradiente Descendente desnormalizado e normalizado. Fonte: \cite{relu}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
 
 \subsection{Rede perceptron multicamadas - MLP}
 \paragraph{}Assim como no cérebro, os neurônios artificiais podem ser agrupados em estrutura mais complexas. Para uma camada inicial com N entradas e J saída têm-se:
@@ -408,14 +436,31 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 
 \paragraph{}As redes MLP tem sido utilizadas em diferentes classes de problemas como classificação de elementos e previsão de séries temporais. [citar exemplos] [citar calôba]. Com o grande crescimento do número de dados disponível para utilização e o desenvolvimento das tecnologias computacionais, têm-se atualmente redes com muitas camadas e neurônios em busca de obter maior capacidade de separação, previsão, além de poder obter informações relevantes sobre neurônios intermediários da rede. [citar trabalhos com deep learning].
 
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=0.7\textwidth]{mlp.jpg}
+				
+				\caption[\small{Rede Perceptron Multicamadas \cite{relu} }]{\label{mlp} \small{Rede Perceptron Multicamadas. Fonte: \cite{mlp}}}
+				
+			\end{center}	
+		}
+		
+	\end{center}
+	
+\end{figure}
+
 \subsection{Treinamento}
 \paragraph{}Para que a rede consiga de fato "aprender" com os dados é necessário realizar o treinamento. Para que o mesmo seja bem sucedido é necessário atentar para alguns fatores como: 
 \begin{itemize}
 	\item {\textbf{Inicialização dos pesos: }Os pesos não devem se iniciados com o mesmo valor, pois isto faria com que cada neurônio interprete a entrada da mesma forma, gerando então uma estrutura simétrica.[citar kaiming he, yam e ryanhsiao]}
-	\item {\textbf{Taxa de aprendizado: }Caso o fator $\eta$ da fórmula \ref{grad_desc} seja um valor muito grande, o algoritmo não conseguirá convergir para um mínimo, porém se $\eta$ for um número muito grande, o treinamento pode levar muita épocas até convergir. Cabe então a que especifica os parâmetros da rede neural escolher um $\eta$ adequado de forma com que a convergência ocorra e não demore demais.}
-	\item {\textbf{Divisão dos dados de entrada: }Uma prática comum para se obter resultados consistentes é dividir os dados em um conjunto de testes e outro de validação, de forma que o conjunto de testes não seja usado no treinamento, sendo assim usado para verificar o quão boa a rede é em mapear saídas para dados desconhecidos. Outra prática comum é dividir o conjunto de treinamento em treino e validação e utilizar a validação cruzada, de forma a realizar vários treinos com a mesma estrutura, permitindo um maior conhecimento sobre o comportamento da rede [citar papers de cross validation].}
+	\item {\textbf{Taxa de aprendizado: }Caso o fator $\eta$ da fórmula \ref{grad_desc} seja um valor muito grande, o algoritmo não conseguirá convergir para um mínimo, porém se $\eta$ for um número muito grande, o treinamento pode levar muita épocas até convergir. Cabe então a quem especifica os parâmetros da rede neural escolher um $\eta$ adequado de forma com que a convergência ocorra e não demore demais.}
+	\item {\textbf{Divisão dos dados de entrada: }Uma prática comum para se obter resultados consistentes é dividir os dados em um conjunto de testes e outro de validação, de forma que o conjunto de testes não seja usado no treinamento, sendo assim usado para verificar o quão bom são os resultados da rede para dados desconhecidos. Outra prática comum é dividir o conjunto de treinamento em treino e validação e utilizar a validação cruzada, de forma a realizar vários treinos com a mesma estrutura, permitindo um maior conhecimento sobre o comportamento da rede [citar papers de cross validation].}
 	\item {\textbf{Curva de aprendizado: }É comum também utilizar um gráfico do erro na saída em função da época de treinamento para o conjunto de treinamento e validação. Através do mesmo é possível observar características como overfitting e underfitting e selecionar o conjunto de pesos que tem o melhor compromisso.}
 	\item {\textbf{Quantidade de dados $X$ complexidade da rede: } Outro fator importante a ser observado é a quantidade de dados disponível para treinamento, visto que quanto maior a complexidade estrutural da rede, maior a capacidade de gerar funções complexa, portanto torna-se necessário uma maior quantidade de dados para que a mesma seja treinada sem o efeito de overfitting.}
+	\item {\textbf{Função custo: } Há necessidade de definir qual função de custo será utilizada na avaliação dos resultados da rede. A função mais comum é o erro médio quadrático - \textit{MSE}, porém dependendo da análise que se deseja fazer e do problema a ser resolvido, outras funções podem ser utilizadas como a o erro médio quadrático - \textit{RMSE}, erro absoluto -\textit{MAE} e acurácia - \textit{ACC} [citar paper com essas referências]}
 \end{itemize}
 
 

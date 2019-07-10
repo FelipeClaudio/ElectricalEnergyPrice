@@ -44,6 +44,12 @@ BHATTARAI, S., \enquote{tanh-activation-function},
   https://saugatbhattarai.com.np/what-is-activation-functions-in-neural-network-nn/logistic-sigmoid-unipolar-tanh-bipolar/,
   2018.
 
+\bibitem{relu}
+SARKAR, K., \enquote{ReLU : Not a Differentiable Function: Why used in Gradient
+  Based Optimization? and Other Generalizations of ReLU.},
+  https://medium.com/@kanchansarkar/relu-not-a-differentiable-function-why-used-in-gradient-based-optimization-7fef3a4cece,
+  2018.
+
 \bibitem{CCEE_VISAO_GERAL}
 CCEE, \enquote{Visão Geral das Operações CCEE},
   http://www.ufjf.br/andre\_marcato/files/2010/06/Visao\_Geral\_das\_Operacoes\_CCEE\_2010.pdf,
@@ -153,5 +159,14 @@ CALôBA, L.~P., \emph{Introdução ao Uso de Redes Neurais na Modelagem de
 \bibitem{tccDanilo}
 PEREIRA, D. F.~R., \enquote{Aprendizado de máquina e aprendizado profundo para
   apoio à decisão no mercado financeiro}, 2018.
+
+\bibitem{ivan_nunes}
+SILVA, I. N.~D., SPATTI, D.~H., FLAUZINO, R.~A., \emph{Redes neurais
+  artificiais para engenharia e ciências aplicadas}. Artliber Editora, 2010.
+
+\bibitem{mlp}
+MOREIRA, S., \enquote{Rede Neural Perceptron Multicamadas},
+  https://medium.com/ensina-ai/rede-neural-perceptron-multicamadas-f9de8471f1a9,
+  2018.
 
 \end{thebibliography}
