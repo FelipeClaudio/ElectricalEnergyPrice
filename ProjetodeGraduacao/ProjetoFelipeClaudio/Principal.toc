@@ -133,12 +133,12 @@
 \contentsline {paragraph}{}{30}
 \contentsline {subsection}{\numberline {3.3.3}Treinamento}{31}
 \contentsline {paragraph}{}{31}
-\contentsline {chapter}{\numberline {4}Conclus\~oes}{33}
-\contentsline {paragraph}{}{33}
-\contentsline {paragraph}{}{33}
-\contentsline {chapter}{Bibliografia}{34}
-\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{38}
-\contentsline {paragraph}{}{38}
-\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{39}
-\contentsline {chapter}{\numberline {C}O que \'e um anexo}{41}
-\contentsline {paragraph}{}{41}
+\contentsline {chapter}{\numberline {4}Conclus\~oes}{34}
+\contentsline {paragraph}{}{34}
+\contentsline {paragraph}{}{34}
+\contentsline {chapter}{Bibliografia}{35}
+\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{40}
+\contentsline {paragraph}{}{40}
+\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{41}
+\contentsline {chapter}{\numberline {C}O que \'e um anexo}{43}
+\contentsline {paragraph}{}{43}
