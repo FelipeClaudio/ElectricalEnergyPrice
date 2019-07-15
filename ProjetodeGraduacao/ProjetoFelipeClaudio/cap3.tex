@@ -258,7 +258,7 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 \end{figure}
 
 \section{Redes Neurais Artificiais}
-\paragraph{}Redes Neurais artificiais são modelos computacionais que tentam reproduzir o comportamento observado na estrutura cerebral dos seres vivos. O neurônio pode ser considerado como a célula básica de processamento do cérebro humano. Sua estrutura é divida em três partes principais \cite{apostilaCaloba}  \cite{ivan_nunes} \cite{Gurney}:
+\paragraph{}Redes Neurais artificiais são modelos computacionais que tentam reproduzir o comportamento observado na estrutura cerebral dos seres vivos. O neurônio pode ser considerado a célula básica de processamento do cérebro humano. Sua estrutura é divida em três partes principais \cite{apostilaCaloba}  \cite{ivan_nunes} \cite{Gurney}:
 
 \begin{figure}[H]
 	\begin{center}
@@ -301,7 +301,7 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 
 
 \paragraph{}A entrada do neurônio é um vetor $X = [x_1, x_2 ..., x_n]$
-análogo ao sinais elétricos transmitidos no cérebro humano. Essa entrada é ponderada por um conjunto de pesos $W = [w_1, w_2, ..., w_N]$ e somada em um combinador linear junto com um limiar de ativação $\theta$. O somatório das entradas gera um potencial de ativação $u$, o qual passa por uma função de ativação e gera um sinal de saída que poderá ser propagado para outros neurônios \cite{ivan_nunes}. As informações descritas acima se resumem nas seguintes equações:
+análogo ao sinais elétricos transmitidos no cérebro humano. Essa entrada é ponderada por um conjunto de pesos $W = [w_1, w_2, ..., w_N]$ e somada em um combinador linear junto com um limiar de ativação $\theta$. O somatório das entradas gera um potencial de ativação $u$, o qual passa por uma função de ativação e gera um sinal de saída que poderá ser propagado para outros neurônios \cite{ivan_nunes}. As informações descritas acima se resumem nas seguintes equações \cite{mlp_book}:
 
 \begin{equation} \label{eq_neuronio}
  u_j = \sum_{i = 1}^{N} w_{ji} \cdot x_i - \theta
@@ -391,7 +391,7 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 
 \end{itemize}
 
-\paragraph{}As funções de ativação \ref{func_logistica} e \ref{func_tanh} são deriváveis em todos os pontos e a \ref{func_relu} só não é derivável no ponto zero, porém contorna-se essa limitação fazendo $g'(0) = 0$. A ReLU tem sido essenciais para o estado da arte de redes neurais [citar kaming he]. Essa propriedade será utilizada pelos algoritmos de treinamento baseados no gradiente do erro.
+\paragraph{}As funções de ativação \ref{func_logistica} e \ref{func_tanh} são deriváveis em todos os pontos e a \ref{func_relu} só não é derivável no ponto zero, porém contorna-se essa limitação fazendo $g'(0) = 0$. A ReLU tem sido essencial para o estado da arte de redes neurais \cite{relu} \cite{deep_learning_relu} \cite{relu_recomender} \cite{deep_learning_relu2}. A derivada da função de ativação é utilizada pelos algoritmos de treinamento baseados no gradiente do erro assim como será visto mais à frente.
 
 \subsection{Backpropagation}
 \paragraph{}O algoritmo de backpropagtion é bastante utilizado no treinamento de de redes neurais e utiliza o gradiente do erro como base dos cálculos, assim como mencionado anteriormente \cite{Bishop} \cite{backprop}. Busca-se mover o vetor dos pesos na direção do mínimo local. A expressão de atualização dos pesos é da seguinte forma:
@@ -424,17 +424,17 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 \end{figure}
 
 \subsection{Rede perceptron multicamadas - MLP}
-\paragraph{}Assim como no cérebro, os neurônios artificiais podem ser agrupados em estrutura mais complexas. Para uma camada inicial com N entradas e J saída têm-se:
+\paragraph{}Assim como no cérebro, os neurônios artificiais podem ser agrupados em estrutura mais complexas. Para uma camada inicial com N entradas têm se na J-ésima saída:
 \begin{equation}
 Y^{(1)} = g(\sum_{i = 0}^{N} W_{ji}^{(1)} \cdot X_i)
 \end{equation}
 
-\paragraph{}Nas camadas seguintes utiliza-se a saída da camada anterior ($M$ saídas) com entrada na camada atual ($P$-ésimo neurônio da camada $H$). 
+\paragraph{}Nas camadas seguintes utiliza-se a saída da camada anterior (a qual tem $M$ saídas) como entrada na camada atual. Na fórmula busca-se obter a saída para o $P$-ésimo neurônio da camada $H$. 
 \begin{equation}
 Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 \end{equation}
 
-\paragraph{}As redes MLP tem sido utilizadas em diferentes classes de problemas como classificação de elementos e previsão de séries temporais \cite{apostilaCaloba} \cite{mlp_atmosfera}. [citar exemplos] [citar calôba]. Com o grande crescimento do número de dados disponível para utilização e o desenvolvimento das tecnologias computacionais, têm-se atualmente redes com muitas camadas e neurônios em busca de obter maior capacidade de separação, previsão, além de poder obter informações relevantes sobre neurônios intermediários da rede. [citar trabalhos com deep learning].
+\paragraph{}As redes MLP tem sido utilizadas em diferentes classes de problemas como classificação de elementos e previsão de séries temporais \cite{apostilaCaloba} \cite{ivan_nunes}  \cite{mlp_atmosfera}. Com o grande crescimento do número de dados disponível para utilização e o desenvolvimento das tecnologias computacionais, têm-se atualmente redes com muitas camadas e neurônios em busca de obter maior capacidade de separação, previsão, além de poder obter informações relevantes sobre neurônios intermediários da rede \cite{deep_learning1} \cite{deep_learning_book} \cite{microsoft_dl}.
 
 \begin{figure}[H]
 	\begin{center}
@@ -453,12 +453,13 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 \end{figure}
 
 \subsection{Treinamento}
-\paragraph{}Para que a rede consiga de fato "aprender" com os dados é necessário realizar o treinamento. Para que o mesmo seja bem sucedido é necessário atentar para alguns fatores como: 
+\paragraph{}Para que a rede consiga de fato "aprender" com os dados é necessário realizar o treinamento. Para que o mesmo seja bem sucedido deve-se atentar para alguns fatores como: 
 \begin{itemize}
-	\item {\textbf{Inicialização dos pesos: }Os pesos não devem se iniciados com o mesmo valor, pois isto faria com que cada neurônio interprete a entrada da mesma forma, gerando então uma estrutura simétrica.[citar kaiming he, yam e ryanhsiao]}
+	\item {\textbf{Inicialização dos pesos: }Os pesos não devem se iniciados com o mesmo valor, pois isto faria com que cada neurônio interprete a entrada da mesma forma, gerando então uma estrutura simétrica \cite{relu} \cite{yam} \cite{ryanhsiao}}.
 	
-	\item {\textbf{Função custo: } Há necessidade de definir qual função de custo será utilizada na avaliação dos resultados da rede. A função mais comum é o erro médio quadrático - \textit{MSE}, porém dependendo da análise que se deseja fazer e do problema a ser resolvido, outras funções podem ser utilizadas como a o erro médio quadrático - \textit{RMSE}, erro absoluto -\textit{MAE} e acurácia - \textit{ACC} [citar paper com essas referências]}
-		\item {\textbf{Curva de aprendizado: }É comum também utilizar um gráfico do erro na saída em função da época de treinamento para o conjunto de treinamento e validação. Através do mesmo é possível observar características como overfitting e underfitting e selecionar o conjunto de pesos que tem o melhor compromisso.}
+	\item {\textbf{Função custo: } Há necessidade de definir qual função de custo será utilizada na avaliação dos resultados da rede. A função mais comum é o erro médio quadrático - \textit{MSE}, porém dependendo da análise que se deseja fazer e do problema a ser resolvido, outras funções podem ser utilizadas como a o erro médio quadrático - \textit{RMSE}, erro absoluto -\textit{MAE} e acurácia - \textit{ACC} \cite{tccDanilo}}.
+		
+	\item {\textbf{Curva de aprendizado: }É comum também utilizar um gráfico do erro na saída em função da época de treinamento para o conjunto de treinamento e validação. Através do mesmo é possível observar características como overfitting e underfitting e selecionar o conjunto de pesos que tem o melhor compromisso \cite{data_overfit}.}
 		
 	\item {\textbf{Quantidade de dados $X$ complexidade da rede: } Outro fator importante a ser observado é a quantidade de dados disponível para treinamento, visto que quanto maior a complexidade estrutural da rede, maior a capacidade de gerar funções complexa, portanto torna-se necessário uma maior quantidade de dados para que a mesma seja treinada sem o efeito de overfitting.}
 	
@@ -479,7 +480,7 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 		
 	\end{figure}
 	
-	\item {\textbf{Divisão dos dados de entrada: }Uma prática comum para se obter resultados consistentes é dividir os dados em um conjunto de testes e outro de validação, de forma que o conjunto de testes não seja usado no treinamento, sendo assim usado para verificar o quão bom são os resultados da rede para dados desconhecidos. Outra prática comum é dividir o conjunto de treinamento em treino e validação e utilizar a validação cruzada, de forma a realizar vários treinos com a mesma estrutura, permitindo um maior conhecimento sobre o comportamento da rede [citar papers de cross validation].}
+	\item {\textbf{Divisão dos dados de entrada: }Uma prática comum para se obter resultados consistentes é dividir os dados em um conjunto de testes e outro de validação, de forma que o conjunto de testes não seja usado no treinamento, sendo assim usado para verificar o quão bom são os resultados da rede para dados desconhecidos. Outra prática comum é dividir o conjunto de treinamento em treino e validação e utilizar a validação cruzada, de forma a realizar vários treinos com a mesma arquitetura, permitindo obter melhores resultados no treinamento  \cite{crossValidation}.}
 		\begin{figure}[H]
 		\begin{center}
 			{

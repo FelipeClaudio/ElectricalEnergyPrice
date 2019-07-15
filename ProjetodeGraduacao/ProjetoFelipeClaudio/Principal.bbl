@@ -177,6 +177,10 @@ SILVA, I. N.~D., SPATTI, D.~H., FLAUZINO, R.~A., \emph{Redes neurais
 GURNEY, K., \emph{An Introduction to Neural Networks}. Bristol, PA, USA, Taylor
   \& Francis, Inc., 1997.
 
+\bibitem{mlp_book}
+HILDEBRANDT, T.~H., DINGLE, A., \enquote{Improving C++ Performance Using
+  Temporaries}, \emph{Computer}, v.~29, n.~03, pp.~31--41, mar 1998.
+
 \bibitem{Bishop}
 BISHOP, C.~M., \emph{Pattern Recognition and Machine Learning (Information
   Science and Statistics)}. Berlin, Heidelberg, Springer-Verlag, 2006.
@@ -185,6 +189,20 @@ BISHOP, C.~M., \emph{Pattern Recognition and Machine Learning (Information
 HE, K., ZHANG, X., REN, S., \emph{et~al.}, \enquote{Delving Deep into
   Rectifiers: Surpassing Human-Level Performance on ImageNet Classification},
   \emph{CoRR}, v.~abs/1502.01852, 2015.
+
+\bibitem{deep_learning_relu}
+AGARAP, A.~F., \enquote{Deep Learning using Rectified Linear Units (ReLU)},
+  \emph{CoRR}, v.~abs/1803.08375, 2018.
+
+\bibitem{relu_recomender}
+CHENG, H.-T., KOC, L., HARMSEN, J., \emph{et~al.}, \enquote{Wide \& Deep
+  Learning for Recommender Systems}. In: \emph{Proceedings of the 1st Workshop
+  on Deep Learning for Recommender Systems}, DLRS 2016, pp. 7--10, New York,
+  NY, USA, 2016.
+
+\bibitem{deep_learning_relu2}
+TANG, Y., \enquote{Deep Learning using Support Vector Machines}, \emph{CoRR},
+  v.~abs/1306.0239, 2013.
 
 \bibitem{backprop}
 {Hecht-Nielsen}, \enquote{Theory of the backpropagation neural network}. In:
@@ -196,9 +214,42 @@ GARDNER, M., DORLING, S., \enquote{{Artificial neural networks (the multilayer
   perceptron)---A review of applications in the atmospheric sciences}},
   \emph{Atmospheric Environment}, v.~32, n. 14-15, pp.~2627--2636, 1998.
 
+\bibitem{deep_learning1}
+SCHMIDHUBER, J., \enquote{Deep learning in neural networks: An overview},
+  \emph{Neural Networks}, v.~61, pp.~85 -- 117, 2015.
+
+\bibitem{deep_learning_book}
+DENG, L., YU, D., \enquote{Deep Learning: Methods and Applications},
+  \emph{Foundations and Trends® in Signal Processing}, v.~7, n. 3?4,
+  pp.~197--387, 2014.
+
+\bibitem{microsoft_dl}
+HINTON, G., DENG, L., YU, D., \emph{et~al.}, \enquote{Deep Neural Networks for
+  Acoustic Modeling in Speech Recognition}, \emph{IEEE Signal Processing
+  Magazine}, v.~29, pp.~82--97, November 2012.
+
 \bibitem{mlp}
 MOREIRA, S., \enquote{Rede Neural Perceptron Multicamadas},
   https://medium.com/ensina-ai/rede-neural-perceptron-multicamadas-f9de8471f1a9,
   2018.
+
+\bibitem{yam}
+YAM, J.~Y., CHOW, T.~W., \enquote{A weight initialization method for improving
+  training speed in feedforward neural network}, \emph{Neurocomputing}, v.~30,
+  n.~1, pp.~219 -- 232, 2000.
+
+\bibitem{ryanhsiao}
+HSIAO, T.-C.~R., LIN, C.-W., CHIANG, H.~K., \enquote{Partial least-squares
+  algorithm for weights initialization of backpropagation network},
+  \emph{Neurocomputing}, v.~50, pp.~237 -- 247, 2003.
+
+\bibitem{data_overfit}
+{Russo}, D., {Zou}, J., \enquote{{How much does your data exploration overfit?
+  Controlling bias via information usage}}, \emph{arXiv e-prints}, p.
+  arXiv:1511.05219, Nov 2015.
+
+\bibitem{crossValidation}
+{Arlot}, S., {Celisse}, A., \enquote{{A survey of cross-validation procedures
+  for model selection}}, \emph{arXiv e-prints}, p. arXiv:0907.4728, Jul 2009.
 
 \end{thebibliography}

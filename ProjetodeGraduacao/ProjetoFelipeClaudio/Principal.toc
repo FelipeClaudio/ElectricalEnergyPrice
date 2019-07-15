@@ -137,8 +137,8 @@
 \contentsline {paragraph}{}{34}
 \contentsline {paragraph}{}{34}
 \contentsline {chapter}{Bibliografia}{35}
-\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{40}
-\contentsline {paragraph}{}{40}
-\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{41}
-\contentsline {chapter}{\numberline {C}O que \'e um anexo}{43}
-\contentsline {paragraph}{}{43}
+\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{41}
+\contentsline {paragraph}{}{41}
+\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{42}
+\contentsline {chapter}{\numberline {C}O que \'e um anexo}{44}
+\contentsline {paragraph}{}{44}
