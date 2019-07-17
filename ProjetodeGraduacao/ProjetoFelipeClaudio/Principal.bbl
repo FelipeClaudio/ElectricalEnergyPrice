@@ -1,8 +1,8 @@
 \begin{thebibliography}{10}
 \newcommand{\enquote}[1]{``#1''}
 
-\bibitem{SIN_MAPAS}
-ONS, \enquote{Mapas}, http://ons.org.br/paginas/sobre-o-sin/mapas, 2019,
+\bibitem{ONS}
+ONS, \enquote{Operador Nacional do Sistema Elétrico}, http://ons.org.br/, 2019,
   (Acesso em 27 Janeiro 2019).
 
 \bibitem{PrevisaoMultiPassos}
@@ -59,20 +59,9 @@ DABBURA, I., \enquote{Gradient Descent Algorithm and Its Variants},
 COUTO, E., \enquote{Bias vs. Variância (Parte 2)},
   https://ericcouto.wordpress.com/2013/07/18/bias-vs-variancia-parte-2/, 2013.
 
-\bibitem{CCEE_VISAO_GERAL}
-CCEE, \enquote{Visão Geral das Operações CCEE},
-  http://www.ufjf.br/andre\_marcato/files/2010/06/Visao\_Geral\_das\_Operacoes\_CCEE\_2010.pdf,
-  2010, (Acesso em 24 de Fevereiro de 2019).
-
-\bibitem{CCEE_PLD_ANEXO}
-CCEE, \enquote{Preço de Liquidação das Diferenças\_Anexo\_1.0\_formatado -
-  CCEE}, www.ccee.org.br/ccee/documentos/ccee\_059061, 2019, (Acesso em 10 de
-  Fevereiro de 2019).
-
-\bibitem{CCEE_METODOLOGIA_PRECOS}
-CCEE, \enquote{Metodologia de Preços},
-  https://www.ccee.org.br/portal/faces/pages\_publico/o-que-fazemos/como\_ccee\_atua/precos/metodologia\_de\_precos?,
-  2019, (Acesso em 25 de Fevereiro de 2019).
+\bibitem{CCEE}
+CCEE, \enquote{Câmara de Comercialização de Energia Elétrica},
+  https://www.ccee.org.br/, 2019, (Acesso em 31 Janeiro 2019).
 
 \bibitem{AlteracaoModeloComercializacao}
 SILVA, E. F.~D., \emph{Principais Condicionantes das alterações no modelo de
@@ -85,34 +74,10 @@ SILVA, B. G.~D., \emph{Evolução do setor elétrico brasileiro no contexto
   Ph.D. dissertation, Universidade de São Paulo - Programa de pós-graduação em
   energia EP-FEA-IEE-IF, 2011.
 
-\bibitem{CCEE_COM_QUEM_SE_RELACIONA}
-CCEE, \enquote{Com quem se relaciona},
-  https://www.ccee.org.br/portal/faces/pages\_publico/onde-atuamos/com\_quem\_se\_relaciona,
-  2019, (Acesso em 31 Janeiro 2019).
-
-\bibitem{CCEE_RAZAO_SER}
-CCEE, \enquote{A CCE},
-  https://www.ccee.org.br/portal/faces/pages\_publico/quem-somos/razao-de-ser,
-  2019, (Acesso em 31 Janeiro 2019).
-
-\bibitem{ONS_O_QUE_E}
-ONS, \enquote{O Sistema Interligado Nacional},
-  http://ons.org.br/paginas/sobre-o-ons/o-que-e-ons, 2019, (Acesso em 27
-  Janeiro 2019).
-
-\bibitem{EPE_O_QUE_FAZEMOS}
-EPE, \enquote{O que fazemos}, http://www.epe.gov.br/pt/a-epe/o-que-fazemos,
-  2019, (Acesso em 31 Janeiro 2019).
-
-\bibitem{SIN}
-ONS, \enquote{O Sistema Interligado Nacional},
-  http://ons.org.br/paginas/sobre-o-sin/o-que-e-o-sin, 2019, (Acesso em 27
-  Janeiro 2019).
-
-\bibitem{SIN_GOVERNANCIA}
-ONS, \enquote{Governança},
-  http://ons.org.br/paginas/sobre-o-ons/governanca/assembleia-geral, 2019,
-  (Acesso em 27 Janeiro 2019).
+\bibitem{EPE}
+EPE, \enquote{Empresa de Pesquisa Energética},
+  http://www.epe.gov.br/pt/abcdenergia/matriz-energetica-e-eletrica, 2018,
+  (Acesso em 26 Janeiro 2019).
 
 \bibitem{PRECO_SPOT}
 CASTRO, N. J.~D., LEITE, A. L. D.~S., \enquote{Preço spot de eletricidade:
@@ -124,11 +89,6 @@ CAVALIERE, M.~A., \enquote{Previsão de preços futuros de energia eleétrica no
   ambiente de contratação livre - uma abordagem de equilíbrio de mercado sob
   incertezas}, 2017.
 
-\bibitem{MatrizEnergetica}
-ENERGéTICA, E. D.~P., \enquote{Matriz Energética e Elétrica},
-  http://www.epe.gov.br/pt/abcdenergia/matriz-energetica-e-eletrica, 2018,
-  (Acesso em 26 Janeiro 2019).
-
 \bibitem{SmartGrid}
 BARRETTO, E. P. B.~M., \enquote{Smart grid: Eficiência energética e a geração
   distribuida a partir das redes inteligentes}, 2018.
@@ -137,11 +97,6 @@ BARRETTO, E. P. B.~M., \enquote{Smart grid: Eficiência energética e a geração
 ANEEL, \enquote{Resolução normativa nº 482, de 17 de abrid de 2012},
   http://www2.aneel.gov.br/cedoc/ren2012482.pdf, 2019, (Acesso em 26 Fevereiro
   2019).
-
-\bibitem{CCEE_PRECO_PLD}
-CCEE, \enquote{Preço Médio da CCEE},
-  https://www.ccee.org.br/portal/faces/pages\_publico/o-que-fazemos/como\_ccee\_atua/precos/precos\_medios,
-  2019, (Acesso em 4 de Fevereiro de 2019).
 
 \bibitem{CRISE_2014}
 UFJF, E.~I., \enquote{Especial: A crise energética brasileira},
@@ -157,6 +112,16 @@ CEPEL, \enquote{Documentação Técnica das metodologias e modelos de otimização
 \bibitem{TCC_PLD}
 SILVA, A. P.~S., \enquote{Previsão do preço de liquidação das diferenças por
   meio de redes neurais artificiais}, 2018.
+
+\bibitem{RNA_DIRETA_E_RECORRENTE}
+JUNIOR, F. R.~P., \emph{Redes neurais diretas e recorrentes na previsão do
+  preço de energia elétrica de curto prazo no mercado brasileiro}. M.Sc.
+  dissertation, Universidade Federal do Pará, 2016.
+
+\bibitem{RNA_PRECO_SPOT}
+RODRIGUES, A.~L., \emph{Redes neurais artificiais aplicadas na previsão de
+  preços do mercado spot de energia elétrica}. M.Sc. dissertation, Universidade
+  de São Paulo, 2009.
 
 \bibitem{sTemp}
 EHLERS, R.~S., \emph{Análise de Séries Temporais}, 2009.
