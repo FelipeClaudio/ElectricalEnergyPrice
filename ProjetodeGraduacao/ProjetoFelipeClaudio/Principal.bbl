@@ -11,6 +11,16 @@ FILHO, J. C.~R., \emph{Previsão multi-passo a frente do preço de energia
   Universidade Federal do Pará - Instituto de Tecnologia, programa de
   pós-graduação em engenharia elétrica, 2014.
 
+\bibitem{CCEE}
+CCEE, \enquote{Câmara de Comercialização de Energia Elétrica},
+  https://www.ccee.org.br/, 2019, (Acesso em 31 Janeiro 2019).
+
+\bibitem{PSF_forecast}
+{Martinez Alvarez}, F., {Troncoso}, A., {Riquelme}, J.~C., \emph{et~al.},
+  \enquote{Energy Time Series Forecasting Based on Pattern Sequence
+  Similarity}, \emph{IEEE Transactions on Knowledge and Data Engineering},
+  v.~23, n.~8, pp.~1230--1243, Aug 2011.
+
 \bibitem{shampooSales}
 MAKRIDAKIS, W., HYNDMAN, \enquote{Sales of shampoo over a three year period},
   https://datamarket.com/data/set/22r0/sales-of-shampoo-over-a-three-year-period\#!ds=22r0\&display=line,
@@ -58,10 +68,6 @@ DABBURA, I., \enquote{Gradient Descent Algorithm and Its Variants},
 \bibitem{validacao_cruzada}
 COUTO, E., \enquote{Bias vs. Variância (Parte 2)},
   https://ericcouto.wordpress.com/2013/07/18/bias-vs-variancia-parte-2/, 2013.
-
-\bibitem{CCEE}
-CCEE, \enquote{Câmara de Comercialização de Energia Elétrica},
-  https://www.ccee.org.br/, 2019, (Acesso em 31 Janeiro 2019).
 
 \bibitem{AlteracaoModeloComercializacao}
 SILVA, E. F.~D., \emph{Principais Condicionantes das alterações no modelo de
@@ -122,6 +128,15 @@ JUNIOR, F. R.~P., \emph{Redes neurais diretas e recorrentes na previsão do
 RODRIGUES, A.~L., \emph{Redes neurais artificiais aplicadas na previsão de
   preços do mercado spot de energia elétrica}. M.Sc. dissertation, Universidade
   de São Paulo, 2009.
+
+\bibitem{TCC_FABIANE}
+NASCIMENTO, F. B.~D., \enquote{Redes Neurais Artificiais Aplicadas à Predição
+  do Preço De Liquidação das Diferenças no Mercado De Energia}, 2017.
+
+\bibitem{GARCH_PLD}
+SOUSA, A. J. S.~D., \emph{Análise e Previsão da Volatilidade do Preçode
+  Liquidação das Diferençasno Mercado Brasileiro Utilizando o Modelo GARCH}.
+  M.Sc. dissertation, Universidade Federal da Bahia, 2013.
 
 \bibitem{sTemp}
 EHLERS, R.~S., \emph{Análise de Séries Temporais}, 2009.
