@@ -93,6 +93,8 @@
 \contentsline {paragraph}{}{16}
 \contentsline {paragraph}{}{16}
 \contentsline {paragraph}{}{16}
+\contentsline {paragraph}{}{17}
+\contentsline {paragraph}{}{17}
 \contentsline {chapter}{\numberline {3}Series Temporais e Aprendizado de M\'aquina}{18}
 \contentsline {paragraph}{}{18}
 \contentsline {section}{\numberline {3.1}S\'eries Temporais}{18}

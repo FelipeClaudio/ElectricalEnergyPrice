@@ -138,6 +138,11 @@ SOUSA, A. J. S.~D., \emph{Análise e Previsão da Volatilidade do Preçode
   Liquidação das Diferençasno Mercado Brasileiro Utilizando o Modelo GARCH}.
   M.Sc. dissertation, Universidade Federal da Bahia, 2013.
 
+\bibitem{simple_forecast}
+{Rodriguez}, C.~P., {Anders}, G.~J., \enquote{Energy price forecasting in the
+  Ontario competitive power system market}, \emph{IEEE Transactions on Power
+  Systems}, v.~19, n.~1, pp.~366--374, Feb 2004.
+
 \bibitem{sTemp}
 EHLERS, R.~S., \emph{Análise de Séries Temporais}, 2009.
 
