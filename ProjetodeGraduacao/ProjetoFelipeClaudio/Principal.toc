@@ -41,6 +41,9 @@
 \contentsline {paragraph}{}{x}
 \contentsline {paragraph}{}{x}
 \contentsline {paragraph}{}{x}
+\contentsline {paragraph}{}{x}
+\contentsline {paragraph}{}{x}
+\contentsline {paragraph}{}{xi}
 \contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{1}
 \contentsline {section}{\numberline {1.1}Tema}{1}
 \contentsline {paragraph}{}{1}
@@ -95,6 +98,7 @@
 \contentsline {paragraph}{}{16}
 \contentsline {paragraph}{}{17}
 \contentsline {paragraph}{}{17}
+\contentsline {paragraph}{}{17}
 \contentsline {chapter}{\numberline {3}Series Temporais e Aprendizado de M\'aquina}{18}
 \contentsline {paragraph}{}{18}
 \contentsline {section}{\numberline {3.1}S\'eries Temporais}{18}
@@ -102,13 +106,13 @@
 \contentsline {paragraph}{}{18}
 \contentsline {paragraph}{}{19}
 \contentsline {paragraph}{}{19}
-\contentsline {paragraph}{}{20}
+\contentsline {paragraph}{}{19}
 \contentsline {subsection}{\numberline {3.1.1}Tend\^encia}{20}
 \contentsline {paragraph}{}{20}
 \contentsline {paragraph}{}{20}
 \contentsline {paragraph}{}{20}
 \contentsline {paragraph}{}{20}
-\contentsline {paragraph}{}{21}
+\contentsline {paragraph}{}{20}
 \contentsline {paragraph}{}{21}
 \contentsline {paragraph}{}{21}
 \contentsline {paragraph}{}{21}
@@ -128,7 +132,6 @@
 \contentsline {paragraph}{}{24}
 \contentsline {paragraph}{}{25}
 \contentsline {section}{\numberline {3.2}Processamento de Sinais}{26}
-\contentsline {paragraph}{}{26}
 \contentsline {paragraph}{}{26}
 \contentsline {paragraph}{}{26}
 \contentsline {paragraph}{}{26}
@@ -154,8 +157,8 @@
 \contentsline {paragraph}{}{36}
 \contentsline {paragraph}{}{36}
 \contentsline {chapter}{Bibliografia}{37}
-\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{42}
-\contentsline {paragraph}{}{42}
-\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{43}
-\contentsline {chapter}{\numberline {C}O que \'e um anexo}{45}
-\contentsline {paragraph}{}{45}
+\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{43}
+\contentsline {paragraph}{}{43}
+\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{44}
+\contentsline {chapter}{\numberline {C}O que \'e um anexo}{46}
+\contentsline {paragraph}{}{46}
