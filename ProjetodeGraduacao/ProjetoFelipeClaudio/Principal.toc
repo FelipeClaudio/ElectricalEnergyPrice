@@ -44,6 +44,7 @@
 \contentsline {paragraph}{}{x}
 \contentsline {paragraph}{}{x}
 \contentsline {paragraph}{}{xi}
+\contentsline {paragraph}{}{xi}
 \contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{1}
 \contentsline {section}{\numberline {1.1}Tema}{1}
 \contentsline {paragraph}{}{1}
@@ -153,12 +154,27 @@
 \contentsline {paragraph}{}{32}
 \contentsline {subsection}{\numberline {3.3.3}Treinamento}{33}
 \contentsline {paragraph}{}{33}
-\contentsline {chapter}{\numberline {4}Conclus\~oes}{36}
+\contentsline {chapter}{\numberline {4}M\'etodo}{36}
 \contentsline {paragraph}{}{36}
+\contentsline {section}{\numberline {4.1}Aquisi\c c\~ao dos dados}{36}
 \contentsline {paragraph}{}{36}
-\contentsline {chapter}{Bibliografia}{37}
-\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{43}
-\contentsline {paragraph}{}{43}
-\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{44}
-\contentsline {chapter}{\numberline {C}O que \'e um anexo}{46}
+\contentsline {section}{\numberline {4.2}Pr\'e-Processamento}{37}
+\contentsline {paragraph}{}{37}
+\contentsline {paragraph}{}{37}
+\contentsline {paragraph}{}{37}
+\contentsline {paragraph}{}{37}
+\contentsline {paragraph}{}{37}
+\contentsline {paragraph}{}{38}
+\contentsline {section}{\numberline {4.3}Rede Neural}{38}
+\contentsline {paragraph}{}{38}
+\contentsline {paragraph}{}{38}
+\contentsline {paragraph}{}{38}
+\contentsline {chapter}{\numberline {5}Conclus\~oes}{39}
+\contentsline {paragraph}{}{39}
+\contentsline {paragraph}{}{39}
+\contentsline {chapter}{Bibliografia}{40}
+\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{46}
 \contentsline {paragraph}{}{46}
+\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{47}
+\contentsline {chapter}{\numberline {C}O que \'e um anexo}{49}
+\contentsline {paragraph}{}{49}

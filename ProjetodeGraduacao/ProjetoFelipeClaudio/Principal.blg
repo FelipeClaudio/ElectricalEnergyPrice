@@ -6,45 +6,45 @@ Database file #1: biblio.bib
 Warning--empty publisher in introSP
 Warning--empty publisher in sTemp
 Warning--empty publisher in apostilaCaloba
-You've used 53 entries,
+You've used 54 entries,
             2465 wiz_defined-function locations,
-            860 strings with 13457 characters,
-and the built_in function-call counts, 11643 in all, are:
-= -- 1310
-> -- 336
+            865 strings with 13616 characters,
+and the built_in function-call counts, 11779 in all, are:
+= -- 1323
+> -- 340
 < -- 13
-+ -- 137
-- -- 84
-* -- 689
-:= -- 1836
-add.period$ -- 64
-call.type$ -- 53
-change.case$ -- 57
++ -- 139
+- -- 85
+* -- 694
+:= -- 1858
+add.period$ -- 65
+call.type$ -- 54
+change.case$ -- 58
 chr.to.int$ -- 0
-cite$ -- 56
-duplicate$ -- 617
-empty$ -- 1257
-format.name$ -- 84
-if$ -- 2905
+cite$ -- 57
+duplicate$ -- 624
+empty$ -- 1275
+format.name$ -- 85
+if$ -- 2938
 int.to.chr$ -- 0
-int.to.str$ -- 53
+int.to.str$ -- 54
 missing$ -- 32
-newline$ -- 163
-num.names$ -- 53
-pop$ -- 215
+newline$ -- 166
+num.names$ -- 54
+pop$ -- 220
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 298
+skip$ -- 301
 stack$ -- 0
 substring$ -- 410
-swap$ -- 233
+swap$ -- 235
 text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 3
-while$ -- 73
-width$ -- 55
-write$ -- 543
+while$ -- 74
+width$ -- 56
+write$ -- 552
 (There were 3 warnings)

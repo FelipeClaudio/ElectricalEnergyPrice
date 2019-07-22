@@ -1,6 +1,6 @@
 \paragraph{}O objetivo deste capitulo é trazer a fundamentação teórica das técnicas utilizadas neste trabalho. Em primeiro lugar será abordada a teoria, aplicações e dificuldades relacionadas às séries temporais. Logo após, serão apresentados os modelos de aprendizados de máquina utilizados como redes neurais MLP.
 
-\section{Séries Temporais}
+\section{Séries Temporais} \label{series_temporais}
 \paragraph{}Uma série temporal é composta por uma coleção de observações feitas de forma sequencial e dependente \cite{sTemp}. Essa ordem da sequência é dada pelo tempo, o qual pode ser contínuo ou discreto. No primeiro caso, $T = {t : t_1 < t < t_2}$ e a série temporal é definida como $\{X(t) : t \in T\}$, já no segundo caso, $T = \{t_1, t_2, ... , t_n\}$ e a série temporal é definida como $\{X_t : t \in T\}$, onde X é a variável observada. Geralmente define-se o T para o caso discreto como $T = \{1, 2, ..., n\}$ por questões de simplicidade. Neste trabalho será utilizado o caso discreto, dado que a amostragem do sinal tem periodicidade mensal. Sendo assim, os exemplos dados no trabalho serão discretos também.
 
 \paragraph{}Assim como o tempo, os valores da variável $X_t$ podem ser contínuos ou discretos de acordo com o fenômeno que se observa. Alguns exemplos de fenômenos temporais com valores contínuos são a temperatura em um determinada região, volume de água em uma bacia hidrográfica e o peso de um indivíduo. Já como exemplo de fenômenos temporais com valores discretos podem ser citados o número  viagens de avião, quantidade de nascimentos, de carros produzidos por uma montadora etc. Todos esse casos estão relacionados com um período de observação próprio, podendo ser uma janela de meses, anos, até mesmo décadas de observações de uma determinada variável.
@@ -448,7 +448,7 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 	
 \end{figure}
 
-\subsection{Treinamento}
+\subsection{Treinamento} \label{treinamento_mlp}
 \paragraph{}Para que a rede consiga de fato "aprender" com os dados é necessário realizar o treinamento. Para que o mesmo seja bem sucedido deve-se atentar para alguns fatores como: 
 \begin{itemize}
 	\item {\textbf{Inicialização dos pesos: }Os pesos não devem se iniciados com o mesmo valor, pois isto faria com que cada neurônio interprete a entrada da mesma forma, gerando então uma estrutura simétrica \cite{relu} \cite{yam} \cite{ryanhsiao}}.

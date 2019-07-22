@@ -253,4 +253,9 @@ HSIAO, T.-C.~R., LIN, C.-W., CHIANG, H.~K., \enquote{Partial least-squares
 {Arlot}, S., {Celisse}, A., \enquote{{A survey of cross-validation procedures
   for model selection}}, \emph{arXiv e-prints}, p. arXiv:0907.4728, Jul 2009.
 
+\bibitem{minMaxScaler}
+LEARN, S., \enquote{sklearn.preprocessing.MinMaxScaler},
+  https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html,
+  2019.
+
 \end{thebibliography}
