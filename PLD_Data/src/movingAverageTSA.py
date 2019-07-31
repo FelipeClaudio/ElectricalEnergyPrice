@@ -57,6 +57,7 @@ plt.close('all')
 SAVE_FIG = True
 
 MIN_WINDOW_SIZE = 3
+bestWString =  ' W=' + str(BEST_WINDOW_SIZE_MA)
 bestParamString = ' W=' + str(BEST_WINDOW_SIZE_MA) + ' T=' + str(T_SEASONAL)
 
 textVec = {
@@ -70,12 +71,12 @@ textVec = {
            "trend_fft_dist": ["FFT and distribution of PLD trend", "FFT e distribuição da tendência do PLD"],
            "trend_mse_linfit": ["MSE for trend extraction for PLD price using moving average and linear fit by window size", \
                                 "MSE para a extração de tendência do PLD usando média móvel e fit linear por tamanho da janela"],
-           "trend_mse_ma": ["MSE for trend extraction for PLD price using moving average and linear fit by window size", \
-                                "MSE para a extração de tendência do PLD usando média móvel e fit linear por tamanho da janela"],
-           "seassonal_mse_linfit": ["MSE for seasonal extraction for PLD price using moving average and linear fit by lag time", \
-                                "MSE para a extração da sazonalidade do PLD usando média móvel e fit linear por lags temporais"],
-           "seasonal_mse_ma": ["MSE for seasonal extraction for PLD price using moving average and linear fit by lag time", \
-                                "MSE para a extração de sazonalidade do PLD usando média móvel e fit linear por lags temporais"],
+           "trend_mse_ma": ["MSE for trend extraction for PLD price using moving average", \
+                                "MSE para a extração de tendência do PLD usando média móvel"],
+           "seasonal_mse_linfit": ["MSE for seasonal extraction for PLD price using linear regression by lag time", \
+                                "MSE para a extração da sazonalidade do PLD usando regressão linear por lags temporais"],
+           "seasonal_mse_ma": ["MSE for seasonal extraction for PLD price using moving average ", \
+                                "MSE para a extração de sazonalidade do PLD usando média móvel"],
            "seasonal_dist": ["Distribution of PLD's extracted seasonality","Ditribuição da sazonalidade extraída do PLD"],
            "seasonal_fft": ["FFT of extracted seasonality","FFT da sazonalidade extraída"],
            "seasonal_fft_dist": ["FFT and distribution of PLD seasonality", "FFT e distribuição da sazonalidade do PLD"],
@@ -140,15 +141,15 @@ ax1 = plt.subplot(1, 2, 1)
 #pldTrend = tr.GetMovingAverage(mPLDSE.price, BEST_WINDOW_SIZE_MA)
 pldTrend = tr.GetMovingAverage(mPLDSE.price, BEST_WINDOW_SIZE_MA, transitionType='smooth')
 util.PlotDistribution(pldTrend, xTitle=textVec["pld_price"][language], yTitle=textVec["n_occur"][language],\
-                      plotTitle=textVec["trend_ext"][language] + bestParamString,\
+                      plotTitle=textVec["trend_ext"][language] + bestWString,\
                       filepath=PLOT_DIR+'distributionTrend'+ suffix +'.jpg',\
                       ax=ax1, SAVE_FIGURE = False)
 
 ax2= plt.subplot(1, 2, 2)
 util.FFT(pldTrend, xlabel=textVec["norm_freq"][language], ylabel='Magnitude', \
-         title=textVec["trend_ext"][language] + bestParamString, figureName=PLOT_DIR+'fftTrend'+ suffix +'.jpg', \
+         title=textVec["trend_ext"][language] + bestWString, figureName=PLOT_DIR+'fftTrend'+ suffix +'.jpg', \
          ax=ax2, showPlot=True, SAVE_FIGURE=SAVE_FIG)
-fig.suptitle(textVec["trend_fft_dist"][language] + bestParamString)
+fig.suptitle(textVec["trend_fft_dist"][language] + bestWString)
 
 if SAVE_FIG:
     plt.savefig(figureName, bbox_inches='tight')
@@ -189,7 +190,7 @@ figureName = PLOT_DIR + 'mseComparation_tseasonal'+ suffix +'.jpg'
 fig = plt.figure()
 ax1 = plt.subplot(2, 1, 1)
 bestTLinFit,  minTLinFit, mseTLinFit = tr.GetSeasonAnalysisByMovingAverageLinFit(tsaSeasonal.price, \
-                                         title=textVec["trend_mse_linfit"][language],\
+                                         title=textVec["seasonal_mse_linfit"][language],\
                                          MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
                                          filepath=PLOT_DIR+'mseSeasonalLinFitAnalysis.jpg',\
                                          ax=ax1, SAVE_FIGURE = False)

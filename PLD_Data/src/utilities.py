@@ -41,7 +41,7 @@ class language(Enum):
 defaultMask = np.array([0, 1, 2, 3, 4, 5, 6, 18, 19])
 
 def FFT(y, xlabel, ylabel, title, figureName, T=1.0, \
-        axText="0.5rad/s = 2 months", \
+        axText="0.5rad/s = 2 meses", \
         ax=None, showPlot=False, SAVE_FIGURE=False):
     # Number of sample points
     N = y.size

@@ -63,7 +63,7 @@ y_t = \dfrac{1}{2q + 1} \sum_{j = -q}^{q} x_{t + j}
 
 \paragraph{}O resultado do filtro acima é não-causal, o que impede que o processamento seja utilizado para a previsão de séries. Sendo assim, uma outra abordagem possível é fazer um deslocamento no filtro para que sejam utilizadas somente amostras do passado, conforme a equação a seguir:
 
-\begin{equation}
+\begin{equation}\label{mediaMovelSimples}
 	y_t =  \dfrac{1}{2q + 1} \sum_{j = -2q}^{0} x_{t+j}
 \end{equation} 
 
