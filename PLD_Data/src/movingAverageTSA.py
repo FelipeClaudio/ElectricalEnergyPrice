@@ -95,8 +95,8 @@ textVec = {
 language = util.language.PT.value
 suffix = "_pt"
 FINAL_DATE = '12/2018'
-w0 = 0.2 # Frequency to be removed from signal (Hz)
-Q = 0.1  # Quality factor
+w0 = 0.10869 # Frequency to be removed from signal (Hz)
+Q = 0.01  # Quality factor
 filterParams = ' Q='+ str(Q) + ' W0='+ str(w0) + ' ' +  textVec["rad_sample"][language]
 #Settings
 
@@ -257,7 +257,7 @@ ax1 = plt.subplot(1, 2, 1)
 util.PlotDistribution(filteredResidual, xTitle=textVec["norm_price"][language], yTitle=textVec["n_occur"][language], \
                       plotTitle=textVec["filt_res_dist"][language] + bestParamString + filterParams , \
                       filepath=PLOT_DIR+'filteredResidualDistribution.'+ suffix +'jpg', \
-                      ax=ax1, SAVE_FIGURE=False)
+                      ax=ax1, SAVE_FIGURE=SAVE_FIG)
 
 ax2= plt.subplot(1, 2, 2)
 util.FFT(filteredResidual, xlabel=textVec["norm_freq"][language], ylabel='Magnitude', \

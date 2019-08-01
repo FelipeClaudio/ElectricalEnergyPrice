@@ -138,7 +138,7 @@ finalInput.index = indexDates
 finalInputOld = finalInputOld.reset_index(drop=True)
 
 finalOutput= mPLDSE
-finalOutputTemp = tr.GetResidualExtraction(X=mPLDSE, W=12, T=6, w0=0.2, Q=0.1)
+finalOutputTemp = tr.GetResidualExtraction(X=mPLDSE, W=12, T=6, w0=0.10869, Q=0.01)
 finalOutputResidual = pd.DataFrame(columns=['price'], index=mPLDSE.index)
 finalOutputResidual.price = finalOutputTemp
 finalOutput = finalOutput.reset_index(drop=True)

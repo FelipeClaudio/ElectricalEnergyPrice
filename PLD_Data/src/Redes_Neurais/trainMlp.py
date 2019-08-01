@@ -102,7 +102,7 @@ ACTIVATION_HIDDEN_LAYER = 'relu'
 MULTI_GPU = False
 
 min_folder = 3
-max_folder = 3
+max_folder = 8
 
 for n_folds in range (min_folder, max_folder + 1):
     kf = model_selection.KFold(n_splits=n_folds, shuffle=True, random_state=0)

@@ -124,7 +124,7 @@ def PlotTSA(original, trend, seasonal, residual, \
     plt.ylabel('Seasonal')
     
     plt.subplot(4, 1, 4)
-    plt.plot(original.index, NormalizeSeries(residual))
+    plt.plot(original.index, residual)
     plt.ylabel('Residual')
     
     if SAVE_FIGURE:
