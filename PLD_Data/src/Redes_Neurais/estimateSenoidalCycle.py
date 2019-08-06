@@ -74,8 +74,8 @@ pldTrend = tr.GetMovingAverage(mPLDSE.price, BEST_WINDOW_SIZE_MA, transitionType
 pldSeasonal  = tr.GetPeriodicMovingAverageOnlyPrediction(tsaSeasonal.price, T_SEASONAL)
 pldResidue = mPLDSE.price - pldTrend - pldSeasonal
 t = np.arange(pldResidue.size)
-w0 = 0.2  # Frequency to be removed from signal (Hz)
-Q = 0.1  # Quality factor
+w0 = 0.10869  # Frequency to be removed from signal (Hz)
+Q = 0.01  # Quality factor
 # Design notch filter
 b, a = signal.iirnotch(w0, Q)
 filteredResidual = signal.lfilter(b, a, pldResidue)
@@ -83,7 +83,7 @@ filteredResidual = signal.lfilter(b, a, pldResidue)
 guess_mean = np.mean(pldResidue)
 guess_std = 3*np.std(pldResidue)/(2**0.5)/(2**0.5)
 guess_phase = 0
-guess_freq = 0.2
+guess_freq = 0.1089
 guess_amp = pldResidue.max()
 
 # we'll use this to plot our first estimate. This might already be good enough for you

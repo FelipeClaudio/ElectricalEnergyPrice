@@ -67,11 +67,11 @@ pldSeasonal.columns = ['values']
 
 #param for normalizes signal composed by residual + senoidal cycle
 #w=5 / w=12
-choosen_w = 1
-est_amp = [94.17675855003894, 69.43507704543539][choosen_w]
-est_freq = [0.7968374985966099, 0.8044090221275024][choosen_w]
-est_mean = [-5.11368411253407, 24.509257889433268][choosen_w]
-est_phase = [-0.2651449626303616, -0.5876011432492424][choosen_w]
+choosen_w = 2
+est_amp = [94.17675855003894, 69.43507704543539, 112.68559973236269][choosen_w]
+est_freq = [0.7968374985966099, 0.8044090221275024, 0.1739844310370512][choosen_w]
+est_mean = [-5.11368411253407, 24.509257889433268, 28.01639316680809][choosen_w]
+est_phase = [-0.2651449626303616, -0.5876011432492424, 2.7767236496885914][choosen_w]
 
 t = np.arange(pldTrend.size)
 senoidalCycle=est_amp*np.sin(est_freq*t+est_phase)+est_mean
@@ -109,8 +109,8 @@ y_test = y_norm.iloc[-N_TEST_ROWS:, :]
 # train a simple classifier
 n_folds = 3
 n_inits = 3
-MIN_NEURONS = 1 #best = 37
-MAX_NEURONS = 120
+MIN_NEURONS = 70 #best = 37
+MAX_NEURONS = 70
 
 #partition by folder
 kf = model_selection.KFold(n_splits=n_folds, shuffle=True, random_state=0)
@@ -283,7 +283,7 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
     plt.savefig(str(n_neurons) + '_residual_scatter.jpg')
     plt.close('all')
     del model
-    print(n_neurons + " neurons")
+    print(str(n_neurons) + " neurons")
     
 resultsFolds.to_csv('./resultsFold.csv')
 
