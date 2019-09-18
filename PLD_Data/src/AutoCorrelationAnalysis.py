@@ -55,17 +55,18 @@ mPLDSE = mPLDSE.sort_index()
 mPLDSE = util.ExtractTrainTestSetFromTemporalSeries(mPLDSE, initialDate=INITIAL_DATE,\
                                                     finalDate=FINAL_DATE)[0]
 
-SAVE_FIG = False
+SAVE_FIG = True
 SAVE_INPUT = True
 #Settings
 ax = autocorrelation_plot(mPLDSE)
+ax.legend(['99% confiança', '95% confiança'])
+ax.set_title('Autocorrelação do PLD')
 if SAVE_FIG:
-    plt.savefig(ROOT_FOLDER+'PLD_Data/src/plots/autocorrelation_PLD_train.jpg', bbox_inches='tight')
+    plt.savefig(ROOT_FOLDER+'PLD_Data/src/plots/autocorrelation_PLD.jpg', bbox_inches='tight')
 #props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 #ax.text(0.05, 0.95, 'sdfad', transform=ax.transAxes, fontsize=14,\
 #        verticalalignment='top', bbox=props)
-ax.legend(['99% confidence', '95% confidence'])
-ax.set_title('Autocorrelation of PLD price')
+
 
 totalStoredEnergyOriginal = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Energia_Armazenada_Mês_data_editado.csv', 'Total Stored Energy', FINAL_DATE=FINAL_DATE)[0]
 uheGeneratedEnergyOriginal = util.ReadONSEditedCSV (ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_UHE_editado.csv', 'UHE Generated Energy', FINAL_DATE=FINAL_DATE)[0]

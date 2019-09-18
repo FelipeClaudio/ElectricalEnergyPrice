@@ -35,6 +35,32 @@ matplotlib.rcParams['text.color'] = 'k'
 
 
 #OTHERS
+def predictDeterministcSeries(x, n_steps, windowSize):
+    y_array = []
+    
+    total_offsets = 5
+    for offset in range(0, total_offsets):
+        size = n_steps + offset + 2
+        y = np.zeros(size)
+        for i in range(0, size):
+            if (i < (2 + offset)):
+                y[i] = x[i]
+            elif (i >= (2 + offset) and i < windowSize ):
+                fit = np.polyfit(np.arange(0, x.size - 1), x[:-1], 1)
+                fit_fn = np.poly1d(fit)
+                y[i] = fit_fn(i)
+            else:
+                y[i] = np.mean(y[i-windowSize:i])
+        y_array.append(y)
+        
+    y_comp = y_array[-1]
+    for y_temp in y_array:
+        size = y_temp.size - 1
+        y_comp[size] = y_temp[size]
+        
+    return y_comp
+
+
 def PredictFirstWindowPoints(y, windowSize):
     yWithNoMean = y[0:windowSize - 1]
     yTemp = [0] * windowSize

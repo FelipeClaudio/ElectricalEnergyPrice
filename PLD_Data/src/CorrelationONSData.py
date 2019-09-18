@@ -67,22 +67,33 @@ language = util.language.PT.value
 suffix = "_pt"
 textVec = {
             "correlation_matrix": ["Correlation between ONS DATA and PLD between in traning set",\
-                                   "Correalção entre os dados fornecidos pela ONS e o PLD"]
+                                   "Correalção entre os dados fornecidos pela ONS e o PLD"],
+            "TotalEnergy": ["Total Stored Energy","Energia Total Armazenda"],
+            "UHEEnergy": ["UHE Generated Energy", "Energia Gerada por UHEs"],
+            "UNEnergy": ["UN Generated Energy", "Energia gerada por UNs"],
+            "UTEEnergy": ["UTE Energy", "Energia gerada por UTEs"],
+            "SolarEnergy": ["Solar Generated Energy", "Energia gerada por usinas solares"],
+            "WindEnergy": ["Wind Generated Energy", "Energia gerada por usinas eólicas"],
+            "LoadEnergy": ["Load Energia", "Energia na carga"],
+            "ENA": ["ENA", "ENA"],
+            "AFsum": ["Affluent Flow Sum", "Soma das vazões afluentes"],
+            "AFSumUseful": ["Useful Affluent Flow Sum", "Soma das vazões afluentes úteis"]
         }
+language = util.language.PT.value
 #Settings
 
 
-totalStoredEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Energia_Armazenada_Mês_data_editado.csv', 'Total Stored Energy', FINAL_DATE=FINAL_DATE)[0]
-uheGeneratedEnergy = util.ReadONSEditedCSV (ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_UHE_editado.csv', 'UHE Generated Energy', FINAL_DATE=FINAL_DATE)[0]
-unGeneratedEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_UN_editado.csv', 'UN Generated Energy', FINAL_DATE=FINAL_DATE)[0]
-uteGeneratedEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_UTE_editado.csv', 'UTE Generated Energy', FINAL_DATE=FINAL_DATE)[0]
-solarGeneratedEnergy = util.ReadONSEditedCSV(ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_solar_editado.csv', 'Solar Generated Energy', FINAL_DATE=FINAL_DATE)[0]
-windGeneratedEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_eolica_editado.csv', 'Wind Generated Energy', FINAL_DATE=FINAL_DATE)[0]
-loadEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Carga_de_Energia_Barra_Mês_data_editado.csv', 'Load Energy', FINAL_DATE=FINAL_DATE)[0]
-ena = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Energia_Natural_Afluente_Subsistema_Barra__data_editado.csv', 'ENA', FINAL_DATE=FINAL_DATE)[0]
+totalStoredEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Energia_Armazenada_Mês_data_editado.csv', textVec["TotalEnergy"][language], FINAL_DATE=FINAL_DATE)[0]
+uheGeneratedEnergy = util.ReadONSEditedCSV (ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_UHE_editado.csv', textVec["UHEEnergy"][language] ,FINAL_DATE=FINAL_DATE)[0]
+unGeneratedEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_UN_editado.csv', textVec["UNEnergy"][language], FINAL_DATE=FINAL_DATE)[0]
+uteGeneratedEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_UTE_editado.csv', textVec["UTEEnergy"][language], FINAL_DATE=FINAL_DATE)[0]
+solarGeneratedEnergy = util.ReadONSEditedCSV(ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_solar_editado.csv', textVec["SolarEnergy"][language], FINAL_DATE=FINAL_DATE)[0]
+windGeneratedEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Geração_de_Energia_Barra_Mês_data_eolica_editado.csv', textVec["WindEnergy"][language], FINAL_DATE=FINAL_DATE)[0]
+loadEnergy = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Carga_de_Energia_Barra_Mês_data_editado.csv', textVec["LoadEnergy"][language], FINAL_DATE=FINAL_DATE)[0]
+ena = util.ReadONSEditedCSV( ONS_DIR + '/Simples_Energia_Natural_Afluente_Subsistema_Barra__data_editado.csv', textVec["ENA"][language], FINAL_DATE=FINAL_DATE)[0]
 mydateparser = lambda x: pd.datetime.strptime(x, "%Y-%m-%d")
-afSum = util.ReadONSEditedCSV( ONS_DIR + '/AFSum.csv', 'Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
-afSumUseful = util.ReadONSEditedCSV( ONS_DIR + '/AFSum_useful.csv', 'Useful Afluent Flow Sum', mydateparser, FINAL_DATE=FINAL_DATE)[0]
+afSum = util.ReadONSEditedCSV( ONS_DIR + '/AFSum.csv', textVec["AFsum"][language], mydateparser, FINAL_DATE=FINAL_DATE)[0]
+afSumUseful = util.ReadONSEditedCSV( ONS_DIR + '/AFSum_useful.csv', textVec["AFSumUseful"][language], mydateparser, FINAL_DATE=FINAL_DATE)[0]
 
 cor = pd.concat([mPLDSE, totalStoredEnergy], axis=1)
 cor = pd.concat([cor, uheGeneratedEnergy], axis=1)

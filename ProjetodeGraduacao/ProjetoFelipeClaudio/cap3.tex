@@ -387,7 +387,7 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 
 \end{itemize}
 
-\paragraph{}As funções de ativação \ref{func_logistica} e \ref{func_tanh} são deriváveis em todos os pontos e a \ref{func_relu} só não é derivável no ponto zero, porém contorna-se essa limitação fazendo $g'(0) = 0$. A ReLU tem sido essencial para o estado da arte de redes neurais \cite{relu} \cite{deep_learning_relu} \cite{relu_recomender} \cite{deep_learning_relu2}. A derivada da função de ativação é utilizada pelos algoritmos de treinamento baseados no gradiente do erro assim como será visto mais à frente.
+\paragraph{}As funções de ativação \ref{func_logistica} e \ref{func_tanh} são deriváveis em todos os pontos e a \ref{func_relu} só não é derivável no ponto zero, porém contorna-se essa limitação fazendo $g'(0) = 0$. A ReLU tem sido essencial para o estado da arte de redes neurais \cite{relu} \cite{deep_learning_relu} \cite{relu_recomender} \cite{deep_learning_relu2} \label{reluSucesso}. A derivada da função de ativação é utilizada pelos algoritmos de treinamento baseados no gradiente do erro assim como será visto mais à frente.
 
 \subsection{Backpropagation}
 \paragraph{}O algoritmo de backpropagtion é bastante utilizado no treinamento de de redes neurais e utiliza o gradiente do erro como base dos cálculos, assim como mencionado anteriormente \cite{Bishop} \cite{backprop}. Busca-se mover o vetor dos pesos na direção do mínimo local. A expressão de atualização dos pesos é da seguinte forma:

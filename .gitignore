@@ -84,4 +84,6 @@ dmypy.json
 /PLD_Data/src/Redes_Neurais/Modelos/
 /PLD_Data/src/Redes_Neurais/Modelos*/
 /PLD_Data/src/Redes_Neurais/Outubro/
+/PLD_Data/src/Redes_Neurais/modelos_pld/
+PLD_Data/src/Redes_Neurais/modelos_entrada/
 */*.out

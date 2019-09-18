@@ -194,14 +194,34 @@
 \contentsline {paragraph}{}{44}
 \contentsline {paragraph}{}{44}
 \contentsline {paragraph}{}{45}
-\contentsline {subsection}{\numberline {5.1.4}Sele\c c\~ao dos atrasos do sinal de entrada}{45}
 \contentsline {paragraph}{}{45}
-\contentsline {chapter}{\numberline {6}Conclus\~oes}{46}
+\contentsline {subsection}{\numberline {5.1.4}Sele\c c\~ao dos atrasos do sinal de sa\IeC {\'\i }da}{45}
+\contentsline {paragraph}{}{45}
 \contentsline {paragraph}{}{46}
+\contentsline {subsection}{\numberline {5.1.5}Sele\c c\~ao dos sinais de entrada}{46}
 \contentsline {paragraph}{}{46}
-\contentsline {chapter}{Bibliografia}{47}
-\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{53}
-\contentsline {paragraph}{}{53}
-\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{54}
-\contentsline {chapter}{\numberline {C}O que \'e um anexo}{56}
-\contentsline {paragraph}{}{56}
+\contentsline {paragraph}{}{47}
+\contentsline {paragraph}{}{47}
+\contentsline {section}{\numberline {5.2}Treinamento das redes neurais}{47}
+\contentsline {paragraph}{}{47}
+\contentsline {paragraph}{}{48}
+\contentsline {paragraph}{}{48}
+\contentsline {paragraph}{}{48}
+\contentsline {paragraph}{}{48}
+\contentsline {paragraph}{}{48}
+\contentsline {paragraph}{}{48}
+\contentsline {paragraph}{}{49}
+\contentsline {paragraph}{}{49}
+\contentsline {subsection}{\numberline {5.2.1}Treinamento da rede para obter a sa\IeC {\'\i }da no m\^es atual}{49}
+\contentsline {paragraph}{}{49}
+\contentsline {subsection}{\numberline {5.2.2}Treinamento da rede para obter a sa\IeC {\'\i }da um m\^es a frente}{49}
+\contentsline {subsection}{\numberline {5.2.3}Treinamento da rede para obter a sa\IeC {\'\i }da para v\'arios meses a frente}{49}
+\contentsline {chapter}{\numberline {6}Conclus\~oes}{50}
+\contentsline {paragraph}{}{50}
+\contentsline {paragraph}{}{50}
+\contentsline {chapter}{Bibliografia}{51}
+\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{57}
+\contentsline {paragraph}{}{57}
+\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{58}
+\contentsline {chapter}{\numberline {C}O que \'e um anexo}{60}
+\contentsline {paragraph}{}{60}

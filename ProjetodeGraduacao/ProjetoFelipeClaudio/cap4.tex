@@ -1,0 +1,49 @@
+\paragraph{}O objetivo deste capitulo é descrever o método utilizado no desenvolvimento do trabalho. Serão descrito onde os dados foram retirados e como foi feito o pré-processamento. Além disso, será descrito o processo de treinamento da rede neural, visando obter a previsão do PLD.
+
+\section{Aquisição dos dados}
+\paragraph{}Os dados utilizados e suas respectivas fontes podem ser observados na tabela \ref{table:DadosDeEntrada}.
+
+\begin{table}[h]
+	
+	\begin{center}
+		
+		\caption{Dados utilizado no trabalho.}
+		
+		\begin{tabular}{|c|c|c|}\hline \label{table:DadosDeEntrada}
+			
+			\textbf{Dado} & \textbf{tipo} & \textbf{Fonte}\\ \hline \vspace{-1.0mm}
+			
+			PLD & Saída & CCEE \cite{CCEE}  \\ \hline
+			Energia Total Armazenada & Entrada & ONS \cite{ONS}  \\ \hline
+			Energia Gerada pelas Usinas Hidroelétricas & Entrada & ONS \cite{ONS}  \\ \hline
+			Energia Gerada pela Usinas Térmicas & Entrada & ONS \cite{ONS}  \\ \hline
+			Energia Gerada pela Usinas Solares & Entrada & ONS \cite{ONS}  \\ \hline
+			Energia Gerada pela Usinas Eólicas & Entrada & ONS \cite{ONS}  \\ \hline
+			Energia de Carga & Entrada & ONS \cite{ONS}  \\ \hline
+			Energia Natural Afluente & Entrada & ONS \cite{ONS}  \\ \hline
+			Soma das Vazões Afluentes & Entrada & CCEE \cite{CCEE} \\ \hline
+			Valor Útil da Soma das Vazões Afluentes & Entrada & CCEE \cite{CCEE} \\ \hline
+		\end{tabular}
+		
+	\end{center} 
+\end{table}
+
+\section{Pré-Processamento}
+\paragraph{}No início do trabalho definiu-se que o foco seria a região sudeste, sendo assim, todos os dados utilizados foram filtrados para a região SE/CO. Os dados provenientes da ONS foram baixados direto do site no formato \textit{Comma Separated Values} - CSV. Para facilitar o processamento, foram retiradas todas as colunas que não fossem a data no formato "mês (por extenso) ano". Essas foram então renomeadas para "month" e "value", respectivamente para facilitar o desenvolvimento do código.
+
+\paragraph{}Para a obtenção da soma das vazões, utilizou-se o arquivo VAZOES.DAT fornecido pela CCEE. Este arquivo é binário e para ser lido precisa da utilização do executável vazedit também fornecido pela CCEE. Após o processamento deste programa, obtém-se um arquivo texto com as vazões de cada posto fluviométrico para cada mês em cada ano desde de 1931. Esses valores foram somados para os postos que pertencem exclusivamente à região Sudeste.
+
+\paragraph{}O "valor útil da soma das vazões afluentes" é um cálculo semelhante ao descrito no parágrafo anterior, porém removendo em cada posto a vazão mínima necessária para a produção de energia. Para obter essa informação, utiliza-se o arquivo HIDR.DAT, também fornecido pela CCEE, o qual possui o cadastro de todas as usinas consideradas nos cálculos do PLD. Assim como no caso do arquivo VAZOES.DAT, o HIDR.DAT também é binário. Para processar o mesmo é necessário um executável também fornecido pela CCEE chamado hidroedit.
+
+\paragraph{}Todas as séries temporais foram decompostas em tendência, sazonalidade, ciclos senoidais e resíduo assim como mostrado na seção \ref{series_temporais}, dado que na rede neural será utilizado como entrada somente os resíduos. Busca-se que a parte residual tenha a menor energia possível, por isso cabe bastante cuidado na análise para obter uma boa extração das componentes do sinal.
+
+\paragraph{}Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em \ref{treinamento_mlp}. A normalização utilizada foi o \textit{MinMaxScaler} \cite{minMaxScaler}.
+
+\paragraph{}Dado que as regras para o cálculo do PLD variam durante os anos, utilizou-se somente os dados no período entre 01/2015 e 12/2018 de modo a tentar reduzir ao máximo esse efeito. Sendo assim, o \textit{dataset} possui 48 pontos.
+
+\section{Rede Neural}
+\paragraph{}Foi definido que a rede neural utilizada será um MLP de uma camada escondida somente, com ReLU \ref{relu} como função de ativação. A saída conterá somente um neurônio com função de ativação linear, de modo a conseguir obter o sinal utilizado na previsão do resíduo do PLD.
+
+\paragraph{}Devido ao número de atrasos relevantes obtidos pelo gráfico de autocorrelação (21 atrasos), o \textit{dataset} se reduziu a 28 pontos, dos quais os 3 últimos foram separados para teste e os outros 24 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds.
+
+\paragraph{}O treinamento será realizado modificando o número de neurônios na camada intermediária, de forma a avaliar qual arquitetura fornece o menor erro na saída. Para a avaliação dos resultados será utilizado como métrica o MSE no conjunto de validação. Outro critério para a avaliação utilizado também foi o gráfico de pontos do dado previsto pelo original de forma similar ao visto em \ref{fit_perfeito}.

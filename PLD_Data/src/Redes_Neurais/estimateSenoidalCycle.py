@@ -91,7 +91,7 @@ data_first_guess = guess_std*np.sin(t + guess_phase) + guess_mean
 
 # Define the function to optimize, in this case, we want to minimize the difference
 # between the actual data and our "guessed" parameters
-optimize_func = lambda x: x[0]*np.sin(x[1]*t +x[2]) + x[3] - pldResidue
+optimize_func = lambda x: x[0]*np.sin(x[1]*t +x[2]) + x[3] - pldSeasonal
 est_amp, est_freq, est_phase, est_mean = leastsq(optimize_func, [guess_amp, guess_freq, guess_phase, guess_mean])[0]
 
 # recreate the fitted curve using the optimized parameters

@@ -258,4 +258,8 @@ LEARN, S., \enquote{sklearn.preprocessing.MinMaxScaler},
   https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html,
   2019.
 
+\bibitem{adadelta}
+ZEILER, M.~D., \enquote{{ADADELTA:} An Adaptive Learning Rate Method},
+  \emph{CoRR}, v.~abs/1212.5701, 2012.
+
 \end{thebibliography}
