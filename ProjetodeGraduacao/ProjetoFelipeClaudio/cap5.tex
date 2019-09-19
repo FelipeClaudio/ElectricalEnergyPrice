@@ -238,8 +238,51 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 \paragraph{}A saída utilizada no processamento foi o sinal residual do PLD, dado que a tendência, sazonalidade e ciclos sazonais são determinísticos. Para obter valor final da PLD, é necessário combinar a parte prevista pela rede com a parte determinística previamente determinada.
 
 \subsection{Treinamento da rede para obter a saída no mês atual}
-\paragraph{}Para o treinamento 
+\paragraph{}Para o treinamento rede para a saída atual, obteve-se o seguinte gráfico de rmse pelo número de neurônios no conjunto de treinamento:
+\paragraph{}[MSE NO CONJUNTO treinamento]
+
+\paragraph{}No conjunto de testes o resultado foi o seguinte:
+\paragraph{}[MSE NO CONJUNTO de testes]
+
+\paragraph{}As 5 melhores estruturas de redes ranqueadas pelo critério $\epsilon_3$ definido anteriormente são as seguintes:
+\paragraph{}[TABELA Critério $\epsilon_3$]
+
+\paragraph{}E com isso o modelo com 61 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\paragraph{}[GRAFICO CONVERGÊNCIA]
+
+ \paragraph{}E os seguintes resultados foram obtidos:
+\paragraph{}[GRÁFICO DO RESÍDUO ORIGINAL X RESÍDUO PREVISTO]
+\paragraph{}[GRÁFICO DO SINAL RECONSTRUÍDO]
+\paragraph{}Com isso viu-se que a rede está sendo treinada de forma coerente para obter $y(t)$ a partir de $x(t)$. Esse caso também será utilizado como base para as previsões, pois espera-se que o erro para $N$ passos a frente seja sempre maior ou igual ao caso base.
 
 \subsection{Treinamento da rede para obter a saída um mês a frente}
+\paragraph{}Seguindo o procedimento previamente determinado, obteve-se os seguintes resultados para a previsão do PLD para 1 mês a frente:
+
+\paragraph{}[TABELA Critério $\epsilon_3$]
+
+\paragraph{}E com isso o modelo com 63 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\paragraph{}[GRAFICO CONVERGÊNCIA]
+
+\paragraph{}E obteve-se os seguintes resultados:
+\paragraph{}[GRÁFICO DO RESÍDUO ORIGINAL X RESÍDUO PREVISTO]
+\paragraph{}[GRÁFICO DO SINAL RECONSTRUÍDO]
+
+\paragraph{}Para essa previsão, foi treinada uma rede para reduzir o erro de estimação usando como entrada os dados já mencionados anteriormente. Os erros de estimação entre o sinal reconstruído e o original foram utilizados como alvos da rede. Obteve-se então os seguintes resultados:
+
+\paragraph{}[TABELA Critério $\epsilon_3$]
+
+\paragraph{}E com isso o modelo com 58 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\paragraph{}[GRAFICO CONVERGÊNCIA]
+\paragraph{}E finalmente obteve-se os seguintes resultados:
+\paragraph{}[GRÁFICO DO RESÍDUO ORIGINAL X RESÍDUO PREVISTO]
+\paragraph{}[GRÁFICO DO SINAL RECONSTRUÍDO]
+
+\paragraph{}Pelo histograma é possível ver que a rede de correção do erro de estimação diminuiu o erro máximo e mínimo, porém a estrutura sem a correção do erro tem maior concentração de pontos próximos do zero. Sendo assim, espera-se que a saída com a correção de erro erre mais, porém com discrepância pequena, enquanto espera-se que sem a correção de erro o resultado seja melhor na maioria das vezes, podendo correr o risco de errar muito em alguns pontos.
+
+\paragraph{}Cabe a quem for utilizar analisar se compensa mais errar menos na média, porém ter uma chance de errar muito em casos extremos ou errar um pouco mais na média e ter o erro dentre de uma faixa menor.
 
 \subsection{Treinamento da rede para obter a saída para vários meses a frente}
+\paragraph{}A rede para vários meses à frente foi treinada de forma similar ao observado anteriormente, porém nesse caso observou-se somente a parte residual e não foi treinada uma rede secundária para corrigir o erro de estimação.
