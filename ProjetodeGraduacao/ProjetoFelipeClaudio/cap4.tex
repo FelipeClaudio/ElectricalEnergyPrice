@@ -1,7 +1,9 @@
-\paragraph{}O objetivo deste capitulo é descrever o método utilizado no desenvolvimento do trabalho. Serão descrito onde os dados foram retirados e como foi feito o pré-processamento. Além disso, será descrito o processo de treinamento da rede neural, visando obter a previsão do PLD.
+\paragraph{}O objetivo deste capitulo é descrever o método utilizado no desenvolvimento do trabalho. Será descrito o fluxo de dados utilizado na previsão do PLD. Isso inclui o pré-processamento dos dados e o treinamento das redes neurais.
 
-\section{Aquisição dos dados}
-\paragraph{}Os dados utilizados e suas respectivas fontes podem ser observados na tabela \ref{table:DadosDeEntrada}.
+[GRÁFICO DO FLUXO DE DADOS]
+
+\section{Coleta de dados}
+\paragraph{}Serão utilizados nos modelos os seguintes dados do setor elétrico:
 
 \begin{table}[h]
 	
@@ -11,14 +13,14 @@
 		
 		\begin{tabular}{|c|c|c|}\hline \label{table:DadosDeEntrada}
 			
-			\textbf{Dado} & \textbf{tipo} & \textbf{Fonte}\\ \hline \vspace{-1.0mm}
+			\textbf{Dado} & \textbf{Tipo} & \textbf{Fonte}\\ \hline \vspace{-1.0mm}
 			
 			PLD & Saída & CCEE \cite{CCEE}  \\ \hline
 			Energia Total Armazenada & Entrada & ONS \cite{ONS}  \\ \hline
 			Energia Gerada pelas Usinas Hidroelétricas & Entrada & ONS \cite{ONS}  \\ \hline
-			Energia Gerada pela Usinas Térmicas & Entrada & ONS \cite{ONS}  \\ \hline
-			Energia Gerada pela Usinas Solares & Entrada & ONS \cite{ONS}  \\ \hline
-			Energia Gerada pela Usinas Eólicas & Entrada & ONS \cite{ONS}  \\ \hline
+			Energia Gerada pelas Usinas Térmicas & Entrada & ONS \cite{ONS}  \\ \hline
+			Energia Gerada pelas Usinas Solares & Entrada & ONS \cite{ONS}  \\ \hline
+			Energia Gerada pelas Usinas Eólicas & Entrada & ONS \cite{ONS}  \\ \hline
 			Energia de Carga & Entrada & ONS \cite{ONS}  \\ \hline
 			Energia Natural Afluente & Entrada & ONS \cite{ONS}  \\ \hline
 			Soma das Vazões Afluentes & Entrada & CCEE \cite{CCEE} \\ \hline
@@ -28,22 +30,99 @@
 	\end{center} 
 \end{table}
 
-\section{Pré-Processamento}
-\paragraph{}No início do trabalho definiu-se que o foco seria a região sudeste, sendo assim, todos os dados utilizados foram filtrados para a região SE/CO. Os dados provenientes da ONS foram baixados direto do site no formato \textit{Comma Separated Values} - CSV. Para facilitar o processamento, foram retiradas todas as colunas que não fossem a data no formato "mês (por extenso) ano". Essas foram então renomeadas para "month" e "value", respectivamente para facilitar o desenvolvimento do código.
+\paragraph{}Todos os dados acima estão disponíveis publicamente e são séries temporais com intervalo de amostragem de 1 mês.
 
 \paragraph{}Para a obtenção da soma das vazões, utilizou-se o arquivo VAZOES.DAT fornecido pela CCEE. Este arquivo é binário e para ser lido precisa da utilização do executável vazedit também fornecido pela CCEE. Após o processamento deste programa, obtém-se um arquivo texto com as vazões de cada posto fluviométrico para cada mês em cada ano desde de 1931. Esses valores foram somados para os postos que pertencem exclusivamente à região Sudeste.
 
 \paragraph{}O "valor útil da soma das vazões afluentes" é um cálculo semelhante ao descrito no parágrafo anterior, porém removendo em cada posto a vazão mínima necessária para a produção de energia. Para obter essa informação, utiliza-se o arquivo HIDR.DAT, também fornecido pela CCEE, o qual possui o cadastro de todas as usinas consideradas nos cálculos do PLD. Assim como no caso do arquivo VAZOES.DAT, o HIDR.DAT também é binário. Para processar o mesmo é necessário um executável também fornecido pela CCEE chamado hidroedit.
 
-\paragraph{}Todas as séries temporais foram decompostas em tendência, sazonalidade, ciclos senoidais e resíduo assim como mostrado na seção \ref{series_temporais}, dado que na rede neural será utilizado como entrada somente os resíduos. Busca-se que a parte residual tenha a menor energia possível, por isso cabe bastante cuidado na análise para obter uma boa extração das componentes do sinal.
+\section{Pré-processamento}
+\paragraph{}A etapa de pré-processamento descrita nessa seção foi aplicada tanto nos sinais de entrada quanto na saída. Busca-se decompor o sinal conforme mencionado em \ref{series_temporais}. Ao final do processamento o sinal $X_t$ poderá ser obtido através das soma dos sinais extraídos, conforme a formula a seguir: $X_t = tend_t + sz_t + cs_t + res_t$. O primeiro passo realizado foi a extração da tendência.
 
-\paragraph{}Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em \ref{treinamento_mlp}. A normalização utilizada foi o \textit{MinMaxScaler} \cite{minMaxScaler}.
+\subsection{Tendência}
+\paragraph{} Dado o tamanho reduzido da série temporal, não foi possível aplicar a média móvel diretamente pois isso implicaria em perder alguns pontos da série. Sendo assim, utilizou-se uma abordagem híbrida na extração da tendência onde as primeiras amostras são obtidas através de uma regressão linear e a média móvel é usada no restante da série. A transição entre os dois métodos costuma ser bastante brusca, gerando altas frequências na transformada de Fourier. A solução para esse problema foi implentar um transição gradual entre os métodos de extração. O processamento realizado na obtenção da tendência pode ser visto na fórmula abaixo:
 
-\paragraph{}Dado que as regras para o cálculo do PLD variam durante os anos, utilizou-se somente os dados no período entre 01/2015 e 12/2018 de modo a tentar reduzir ao máximo esse efeito. Sendo assim, o \textit{dataset} possui 48 pontos.
+\begin{equation} \label{maLinFit}
+\hat{y} = \begin{cases}
+X_i, & \mbox{se } i \leq 2\\
+
+LR(1, X_i), & \mbox{se } 2 < i < W \\
+
+\alpha LR(1, X_W) + (1 - \alpha) MA(W), & \mbox{se } W \leq i < W + K\\
+
+MA(W), & \mbox{se } i \geq W + K
+
+\end{cases}
+\end{equation}
+
+\paragraph{}Para um filtro de média de comprimento $W$ com $K$ passos de transição e com $0 \leq \alpha \leq 1 $ proporcional ao número de passos de transição, define-se o seguinte filtro para resolver o problema da falta de pontos para realizar a média móvel. LR se refere à regressão linear e MA refere-se à média móvel e a qual é definida pela seguinte equação:
+\begin{equation}
+MA(M) = \dfrac{1}{W + 1} \sum_{j = -W}^{0} x_{t+j}  
+\end{equation}
+
+\paragraph{}A outra proposta de extração de tendência utilizada foi a seguinte:
+\begin{equation} \label{maOnly}
+\hat{y} = \begin{cases}
+X_i, & \mbox{se } i \leq W\\
+
+MA(W), & \mbox{se } i > W
+
+\end{cases}
+\end{equation}
+
+\paragraph{}As duas fórmulas acima dependem do parâmetro ($W$) o qual varia conforme o problema a ser resolvido. A escolha do $W$ foi feita a partir da análise do MSE pelo tamanho da janela. Como o objetivo é obter uma função que tenha a capacidade de prever a tendência um passo à frente com o mínimo erro possível  busca-se um valor de $W$ que não seja pequeno demais (pouca generalização) nem muito grande (pouco sensível às variações).
+
+\subsection{Sazonalidade}
+\paragraph{}Após a extração da tendência, o sinal restante é descrito pela seguinte fórmula: $s_{1t} = sz_t + cs_t + res_t$. A o método de extração é similar ao descrito acima, porém, no caso da sazonalidade a série é decimada conforme um parâmetro T que indica o tamanho do lag temporal utilizado.
+
+\paragraph{}As fórmulas utilizadas na extração da sazonalidade foram as seguintes:
+\begin{equation} \label{linFitSz}
+\hat{y} = \begin{cases}
+X_{RESTO(i/T)}, & \mbox{se } i \leq 2T\\
+
+LR(1, X^{*}), & \mbox{se } i > 2T 
+\end{cases}
+\end{equation}
+
+\begin{equation} \label{maSz}
+\hat{y} = \begin{cases}
+X_{RESTO(i/T)}, & \mbox{se } i \leq 2T\\
+
+MA(1, X^{*}), & \mbox{se } i > 2T 
+\end{cases}
+\end{equation}
+
+\paragraph{}Onde $X^{*}$ é o conjunto composto por todas as amostras em um determinado instante onde $RESTO(i/T) = 0$.
+
+\paragraph{} Em \ref{linFitSz} utiliza-se a regressão linear dos pontos decimados para tentar prever a sazonalidade, já em \ref{maSz} utiliza-se a média móvel. Em ambos os casos utilizam-se todos os pontos fornecidos ao filtro como base para a previsão, eliminando o problema de selecionar o parâmetro $W$. Todavia, ainda existe o problema de selecionar o valor correto do parâmetro $T$ para que se obtenha o menor erro possível na extração da componente sazonal.
+
+\subsection{Ciclos Senoidais e Resíduo}
+\paragraph{}O ciclo senoidal foi obtido através da seleção do maior pico na transformada de Fourier do sinal. Para a extração do mesmo foi utilizado o filtro Notch. O resultado dessa operação é um sinal onde somente existe a componente residual a qual é a parte não determinística da série. Finalmente o sinal é normalizado utilizando a técnica \textit{MinMaxScaler} \cite{minMaxScaler}.
+
+\section{Seleção dos sinais de entrada}
+\paragraph{}A seleção dos sinais de entrada foi feita através do gráfico de autocorrelação dos sinais. Buscou-se remover um dos sinais em pares com alta correlação, visto que isso é um indicativo de que há uma redundância na informação fornecida no modelo. A remoção dos sinais com alta correlação diminui o tempo de treinamento e também pode diminuir o ruído na entrada, fazendo assim com que o treinamento tenha uma precisão maior.
+
+\subsection{Seleção dos atrasos do sinal de saída}
+\paragraph{}A entrada do modelo é composta por sinais no tempo atual e sinais defasados em períodos de tempo específicos. A seleção das defasagens foi feita através do cálculo da autocorrelação do sinal de saída. Todos os valores com autocorrelação maior que o intervalo de 95\% de confiança foram selecionados. Os valores de defasagem foram replicados para todos os sinais utilizados na entrada do modelo.
+
+\paragraph{}A análise foi feita para o sinal de saída (PLD), de forma a identificar quais atrasos eram importantes para descrever o sinal no tempo atual. O número de atrasos encontrado foi replicado para todos os sinais na saída.
 
 \section{Rede Neural}
 \paragraph{}Foi definido que a rede neural utilizada será um MLP de uma camada escondida somente, com ReLU \ref{relu} como função de ativação. A saída conterá somente um neurônio com função de ativação linear, de modo a conseguir obter o sinal utilizado na previsão do resíduo do PLD.
 
-\paragraph{}Devido ao número de atrasos relevantes obtidos pelo gráfico de autocorrelação (21 atrasos), o \textit{dataset} se reduziu a 28 pontos, dos quais os 3 últimos foram separados para teste e os outros 24 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds.
-
+\subsection{Treinamento das redes neurais}
 \paragraph{}O treinamento será realizado modificando o número de neurônios na camada intermediária, de forma a avaliar qual arquitetura fornece o menor erro na saída. Para a avaliação dos resultados será utilizado como métrica o MSE no conjunto de validação. Outro critério para a avaliação utilizado também foi o gráfico de pontos do dado previsto pelo original de forma similar ao visto em \ref{fit_perfeito}.
+
+\paragraph{}Dado que as entradas foram selecionadas e previamente processadas, restou definir a arquitetura da rede neural utilizada. Devido à simplicidade e a boa capacidade de solução de problemas, foi utilizada a rede Perceptron Multicamadas com somente uma camada intermediária. Foi definido para a camada de entrada e a intermediária que a função de ativação utilizada seria a ReLU, dado a velocidade de processamento e os bons resultados obtidos em pesquisas recentes \ref{reluSucesso}. Para a camada de saída, a função de ativação escolhida foi a linear, para que se possa construir a série temporal. O algoritmo de aprendizado utilizado foi o AdaDelta.
+
+\paragraph{}O modelo foi treinado utilizando validação cruzada. Em cada fold foram feitas algumas inicializações aleatórias utilizando o algoritmo visto em \cite{K_He}, de forma a reduzir o impacto de uma inicialização ruim do modelo.
+
+\paragraph{}Para facilitar a seleção dos modelos, foi feito uma tabela contendo informações sobre o erro médio, desvio padrão, coeficiente angular e offset médios para o dataset de treinamento. Criou-se a métrica para medir o desvio do $a$ e do $b$ do desejado, fazendo com que o primeiro erro fosse obtido através da fórmula $\epsilon_1 = ABS(1-a)$ e o segundo fosse obtido por $\epsilon_2 = ABS(b)$, onde $ABS$ é o valor absoluto do número. Além disso, para fins de ranqueamento, criou-se uma terceira métrica descrita como $\epsilon_3 = NORM(\epsilon_1) + NORM(\epsilon_2)$, onde $NORM$ é a normalização feita dividindo todos os valores pelo máximo do vetor. O modelo a ser utilizado é então o que tiver o menor erro $\epsilon_3$.
+
+\paragraph{}Na primeira fase do treinamento, fez-se uma rede que tinha como entrada $x(t)$ e obtém-se como saída $y(t)$, de modo a verificar se o processo utilizado no treinamento e seleção da rede estava adequado. Dado que as previsões são somente variações desse modelo básico, torna-se de extrema importância a boa adesão do modelo ao problema. 
+
+\paragraph{}A saída utilizada no processamento foi o sinal residual do PLD, dado que a tendência, sazonalidade e ciclos sazonais são determinísticos. Para obter valor final da PLD, é necessário combinar a parte prevista pela rede com a parte determinística previamente determinada.
+
+\paragraph{}Da segunda fase em diante foram feitas previsões do resíduo do PLD mensal de fato. Na segunda fase em específico, previu-se o resíduo PLD para o mês seguinte. Além disso propôs-se uma abordagem com o treinamento de uma segunda rede neural para corrigir o erro entre a previsão feita pela primeira rede e o sinal original.
+
+\paragraph{}Nos passo seguintes somente foi feita a comparação entre o resíduo original e o previsto para $N$ meses a frente. Ao final pode-se obter um gráfico com o erro e desvio padrão pela quantidade de meses a frente.

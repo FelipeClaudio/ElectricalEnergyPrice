@@ -1,41 +1,50 @@
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{autocorrelation_PLD.jpg}
+				
+				\caption[\small{Autocorrelação do PLD.}]{\label{autoCorrelacaoPLD} \small{Autocorrelação do PLD.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\paragraph{}Os sinais de entrada foram selecionado conforme a seguinte matriz de autocorrelação abaixo:
+
+\paragraph{}Observou-se alta correlação negativa entre a energia produzida pela hidroelétricas e térmicas. Isso ocorre pelo fato da energia gerada pelas termoelétricas ser a principal substituta para a energia proveniente de usinas térmicas. Sendo assim, decidiu-se então remover a série da energia gerada pelas UTEs de forma a remover a redundância dos dados fornecidos.
+
+\paragraph{}Completar seção do processamento do sinal de entrada
+
+
+\section{Aquisição dos dados}
+\paragraph{}Os dados utilizados e suas respectivas fontes podem ser observados na tabela \ref{table:DadosDeEntrada}.
+
+ Para facilitar o processamento, foram retiradas todas as colunas que não fossem a data no formato "mês (por extenso) ano". Essas foram então renomeadas para "month" e "value", respectivamente para facilitar o desenvolvimento do código.
+ 
+
+ com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.
+ 
+ \paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Assim, como mencionado anteriormente, foram deixados 3 pontos da série temporal para realizar o teste.Para cada fold foram feitas 8 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}.
+ 
+
+ 
+ \paragraph{}Dado que as regras para o cálculo do PLD variam durante os anos, utilizou-se somente os dados no período entre 01/2015 e 12/2018 de modo a tentar reduzir ao máximo esse efeito. Sendo assim, o \textit{dataset} possui 48 pontos.
+ 
+ \paragraph{}Devido ao número de atrasos relevantes obtidos pelo gráfico de autocorrelação (21 atrasos), o \textit{dataset} se reduziu a 28 pontos, dos quais os 3 últimos foram separados para teste e os outros 24 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds.
+ 
+ \paragraph{}Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em \ref{treinamento_mlp}. 
+ 
+ \paragraph{}No início do trabalho definiu-se que o foco seria a região sudeste, sendo assim, todos os dados utilizados foram filtrados para a região SE/CO. Os dados provenientes da ONS foram baixados direto do site no formato \textit{Comma Separated Values} - CSV.
+
+[ADICIONADO]
+
 \paragraph{}Neste capítulo são mostrados os resultados obtidos através da aplicação do método descrito no capítulo anterior. Alguns resultados obtidos serão expostos no apêndice para facilitar a leitura.
 
 \section{Pré-Processamento}
-\paragraph{}Será mostrado pré-processamento realizado com o preço do PLD, sendo que o mesmo método foi replicado posteriormente para todos os dados de entrada. Será feita uma decomposição conforme a mostrada em \ref{series_temporais}. O primeiro passo é extrair a tendência do sinal. 
-
-\subsection{Tendência}
-\paragraph{}Dado o tamanho reduzido do dataset, tornou-se necessário aproveitar cada amostra. Sendo assim, um filtro como o visto em \ref{mediaMovelSimples} não era aplicável. Utilizou-se uma abordagem híbrida onde as primeiras amostras seriam obtidas através de uma regressão linear e assim que o número de amostras fosse suficiente, seria aplicada a média móvel. Como a transição entre os dois métodos de extração nem sempre era suave, havia a possibilidade de gerar altas frequência nas transformadas de Fourier usadas nas análise, por isso utilizou se uma transição mais suave. O processamento utilizado na extração da tendência pode ser visto na fórmula abaixo:
-
-\paragraph{}Para um filtro de média de comprimento $W$ com $K$ passos de transição e com $0 \leq \alpha \leq 1 $ proporcional ao número de passos de transição, define-se o seguinte filtro para resolver o problema da falta de pontos para realizar a média móvel.
-\begin{equation} \label{maLinFit}
-	\hat{y} = \begin{cases}
-	X_i, & \mbox{se } i \leq 2\\
-	
-	LR(1, X_i), & \mbox{se } 2 < i < W \\
-	
-	\alpha LR(1, X_W) + (1 - \alpha) MA(W), & \mbox{se } W \leq i < W + K\\
-	
-	MA(W), & \mbox{se } i \geq W + K
-
-	\end{cases}
-\end{equation}
-
-\paragraph{}Onde LR ser refere à regressão linear e MA se refere à média móvel e é dada pela seguinte equação:
-\begin{equation}
-MA(M) = \dfrac{1}{W + 1} \sum_{j = -W}^{0} x_{t+j}  
-\end{equation}
-
-\paragraph{}A outra proposta de extração de tendência utilizada foi a seguinte:
-\begin{equation} \label{maOnly}
-	\hat{y} = \begin{cases}
-	X_i, & \mbox{se } i \leq W\\
-	
-	MA(W), & \mbox{se } i > W
-
-\end{cases}
-\end{equation}
-
-\paragraph{}As duas fórmulas acima dependem do parâmetro ($W$) o qual varia conforme o problema a ser resolvido. A escolha do $W$ foi feita a partir da análise do MSE pelo tamanho da janela. Como o objetivo é obter uma função que tenha a capacidade de prever a tendência um passo à frente com o mínimo erro possível  busca-se um valor de $W$ que não seja pequeno demais (pouca generalização) nem muito grande (pouco sensível às variações).
 
 \begin{figure}[H]
 	\begin{center}
@@ -69,30 +78,8 @@ MA(M) = \dfrac{1}{W + 1} \sum_{j = -W}^{0} x_{t+j}
 	\end{center}	
 \end{figure}
 
+
 \subsection{Sazonalidade}
-\paragraph{}Após a extração da tendência, o sinal restante é descrito pela seguinte fórmula: $s_{1t} = sz_t + cs_t + res_t$. A análise foi similar à realizada acima, porém, no caso da sazonalidade a série é decimada conforme um parâmetro T que indica o tamanho do lag temporal utilizado.
-
-\paragraph{}As fórmulas utilizadas na extração da sazonalidade foram as seguintes:
-\begin{equation} \label{linFitSz}
-\hat{y} = \begin{cases}
-X_{RESTO(i/T)}, & \mbox{se } i \leq 2T\\
-
-LR(1, X^{*}), & \mbox{se } i > 2T 
-\end{cases}
-\end{equation}
-
-\begin{equation} \label{maSz}
-\hat{y} = \begin{cases}
-X_{RESTO(i/T)}, & \mbox{se } i \leq 2T\\
-
-MA(1, X^{*}), & \mbox{se } i > 2T 
-\end{cases}
-\end{equation}
-
-\paragraph{}Onde $X^{*}$ é o conjunto composto por todas as amostras em um determinado instante onde $RESTO(i/T) = 0$.
-
-\paragraph{} Em \ref{linFitSz} utiliza-se a regressão linear dos pontos decimados para tentar prever a sazonalidade, já em \ref{maSz} utiliza-se a média móvel. Em ambos os casos utilizam-se todos os pontos fornecidos ao filtro como base para a previsão, eliminando o problema de selecionar o parâmetro $W$. Todavia, ainda existe o problema de selecionar o valor correto do parâmetro $T$ para que se obtenha o menor erro possível na extração da componente sazonal. A análise do erro pela variação do parâmetro $T$ pode ser vista nos gráficos a seguir.
-
 \begin{figure}[H]
 	\begin{center}
 		{
@@ -143,8 +130,6 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 \end{figure}
 
 
-\paragraph{}O ciclo senoidal foi obtido através da otimização do erro entre o seno e o sinal $s_{2t}$. Obtendo assim como resultado a amplitude, a frequência, a média e a fase da senoide que melhor adere ao sinal $s_{2t}$.
-
 \paragraph{}Para a extração do resíduo de fato utilizou-se um filtro notch com frequência $w=0.10869$ rad/amostra e $Q=0.01$ removendo então a frequência com maior energia na transformada de Fourier. Obtendo a seguinte distribuição e FFT:
 
 \begin{figure}[H]
@@ -180,8 +165,6 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 \paragraph{}Para os outros sinais de entrada a abordagem para a extração do sinal residual foi similar e os gráficos obtidos podem ser vistos no apêndice.
 
 \subsection{Seleção dos atrasos do sinal de saída}
-\paragraph{}Para a seleção dos atrasados utilizados no sinal de entrada foi utilizado o gráfico de autocorrelação. Observou-se que existem atrasos relevantes para um período até 20 meses. Sendo assim selecionou-se todos os atrasos com aproximadamente 95\% de confiança ou mais.
-
 \begin{figure}[H]
 	\begin{center}
 		{
@@ -231,11 +214,7 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 
 \paragraph{}Como forma de avaliação do modelo, foi utilizada a regressão linear sobre o gráfico dos pontos da série original (eixo $X$) pelos pontos do série prevista (eixo $Y$), assim como visto em \ref{fit_linear}. De acordo com essa métrica, o melhor modelo é o que tem o coeficiente angular ($a$) = $1.0$  e offset ($b$) = $0$.
 
-\paragraph{}Para facilitar a seleção dos modelos, foi feito uma tabela contendo informações sobre o erro médio, desvio padrão, coeficiente angular e offset médios para o dataset de treinamento. Criou-se a métrica para medir o desvio do $a$ e do $b$ do desejado, fazendo com que o primeiro erro fosse obtido através da fórmula $\epsilon_1 = ABS(1-a)$ e o segundo fosse obtido por $\epsilon_2 = ABS(b)$, onde $ABS$ é o valor absoluto do número. Além disso, para fins de ranqueamento, criou-se uma terceira métrica descrita como $\epsilon_3 = NORM(\epsilon_1) + NORM(\epsilon_2)$, onde $NORM$ é a normalização feita dividindo todos os valores pelo máximo do vetor. O modelo a ser utilizado é então o que tiver o menor erro $\epsilon_3$.
 
-\paragraph{}No primeiro estágio, fez-se uma rede que tinha como entrada $x(t)$ e obtém-se como saída $y(t)$, de modo a verificar se o processo utilizado no treinamento e seleção da rede estava adequado. Dado que as previsões são somente variações desse modelo básico, torna-se de extrema importância a boa adesão do modelo ao problema. 
-
-\paragraph{}A saída utilizada no processamento foi o sinal residual do PLD, dado que a tendência, sazonalidade e ciclos sazonais são determinísticos. Para obter valor final da PLD, é necessário combinar a parte prevista pela rede com a parte determinística previamente determinada.
 
 \subsection{Treinamento da rede para obter a saída no mês atual}
 \paragraph{}Para o treinamento rede para a saída atual, obteve-se o seguinte gráfico de rmse pelo número de neurônios no conjunto de treinamento:
@@ -285,4 +264,15 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 \paragraph{}Cabe a quem for utilizar analisar se compensa mais errar menos na média, porém ter uma chance de errar muito em casos extremos ou errar um pouco mais na média e ter o erro dentre de uma faixa menor.
 
 \subsection{Treinamento da rede para obter a saída para vários meses a frente}
-\paragraph{}A rede para vários meses à frente foi treinada de forma similar ao observado anteriormente, porém nesse caso observou-se somente a parte residual e não foi treinada uma rede secundária para corrigir o erro de estimação.
+\paragraph{}A rede para vários meses à frente foi treinada de forma similar ao observado anteriormente, porém nesse caso observou-se somente a parte residual e não foi treinada uma rede secundária para corrigir o erro de estimação em cada caso.
+
+\paragraph{}A partir dos resultados, gerou-se o seguinte gráfico que mostra o erro da rede em relação ao sinal original para diferentes números de passos a frente:
+
+[grafico mse pelo número de passos a frente]
+
+\paragraph{}A tabela com os dados utilizados para a seleção do do modelo, os gráficos de convergência e a de cada modelos estão presente nos apêndices A e B respectivamente. Além disso, o gráfico com a comparação do sinal previsto com o resíduo original pode ser visto no apêndice C.
+
+
+\paragraph{}Assim como o esperado, tanto o erro quanto o desvio padrão aumentam com o número de passos a frente, salvo algumas exceções. Sendo assim, a previsão para muitos passo a frente traz um risco maior para a análise. Cabe a quem for usar mensurar quanto de risco pode ser tolerado baseado nesses gráficos.
+
+\paragraph{}Ainda assim cabe ressaltar que o a análise foi feita somente para a parte residual. Provavelmente ao reconstruir o PLD, os erros ainda devem aumentar, pois serão somados os erros de estimação da tendência, sazonalidade e ciclos senoidais. A estratégia da rede para a correção dos erros pode ser aplicada para cada um dos casos buscando deixar a distribuição do erro mais concentrada em torno do zero.
