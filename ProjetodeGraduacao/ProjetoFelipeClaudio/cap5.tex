@@ -1,3 +1,37 @@
+\paragraph{}Neste capítulo são mostrados os resultados obtidos através da aplicação do método descrito no capítulo anterior.. Serão detalhados as características dos sinais utilizados assim como os valores dos parâmetros aplicados em cada algoritmo. Alguns resultados obtidos serão expostos no apêndice para facilitar a leitura.
+
+\section{Aquisição dos dados}
+\paragraph{}Os dados utilizados e suas respectivas fontes podem ser observados na tabela \ref{table:DadosDeEntrada}. No início do trabalho definiu-se que o foco seria a região sudeste, sendo assim, todos os dados utilizados foram filtrados para a região SE/CO. Os dados provenientes da ONS foram baixados direto do site no formato \textit{Comma Separated Values} - CSV.
+
+\paragraph{} Para facilitar o processamento, foram retiradas todas as colunas que não fossem a data no formato "mês (por extenso) ano". Essas foram então renomeadas para "month" e "value" e o valor do dado referido (ex: MWh produzidos por usinas hidroelétricas no mês), facilitando o desenvolvimento do código. 
+
+\paragraph{}Dado que as regras para o cálculo do PLD variam durante os anos, utilizou-se somente os dados no período entre 01/2015 e 12/2018 de modo a tentar reduzir ao máximo esse efeito. Sendo assim, o \textit{dataset} possui 48 somente pontos.
+
+\section{Pré-Processamento}
+\paragraph{}Antes de poder utilizar o sinais obtidos no treinamento da rede, fez-se necessário selecionar quais sinais seriam realmente fornecidos como entrada para o modelo e quantos atrasos temporais seriam necessários para determinar a saída. Além disso há a necessidade de extrair a componente residual do PLD e normalizar os dados. Cada um desses tópicos será detalhado nos parágrafos a seguir.
+
+\subsection{Seleção dos sinais de entrada}
+\paragraph{}Os sinais de entrada foram selecionado conforme a seguinte matriz de autocorrelação abaixo:
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{corr_plot_pt.jpg}
+				
+				\caption[\small{Correlação dos dados de entrada.}]{\label{correlacaoDadosEntrada} \small{Correlação dos dados de entrada.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\paragraph{}Observou-se alta correlação negativa entre a energia produzida pela hidroelétricas e térmicas. Isso ocorre pelo fato da energia gerada pelas termoelétricas ser a principal substituta para a energia proveniente de usinas térmicas. Sendo assim, decidiu-se então remover a série da energia gerada pelas UTEs de forma a remover a redundância dos dados fornecidos.
+
+\subsection{Seleção dos atrasos do sinal de saída}
+\paragraph{}O gráfico de autocorrelação expressa de forma numérica uma relação linear entre o valor atual e os atrasos. Com isso, têm-se os atrasos com maior importância na formação do sinal. Assim como descrito no capítulo anterior, foram selecionados os pontos que tinham correlação maior ou próximo do limite do intervalo de 95\% de confiança.
+
 \begin{figure}[H]
 	\begin{center}
 		{
@@ -12,39 +46,11 @@
 	\end{center}	
 \end{figure}
 
-
-\paragraph{}Os sinais de entrada foram selecionado conforme a seguinte matriz de autocorrelação abaixo:
-
-\paragraph{}Observou-se alta correlação negativa entre a energia produzida pela hidroelétricas e térmicas. Isso ocorre pelo fato da energia gerada pelas termoelétricas ser a principal substituta para a energia proveniente de usinas térmicas. Sendo assim, decidiu-se então remover a série da energia gerada pelas UTEs de forma a remover a redundância dos dados fornecidos.
-
-\paragraph{}Completar seção do processamento do sinal de entrada
+\paragraph{}Os atrasos obtidos através dessas análises foram replicados para os sinais da entrada, podendo assim definir quantos atrasos seriam necessários para obter informação suficiente para reconstruir a saída.
 
 
-\section{Aquisição dos dados}
-\paragraph{}Os dados utilizados e suas respectivas fontes podem ser observados na tabela \ref{table:DadosDeEntrada}.
-
- Para facilitar o processamento, foram retiradas todas as colunas que não fossem a data no formato "mês (por extenso) ano". Essas foram então renomeadas para "month" e "value", respectivamente para facilitar o desenvolvimento do código.
- 
-
- com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.
- 
- \paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Assim, como mencionado anteriormente, foram deixados 3 pontos da série temporal para realizar o teste.Para cada fold foram feitas 8 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}.
- 
-
- 
- \paragraph{}Dado que as regras para o cálculo do PLD variam durante os anos, utilizou-se somente os dados no período entre 01/2015 e 12/2018 de modo a tentar reduzir ao máximo esse efeito. Sendo assim, o \textit{dataset} possui 48 pontos.
- 
- \paragraph{}Devido ao número de atrasos relevantes obtidos pelo gráfico de autocorrelação (21 atrasos), o \textit{dataset} se reduziu a 28 pontos, dos quais os 3 últimos foram separados para teste e os outros 24 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds.
- 
- \paragraph{}Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em \ref{treinamento_mlp}. 
- 
- \paragraph{}No início do trabalho definiu-se que o foco seria a região sudeste, sendo assim, todos os dados utilizados foram filtrados para a região SE/CO. Os dados provenientes da ONS foram baixados direto do site no formato \textit{Comma Separated Values} - CSV.
-
-[ADICIONADO]
-
-\paragraph{}Neste capítulo são mostrados os resultados obtidos através da aplicação do método descrito no capítulo anterior. Alguns resultados obtidos serão expostos no apêndice para facilitar a leitura.
-
-\section{Pré-Processamento}
+\subsection{Tendência}
+\paragraph{}Para a definição do parâmetro $W$, responsável pelo tamanho da janela utilizada no processamento, fez-se um gráfico do MSE pelo tamanho da janela conforme visto na figura a seguir:
 
 \begin{figure}[H]
 	\begin{center}
@@ -61,7 +67,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Tendo como base o gráfico visto acima, observou-se que a extração proposta em \ref{maLinFit} obteve os melhores resultados e o selecionou-se $W=12$. O parâmetro $K$ foi definido como $K=5$ de forma empírica, de forma a obter uma transição sauve entre a regressão linear e a média móvel. Aplicando esse filtro obteve-se o seguinte resultado para a extração da tendência:
+\paragraph{}Tendo como base o gráfico acima, observou-se que a extração proposta em \ref{maLinFit} obteve os melhores resultados e o selecionou-se $W=12$. O parâmetro $K$ foi definido como $K=5$ de forma empírica, de forma a obter uma transição suave entre a regressão linear e a média móvel. Aplicando esse filtro obteve-se o seguinte resultado para a extração da tendência:
 
 \begin{figure}[H]
 	\begin{center}
@@ -147,6 +153,7 @@
 	\end{center}	
 \end{figure}
 
+[Corrigir grafico com eixo em inglês abaixo]
 \paragraph{}Ao final do processo tem-se o seguinte resultado:
 \begin{figure}[H]
 	\begin{center}
@@ -161,47 +168,20 @@
 		}	
 	\end{center}	
 \end{figure}
+[Corrigir grafico com eixo em inglês acima]
 
-\paragraph{}Para os outros sinais de entrada a abordagem para a extração do sinal residual foi similar e os gráficos obtidos podem ser vistos no apêndice.
 
-\subsection{Seleção dos atrasos do sinal de saída}
-\begin{figure}[H]
-	\begin{center}
-		{
-			\begin{center}
-				
-				\includegraphics[width=\textwidth]{autocorrelation_PLD.jpg}
-				
-				\caption[\small{Autocorrelação do PLD.}]{\label{autoCorrelacaoPLD} \small{Autocorrelação do PLD.}}
-				
-			\end{center}
-		}	
-	\end{center}	
-\end{figure}
-
-\paragraph{}O gráfico de autocorrelação expressa de forma numérica uma relação linear entre o valor atual e os atrasos. Com isso têm-se os atrasos com maior importância na formação do sinal. Essa informação será utilizada para definir os atrasos utilizados no sinal de entrada.
-
-\subsection{Seleção dos sinais de entrada}
-\paragraph{}Os sinais de entrada foram selecionado conforme a seguinte matriz de autocorrelação abaixo:
-
-\begin{figure}[H]
-	\begin{center}
-		{
-			\begin{center}
-				
-				\includegraphics[width=\textwidth]{corr_plot_pt.jpg}
-				
-				\caption[\small{Correlação dos dados de entrada.}]{\label{correlacaoDadosEntrada} \small{Correlação dos dados de entrada.}}
-				
-			\end{center}
-		}	
-	\end{center}	
-\end{figure}
-
-\paragraph{}Observou-se alta correlação negativa entre a energia produzida pela hidroelétricas e térmicas. Isso ocorre pelo fato da energia gerada pelas termoelétricas ser a principal substituta para a energia proveniente de usinas térmicas. Sendo assim, decidiu-se então remover a série da energia gerada pelas UTEs de forma a remover a redundância dos dados fornecidos.
-
-\paragraph{}Completar seção do processamento do sinal de entrada
 \section{Treinamento das redes neurais}
+
+com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.
+
+\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Assim, como mencionado anteriormente, foram deixados 3 pontos da série temporal para realizar o teste.Para cada fold foram feitas 8 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}.
+
+\paragraph{}Devido ao número de atrasos relevantes obtidos pelo gráfico de autocorrelação (21 atrasos), o \textit{dataset} se reduziu a 28 pontos, dos quais os 3 últimos foram separados para teste e os outros 24 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds.
+
+\paragraph{}Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em \ref{treinamento_mlp}. 
+
+
 \paragraph{}Dado que as entradas foram selecionadas e previamente processadas, restou definir a arquitetura da rede neural utilizada. Devido à simplicidade e a boa capacidade de solução de problemas, foi utilizada a rede Perceptron Multicamadas com somente uma camada intermediária. Foi definido para a camada de entrada e a intermediária que a função de ativação utilizada seria a ReLU, dado a velocidade de processamento e os bons resultados obtidos em pesquisas recentes \ref{reluSucesso}. Para a camada de saída, a função de ativação escolhida foi a linear, para que se possa construir a série temporal. O algoritmo de aprendizado utilizado foi o adadelta com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.
 
 \paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Assim, como mencionado anteriormente, foram deixados 3 pontos da série temporal para realizar o teste.Para cada fold foram feitas 8 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. 

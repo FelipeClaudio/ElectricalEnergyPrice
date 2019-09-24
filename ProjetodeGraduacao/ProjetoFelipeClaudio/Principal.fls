@@ -374,6 +374,9 @@ INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/cap4.tex
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/cap4.tex
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/cap5.tex
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/cap5.tex
+INPUT ./figuras/corr_plot_pt.jpg
+INPUT ./figuras/corr_plot_pt.jpg
+INPUT ./figuras/corr_plot_pt.jpg
 INPUT ./figuras/autocorrelation_PLD.jpg
 INPUT ./figuras/autocorrelation_PLD.jpg
 INPUT ./figuras/autocorrelation_PLD.jpg
@@ -399,11 +402,6 @@ INPUT ./figuras/fftAndDistribution_residualFiltered_pt.jpg
 INPUT ./figuras/resultPld_tsa_pt.jpg
 INPUT ./figuras/resultPld_tsa_pt.jpg
 INPUT ./figuras/resultPld_tsa_pt.jpg
-INPUT ./figuras/autocorrelation_PLD.jpg
-INPUT ./figuras/autocorrelation_PLD.jpg
-INPUT ./figuras/corr_plot_pt.jpg
-INPUT ./figuras/corr_plot_pt.jpg
-INPUT ./figuras/corr_plot_pt.jpg
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/cap6.tex
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/cap6.tex
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/Principal.bbl
