@@ -54,7 +54,7 @@ mPLDSE.index.inferred_freq
 BEST_WINDOW_SIZE_MA = 12
 T_SEASONAL = 6
 plt.close('all')
-SAVE_FIG = True
+SAVE_FIG = False
 
 MIN_WINDOW_SIZE = 3
 bestWString =  ' W=' + str(BEST_WINDOW_SIZE_MA)

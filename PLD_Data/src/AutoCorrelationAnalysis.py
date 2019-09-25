@@ -61,6 +61,8 @@ SAVE_INPUT = True
 ax = autocorrelation_plot(mPLDSE)
 ax.legend(['99% confiança', '95% confiança'])
 ax.set_title('Autocorrelação do PLD')
+ax.set_ylabel('Autocorrelação')
+ax.set_xlabel('Atrasos temporais')
 if SAVE_FIG:
     plt.savefig(ROOT_FOLDER+'PLD_Data/src/plots/autocorrelation_PLD.jpg', bbox_inches='tight')
 #props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)

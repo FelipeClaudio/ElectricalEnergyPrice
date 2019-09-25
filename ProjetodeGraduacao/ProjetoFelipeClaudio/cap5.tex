@@ -46,8 +46,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Os atrasos obtidos através dessas análises foram replicados para os sinais da entrada, podendo assim definir quantos atrasos seriam necessários para obter informação suficiente para reconstruir a saída.
-
+\paragraph{}Os atrasos obtidos através dessas análises foram replicados para os sinais da entrada, podendo assim definir quantos atrasos seriam necessários para obter informação suficiente para reconstruir a saída. Como conclui-se pelo gráfico que até 20 atrasos temporais são necessários para representar o sinal, o \textit{dataset} de 48 pontos foi reduzido a 28 pontos.
 
 \subsection{Tendência}
 \paragraph{}Para a definição do parâmetro $W$, responsável pelo tamanho da janela utilizada no processamento, fez-se um gráfico do MSE pelo tamanho da janela conforme visto na figura a seguir:
@@ -76,7 +75,7 @@
 				
 				\includegraphics[width=\textwidth]{fftAndDistribution_trend_pt.jpg}
 				
-				\caption[\small{Distribuição residual e FFT da tendência.}]{\label{fftAndDistTrend} \small{\textbf{Distribuição residual e FFT do sinal extraído}.}}
+				\caption[\small{Distribuição residual e FFT da tendência.}]{\label{fftAndDistTrend} \small{Distribuição residual e FFT do sinal extraído.}}
 				
 			\end{center}
 			
@@ -153,8 +152,7 @@
 	\end{center}	
 \end{figure}
 
-[Corrigir grafico com eixo em inglês abaixo]
-\paragraph{}Ao final do processo tem-se o seguinte resultado:
+\paragraph{}Ao final do processo, os seguintes resultados foram obtidos:
 \begin{figure}[H]
 	\begin{center}
 		{
@@ -168,33 +166,21 @@
 		}	
 	\end{center}	
 \end{figure}
-[Corrigir grafico com eixo em inglês acima]
-
 
 \section{Treinamento das redes neurais}
+\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Foram deixados 3 pontos da série temporal para realizar o teste. Para cada fold foram feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}.
 
-com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.
-
-\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Assim, como mencionado anteriormente, foram deixados 3 pontos da série temporal para realizar o teste.Para cada fold foram feitas 8 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}.
-
-\paragraph{}Devido ao número de atrasos relevantes obtidos pelo gráfico de autocorrelação (21 atrasos), o \textit{dataset} se reduziu a 28 pontos, dos quais os 3 últimos foram separados para teste e os outros 24 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds.
+\paragraph{}Devido ao número de atrasos relevantes obtidos pelo gráfico de autocorrelação (20 atrasos), o \textit{dataset} se reduziu a 28 pontos, dos quais os 3 últimos foram separados para teste e os outros 25 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds.
 
 \paragraph{}Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em \ref{treinamento_mlp}. 
 
-
 \paragraph{}Dado que as entradas foram selecionadas e previamente processadas, restou definir a arquitetura da rede neural utilizada. Devido à simplicidade e a boa capacidade de solução de problemas, foi utilizada a rede Perceptron Multicamadas com somente uma camada intermediária. Foi definido para a camada de entrada e a intermediária que a função de ativação utilizada seria a ReLU, dado a velocidade de processamento e os bons resultados obtidos em pesquisas recentes \ref{reluSucesso}. Para a camada de saída, a função de ativação escolhida foi a linear, para que se possa construir a série temporal. O algoritmo de aprendizado utilizado foi o adadelta com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.
 
-\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Assim, como mencionado anteriormente, foram deixados 3 pontos da série temporal para realizar o teste.Para cada fold foram feitas 8 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. 
-
-\paragraph{}O alpha foi escolhido de forma a fazer com que o gráfico de erro no dataset de teste e no dataset de treino pelo número de neurônios convergisse para todos os folds utilizados na validação cruzada. Foi utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhorasse o erro obtido em 25 épocas, o processamento seria então interrompido.
+\paragraph{}O $\alpha$ foi escolhido de forma a fazer com que o gráfico de erro no dataset de treino pelo número de neurônios convergisse para todos os folds utilizados na validação cruzada. Foi utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhorasse o erro obtido em 25 épocas, o processamento seria então interrompido.
 
 \paragraph{}Apesar das definições acima, ainda há necessidade de definir a quantidade de neurônios na camada intermediária. Foi feito então um treinamento variando o número de neurônios entre 1 e 90 e a partir disso gerou-se um gráfico com o RMSE pelo número de neurônios no conjunto de validação e de teste, conforme a figura abaixo:
 
 \paragraph{}[Inserir a figura do rmse]
-
-\paragraph{}Como forma de avaliação do modelo, foi utilizada a regressão linear sobre o gráfico dos pontos da série original (eixo $X$) pelos pontos do série prevista (eixo $Y$), assim como visto em \ref{fit_linear}. De acordo com essa métrica, o melhor modelo é o que tem o coeficiente angular ($a$) = $1.0$  e offset ($b$) = $0$.
-
-
 
 \subsection{Treinamento da rede para obter a saída no mês atual}
 \paragraph{}Para o treinamento rede para a saída atual, obteve-se o seguinte gráfico de rmse pelo número de neurônios no conjunto de treinamento:
@@ -204,7 +190,25 @@ com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultad
 \paragraph{}[MSE NO CONJUNTO de testes]
 
 \paragraph{}As 5 melhores estruturas de redes ranqueadas pelo critério $\epsilon_3$ definido anteriormente são as seguintes:
-\paragraph{}[TABELA Critério $\epsilon_3$]
+\begin{table}[h]
+	
+	\begin{center}
+		
+		\caption{Dados utilizado no trabalho.}
+		
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT0}
+			 
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}
+			
+			61 &64,435 & 61,180 &  0,998 & 0,008 & -0,007 & 0,175 & 0,184 \\ \hline
+			38 & 66,896 & 63,894 & 1,005 & 0,019 & -0,003 & 0,175 & 0,194 \\ \hline
+			97 & 63,509 & 61,957 & 1,000 & 0,001 & 0,046 & 0,224 & 0,225 \\ \hline
+			77 & 56,788 & 54,954 & 1,003 & 0,010 & 0,044 & 0,224 & 0,234 \\ \hline
+			92 & 55,370 & 53,135 & 0,983 & 0,063 & 0,009 & 0,224 & 0,287 \\ \hline
+		\end{tabular}
+		
+	\end{center} 
+\end{table}
 
 \paragraph{}E com isso o modelo com 61 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
 
@@ -213,7 +217,7 @@ com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultad
  \paragraph{}E os seguintes resultados foram obtidos:
 \paragraph{}[GRÁFICO DO RESÍDUO ORIGINAL X RESÍDUO PREVISTO]
 \paragraph{}[GRÁFICO DO SINAL RECONSTRUÍDO]
-\paragraph{}Com isso viu-se que a rede está sendo treinada de forma coerente para obter $y(t)$ a partir de $x(t)$. Esse caso também será utilizado como base para as previsões, pois espera-se que o erro para $N$ passos a frente seja sempre maior ou igual ao caso base.
+\paragraph{}Sendo assim, viu-se que a rede está sendo treinada de forma coerente para obter $y(t)$ a partir de $x(t)$. Esse caso também será utilizado como base para as previsões, pois espera-se que o erro para $N$ passos a frente seja sempre maior ou igual ao caso base.
 
 \subsection{Treinamento da rede para obter a saída um mês a frente}
 \paragraph{}Seguindo o procedimento previamente determinado, obteve-se os seguintes resultados para a previsão do PLD para 1 mês a frente:

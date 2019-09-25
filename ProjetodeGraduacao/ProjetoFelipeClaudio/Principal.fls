@@ -372,6 +372,9 @@ INPUT ./figuras/validacao_cruzada.jpg
 INPUT ./figuras/validacao_cruzada.jpg
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/cap4.tex
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/cap4.tex
+INPUT ./figuras/esquema_processamento_tcc.jpg
+INPUT ./figuras/esquema_processamento_tcc.jpg
+INPUT ./figuras/esquema_processamento_tcc.jpg
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/cap5.tex
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/cap5.tex
 INPUT ./figuras/corr_plot_pt.jpg
@@ -386,7 +389,6 @@ INPUT ./figuras/mseComparation_trend_pt.jpg
 INPUT ./figuras/fftAndDistribution_trend_pt.jpg
 INPUT ./figuras/fftAndDistribution_trend_pt.jpg
 INPUT ./figuras/fftAndDistribution_trend_pt.jpg
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT ./figuras/mseComparation_tseasonal_pt.jpg
 INPUT ./figuras/mseComparation_tseasonal_pt.jpg
 INPUT ./figuras/mseComparation_tseasonal_pt.jpg
@@ -422,7 +424,6 @@ INPUT ./figuras/Capa_do_Projeto_Final-eps-converted-to.pdf
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/ApendiceC.tex
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/ApendiceC.tex
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/Principal.aux
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb

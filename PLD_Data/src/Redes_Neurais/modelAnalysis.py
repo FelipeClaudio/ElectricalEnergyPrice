@@ -100,10 +100,14 @@ X_norm = pd.DataFrame(data=X_scaler.transform(X), columns=X.columns, index=X.ind
 y_scaler = copy.deepcopy(scaler).fit(y)
 y_norm = pd.DataFrame(data=y_scaler.transform(y), columns=y.columns, index=y.index)
 
-n_steps = 10  
+n_steps = 0  
 STEPS_FORECAST = n_steps
 X_train = X_norm.iloc[:-(N_TEST_ROWS + STEPS_FORECAST),:]
-X_test = X_norm.iloc[-(N_TEST_ROWS + STEPS_FORECAST):-STEPS_FORECAST,:]
+X_test = []
+if STEPS_FORECAST == 0:
+    X_test = X_norm.iloc[-(N_TEST_ROWS + STEPS_FORECAST):,:]
+else:
+    X_test = X_norm.iloc[-(N_TEST_ROWS + STEPS_FORECAST):-STEPS_FORECAST,:]
 y_train = y_norm.iloc[STEPS_FORECAST:-N_TEST_ROWS, :].reset_index(drop=True)
 y_test = y_norm.iloc[-N_TEST_ROWS:, :]
 
@@ -121,8 +125,8 @@ CVO = kf.split(X_train, y_train)
 CVO = list(CVO)
 
 mse_matrix = pd.DataFrame(columns=['fold','n_neurons', 
-                                   'mse_val_norm', 'mse_val',
-                                   'mse_test_norm','mse_test',
+                                   'val_norm_rmse', 'val_rmse',
+                                   'test_norm_rmse','test_rmse',
                                    'val_rmse', 'val_std',
                                    'a', 'b'])
     
@@ -139,6 +143,7 @@ SHOW_HISTORY = True
 READ_BEST_MODEL = True
 results = pd.DataFrame(columns=['rmse', 'std', 'a', 'b'], index=np.arange(MAX_NEURONS) + 1)
 resultsFolds = pd.DataFrame(columns=['rmse', 'std', 'a(mean)', 'b(mean)'], index=np.arange(MAX_NEURONS) + 1)
+resultsFoldsTest = pd.DataFrame(columns=['rmse', 'std', 'a(mean)', 'b(mean)'], index=np.arange(MAX_NEURONS) + 1)
 
 for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
     subplotidx = 1
@@ -286,11 +291,6 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
                                 mse_mean.loc[n_neurons]['b']
                              ]    
 
-    '''
-    results.plot(title="RMSE absoluto no conjunto de teste por número de neurônios na camada intermediária")
-    plt.savefig('rmse_test_set.jpg')
-    plt.close('all')
-    '''
                                     
     plt.title('Scatter Série prevista X residual para o conjunto completo')
     y_comp = model.predict(X_norm)
@@ -305,12 +305,43 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
     plt.savefig(str(n_neurons) + '_residual_scatter.jpg')
     plt.close('all')
     '''
-    results.loc[n_neurons] = [np.sqrt(mean_squared_error(y_original.iloc[-N_TEST_ROWS:,:], y_comp[-N_TEST_ROWS:])), \
+    results.loc[n_neurons] = [
+            np.sqrt(mean_squared_error(y_original.iloc[-N_TEST_ROWS:,:], y_comp[-N_TEST_ROWS:])), \
            np.std(y_original.iloc[-N_TEST_ROWS:,:] - y_comp[-N_TEST_ROWS:]), params[0], params[1]]
+    
+    
+    y_pred_test = y_comp[-N_TEST_ROWS:]
+    params_test = np.polyfit(y_pred_test.reshape(-1), y_test, 1)
+    resultsFoldsTest.loc[n_neurons] = [
+            np.sqrt(mean_squared_error(y_pred_test, y_test)), \
+            np.std(y_pred_test - y_test), params_test[0], params_test[1]]
     del model
     print(str(n_neurons) + " neurons")
     
-resultsFolds.to_csv('./resultsFold.csv')
+#results.plot(title="RMSE absoluto no conjunto de validação por número de neurônios na camada intermediária")
+x_val = np.arange(results.iloc[:,0].size)
+plt.plot(x_val, results['rmse'], label='rmse')
+plt.title('RMSE absoluto no conjunto de validação por número de neurônios na camada intermediária')
+plt.legend()
+plt.savefig('rmse_val_set.jpg')
+ax = plt.gca()
+ax.ticklabel_format(useOffset=False)
+plt.close('all')
+'''
+resultsFoldsTest.plot(title="RMSE absoluto no conjunto de teste por número de neurônios na camada intermediária")
+plt.savefig('rmse_test_set.jpg')
+plt.close('all')
+'''
+x_val = np.arange(resultsFoldsTest.iloc[:,0].size)
+plt.plot(x_val, results['rmse'], label='rmse')
+plt.title('RMSE absoluto no conjunto de teste por número de neurônios na camada intermediária')
+plt.legend()
+plt.savefig('rmse_val_set.jpg')
+ax = plt.gca()
+ax.ticklabel_format(useOffset=False)
+plt.close('all')
+    
+resultsFolds.to_csv('./resultsFold_test.csv')
 
 NUM_ELEMENTS = 28
 y_original = y_original.iloc[-(NUM_ELEMENTS - STEPS_FORECAST):]
@@ -354,6 +385,8 @@ plt.plot(t2, y2, 'b')
 plt.show()
 '''
 
+
+'''
 plt.figure()
 plt.plot(y_comp, 'r')
 plt.plot(y_norm, 'b')
@@ -385,3 +418,4 @@ plt.show()
 
 error_series = np.sqrt(np.square(y_original - reco))
 np.mean(error_series)
+'''

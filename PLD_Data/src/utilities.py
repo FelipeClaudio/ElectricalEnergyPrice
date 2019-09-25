@@ -117,15 +117,15 @@ def PlotTSA(original, trend, seasonal, residual, \
     
     plt.subplot(4, 1, 2)
     plt.plot(original.index, trend)
-    plt.ylabel('Trend')
+    plt.ylabel('Tendência')
     
     plt.subplot(4, 1, 3)
     plt.plot(original.index, seasonal)
-    plt.ylabel('Seasonal')
+    plt.ylabel('Sazonalidade')
     
     plt.subplot(4, 1, 4)
     plt.plot(original.index, residual)
-    plt.ylabel('Residual')
+    plt.ylabel('Resíduo')
     
     if SAVE_FIGURE:
         plt.savefig(resultPlotFileName, bbox_inches='tight')

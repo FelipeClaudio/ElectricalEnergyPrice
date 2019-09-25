@@ -161,113 +161,110 @@
 \contentsline {paragraph}{}{36}
 \contentsline {section}{\numberline {4.1}Coleta de dados}{36}
 \contentsline {paragraph}{}{36}
-\contentsline {paragraph}{}{37}
+\contentsline {paragraph}{}{36}
 \contentsline {paragraph}{}{37}
 \contentsline {paragraph}{}{37}
 \contentsline {section}{\numberline {4.2}Pr\'e-processamento}{37}
 \contentsline {paragraph}{}{37}
-\contentsline {subsection}{\numberline {4.2.1}Tend\^encia}{37}
-\contentsline {paragraph}{}{37}
+\contentsline {subsection}{\numberline {4.2.1}Tend\^encia}{38}
 \contentsline {paragraph}{}{38}
 \contentsline {paragraph}{}{38}
 \contentsline {paragraph}{}{38}
-\contentsline {subsection}{\numberline {4.2.2}Sazonalidade}{38}
 \contentsline {paragraph}{}{38}
+\contentsline {subsection}{\numberline {4.2.2}Sazonalidade}{39}
+\contentsline {paragraph}{}{39}
 \contentsline {paragraph}{}{39}
 \contentsline {paragraph}{}{39}
 \contentsline {paragraph}{}{39}
 \contentsline {subsection}{\numberline {4.2.3}Ciclos Senoidais e Res\IeC {\'\i }duo}{39}
 \contentsline {paragraph}{}{39}
-\contentsline {section}{\numberline {4.3}Sele\c c\~ao dos sinais de entrada}{39}
-\contentsline {paragraph}{}{39}
+\contentsline {section}{\numberline {4.3}Sele\c c\~ao dos sinais de entrada}{40}
+\contentsline {paragraph}{}{40}
 \contentsline {subsection}{\numberline {4.3.1}Sele\c c\~ao dos atrasos do sinal de sa\IeC {\'\i }da}{40}
 \contentsline {paragraph}{}{40}
 \contentsline {section}{\numberline {4.4}Rede Neural}{40}
 \contentsline {paragraph}{}{40}
 \contentsline {subsection}{\numberline {4.4.1}Treinamento das redes neurais}{40}
 \contentsline {paragraph}{}{40}
-\contentsline {paragraph}{}{40}
 \contentsline {paragraph}{}{41}
 \contentsline {paragraph}{}{41}
 \contentsline {paragraph}{}{41}
 \contentsline {paragraph}{}{41}
 \contentsline {paragraph}{}{41}
-\contentsline {paragraph}{}{41}
-\contentsline {chapter}{\numberline {5}Resultados}{42}
-\contentsline {paragraph}{}{42}
-\contentsline {section}{\numberline {5.1}Aquisi\c c\~ao dos dados}{42}
 \contentsline {paragraph}{}{42}
 \contentsline {paragraph}{}{42}
-\contentsline {paragraph}{}{42}
-\contentsline {section}{\numberline {5.2}Pr\'e-Processamento}{43}
+\contentsline {chapter}{\numberline {5}Resultados}{43}
 \contentsline {paragraph}{}{43}
-\contentsline {subsection}{\numberline {5.2.1}Sele\c c\~ao dos sinais de entrada}{43}
+\contentsline {section}{\numberline {5.1}Aquisi\c c\~ao dos dados}{43}
 \contentsline {paragraph}{}{43}
 \contentsline {paragraph}{}{43}
-\contentsline {subsection}{\numberline {5.2.2}Sele\c c\~ao dos atrasos do sinal de sa\IeC {\'\i }da}{44}
+\contentsline {paragraph}{}{43}
+\contentsline {section}{\numberline {5.2}Pr\'e-Processamento}{44}
+\contentsline {paragraph}{}{44}
+\contentsline {subsection}{\numberline {5.2.1}Sele\c c\~ao dos sinais de entrada}{44}
 \contentsline {paragraph}{}{44}
 \contentsline {paragraph}{}{44}
-\contentsline {subsection}{\numberline {5.2.3}Tend\^encia}{44}
-\contentsline {paragraph}{}{44}
+\contentsline {subsection}{\numberline {5.2.2}Sele\c c\~ao dos atrasos do sinal de sa\IeC {\'\i }da}{45}
 \contentsline {paragraph}{}{45}
-\contentsline {subsection}{\numberline {5.2.4}Sazonalidade}{46}
+\contentsline {paragraph}{}{45}
+\contentsline {subsection}{\numberline {5.2.3}Tend\^encia}{45}
+\contentsline {paragraph}{}{45}
 \contentsline {paragraph}{}{46}
-\contentsline {subsection}{\numberline {5.2.5}Ciclos Senoidais e Res\IeC {\'\i }duo}{47}
+\contentsline {subsection}{\numberline {5.2.4}Sazonalidade}{47}
 \contentsline {paragraph}{}{47}
-\contentsline {paragraph}{}{47}
-\contentsline {paragraph}{}{48}
-\contentsline {section}{\numberline {5.3}Treinamento das redes neurais}{48}
-\contentsline {paragraph}{}{48}
+\contentsline {subsection}{\numberline {5.2.5}Ciclos Senoidais e Res\IeC {\'\i }duo}{48}
 \contentsline {paragraph}{}{48}
 \contentsline {paragraph}{}{48}
 \contentsline {paragraph}{}{49}
+\contentsline {section}{\numberline {5.3}Treinamento das redes neurais}{49}
 \contentsline {paragraph}{}{49}
 \contentsline {paragraph}{}{49}
 \contentsline {paragraph}{}{49}
 \contentsline {paragraph}{}{49}
-\contentsline {paragraph}{}{49}
+\contentsline {paragraph}{}{50}
+\contentsline {paragraph}{}{50}
+\contentsline {paragraph}{}{50}
 \contentsline {subsection}{\numberline {5.3.1}Treinamento da rede para obter a sa\IeC {\'\i }da no m\^es atual}{50}
 \contentsline {paragraph}{}{50}
 \contentsline {paragraph}{}{50}
 \contentsline {paragraph}{}{50}
 \contentsline {paragraph}{}{50}
 \contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {subsection}{\numberline {5.3.2}Treinamento da rede para obter a sa\IeC {\'\i }da um m\^es a frente}{50}
-\contentsline {paragraph}{}{50}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
+\contentsline {subsection}{\numberline {5.3.2}Treinamento da rede para obter a sa\IeC {\'\i }da um m\^es a frente}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{52}
-\contentsline {subsection}{\numberline {5.3.3}Treinamento da rede para obter a sa\IeC {\'\i }da para v\'arios meses a frente}{52}
 \contentsline {paragraph}{}{52}
 \contentsline {paragraph}{}{52}
 \contentsline {paragraph}{}{52}
 \contentsline {paragraph}{}{52}
 \contentsline {paragraph}{}{52}
-\contentsline {chapter}{\numberline {6}Conclus\~oes}{53}
+\contentsline {paragraph}{}{52}
+\contentsline {paragraph}{}{52}
+\contentsline {paragraph}{}{52}
+\contentsline {paragraph}{}{52}
+\contentsline {paragraph}{}{52}
+\contentsline {paragraph}{}{52}
+\contentsline {paragraph}{}{52}
+\contentsline {subsection}{\numberline {5.3.3}Treinamento da rede para obter a sa\IeC {\'\i }da para v\'arios meses a frente}{53}
 \contentsline {paragraph}{}{53}
 \contentsline {paragraph}{}{53}
-\contentsline {chapter}{Bibliografia}{54}
-\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{60}
-\contentsline {paragraph}{}{60}
-\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{61}
-\contentsline {chapter}{\numberline {C}O que \'e um anexo}{63}
-\contentsline {paragraph}{}{63}
+\contentsline {paragraph}{}{53}
+\contentsline {paragraph}{}{53}
+\contentsline {paragraph}{}{53}
+\contentsline {chapter}{\numberline {6}Conclus\~oes}{54}
+\contentsline {paragraph}{}{54}
+\contentsline {paragraph}{}{54}
+\contentsline {chapter}{Bibliografia}{55}
+\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{61}
+\contentsline {paragraph}{}{61}
+\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{62}
+\contentsline {chapter}{\numberline {C}O que \'e um anexo}{64}
+\contentsline {paragraph}{}{64}
