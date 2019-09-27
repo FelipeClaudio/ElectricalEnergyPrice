@@ -1,4 +1,4 @@
-\paragraph{}Neste capítulo são mostrados os resultados obtidos através da aplicação do método descrito no capítulo anterior.. Serão detalhados as características dos sinais utilizados assim como os valores dos parâmetros aplicados em cada algoritmo. Alguns resultados obtidos serão expostos no apêndice para facilitar a leitura.
+\paragraph{}Neste capítulo, são mostrados os resultados obtidos através da aplicação do método descrito no capítulo anterior.. Serão detalhados as características dos sinais utilizados assim como os valores dos parâmetros aplicados em cada algoritmo. Alguns resultados obtidos serão expostos no apêndice para facilitar a leitura.
 
 \section{Aquisição dos dados}
 \paragraph{}Os dados utilizados e suas respectivas fontes podem ser observados na tabela \ref{table:DadosDeEntrada}. No início do trabalho definiu-se que o foco seria a região sudeste, sendo assim, todos os dados utilizados foram filtrados para a região SE/CO. Os dados provenientes da ONS foram baixados direto do site no formato \textit{Comma Separated Values} - CSV.
@@ -178,29 +178,50 @@
 
 \paragraph{}O $\alpha$ foi escolhido de forma a fazer com que o gráfico de erro no dataset de treino pelo número de neurônios convergisse para todos os folds utilizados na validação cruzada. Foi utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhorasse o erro obtido em 25 épocas, o processamento seria então interrompido.
 
-\paragraph{}Apesar das definições acima, ainda há necessidade de definir a quantidade de neurônios na camada intermediária. Foi feito então um treinamento variando o número de neurônios entre 1 e 90 e a partir disso gerou-se um gráfico com o RMSE pelo número de neurônios no conjunto de validação e de teste, conforme a figura abaixo:
-
-\paragraph{}[Inserir a figura do rmse]
+\paragraph{}Apesar das definições acima, ainda há necessidade de definir a quantidade de neurônios na camada intermediária. Foi feito então um treinamento variando o número de neurônios entre 1 e 90 e, a partir disso, gerou-se um gráfico com o RMSE pelo número de neurônios no conjunto de validação e de teste.
 
 \subsection{Treinamento da rede para obter a saída no mês atual}
 \paragraph{}Para o treinamento rede para a saída atual, obteve-se o seguinte gráfico de rmse pelo número de neurônios no conjunto de treinamento:
-\paragraph{}[MSE NO CONJUNTO treinamento]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t0.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{mseValT0} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
 
 \paragraph{}No conjunto de testes o resultado foi o seguinte:
-\paragraph{}[MSE NO CONJUNTO de testes]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t0.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{mseTestT0} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
 
 \paragraph{}As 5 melhores estruturas de redes ranqueadas pelo critério $\epsilon_3$ definido anteriormente são as seguintes:
-\begin{table}[h]
+\begin{table}[H]
 	
 	\begin{center}
 		
-		\caption{Dados utilizado no trabalho.}
+		\caption{Resultados obtidos com as redes.}
 		
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT0}
 			 
-			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}
-			
-			61 &64,435 & 61,180 &  0,998 & 0,008 & -0,007 & 0,175 & 0,184 \\ \hline
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}61 &64,435 & 61,180 &  0,998 & 0,008 & -0,007 & 0,175 & 0,184 \\ \hline
 			38 & 66,896 & 63,894 & 1,005 & 0,019 & -0,003 & 0,175 & 0,194 \\ \hline
 			97 & 63,509 & 61,957 & 1,000 & 0,001 & 0,046 & 0,224 & 0,225 \\ \hline
 			77 & 56,788 & 54,954 & 1,003 & 0,010 & 0,044 & 0,224 & 0,234 \\ \hline
@@ -210,38 +231,218 @@
 	\end{center} 
 \end{table}
 
-\paragraph{}E com isso o modelo com 61 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+\paragraph{}E com isso o modelo com 61 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas e por folds:
 
-\paragraph{}[GRAFICO CONVERGÊNCIA]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t0.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT0} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
 
- \paragraph{}E os seguintes resultados foram obtidos:
-\paragraph{}[GRÁFICO DO RESÍDUO ORIGINAL X RESÍDUO PREVISTO]
-\paragraph{}[GRÁFICO DO SINAL RECONSTRUÍDO]
-\paragraph{}Sendo assim, viu-se que a rede está sendo treinada de forma coerente para obter $y(t)$ a partir de $x(t)$. Esse caso também será utilizado como base para as previsões, pois espera-se que o erro para $N$ passos a frente seja sempre maior ou igual ao caso base.
+\paragraph{}E os seguintes resultados foram obtidos:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t0.jpg}
+				
+				\caption[\small{Sinal comple.}]{\label{completoT0} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\paragraph{}Os 3 últimos pontos são do conjunto de dados de teste. Observa-se que a rede não conseguiu prevê-los muito bem. Isso pode se dar tanto pelo treinamento que não convergiu muito bem como pode ter ocorrido \textit{overfit}.
+
+\paragraph{}Dado a pouca quantidade de dados, a rede não obteve o comportamento esperado nos treinamento, porém o resultado obtido mostrou que a mesma conseguiu mapear bem a entrada na saída. Sendo assim, viu-se que a rede está sendo treinada de forma coerente para obter $y(t)$ a partir de $x(t)$. Esse caso também será utilizado como base para as previsões, pois espera-se que o erro para $N$ passos a frente seja sempre maior ou igual ao caso base.
 
 \subsection{Treinamento da rede para obter a saída um mês a frente}
 \paragraph{}Seguindo o procedimento previamente determinado, obteve-se os seguintes resultados para a previsão do PLD para 1 mês a frente:
 
-\paragraph{}[TABELA Critério $\epsilon_3$]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t1.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{mseValT1} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
 
+
+\paragraph{}No conjunto de teste o resultado foi o seguinte:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t1.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{mseTestT1} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\begin{table}[H]
+	
+	\begin{center}
+		
+		\caption{Resultados obtidos com as redes.}
+		
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT1}
+			
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}63 & 82,911 & 69,521 & 0,993 & 0,002 & 0,005 & 0,003 & 0,004 \\ \hline
+			71 & 88,327 & 74,076 & 0,985 & 0,004 & -0,027 & 0,014 & 0,018 \\ \hline
+			25 & 93,041 & 73,840 & 0,966 & 0,008 & 0,020 & 0,010 & 0,018 \\ \hline
+			50 & 103,137 & 93,552 & 0,927 & 0,018 & 0,032 & 0,016 & 0,034 \\ \hline
+			51 & 94,937 & 81,015 & 0,860 & 0,034 & 0,000 & 0,000 & 0,034 \\ \hline
+		\end{tabular}
+		
+	\end{center} 
+\end{table}
 \paragraph{}E com isso o modelo com 63 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
 
-\paragraph{}[GRAFICO CONVERGÊNCIA]
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t1.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT1} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
 
 \paragraph{}E obteve-se os seguintes resultados:
-\paragraph{}[GRÁFICO DO RESÍDUO ORIGINAL X RESÍDUO PREVISTO]
-\paragraph{}[GRÁFICO DO SINAL RECONSTRUÍDO]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t1.jpg}
+				
+				\caption[\small{Sinal completo.}]{\label{completoT1} \small{Sinal completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
 
 \paragraph{}Para essa previsão, foi treinada uma rede para reduzir o erro de estimação usando como entrada os dados já mencionados anteriormente. Os erros de estimação entre o sinal reconstruído e o original foram utilizados como alvos da rede. Obteve-se então os seguintes resultados:
 
-\paragraph{}[TABELA Critério $\epsilon_3$]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t1_error.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{mseValT1Error} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
 
-\paragraph{}E com isso o modelo com 58 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
 
-\paragraph{}[GRAFICO CONVERGÊNCIA]
+\paragraph{}No conjunto de teste o resultado foi o seguinte:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t1_error.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{mseTestT1Error} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\begin{table}[H]
+	
+	\begin{center}
+		
+		\caption{Resultados obtidos com as redes.}
+		
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT1Erro}
+			
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}90 & 126,678 & 101,233 & 1,029 & 0,001 & -0,001 & 0,000 & 0,001  \\ \hline
+			14 & 130,352 & 98,738 & 0,973 & 0,001 & -0,002 & 0,000 & 0,001  \\ \hline
+			46 & 137,971 & 99,784 & 1,017 & 0,001 & -0,017 & 0,001 & 0,002  \\ \hline
+			76 & 136,014 & 105,032 & 0,982 & 0,001 & 0,057 & 0,003 & 0,004  \\ \hline
+			60 & 123,420 & 98,844 & 1,070 & 0,002 & -0,031 & 0,002 & 0,004  \\ \hline
+		\end{tabular}
+		
+	\end{center} 
+\end{table}
+
+\paragraph{}E com isso o modelo com 90 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t1.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT1erro} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
 \paragraph{}E finalmente obteve-se os seguintes resultados:
-\paragraph{}[GRÁFICO DO RESÍDUO ORIGINAL X RESÍDUO PREVISTO]
-\paragraph{}[GRÁFICO DO SINAL RECONSTRUÍDO]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t1_error.jpg}
+				
+				\caption[\small{Sinal completo.}]{\label{completoT1Error} \small{Sinal completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{original_pred_rede_erro_hist.jpg}
+				
+				\caption[\small{Histograma de previsão sem e com a correção de erro.}]{\label{histErro} \small{Histograma de previsão sem e com a correção de erro.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
 
 \paragraph{}Pelo histograma é possível ver que a rede de correção do erro de estimação diminuiu o erro máximo e mínimo, porém a estrutura sem a correção do erro tem maior concentração de pontos próximos do zero. Sendo assim, espera-se que a saída com a correção de erro erre mais, porém com discrepância pequena, enquanto espera-se que sem a correção de erro o resultado seja melhor na maioria das vezes, podendo correr o risco de errar muito em alguns pontos.
 
@@ -252,10 +453,36 @@
 
 \paragraph{}A partir dos resultados, gerou-se o seguinte gráfico que mostra o erro da rede em relação ao sinal original para diferentes números de passos a frente:
 
-[grafico mse pelo número de passos a frente]
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{mean_std_test_best_prev.jpg}
+				
+				\caption[\small{Erro no sinal residual pelo número de passos no conjunto de dados de teste.}]{\label{rmsePassosTeste} \small{Erro no sinal residual pelo número de passos no conjunto de dados de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{mean_std_comp_best_prev.jpg}
+				
+				\caption[\small{Erro no sinal residual pelo número de passos no conjunto de dados completo.}]{\label{rmsePassosVomp} \small{Erro no sinal residual pelo número de passos no conjunto de dados de completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
 
 \paragraph{}A tabela com os dados utilizados para a seleção do do modelo, os gráficos de convergência e a de cada modelos estão presente nos apêndices A e B respectivamente. Além disso, o gráfico com a comparação do sinal previsto com o resíduo original pode ser visto no apêndice C.
-
 
 \paragraph{}Assim como o esperado, tanto o erro quanto o desvio padrão aumentam com o número de passos a frente, salvo algumas exceções. Sendo assim, a previsão para muitos passo a frente traz um risco maior para a análise. Cabe a quem for usar mensurar quanto de risco pode ser tolerado baseado nesses gráficos.
 

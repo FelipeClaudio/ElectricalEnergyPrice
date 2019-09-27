@@ -49,15 +49,17 @@
 \contentsline {paragraph}{}{xi}
 \contentsline {paragraph}{}{xi}
 \contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{1}
+\contentsline {paragraph}{}{1}
 \contentsline {section}{\numberline {1.1}Tema}{1}
+\contentsline {paragraph}{}{1}
 \contentsline {paragraph}{}{1}
 \contentsline {paragraph}{}{1}
 \contentsline {paragraph}{}{1}
 \contentsline {paragraph}{}{1}
 \contentsline {section}{\numberline {1.2}Delimita\c c\~ao}{1}
 \contentsline {paragraph}{}{1}
-\contentsline {section}{\numberline {1.3}Justificativa}{1}
-\contentsline {paragraph}{}{1}
+\contentsline {section}{\numberline {1.3}Justificativa}{2}
+\contentsline {paragraph}{}{2}
 \contentsline {section}{\numberline {1.4}Objetivos}{2}
 \contentsline {paragraph}{}{2}
 \contentsline {section}{\numberline {1.5}Metodologia}{2}
@@ -223,48 +225,37 @@
 \contentsline {paragraph}{}{49}
 \contentsline {paragraph}{}{50}
 \contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
 \contentsline {subsection}{\numberline {5.3.1}Treinamento da rede para obter a sa\IeC {\'\i }da no m\^es atual}{50}
 \contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
-\contentsline {subsection}{\numberline {5.3.2}Treinamento da rede para obter a sa\IeC {\'\i }da um m\^es a frente}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{52}
 \contentsline {paragraph}{}{52}
 \contentsline {paragraph}{}{52}
-\contentsline {paragraph}{}{52}
-\contentsline {paragraph}{}{52}
-\contentsline {paragraph}{}{52}
-\contentsline {paragraph}{}{52}
-\contentsline {paragraph}{}{52}
-\contentsline {paragraph}{}{52}
-\contentsline {paragraph}{}{52}
-\contentsline {paragraph}{}{52}
-\contentsline {paragraph}{}{52}
-\contentsline {paragraph}{}{52}
-\contentsline {subsection}{\numberline {5.3.3}Treinamento da rede para obter a sa\IeC {\'\i }da para v\'arios meses a frente}{53}
+\contentsline {subsection}{\numberline {5.3.2}Treinamento da rede para obter a sa\IeC {\'\i }da um m\^es a frente}{53}
 \contentsline {paragraph}{}{53}
 \contentsline {paragraph}{}{53}
-\contentsline {paragraph}{}{53}
-\contentsline {paragraph}{}{53}
-\contentsline {paragraph}{}{53}
-\contentsline {chapter}{\numberline {6}Conclus\~oes}{54}
 \contentsline {paragraph}{}{54}
-\contentsline {paragraph}{}{54}
-\contentsline {chapter}{Bibliografia}{55}
-\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{61}
+\contentsline {paragraph}{}{55}
+\contentsline {paragraph}{}{55}
+\contentsline {paragraph}{}{56}
+\contentsline {paragraph}{}{57}
+\contentsline {paragraph}{}{57}
+\contentsline {paragraph}{}{58}
+\contentsline {paragraph}{}{58}
+\contentsline {subsection}{\numberline {5.3.3}Treinamento da rede para obter a sa\IeC {\'\i }da para v\'arios meses a frente}{59}
+\contentsline {paragraph}{}{59}
+\contentsline {paragraph}{}{59}
+\contentsline {paragraph}{}{60}
+\contentsline {paragraph}{}{60}
+\contentsline {paragraph}{}{60}
+\contentsline {chapter}{\numberline {6}Conclus\~oes}{61}
 \contentsline {paragraph}{}{61}
-\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{62}
-\contentsline {chapter}{\numberline {C}O que \'e um anexo}{64}
-\contentsline {paragraph}{}{64}
+\contentsline {paragraph}{}{61}
+\contentsline {chapter}{Bibliografia}{62}
+\contentsline {chapter}{\numberline {A}O que \'e um ap\^endice}{68}
+\contentsline {paragraph}{}{68}
+\contentsline {chapter}{\numberline {B}Encaderna\c c\~ao do Projeto de Gradua\c c\~ao}{69}
+\contentsline {chapter}{\numberline {C}O que \'e um anexo}{71}
+\contentsline {paragraph}{}{71}

@@ -100,7 +100,7 @@ X_norm = pd.DataFrame(data=X_scaler.transform(X), columns=X.columns, index=X.ind
 y_scaler = copy.deepcopy(scaler).fit(y)
 y_norm = pd.DataFrame(data=y_scaler.transform(y), columns=y.columns, index=y.index)
 
-n_steps = 0  
+n_steps = 1  
 STEPS_FORECAST = n_steps
 X_train = X_norm.iloc[:-(N_TEST_ROWS + STEPS_FORECAST),:]
 X_test = []
@@ -116,7 +116,7 @@ y_test = y_norm.iloc[-N_TEST_ROWS:, :]
 # train a simple classifier
 n_folds = 8
 n_inits = 3
-MIN_NEURONS = 1 #best = 37
+MIN_NEURONS = 90
 MAX_NEURONS = 90
 
 #partition by folder
@@ -125,9 +125,8 @@ CVO = kf.split(X_train, y_train)
 CVO = list(CVO)
 
 mse_matrix = pd.DataFrame(columns=['fold','n_neurons', 
-                                   'val_norm_rmse', 'val_rmse',
-                                   'test_norm_rmse','test_rmse',
-                                   'val_rmse', 'val_std',
+                                   'val_norm_rmse', 'val_rmse', 'val_std',
+                                   'test_norm_rmse','test_rmse', 'test_std',
                                    'a', 'b'])
     
 mse_comp = pd.DataFrame(columns=['mse'])
@@ -187,11 +186,11 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
                               ifold, 
                               n_neurons,
                               mean_squared_error(y_val_fold_norm, y_pred_fold_val_norm),
-                              mean_squared_error(y_val_fold, y_pred_fold_val),
-                              mean_squared_error(y_test_norm, y_pred_test_norm),
-                              mean_squared_error(y_test_original, y_pred_test),
                               np.sqrt(mean_squared_error(y_val_fold, y_pred_fold_val)),
                               np.std(y_val_fold - y_pred_fold_val),
+                              mean_squared_error(y_test_norm, y_pred_test_norm),
+                              np.sqrt(mean_squared_error(y_test_original, y_pred_test)),
+                              np.std(y_test_original - y_pred_test),                             
                               params[0][0],
                               params[1][0]
                       ]
@@ -206,22 +205,21 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
         line += 1
         del model 
         
-    '''
+        
         if SHOW_HISTORY:
             ax1 = plt.subplot(np.ceil(n_folds/2), 2, subplotidx)
-            plt.plot(np.sqrt(hist['mean_squared_error']), label='train error')
-            plt.plot(np.sqrt(hist['val_mean_squared_error']), label='validation error')
+            plt.plot(np.sqrt(hist['mean_squared_error']), label='erro no treinamento')
+            plt.plot(np.sqrt(hist['val_mean_squared_error']), label='erro na validação')
             plt.legend()
             ax1.set_title('Fold ' + str(subplotidx))
             plt.suptitle('RMSE na validação cruzada para  ' + str(n_neurons) + ' neurônios na camada intermediária')
             subplotidx += 1
-    '''   
-        
-    '''
+
     #plot mse for validation set in folder
     plt.savefig(str(n_neurons) + '_convergence.jpg')
     plt.close('all')
     
+    '''
     #plot mean mse by neurons number
     #plt.figure()
     plt.title('RMSE médio no conjunto de validação normalizado por número de neurônios na camada intermediária')    
@@ -332,16 +330,17 @@ resultsFoldsTest.plot(title="RMSE absoluto no conjunto de teste por número de n
 plt.savefig('rmse_test_set.jpg')
 plt.close('all')
 '''
-x_val = np.arange(resultsFoldsTest.iloc[:,0].size)
-plt.plot(x_val, results['rmse'], label='rmse')
+x_test = np.arange(resultsFoldsTest.iloc[:,0].size)
+plt.plot(x_test, resultsFoldsTest['rmse'], label='rmse')
 plt.title('RMSE absoluto no conjunto de teste por número de neurônios na camada intermediária')
 plt.legend()
-plt.savefig('rmse_val_set.jpg')
+plt.savefig('rmse_test_set.jpg')
 ax = plt.gca()
 ax.ticklabel_format(useOffset=False)
 plt.close('all')
     
-resultsFolds.to_csv('./resultsFold_test.csv')
+resultsFolds.to_csv('./resultsFold.csv')
+resultsFoldsTest.to_csv('./resultsFold_Test.csv')
 
 NUM_ELEMENTS = 28
 y_original = y_original.iloc[-(NUM_ELEMENTS - STEPS_FORECAST):]
@@ -405,17 +404,26 @@ plt.show()
 np.max(np.abs(y_original - reco))
 np.std(y_original - reco)
 np.min(np.abs(y_original - reco))
+'''
 
+
+y_size = y_original.size
+y_deterministico = pldTrend.iloc[-y_size:].values + \
+         pldSeasonal.iloc[-y_size:].values + \
+         senoidalCycle[-y_size:].reshape(-1, 1)
 plt.figure()
-plt.plot(y_original.index, reco, 'r', label='reco')
+plt.plot(y_original.index, reco, 'r', label='sinal com resíduo previsto')
 plt.plot(y_original.index, y_original, 'b', label='original')
+plt.plot(y_original.index, y_deterministico, 'y', label='sinal sem resíduo')
 plt.errorbar(y_original.index, reco, yerr=resultsFolds.loc[MAX_NEURONS]['std'], fmt='r', ecolor='black')
 plt.legend()
 plt.xlabel('Amostra')
 plt.ylabel('Valor PLD')
 plt.title('PLD médio mensal previsto X real para o mês atual '+ str(MAX_NEURONS) + ' neurônios')
 plt.show()
+plt.savefig('sinal_completo_t' + str(n_steps) + '.jpg')
 
+'''
 error_series = np.sqrt(np.square(y_original - reco))
 np.mean(error_series)
 '''
