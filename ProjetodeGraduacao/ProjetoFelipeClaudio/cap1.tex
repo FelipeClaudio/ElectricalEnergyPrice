@@ -1,44 +1,28 @@
 \paragraph{}Neste capítulo, será introduzido o tema do projeto, além de mostrar a relevância do mesmo e quais são métodos serão utilizados para alcançar o determinado objetivo. Ao final exibida a estrutura organizacional do texto.
 
 \section{Tema}
-
-\paragraph{}O mercado elétrico brasileiro é bastante diferente 
-
-\paragraph{}Falar do que se trata o trabalho usando uma visão macroscópica (tamanho do texto: 1 ou 2 parágrafos no máximo).
-
-\paragraph{}Sobre que grande área de conhecimento você vai falar?
-
-\paragraph{}Dada esta grande área, qual é o subconjunto de conhecimento sobre o qual será o seu trabalho?
-
-\paragraph{}Qual o problema a ser resolvido?
-
+\paragraph{}O sistema elétrico brasileiro é bem diferente dos demais visto mundialmente, pois há grande abundância de energia barata gerada a partir de fontes hídricas. Essas fontes são responsáveis por aproximadamente 65,2\% da energia consumida no país \cite{EPE}. 
+\paragraph{}A volatilidade desses recursos torna bastante complexa a atividade de prever e planejar a utilização de forma a diminuir o custo da energia elétrica. A diferença entre a quantidade de energia negociada e efetivamente gerada é liquidada utilizando como base o PLD - Preço da Liquidação das Diferenças, o qual deseja-se determinar através de modelos matemáticos.
 
 \section{Delimitação}
-
-\paragraph{}Realizar uma delimitação informando de quem é a demanda, em que local, e em que momento no tempo. Eventualmente, pode ser mais fácil começar pensando por exclusão, ou seja, para quem não serve, onde não deve ser aplicado, e em seguida pegar o universo que sobra (tamanho do texto: livre).
-
+\paragraph{}O trabalho tem como foco a previsão do PLD mensal e tem aplicação para os seguintes setores: elétrico, bancário, planejamento e pequisa. Para isso serão utilizados dados públicos presentes em \cite{CCEE} e \cite{ONS} para treinar redes multicamadas Perceptron - \textit{MLP} para prever a parte residual do PLD.
 
 \section{Justificativa}
+\paragraph{}Os resultados da pesquisa são de interesse do setor elétrico, pois permitem, por exemplo, que comercializadoras de energia elétrica consigam obter lucro com a compra e venda de energia.
 
-\paragraph{}Apresentar o porquê do tema ser interessante de ser estudado. Cuidado, não é a motivação particular. Devem ser apresentadas razões para que alguém deva se interessar no assunto, e não quais foram suas razões particulares que motivaram você a estudá-lo (tamanho do texto: livre).
+\paragraph{}Para o setor bancário, o trabalho pode ser utilizado como ferramenta para análise de risco de crédito para empresas do setor elétrico. No ramo de planejamento e pesquisa, os resultados podem ser utilizados para entender melhor a dinâmico do preço e realizar planejamentos mais precisos quanto à utilização de recursos. 
 
 
 \section{Objetivos}
-
-\paragraph{}Informar qual é o objetivo geral do trabalho, isto é, aquilo que deve ser atendido e que corresponde ao indicador inequívoco do sucesso do seu trabalho. Pode acontecer que venha a existir um conjunto de objetivos específicos, que complementam o objetivo geral (tamanho do texto: livre, mas cuidado para não fazer uma literatura romanceada, afinal esta seção trata dos objetivos).
-
+\paragraph{}O objetivo deste trabalho é obter e avaliar um modelo de predição de séries temporais aplicado ao problema de previsão do PLD mensal. Para isso busca-se (1) definir a forma como o pré-processamento será realizado, buscando obter o sinal residual necessário para treina a rede neural; (2) Definir a arquitetura utilizada no treinamento; (3) Avaliar o resultados obtidos de forma a conseguir determinar o erro esperado na previsão para meses a frente.
 
 \section{Metodologia}
+\paragraph{}Serão utilizados como entrada os dados de geração de energia para diversas fontes, além da carga de energia, energia natural afluente e informações sobre as vazões no rios e bacias que compõem a região sudeste e centro-oeste, conforme a divisão feita no sistema elétrico brasileiro. O PLD mensal será utilizado como base para a saída da rede neural.
 
-\paragraph{}Como é a abordagem do assunto. Como foi feita a pesquisa, se vai houve validação, etc. Em resumo, você de explicar qual foi sua estratégia para atender ao objetivo do trabalho (tamanho do texto: livre).
+\paragraph{}O PLD mensal será decomposto em tendência, sazonalidade, ciclos senoidais e resíduo, de forma a fornecer como entrada da rede somente a parte não-determinística do sinal (resíduo). Além disso, será feito uma análise para determinar quais sinais serão utilizados na entrada e quantos atrasos dos mesmos serão necessários.
+
+\paragraph{}Finalmente serão treinadas redes neurais com somente uma camada oculta. Em um primeiro estágio será treinada uma rede que consiga obter o resíduo para o mesmo mês da entrada fornecida. Nos estágios seguintes serão treinadas redes para prever o resultado residual.
 
 
 \section{Descrição}
-
-\paragraph{}No capítulo 2 será .....
-
-\paragraph{}O capítulo 3 apresenta ...
-
-\paragraph{}Os .... são apresentados no capítulo 4. Nele será explicitado ...
-
-\paragraph{}E assim vai até chegar na conclusão.
+\paragraph{}O capítulo 2 traz um resumo sobre as características e o funcionamento do setor elétrico brasileiro, além de fazer uma breve revisão bibliográfica. O capítulo 3 apresenta as técnicas que serão utilizadas no trabalho e descreve matematicamente o funcionamento das mesma. No capítulo 4 são descritos os métodos utilizados no trabalho, conectando os conhecimentos mostrados nos capítulos 2 e 3. No capítulo 5 são exibidos os resultados para cada um dos passos descritos no capítulo anterior. O capítulo 6 traz a conclusão e trabalhos futuros que podem ser realizados.

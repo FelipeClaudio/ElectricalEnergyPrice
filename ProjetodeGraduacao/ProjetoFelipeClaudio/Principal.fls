@@ -434,8 +434,9 @@ INPUT ./figuras/rmse_val_set_t1_error.jpg
 INPUT ./figuras/rmse_test_set_t1_error.jpg
 INPUT ./figuras/rmse_test_set_t1_error.jpg
 INPUT ./figuras/rmse_test_set_t1_error.jpg
-INPUT ./figuras/convergence_t1.jpg
-INPUT ./figuras/convergence_t1.jpg
+INPUT ./figuras/convergence_t1_error.jpg
+INPUT ./figuras/convergence_t1_error.jpg
+INPUT ./figuras/convergence_t1_error.jpg
 INPUT ./figuras/sinal_completo_t1_error.jpg
 INPUT ./figuras/sinal_completo_t1_error.jpg
 INPUT ./figuras/sinal_completo_t1_error.jpg

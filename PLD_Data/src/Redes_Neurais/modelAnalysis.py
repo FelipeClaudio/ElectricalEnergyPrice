@@ -100,7 +100,7 @@ X_norm = pd.DataFrame(data=X_scaler.transform(X), columns=X.columns, index=X.ind
 y_scaler = copy.deepcopy(scaler).fit(y)
 y_norm = pd.DataFrame(data=y_scaler.transform(y), columns=y.columns, index=y.index)
 
-n_steps = 1  
+n_steps = 0  
 STEPS_FORECAST = n_steps
 X_train = X_norm.iloc[:-(N_TEST_ROWS + STEPS_FORECAST),:]
 X_test = []
@@ -116,8 +116,8 @@ y_test = y_norm.iloc[-N_TEST_ROWS:, :]
 # train a simple classifier
 n_folds = 8
 n_inits = 3
-MIN_NEURONS = 90
-MAX_NEURONS = 90
+MIN_NEURONS = 61
+MAX_NEURONS = 61
 
 #partition by folder
 kf = model_selection.KFold(n_splits=n_folds, shuffle=True, random_state=0)

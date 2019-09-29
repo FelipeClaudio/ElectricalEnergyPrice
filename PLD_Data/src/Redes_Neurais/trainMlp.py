@@ -89,8 +89,8 @@ y_test = y_norm.iloc[-N_TEST_ROWS:, :]
 # train a simple classifier
 #n_folds = 3
 n_inits = 3
-MIN_NEURONS = 43 #refazer o 40, 73, 74, 78
-MAX_NEURONS = 120
+MIN_NEURONS = 61 #refazer o 40, 73, 74, 78
+MAX_NEURONS = 61
 
 
 

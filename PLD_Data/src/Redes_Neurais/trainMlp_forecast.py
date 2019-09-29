@@ -59,7 +59,7 @@ MODELS_FOLDER = ROOT_FOLDER + '/modelos_pld/t_'
 
 N_TEST_ROWS = 3
 min_steps = 0
-max_steps = 1
+max_steps = 0
 
 for n_steps in range(min_steps, max_steps + 1):
     # import some data to play with
@@ -91,8 +91,8 @@ for n_steps in range(min_steps, max_steps + 1):
     # train a simple classifier
     #n_folds = 3
     n_inits = 3
-    MIN_NEURONS = 1 #refazer o 40, 73, 74, 78
-    MAX_NEURONS = 90    
+    MIN_NEURONS = 61 #refazer o 40, 73, 74, 78
+    MAX_NEURONS = 61    
     
     classifiers = {}
     mse_matrix = pd.DataFrame(columns=['fold','n_neurons', 'mse_train' , 'mse_test'])

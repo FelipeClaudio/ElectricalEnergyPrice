@@ -17,14 +17,10 @@
 \section{Coleta de dados}
 \paragraph{}Serão utilizados nos modelos os seguintes dados do setor elétrico:
 
-\begin{table}[h]
-	
+\begin{table}[h]	
 	\begin{center}
-		
-		\caption{Dados utilizado no trabalho.}
-		
+		\caption{Dados utilizado no trabalho.}	
 		\begin{tabular}{|c|c|c|}\hline \label{table:DadosDeEntrada}
-			
 			\textbf{Dado} & \textbf{Tipo} & \textbf{Fonte}\\ \hline \vspace{-1.0mm}
 			
 			PLD & Saída & CCEE \cite{CCEE}  \\ \hline
@@ -37,9 +33,8 @@
 			Energia Natural Afluente & Entrada & ONS \cite{ONS}  \\ \hline
 			Soma das Vazões Afluentes & Entrada & CCEE \cite{CCEE} \\ \hline
 			Valor Útil da Soma das Vazões Afluentes & Entrada & CCEE \cite{CCEE} \\ \hline
-		\end{tabular}
-		
-	\end{center} 
+		\end{tabular}		
+	\end{center}
 \end{table}
 
 \paragraph{}Todos os dados acima estão disponíveis publicamente e são séries temporais com intervalo de amostragem de 1 mês.
@@ -123,11 +118,13 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 \subsection{Treinamento das redes neurais}
 \paragraph{}O treinamento será realizado modificando o número de neurônios na camada intermediária, de forma a avaliar qual arquitetura fornece o menor erro na saída. Para a avaliação dos resultados será utilizado como métrica o RMSE no conjunto de validação pelo número de neurônios. Outro critério para a avaliação utilizado também foi o gráfico de pontos do dado previsto pelo original de forma similar ao visto em \ref{fit_perfeito}.
 
-\paragraph{}Dado que as entradas foram selecionadas e previamente processadas, restou definir a arquitetura da rede neural utilizada. Devido à simplicidade e a boa capacidade de solução de problemas, foi utilizada a rede Perceptron Multicamadas com somente uma camada intermediária. Foi definido para a camada de entrada e intermediária que a função de ativação utilizada seria a ReLU, dado a velocidade de processamento e os bons resultados obtidos em pesquisas recentes \ref{reluSucesso}. Para a camada de saída, a função de ativação escolhida foi a linear, para que se possa construir a série temporal. O algoritmo de aprendizado utilizado foi o AdaDelta.
+\paragraph{}Dado que as entradas foram selecionadas e previamente processadas, restou definir a arquitetura da rede neural utilizada. Devido à simplicidade e a boa capacidade de solução de problemas, foi utilizada a rede Perceptron Multicamadas com somente uma camada intermediária. Foi definido para a camada de entrada e intermediária que a função de ativação utilizada seria a ReLU, dado a velocidade de processamento e os bons resultados obtidos em pesquisas recentes \ref{reluSucesso}. 
 
-\paragraph{}O modelo foi treinado utilizando validação cruzada. Em cada fold foram feitas algumas inicializações aleatórias utilizando o algoritmo visto em \cite{K_He}, de forma a reduzir o impacto de uma inicialização ruim do modelo.
+\paragraph{}Para a camada de saída, a função de ativação escolhida foi a linear, para que se possa construir a série temporal. O algoritmo de aprendizado utilizado foi o AdaDelta. O $\alpha$, parâmetro que regula a taxa de aprendizado, foi escolhido de forma a fazer com que o gráfico de erro no dataset de treino pelo número de neurônios convergisse para todos os folds utilizados na validação cruzada.
 
-\paragraph{}Para facilitar a seleção dos modelos, foi feito uma tabela contendo informações sobre o erro médio, desvio padrão, coeficiente angular e offset médios para o dataset de treinamento. Criou-se a métrica para medir o desvio do coeficiente angular ($a$) e do offset($b$) de cada modelo, fazendo com que um primeiro erro fosse obtido através da fórmula $\epsilon_1 = ABS(1-a)$ e um segundo fosse obtido por $\epsilon_2 = ABS(b)$, onde $ABS$ é o valor absoluto do número. Além disso, para fins de ranqueamento, criou-se uma terceira métrica descrita como $\epsilon_3 = NORM(\epsilon_1) + NORM(\epsilon_2)$, onde $NORM$ é a normalização feita dividindo todos os valores pela norma infinita do vetor. O modelo a ser utilizado é então o que tiver o menor erro $\epsilon_3$.
+\paragraph{}O modelo foi treinado utilizando validação cruzada. Em cada fold foram feitas algumas inicializações aleatórias utilizando o algoritmo visto em \cite{K_He}, de forma a reduzir o impacto de uma inicialização ruim do modelo. 
+
+\paragraph{}Para facilitar a seleção dos modelos, foi feito uma tabela contendo informações sobre o erro médio, desvio padrão, coeficiente angular e offset médios para o dataset de validação. Criou-se a métrica para medir o desvio do coeficiente angular ($a$) e do offset($b$) de cada modelo, fazendo com que um primeiro erro fosse obtido através da fórmula $\epsilon_1 = ABS(1-a)$ e um segundo fosse obtido por $\epsilon_2 = ABS(b)$, onde $ABS$ é o valor absoluto do número. Além disso, para fins de ranqueamento, criou-se uma terceira métrica descrita como $\epsilon_3 = NORM(\epsilon_1) + NORM(\epsilon_2)$, onde $NORM$ é a normalização feita dividindo todos os valores pela norma infinita do vetor. O modelo a ser utilizado é então o que tiver o menor erro $\epsilon_3$.
 
 \paragraph{}Na primeira fase do treinamento, fez-se uma rede que tinha como entrada $x(t)$ e obtém-se como saída $y(t)$, de modo a verificar se o processo utilizado no treinamento e seleção da rede estava adequado, além de servir como caso base para os modelos de previsão. Dado que as previsões são somente variações desse modelo básico, torna-se de extrema importância a boa adesão do modelo ao problema. 
 

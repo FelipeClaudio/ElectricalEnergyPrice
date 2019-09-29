@@ -130,6 +130,7 @@ results = pd.DataFrame(columns=['rmse', 'std', 'a', 'b'], index=np.arange(MAX_NE
 estimationErrors = pd.DataFrame(columns=['mean', 'std'], index=np.arange(MAX_NEURONS) + 1)
 
 for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
+    subplotidx = 1
     modelPath = MODELS_FOLDER + str(n_folds) + "/" + str(n_neurons) + 'neurons_' + \
             ACTIVATION_HIDDEN_LAYER + 'hiddenlayer_' + str(7) \
             +'fold_' + OPTIMIZER
@@ -148,7 +149,24 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
                          - (y_pred[STEPS_FORECAST:] + reco).value)),\
                         np.std(y_original.iloc[STEPS_FORECAST:].price \
                          - (y_pred[STEPS_FORECAST:] + reco).value)]
+     
+    hist = util.loadHist(modelPath + '_history.txt') 
+    for fold in range(0, n_folds):                 
+        if SHOW_HISTORY:
+            ax1 = plt.subplot(np.ceil(n_folds/2), 2, subplotidx)
+            plt.plot(np.sqrt(hist['mean_squared_error']), label='erro no treinamento')
+            plt.plot(np.sqrt(hist['val_mean_squared_error']), label='erro na validação')
+            plt.legend()
+            ax1.set_title('Fold ' + str(subplotidx))
+            plt.suptitle('RMSE na validação cruzada para  ' + str(n_neurons) + ' neurônios na camada intermediária')
+            subplotidx += 1
+    
     print(str(n_neurons) + " neurons")
+
+#plot mse for validation set in folder
+plt.savefig(str(n_neurons) + '_convergence_error.jpg')
+plt.close('all')
+
 
 
 y_pred = y_pred[:-STEPS_FORECAST]

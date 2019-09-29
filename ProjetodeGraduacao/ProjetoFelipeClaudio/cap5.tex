@@ -1,4 +1,4 @@
-\paragraph{}Neste capítulo, são mostrados os resultados obtidos através da aplicação do método descrito no capítulo anterior.. Serão detalhados as características dos sinais utilizados assim como os valores dos parâmetros aplicados em cada algoritmo. Alguns resultados obtidos serão expostos no apêndice para facilitar a leitura.
+\paragraph{}Neste capítulo, são mostrados os resultados obtidos através da aplicação do método descrito no capítulo anterior. Serão detalhados as características dos sinais utilizados assim como os valores dos parâmetros aplicados em cada algoritmo. Alguns resultados obtidos serão expostos no apêndice para facilitar a leitura.
 
 \section{Aquisição dos dados}
 \paragraph{}Os dados utilizados e suas respectivas fontes podem ser observados na tabela \ref{table:DadosDeEntrada}. No início do trabalho definiu-se que o foco seria a região sudeste, sendo assim, todos os dados utilizados foram filtrados para a região SE/CO. Os dados provenientes da ONS foram baixados direto do site no formato \textit{Comma Separated Values} - CSV.
@@ -66,7 +66,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Tendo como base o gráfico acima, observou-se que a extração proposta em \ref{maLinFit} obteve os melhores resultados e o selecionou-se $W=12$. O parâmetro $K$ foi definido como $K=5$ de forma empírica, de forma a obter uma transição suave entre a regressão linear e a média móvel. Aplicando esse filtro obteve-se o seguinte resultado para a extração da tendência:
+\paragraph{}Tendo como base o gráfico acima, observou-se que a extração proposta em \ref{maLinFit} obteve os melhores resultados e selecionou-se $W=12$. O parâmetro $K$ foi definido como $K=5$ de forma empírica, de forma a obter uma transição suave entre a regressão linear e a média móvel. Aplicando esse filtro obteve-se o seguinte resultado para a extração da tendência:
 
 \begin{figure}[H]
 	\begin{center}
@@ -75,7 +75,7 @@
 				
 				\includegraphics[width=\textwidth]{fftAndDistribution_trend_pt.jpg}
 				
-				\caption[\small{Distribuição residual e FFT da tendência.}]{\label{fftAndDistTrend} \small{Distribuição residual e FFT do sinal extraído.}}
+				\caption[\small{Histograma e FFT da tendência obtida.}]{\label{fftAndDistTrend} \small{Histograma e FFT da tendência obtida.}}
 				
 			\end{center}
 			
@@ -109,7 +109,7 @@
 				
 				\includegraphics[width=\textwidth]{fftAndDistribution_seasonal_pt.jpg}
 				
-				\caption[\small{Distribuição residual e FFT da sazonalidade.}]{\label{fftAndDistSazonal} \small{Análise do mse pelo tamanho da janela na extração da sazonalidade.}}
+				\caption[\small{Histograma e FFT da sazonalidade obtida.}]{\label{fftAndDistSazonal} \small{Histograma e FFT da sazonalidade obtida.}}
 				
 			\end{center}	
 		}	
@@ -117,7 +117,7 @@
 \end{figure}
 
 \subsection{Ciclos Senoidais e Resíduo}
-\paragraph{}Após o processamento descrito acima, obtém se o sinal $s_{2t}=cs_t+res_t$, o qual tem a seguinte distribuição e FFT.
+\paragraph{}Após o processamento descrito acima, obtém sinal $s_{2t}=cs_t+res_t$, o qual tem a seguinte distribuição e FFT.
 
 \begin{figure}[H]
 	\begin{center}
@@ -168,15 +168,9 @@
 \end{figure}
 
 \section{Treinamento das redes neurais}
-\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Foram deixados 3 pontos da série temporal para realizar o teste. Para cada fold foram feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}.
+\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Foram deixados 3 pontos da série temporal para realizar o teste. Para cada fold foram feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. Os 3 últimos foram separados para teste e os outros 25 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds. Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em \ref{treinamento_mlp}. 
 
-\paragraph{}Devido ao número de atrasos relevantes obtidos pelo gráfico de autocorrelação (20 atrasos), o \textit{dataset} se reduziu a 28 pontos, dos quais os 3 últimos foram separados para teste e os outros 25 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds.
-
-\paragraph{}Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em \ref{treinamento_mlp}. 
-
-\paragraph{}Dado que as entradas foram selecionadas e previamente processadas, restou definir a arquitetura da rede neural utilizada. Devido à simplicidade e a boa capacidade de solução de problemas, foi utilizada a rede Perceptron Multicamadas com somente uma camada intermediária. Foi definido para a camada de entrada e a intermediária que a função de ativação utilizada seria a ReLU, dado a velocidade de processamento e os bons resultados obtidos em pesquisas recentes \ref{reluSucesso}. Para a camada de saída, a função de ativação escolhida foi a linear, para que se possa construir a série temporal. O algoritmo de aprendizado utilizado foi o adadelta com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.
-
-\paragraph{}O $\alpha$ foi escolhido de forma a fazer com que o gráfico de erro no dataset de treino pelo número de neurônios convergisse para todos os folds utilizados na validação cruzada. Foi utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhorasse o erro obtido em 25 épocas, o processamento seria então interrompido.
+\paragraph{} O algoritmo de aprendizado utilizado foi o adadelta com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.  Foi utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhorasse o erro obtido em 25 épocas, o processamento seria então interrompido.
 
 \paragraph{}Apesar das definições acima, ainda há necessidade de definir a quantidade de neurônios na camada intermediária. Foi feito então um treinamento variando o número de neurônios entre 1 e 90 e, a partir disso, gerou-se um gráfico com o RMSE pelo número de neurônios no conjunto de validação e de teste.
 
@@ -215,10 +209,8 @@
 \paragraph{}As 5 melhores estruturas de redes ranqueadas pelo critério $\epsilon_3$ definido anteriormente são as seguintes:
 \begin{table}[H]
 	
-	\begin{center}
-		
-		\caption{Resultados obtidos com as redes.}
-		
+	\begin{center}	
+		\caption{Resultados obtidos com as redes no dataset de validação.}		
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT0}
 			 
 			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}61 &64,435 & 61,180 &  0,998 & 0,008 & -0,007 & 0,175 & 0,184 \\ \hline
@@ -226,8 +218,7 @@
 			97 & 63,509 & 61,957 & 1,000 & 0,001 & 0,046 & 0,224 & 0,225 \\ \hline
 			77 & 56,788 & 54,954 & 1,003 & 0,010 & 0,044 & 0,224 & 0,234 \\ \hline
 			92 & 55,370 & 53,135 & 0,983 & 0,063 & 0,009 & 0,224 & 0,287 \\ \hline
-		\end{tabular}
-		
+		\end{tabular}	
 	\end{center} 
 \end{table}
 
@@ -262,9 +253,9 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Os 3 últimos pontos são do conjunto de dados de teste. Observa-se que a rede não conseguiu prevê-los muito bem. Isso pode se dar tanto pelo treinamento que não convergiu muito bem como pode ter ocorrido \textit{overfit}.
+\paragraph{}Os 3 últimos pontos são do conjunto de dados de teste. Observa-se que a rede não conseguiu prevê-los tão bem quanto os pontos do conjunto de treinamento, assim como esperado.
 
-\paragraph{}Dado a pouca quantidade de dados, a rede não obteve o comportamento esperado nos treinamento, porém o resultado obtido mostrou que a mesma conseguiu mapear bem a entrada na saída. Sendo assim, viu-se que a rede está sendo treinada de forma coerente para obter $y(t)$ a partir de $x(t)$. Esse caso também será utilizado como base para as previsões, pois espera-se que o erro para $N$ passos a frente seja sempre maior ou igual ao caso base.
+\paragraph{}Dado a pouca quantidade de dados, a rede não obteve o comportamento esperado nos treinamentos, porém o resultado obtido mostrou que a mesma conseguiu mapear bem a entrada na saída. Sendo assim, viu-se que a rede está sendo treinada de forma coerente para obter $y(t)$ a partir de $x(t)$. Esse caso também será utilizado como base para as previsões, pois espera-se que o erro para $N$ passos a frente seja sempre maior ou igual ao caso base.
 
 \subsection{Treinamento da rede para obter a saída um mês a frente}
 \paragraph{}Seguindo o procedimento previamente determinado, obteve-se os seguintes resultados para a previsão do PLD para 1 mês a frente:
@@ -302,9 +293,7 @@
 \begin{table}[H]
 	
 	\begin{center}
-		
-		\caption{Resultados obtidos com as redes.}
-		
+		\caption{Resultados obtidos com as redes no dataset de validação.}	
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT1}
 			
 			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}63 & 82,911 & 69,521 & 0,993 & 0,002 & 0,005 & 0,003 & 0,004 \\ \hline
@@ -313,7 +302,6 @@
 			50 & 103,137 & 93,552 & 0,927 & 0,018 & 0,032 & 0,016 & 0,034 \\ \hline
 			51 & 94,937 & 81,015 & 0,860 & 0,034 & 0,000 & 0,000 & 0,034 \\ \hline
 		\end{tabular}
-		
 	\end{center} 
 \end{table}
 \paragraph{}E com isso o modelo com 63 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
@@ -383,9 +371,7 @@
 \begin{table}[H]
 	
 	\begin{center}
-		
-		\caption{Resultados obtidos com as redes.}
-		
+		\caption{Resultados obtidos com as redes no dataset de validação.}			
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT1Erro}
 			
 			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}90 & 126,678 & 101,233 & 1,029 & 0,001 & -0,001 & 0,000 & 0,001  \\ \hline
@@ -394,7 +380,6 @@
 			76 & 136,014 & 105,032 & 0,982 & 0,001 & 0,057 & 0,003 & 0,004  \\ \hline
 			60 & 123,420 & 98,844 & 1,070 & 0,002 & -0,031 & 0,002 & 0,004  \\ \hline
 		\end{tabular}
-		
 	\end{center} 
 \end{table}
 
@@ -406,7 +391,7 @@
 		{
 			\begin{center}
 				
-				\includegraphics[width=\textwidth]{convergence_t1.jpg}
+				\includegraphics[width=\textwidth]{convergence_t1_error.jpg}
 				
 				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT1erro} \small{Erro pelo número de época e por fold.}}
 				
