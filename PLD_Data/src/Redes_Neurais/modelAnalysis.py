@@ -100,7 +100,13 @@ X_norm = pd.DataFrame(data=X_scaler.transform(X), columns=X.columns, index=X.ind
 y_scaler = copy.deepcopy(scaler).fit(y)
 y_norm = pd.DataFrame(data=y_scaler.transform(y), columns=y.columns, index=y.index)
 
-n_steps = 0  
+n_steps = 6  
+# train a simple classifier
+n_folds = 8
+n_inits = 3
+MIN_NEURONS = 57
+MAX_NEURONS = 57
+
 STEPS_FORECAST = n_steps
 X_train = X_norm.iloc[:-(N_TEST_ROWS + STEPS_FORECAST),:]
 X_test = []
@@ -110,14 +116,6 @@ else:
     X_test = X_norm.iloc[-(N_TEST_ROWS + STEPS_FORECAST):-STEPS_FORECAST,:]
 y_train = y_norm.iloc[STEPS_FORECAST:-N_TEST_ROWS, :].reset_index(drop=True)
 y_test = y_norm.iloc[-N_TEST_ROWS:, :]
-
-
-
-# train a simple classifier
-n_folds = 8
-n_inits = 3
-MIN_NEURONS = 61
-MAX_NEURONS = 61
 
 #partition by folder
 kf = model_selection.KFold(n_splits=n_folds, shuffle=True, random_state=0)
@@ -205,7 +203,7 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
         line += 1
         del model 
         
-        
+           
         if SHOW_HISTORY:
             ax1 = plt.subplot(np.ceil(n_folds/2), 2, subplotidx)
             plt.plot(np.sqrt(hist['mean_squared_error']), label='erro no treinamento')
@@ -218,7 +216,7 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
     #plot mse for validation set in folder
     plt.savefig(str(n_neurons) + '_convergence.jpg')
     plt.close('all')
-    
+      
     '''
     #plot mean mse by neurons number
     #plt.figure()

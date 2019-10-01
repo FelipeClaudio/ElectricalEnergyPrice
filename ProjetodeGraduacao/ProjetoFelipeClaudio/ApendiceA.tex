@@ -1,1 +1,694 @@
-\paragraph{}Elemento que consiste em um texto ou documento elaborado pelo autor, com o intuito de complementar sua argumentação, sem prejuízo do trabalho. São identificados por letras maiúsculas consecutivas e pelos respectivos títulos.
+\section{Previsão para 2 meses a frente}
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t2.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{rmseValT2} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\paragraph{}No conjunto de teste o resultado foi o seguinte:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t2.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{rmseTestT2} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\begin{table}[H]	
+	\begin{center}
+		\caption{Resultados obtidos com as redes no dataset de validação.}			
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT2}
+			
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}69 & 97,141 & 76,580 & 1,029 & 0,001 & 0,011 & 0,000 & 0,001 \\ \hline
+			79 & 96,834 & 84,359 & 0,945 & 0,001 & 0,022 & 0,001 & 0,002 \\ \hline
+			42 & 100,878 & 80,880 & 1,056 & 0,001 & -0,022 & 0,001 & 0,002 \\ \hline
+			86 & 96,153 & 77,890 & 0,945 & 0,001 & -0,032 & 0,001 & 0,002 \\ \hline
+			58 & 108,011 & 83,478 & 1,181 & 0,003 & 0,001 & 0,000 & 0,003 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\paragraph{}E com isso o modelo com 69 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t2.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT2} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\paragraph{}E obteve-se os seguintes resultados:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t2.jpg}
+				
+				\caption[\small{Sinal completo.}]{\label{completoT2} \small{Sinal completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\section{Previsão para 3 meses a frente}
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t3.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{rmseValT3} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\paragraph{}No conjunto de teste o resultado foi o seguinte:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t3.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{rmseTestT3} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\begin{table}[H]	
+	\begin{center}
+		\caption{Resultados obtidos com as redes no dataset de validação.}			
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT3}
+			
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}88 & 75,835 & 69,489 & 1,003 & 0,000 & 0,019 & 0,004 & 0,004  \\ \hline
+			39 & 79,729 & 69,457 & 0,906 & 0,006 & -0,008 & 0,002 & 0,008  \\ \hline
+			62 & 78,011 & 70,262 & 0,954 & 0,003 & 0,052 & 0,011 & 0,014  \\ \hline
+			61 & 88,784 & 75,252 & 0,845 & 0,010 & 0,023 & 0,005 & 0,015  \\ \hline
+			27 & 72,325 & 64,862 & 0,906 & 0,006 & 0,049 & 0,010 & 0,016  \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\paragraph{}E com isso o modelo com 88 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t3.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT3} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\paragraph{}E obteve-se os seguintes resultados:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t3.jpg}
+				
+				\caption[\small{Sinal completo.}]{\label{completoT3} \small{Sinal completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\section{Previsão para 4 meses a frente}
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t4.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{rmseValT4} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\paragraph{}No conjunto de teste o resultado foi o seguinte:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t4.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{rmseTestT4} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\begin{table}[H]	
+	\begin{center}
+		\caption{Resultados obtidos com as redes no dataset de validação.}			
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT4}
+			
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}87 & 66,068 & 49,039 & 1,093 & 0,002 & 0,029 & 0,001 & 0,003 \\ \hline
+			14 & 84,320 & 61,843 & 0,939 & 0,001 & 0,107 & 0,004 & 0,005 \\ \hline
+			81 & 92,701 & 75,397 & 1,148 & 0,003 & 0,069 & 0,002 & 0,005 \\ \hline
+			37 & 79,235 & 56,037 & 0,916 & 0,002 & 0,119 & 0,004 & 0,006 \\ \hline
+			45 & 93,947 & 62,609 & 1,074 & 0,001 & 0,127 & 0,004 & 0,006 \\ \hline
+		\end{tabular}	
+	\end{center}
+\end{table}
+
+\paragraph{}E com isso o modelo com 88 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t4.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT4} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\paragraph{}E obteve-se os seguintes resultados:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t4.jpg}
+				
+				\caption[\small{Sinal completo.}]{\label{completoT4} \small{Sinal completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\section{Previsão para 5 meses a frente}
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t5.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{rmseValT5} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\paragraph{}No conjunto de teste o resultado foi o seguinte:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t5.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{rmseTestT5} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\begin{table}[H]	
+	\begin{center}
+		\caption{Resultados obtidos com as redes no dataset de validação.}			
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT5}
+			
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}34 & 63,022 & 54,479 & 0,956 & 0,000 & -0,014 & 0,000 & 0,001 \\ \hline
+			90 & 72,624 & 68,375 & 1,067 & 0,001 & -0,005 & 0,000 & 0,001 \\ \hline
+			53 & 62,794 & 56,172 & 0,916 & 0,001 & -0,002 & 0,000 & 0,001 \\ \hline
+			86 & 62,563 & 57,758 & 1,033 & 0,000 & -0,038 & 0,001 & 0,001 \\ \hline
+			41 & 66,194 & 62,095 & 0,970 & 0,000 & -0,047 & 0,001 & 0,001 \\ \hline
+			
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\paragraph{}E com isso o modelo com 34 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t5.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT5} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\paragraph{}E obteve-se os seguintes resultados:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t5.jpg}
+				
+				\caption[\small{Sinal completo.}]{\label{completoT5} \small{Sinal completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\section{Previsão para 6 meses a frente}
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t6.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{rmseValT6} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\paragraph{}No conjunto de teste o resultado foi o seguinte:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t6.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{rmseTestT6} {RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\begin{table}[H]	
+	\begin{center}
+		\caption{Resultados obtidos com as redes no dataset de validação.}			
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT6}
+			
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}57 & 88,770 & 79,111 & 0,975 & 0,000 & -0,008 & 0,000 & 0,001 \\ \hline
+			20 & 95,084 & 88,687 & 0,953 & 0,001 & -0,007 & 0,000 & 0,001 \\ \hline
+			71 & 81,320 & 75,164 & 1,074 & 0,001 & 0,001 & 0,000 & 0,001 \\ \hline
+			85 & 73,433 & 70,922 & 0,978 & 0,000 & 0,032 & 0,001 & 0,002 \\ \hline
+			17 & 72,576 & 66,944 & 1,089 & 0,002 & -0,028 & 0,001 & 0,003 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\paragraph{}E com isso o modelo com 57 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t6.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT6} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\paragraph{}E obteve-se os seguintes resultados:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t6.jpg}
+				
+				\caption[\small{Sinal completo.}]{\label{completoT6} \small{Sinal completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\section{Previsão para 7 meses a frente}
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t7.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{rmseValT7} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\paragraph{}No conjunto de teste o resultado foi o seguinte:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t7.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{rmseTestT7} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\begin{table}[H]	
+	\begin{center}
+		\caption{Resultados obtidos com as redes no dataset de validação.}			
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT7}
+			
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}85 & 81,374 & 74,638 & 1,073 & 0,001 & -0,015 & 0,000 & 0,001 \\ \hline
+			59 & 87,220 & 79,156 & 0,963 & 0,000 & 0,034 & 0,001 & 0,001 \\ \hline
+			55 & 94,054 & 84,463 & 0,964 & 0,000 & -0,041 & 0,001 & 0,001 \\ \hline
+			88 & 88,838 & 80,536 & 1,105 & 0,001 & -0,038 & 0,001 & 0,002 \\ \hline
+			45 & 82,782 & 78,053 & 0,891 & 0,001 & -0,048 & 0,001 & 0,002 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\paragraph{}E com isso o modelo com 85 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t7.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT7} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\paragraph{}E obteve-se os seguintes resultados:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t7.jpg}
+				
+				\caption[\small{Sinal completo.}]{\label{completoT7} \small{Sinal completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\section{Previsão para 8 meses a frente}
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t8.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{rmseValT8} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\paragraph{}No conjunto de teste o resultado foi o seguinte:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t8.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{rmseTestT8} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\begin{table}[H]	
+	\begin{center}
+		\caption{Resultados obtidos com as redes no dataset de validação.}			
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT8}
+			
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}29 & 93,498 & 61,547 & 1,060 & 0,001 & -0,002 & 0,000 & 0,001 \\ \hline
+			24 & 94,052 & 69,505 & 1,055 & 0,001 & -0,035 & 0,001 & 0,002 \\ \hline
+			9 & 83,198 & 57,893 & 1,089 & 0,001 & -0,029 & 0,001 & 0,002 \\ \hline
+			66 & 86,705 & 61,198 & 1,068 & 0,001 & -0,042 & 0,001 & 0,002 \\ \hline
+			51 & 92,674 & 62,083 & 1,036 & 0,001 & 0,060 & 0,002 & 0,003 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\paragraph{}E com isso o modelo com 29 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t8.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT8} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\paragraph{}E obteve-se os seguintes resultados:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t8.jpg}
+				
+				\caption[\small{Sinal completo.}]{\label{completoT8} \small{Sinal completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\section{Previsão para 9 meses a frente}
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t9.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{rmseValT9} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\paragraph{}No conjunto de teste o resultado foi o seguinte:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t9.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{rmseTestT9} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\begin{table}[H]	
+	\begin{center}
+		\caption{Resultados obtidos com as redes no dataset de validação.}			
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT9}
+			
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}66 & 53,146 & 35,811 & 0,968 & 0,000 & -0,132 & 0,001 & 0,002 \\ \hline
+			30 & 81,717 & 66,631 & 1,147 & 0,001 & 0,050 & 0,000 & 0,002 \\ \hline
+			39 & 74,664 & 53,134 & 0,996 & 0,000 & -0,220 & 0,002 & 0,002 \\ \hline
+			74 & 63,687 & 45,221 & 0,708 & 0,002 & -0,017 & 0,000 & 0,002 \\ \hline
+			90 & 93,000 & 79,354 & 0,944 & 0,000 & 0,220 & 0,002 & 0,003 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\paragraph{}E com isso o modelo com 66 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t9.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT9} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\paragraph{}E obteve-se os seguintes resultados:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t9.jpg}
+				
+				\caption[\small{Sinal completo.}]{\label{completoT9} \small{Sinal completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\section{Previsão para 10 meses a frente}
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_val_set_t10.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{rmseValT10} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\paragraph{}No conjunto de teste o resultado foi o seguinte:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{rmse_test_set_t10.jpg}
+				
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{rmseTestT10} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+
+\begin{table}[H]	
+	\begin{center}
+		\caption{Resultados obtidos com as redes no dataset de validação.}			
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT10}
+			
+			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}74 & 47,276 & 24,496 & 0,979 & 0,000 & 0,092 & 0,002 & 0,002 \\ \hline
+			82 & 50,150 & 38,221 & 0,794 & 0,002 & -0,065 & 0,002 & 0,004 \\ \hline
+			86 & 71,629 & 49,838 & 0,744 & 0,003 & -0,061 & 0,001 & 0,004 \\ \hline
+			55 & 47,440 & 34,009 & 1,408 & 0,005 & 0,011 & 0,000 & 0,005 \\ \hline
+			32 & 41,108 & 27,709 & 1,073 & 0,001 & 0,181 & 0,004 & 0,005 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\paragraph{}E com isso o modelo com 74 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas:
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{convergence_t3.jpg}
+				
+				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT10} \small{Erro pelo número de época e por fold.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
+
+\paragraph{}E obteve-se os seguintes resultados:
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{sinal_completo_t3.jpg}
+				
+				\caption[\small{Sinal completo.}]{\label{completoT10} \small{Sinal completo.}}
+				
+			\end{center}
+		}	
+	\end{center}	
+\end{figure}
