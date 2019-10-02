@@ -3,11 +3,33 @@
 \contentsline {paragraph}{}{iv}
 \contentsline {paragraph}{}{iv}
 \contentsline {paragraph}{}{v}
+\contentsline {paragraph}{}{v}
+\contentsline {paragraph}{}{v}
+\contentsline {paragraph}{}{v}
+\contentsline {paragraph}{}{v}
+\contentsline {paragraph}{}{vi}
+\contentsline {paragraph}{}{vi}
 \contentsline {paragraph}{}{vi}
 \contentsline {paragraph}{}{vii}
 \contentsline {paragraph}{}{vii}
+\contentsline {paragraph}{}{vii}
 \contentsline {paragraph}{}{viii}
 \contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {paragraph}{}{viii}
 \contentsline {paragraph}{}{ix}
 \contentsline {paragraph}{}{ix}
 \contentsline {paragraph}{}{ix}
@@ -25,30 +47,13 @@
 \contentsline {paragraph}{}{ix}
 \contentsline {paragraph}{}{ix}
 \contentsline {paragraph}{}{ix}
+\contentsline {paragraph}{}{ix}
 \contentsline {paragraph}{}{x}
 \contentsline {paragraph}{}{x}
 \contentsline {paragraph}{}{x}
 \contentsline {paragraph}{}{x}
 \contentsline {paragraph}{}{x}
 \contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{x}
-\contentsline {paragraph}{}{xi}
-\contentsline {paragraph}{}{xi}
-\contentsline {paragraph}{}{xi}
-\contentsline {paragraph}{}{xi}
-\contentsline {paragraph}{}{xi}
-\contentsline {paragraph}{}{xi}
 \contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{1}
 \contentsline {paragraph}{}{1}
 \contentsline {section}{\numberline {1.1}Tema}{1}
@@ -69,225 +74,227 @@
 \contentsline {paragraph}{}{3}
 \contentsline {chapter}{\numberline {2}O Sistema El\'etrico Brasileiro}{4}
 \contentsline {paragraph}{}{4}
+\contentsline {section}{\numberline {2.1}Hist\'orico do Setor El\'etrico Brasileiro}{4}
+\contentsline {paragraph}{}{4}
 \contentsline {paragraph}{}{4}
 \contentsline {paragraph}{}{4}
 \contentsline {paragraph}{}{5}
 \contentsline {paragraph}{}{6}
-\contentsline {paragraph}{}{7}
 \contentsline {paragraph}{}{8}
-\contentsline {paragraph}{}{8}
-\contentsline {section}{\numberline {2.1}O C\'alculo do Pre\c co da Liquida\c c\~ao das Diferen\c cas}{9}
 \contentsline {paragraph}{}{9}
+\contentsline {paragraph}{}{9}
+\contentsline {section}{\numberline {2.2}O C\'alculo do Pre\c co da Liquida\c c\~ao das Diferen\c cas}{10}
 \contentsline {paragraph}{}{10}
 \contentsline {paragraph}{}{10}
 \contentsline {paragraph}{}{11}
 \contentsline {paragraph}{}{11}
-\contentsline {paragraph}{}{11}
-\contentsline {paragraph}{}{12}
-\contentsline {paragraph}{}{12}
 \contentsline {paragraph}{}{12}
 \contentsline {paragraph}{}{12}
 \contentsline {paragraph}{}{13}
 \contentsline {paragraph}{}{13}
+\contentsline {paragraph}{}{13}
+\contentsline {paragraph}{}{13}
 \contentsline {paragraph}{}{14}
 \contentsline {paragraph}{}{14}
-\contentsline {paragraph}{}{14}
-\contentsline {section}{\numberline {2.2}Revis\~ao bibliogr\'afica}{15}
 \contentsline {paragraph}{}{15}
 \contentsline {paragraph}{}{15}
+\contentsline {paragraph}{}{15}
+\contentsline {section}{\numberline {2.3}Revis\~ao bibliogr\'afica}{16}
 \contentsline {paragraph}{}{16}
 \contentsline {paragraph}{}{16}
 \contentsline {paragraph}{}{17}
 \contentsline {paragraph}{}{17}
-\contentsline {paragraph}{}{17}
 \contentsline {paragraph}{}{18}
 \contentsline {paragraph}{}{18}
 \contentsline {paragraph}{}{18}
-\contentsline {chapter}{\numberline {3}Series Temporais e Aprendizado de M\'aquina}{19}
-\contentsline {paragraph}{}{19}
-\contentsline {section}{\numberline {3.1}S\'eries Temporais}{19}
 \contentsline {paragraph}{}{19}
 \contentsline {paragraph}{}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {chapter}{\numberline {3}Series Temporais e Aprendizado de M\'aquina}{20}
+\contentsline {paragraph}{}{20}
+\contentsline {section}{\numberline {3.1}S\'eries Temporais}{20}
 \contentsline {paragraph}{}{20}
 \contentsline {paragraph}{}{20}
-\contentsline {paragraph}{}{20}
-\contentsline {subsection}{\numberline {3.1.1}Tend\^encia}{21}
 \contentsline {paragraph}{}{21}
 \contentsline {paragraph}{}{21}
 \contentsline {paragraph}{}{21}
-\contentsline {paragraph}{}{21}
-\contentsline {paragraph}{}{21}
+\contentsline {subsection}{\numberline {3.1.1}Tend\^encia}{22}
+\contentsline {paragraph}{}{22}
 \contentsline {paragraph}{}{22}
 \contentsline {paragraph}{}{22}
 \contentsline {paragraph}{}{22}
 \contentsline {paragraph}{}{22}
 \contentsline {paragraph}{}{23}
-\contentsline {subsection}{\numberline {3.1.2}Sazonalidade}{23}
 \contentsline {paragraph}{}{23}
 \contentsline {paragraph}{}{23}
 \contentsline {paragraph}{}{23}
 \contentsline {paragraph}{}{24}
+\contentsline {subsection}{\numberline {3.1.2}Sazonalidade}{24}
 \contentsline {paragraph}{}{24}
 \contentsline {paragraph}{}{24}
-\contentsline {subsection}{\numberline {3.1.3}Ciclos Senoidais}{25}
+\contentsline {paragraph}{}{24}
 \contentsline {paragraph}{}{25}
 \contentsline {paragraph}{}{25}
-\contentsline {subsection}{\numberline {3.1.4}Componente Residual}{25}
 \contentsline {paragraph}{}{25}
+\contentsline {subsection}{\numberline {3.1.3}Ciclos Senoidais}{26}
 \contentsline {paragraph}{}{26}
-\contentsline {section}{\numberline {3.2}Processamento de Sinais}{27}
+\contentsline {paragraph}{}{26}
+\contentsline {subsection}{\numberline {3.1.4}Componente Residual}{26}
+\contentsline {paragraph}{}{26}
 \contentsline {paragraph}{}{27}
-\contentsline {paragraph}{}{27}
-\contentsline {paragraph}{}{27}
+\contentsline {section}{\numberline {3.2}Processamento de Sinais}{28}
 \contentsline {paragraph}{}{28}
-\contentsline {section}{\numberline {3.3}Redes Neurais Artificiais}{28}
+\contentsline {paragraph}{}{28}
 \contentsline {paragraph}{}{28}
 \contentsline {paragraph}{}{29}
+\contentsline {section}{\numberline {3.3}Redes Neurais Artificiais}{29}
+\contentsline {paragraph}{}{29}
 \contentsline {paragraph}{}{30}
-\contentsline {paragraph}{}{30}
-\contentsline {paragraph}{}{30}
-\contentsline {paragraph}{}{32}
-\contentsline {subsection}{\numberline {3.3.1}Backpropagation}{32}
-\contentsline {paragraph}{}{32}
-\contentsline {paragraph}{}{32}
-\contentsline {paragraph}{}{32}
-\contentsline {subsection}{\numberline {3.3.2}Rede perceptron multicamadas - MLP}{33}
+\contentsline {paragraph}{}{31}
+\contentsline {paragraph}{}{31}
+\contentsline {paragraph}{}{31}
+\contentsline {paragraph}{}{33}
+\contentsline {subsection}{\numberline {3.3.1}Backpropagation}{33}
 \contentsline {paragraph}{}{33}
 \contentsline {paragraph}{}{33}
 \contentsline {paragraph}{}{33}
-\contentsline {subsection}{\numberline {3.3.3}Treinamento}{34}
+\contentsline {subsection}{\numberline {3.3.2}Rede perceptron multicamadas}{34}
 \contentsline {paragraph}{}{34}
-\contentsline {chapter}{\numberline {4}M\'etodo}{37}
-\contentsline {paragraph}{}{37}
-\contentsline {section}{\numberline {4.1}Coleta de dados}{37}
-\contentsline {paragraph}{}{37}
-\contentsline {paragraph}{}{37}
+\contentsline {paragraph}{}{34}
+\contentsline {paragraph}{}{34}
+\contentsline {subsection}{\numberline {3.3.3}Treinamento}{35}
+\contentsline {paragraph}{}{35}
+\contentsline {chapter}{\numberline {4}M\'etodo}{38}
+\contentsline {paragraph}{}{38}
+\contentsline {section}{\numberline {4.1}Coleta de dados}{38}
 \contentsline {paragraph}{}{38}
 \contentsline {paragraph}{}{38}
-\contentsline {section}{\numberline {4.2}Pr\'e-processamento}{38}
-\contentsline {paragraph}{}{38}
-\contentsline {subsection}{\numberline {4.2.1}Tend\^encia}{39}
 \contentsline {paragraph}{}{39}
 \contentsline {paragraph}{}{39}
+\contentsline {section}{\numberline {4.2}Pr\'e-processamento}{39}
 \contentsline {paragraph}{}{39}
-\contentsline {paragraph}{}{39}
-\contentsline {subsection}{\numberline {4.2.2}Sazonalidade}{40}
+\contentsline {subsection}{\numberline {4.2.1}Tend\^encia}{40}
 \contentsline {paragraph}{}{40}
 \contentsline {paragraph}{}{40}
 \contentsline {paragraph}{}{40}
 \contentsline {paragraph}{}{40}
-\contentsline {subsection}{\numberline {4.2.3}Ciclos Senoidais e Res\IeC {\'\i }duo}{40}
-\contentsline {paragraph}{}{40}
-\contentsline {section}{\numberline {4.3}Sele\c c\~ao dos sinais de entrada}{41}
+\contentsline {subsection}{\numberline {4.2.2}Sazonalidade}{41}
 \contentsline {paragraph}{}{41}
-\contentsline {subsection}{\numberline {4.3.1}Sele\c c\~ao dos atrasos do sinal de sa\IeC {\'\i }da}{41}
 \contentsline {paragraph}{}{41}
-\contentsline {section}{\numberline {4.4}Rede Neural}{41}
 \contentsline {paragraph}{}{41}
-\contentsline {subsection}{\numberline {4.4.1}Treinamento das redes neurais}{41}
 \contentsline {paragraph}{}{41}
+\contentsline {subsection}{\numberline {4.2.3}Ciclos Senoidais e Res\IeC {\'\i }duo}{41}
+\contentsline {paragraph}{}{41}
+\contentsline {section}{\numberline {4.3}Sele\c c\~ao dos sinais de entrada}{42}
 \contentsline {paragraph}{}{42}
+\contentsline {subsection}{\numberline {4.3.1}Sele\c c\~ao dos atrasos do sinal de sa\IeC {\'\i }da}{42}
 \contentsline {paragraph}{}{42}
+\contentsline {section}{\numberline {4.4}Rede Neural}{42}
 \contentsline {paragraph}{}{42}
-\contentsline {paragraph}{}{42}
+\contentsline {subsection}{\numberline {4.4.1}Treinamento das redes neurais}{42}
 \contentsline {paragraph}{}{42}
 \contentsline {paragraph}{}{43}
 \contentsline {paragraph}{}{43}
 \contentsline {paragraph}{}{43}
-\contentsline {chapter}{\numberline {5}Resultados}{44}
-\contentsline {paragraph}{}{44}
-\contentsline {section}{\numberline {5.1}Aquisi\c c\~ao dos dados}{44}
-\contentsline {paragraph}{}{44}
+\contentsline {paragraph}{}{43}
+\contentsline {paragraph}{}{43}
 \contentsline {paragraph}{}{44}
 \contentsline {paragraph}{}{44}
-\contentsline {section}{\numberline {5.2}Pr\'e-Processamento}{45}
+\contentsline {paragraph}{}{44}
+\contentsline {chapter}{\numberline {5}Resultados}{45}
 \contentsline {paragraph}{}{45}
-\contentsline {subsection}{\numberline {5.2.1}Sele\c c\~ao dos sinais de entrada}{45}
+\contentsline {section}{\numberline {5.1}Aquisi\c c\~ao dos dados}{45}
 \contentsline {paragraph}{}{45}
 \contentsline {paragraph}{}{45}
-\contentsline {subsection}{\numberline {5.2.2}Sele\c c\~ao dos atrasos do sinal de sa\IeC {\'\i }da}{46}
+\contentsline {paragraph}{}{45}
+\contentsline {section}{\numberline {5.2}Pr\'e-Processamento}{46}
+\contentsline {paragraph}{}{46}
+\contentsline {subsection}{\numberline {5.2.1}Sele\c c\~ao dos sinais de entrada}{46}
 \contentsline {paragraph}{}{46}
 \contentsline {paragraph}{}{46}
-\contentsline {subsection}{\numberline {5.2.3}Tend\^encia}{46}
-\contentsline {paragraph}{}{46}
+\contentsline {subsection}{\numberline {5.2.2}Sele\c c\~ao dos atrasos do sinal de sa\IeC {\'\i }da}{47}
 \contentsline {paragraph}{}{47}
-\contentsline {subsection}{\numberline {5.2.4}Sazonalidade}{48}
+\contentsline {paragraph}{}{47}
+\contentsline {subsection}{\numberline {5.2.3}Tend\^encia}{47}
+\contentsline {paragraph}{}{47}
 \contentsline {paragraph}{}{48}
-\contentsline {subsection}{\numberline {5.2.5}Ciclos Senoidais e Res\IeC {\'\i }duo}{49}
+\contentsline {subsection}{\numberline {5.2.4}Sazonalidade}{49}
 \contentsline {paragraph}{}{49}
-\contentsline {paragraph}{}{49}
-\contentsline {paragraph}{}{50}
-\contentsline {section}{\numberline {5.3}Treinamento das redes neurais}{50}
+\contentsline {subsection}{\numberline {5.2.5}Ciclos Senoidais e Res\IeC {\'\i }duo}{50}
 \contentsline {paragraph}{}{50}
 \contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
-\contentsline {subsection}{\numberline {5.3.1}Treinamento da rede para obter a sa\IeC {\'\i }da no m\^es atual}{51}
+\contentsline {paragraph}{}{51}
+\contentsline {section}{\numberline {5.3}Treinamento das redes neurais}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{51}
 \contentsline {paragraph}{}{51}
+\contentsline {subsection}{\numberline {5.3.1}Treinamento da rede para obter a sa\IeC {\'\i }da no m\^es atual}{52}
+\contentsline {paragraph}{}{52}
 \contentsline {paragraph}{}{52}
 \contentsline {paragraph}{}{52}
 \contentsline {paragraph}{}{53}
-\contentsline {paragraph}{}{53}
-\contentsline {subsection}{\numberline {5.3.2}Treinamento da rede para obter a sa\IeC {\'\i }da um m\^es a frente}{53}
 \contentsline {paragraph}{}{53}
 \contentsline {paragraph}{}{54}
-\contentsline {paragraph}{}{55}
+\contentsline {paragraph}{}{54}
+\contentsline {subsection}{\numberline {5.3.2}Treinamento da rede para obter a sa\IeC {\'\i }da um m\^es a frente}{54}
+\contentsline {paragraph}{}{54}
 \contentsline {paragraph}{}{55}
 \contentsline {paragraph}{}{56}
 \contentsline {paragraph}{}{56}
 \contentsline {paragraph}{}{57}
+\contentsline {paragraph}{}{57}
 \contentsline {paragraph}{}{58}
 \contentsline {paragraph}{}{59}
-\contentsline {paragraph}{}{59}
-\contentsline {subsection}{\numberline {5.3.3}Treinamento da rede para obter a sa\IeC {\'\i }da para v\'arios meses a frente}{59}
-\contentsline {paragraph}{}{59}
-\contentsline {paragraph}{}{59}
+\contentsline {paragraph}{}{60}
+\contentsline {paragraph}{}{60}
+\contentsline {subsection}{\numberline {5.3.3}Treinamento da rede para obter a sa\IeC {\'\i }da para v\'arios meses a frente}{60}
 \contentsline {paragraph}{}{60}
 \contentsline {paragraph}{}{60}
 \contentsline {paragraph}{}{61}
-\contentsline {chapter}{\numberline {6}Conclus\~oes}{62}
+\contentsline {paragraph}{}{61}
 \contentsline {paragraph}{}{62}
-\contentsline {paragraph}{}{62}
-\contentsline {paragraph}{}{62}
-\contentsline {paragraph}{}{62}
+\contentsline {chapter}{\numberline {6}Conclus\~oes}{63}
 \contentsline {paragraph}{}{63}
 \contentsline {paragraph}{}{63}
-\contentsline {chapter}{Bibliografia}{64}
-\contentsline {chapter}{\numberline {A}Outros resultados}{70}
-\contentsline {section}{\numberline {A.1}Previs\~ao para 2 meses a frente}{70}
-\contentsline {paragraph}{}{70}
+\contentsline {paragraph}{}{63}
+\contentsline {paragraph}{}{63}
+\contentsline {paragraph}{}{64}
+\contentsline {paragraph}{}{64}
+\contentsline {chapter}{Bibliografia}{65}
+\contentsline {chapter}{\numberline {A}Outros resultados}{71}
+\contentsline {section}{\numberline {A.1}Previs\~ao para 2 meses a frente}{71}
 \contentsline {paragraph}{}{71}
 \contentsline {paragraph}{}{72}
-\contentsline {section}{\numberline {A.2}Previs\~ao para 3 meses a frente}{73}
 \contentsline {paragraph}{}{73}
+\contentsline {section}{\numberline {A.2}Previs\~ao para 3 meses a frente}{74}
 \contentsline {paragraph}{}{74}
-\contentsline {paragraph}{}{74}
-\contentsline {section}{\numberline {A.3}Previs\~ao para 4 meses a frente}{75}
 \contentsline {paragraph}{}{75}
+\contentsline {paragraph}{}{75}
+\contentsline {section}{\numberline {A.3}Previs\~ao para 4 meses a frente}{76}
 \contentsline {paragraph}{}{76}
 \contentsline {paragraph}{}{77}
-\contentsline {section}{\numberline {A.4}Previs\~ao para 5 meses a frente}{78}
 \contentsline {paragraph}{}{78}
+\contentsline {section}{\numberline {A.4}Previs\~ao para 5 meses a frente}{79}
 \contentsline {paragraph}{}{79}
-\contentsline {paragraph}{}{79}
-\contentsline {section}{\numberline {A.5}Previs\~ao para 6 meses a frente}{80}
 \contentsline {paragraph}{}{80}
+\contentsline {paragraph}{}{80}
+\contentsline {section}{\numberline {A.5}Previs\~ao para 6 meses a frente}{81}
 \contentsline {paragraph}{}{81}
 \contentsline {paragraph}{}{82}
-\contentsline {section}{\numberline {A.6}Previs\~ao para 7 meses a frente}{83}
 \contentsline {paragraph}{}{83}
+\contentsline {section}{\numberline {A.6}Previs\~ao para 7 meses a frente}{84}
 \contentsline {paragraph}{}{84}
-\contentsline {paragraph}{}{84}
-\contentsline {section}{\numberline {A.7}Previs\~ao para 8 meses a frente}{85}
 \contentsline {paragraph}{}{85}
+\contentsline {paragraph}{}{85}
+\contentsline {section}{\numberline {A.7}Previs\~ao para 8 meses a frente}{86}
 \contentsline {paragraph}{}{86}
 \contentsline {paragraph}{}{87}
-\contentsline {section}{\numberline {A.8}Previs\~ao para 9 meses a frente}{88}
 \contentsline {paragraph}{}{88}
+\contentsline {section}{\numberline {A.8}Previs\~ao para 9 meses a frente}{89}
 \contentsline {paragraph}{}{89}
-\contentsline {paragraph}{}{89}
-\contentsline {section}{\numberline {A.9}Previs\~ao para 10 meses a frente}{90}
 \contentsline {paragraph}{}{90}
+\contentsline {paragraph}{}{90}
+\contentsline {section}{\numberline {A.9}Previs\~ao para 10 meses a frente}{91}
 \contentsline {paragraph}{}{91}
 \contentsline {paragraph}{}{92}
+\contentsline {paragraph}{}{93}

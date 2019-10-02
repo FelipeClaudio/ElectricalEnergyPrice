@@ -1,28 +1,28 @@
-\paragraph{}Neste capítulo, será introduzido o tema do projeto, além de mostrar a relevância do mesmo e quais são métodos serão utilizados para alcançar o determinado objetivo. Ao final exibida a estrutura organizacional do texto.
+\paragraph{}Neste capítulo, será introduzido o tema do projeto, além de mostrar a relevância do mesmo e quais métodos serão utilizados para alcançar o determinado objetivo. Ao final exibida a estrutura organizacional do texto.
 
 \section{Tema}
-\paragraph{}O sistema elétrico brasileiro é bem diferente dos demais visto mundialmente, pois há grande abundância de energia barata gerada a partir de fontes hídricas. Essas fontes são responsáveis por aproximadamente 65,2\% da energia consumida no país \cite{EPE}. 
+\paragraph{}O sistema elétrico brasileiro é funciona de maneira bem diferente dos demais sistemas elétricos pelo mundo, pois há grande abundância de energia barata gerada a partir de fontes hídricas. Essas fontes são responsáveis por aproximadamente 65,2\% da energia consumida no país \cite{EPE}. 
 \paragraph{}A volatilidade desses recursos torna bastante complexa a atividade de prever e planejar a utilização de forma a diminuir o custo da energia elétrica. A diferença entre a quantidade de energia negociada e efetivamente gerada é liquidada utilizando como base o PLD - Preço da Liquidação das Diferenças, o qual deseja-se determinar através de modelos matemáticos.
 
 \section{Delimitação}
-\paragraph{}O trabalho tem como foco a previsão do PLD mensal e tem aplicação para os seguintes setores: elétrico, bancário, planejamento e pequisa. Para isso serão utilizados dados públicos presentes em \cite{CCEE} e \cite{ONS} para treinar redes multicamadas Perceptron - \textit{MLP} para prever a parte residual do PLD.
+\paragraph{}O trabalho tem como foco a previsão do PLD mensal e tem aplicação para os seguintes setores: elétrico, bancário, planejamento e pequisa. Para isso serão utilizados dados públicos presentes em \cite{ONS} e \cite{CCEE} para treinar redes multicamadas Perceptron - \textit{MLP} para prever a parte residual do PLD médio mensal.
 
 \section{Justificativa}
 \paragraph{}Os resultados da pesquisa são de interesse do setor elétrico, pois permitem, por exemplo, que comercializadoras de energia elétrica consigam obter lucro com a compra e venda de energia.
 
-\paragraph{}Para o setor bancário, o trabalho pode ser utilizado como ferramenta para análise de risco de crédito para empresas do setor elétrico. No ramo de planejamento e pesquisa, os resultados podem ser utilizados para entender melhor a dinâmico do preço e realizar planejamentos mais precisos quanto à utilização de recursos. 
+\paragraph{}Para o setor financeiro, o trabalho pode ser utilizado como ferramenta para análise de risco de crédito para empresas do setor elétrico. No ramo de planejamento e pesquisa, os resultados podem ser utilizados para entender melhor a dinâmica do preço e realizar planejamentos mais precisos quanto à utilização de recursos. 
 
 
 \section{Objetivos}
-\paragraph{}O objetivo deste trabalho é obter e avaliar um modelo de predição de séries temporais aplicado ao problema de previsão do PLD mensal. Para isso busca-se (1) definir a forma como o pré-processamento será realizado, buscando obter o sinal residual necessário para treina a rede neural; (2) Definir a arquitetura utilizada no treinamento; (3) Avaliar o resultados obtidos de forma a conseguir determinar o erro esperado na previsão para meses a frente.
+\paragraph{}O objetivo deste trabalho é obter e avaliar um modelo de predição de séries temporais aplicado ao problema de previsão do PLD mensal. Para isso busca-se (1) definir a forma como o pré-processamento será realizado, buscando obter o sinal residual necessário para treinar a rede neural; (2) Definir a arquitetura utilizada no treinamento; (3) Avaliar o resultados obtidos de forma a conseguir determinar o erro esperado na previsão para meses a frente.
 
 \section{Metodologia}
-\paragraph{}Serão utilizados como entrada os dados de geração de energia para diversas fontes, além da carga de energia, energia natural afluente e informações sobre as vazões no rios e bacias que compõem a região sudeste e centro-oeste, conforme a divisão feita no sistema elétrico brasileiro. O PLD mensal será utilizado como base para a saída da rede neural.
+\paragraph{}Serão utilizados como entrada os dados de geração de energia para diversas fontes, além da carga de energia, energia natural afluente e informações sobre as vazões nos rios e bacias que compõem a região sudeste e centro-oeste, conforme a divisão feita no sistema elétrico brasileiro. O PLD médio mensal será utilizado como base para a saída da rede neural.
 
-\paragraph{}O PLD mensal será decomposto em tendência, sazonalidade, ciclos senoidais e resíduo, de forma a fornecer como entrada da rede somente a parte não-determinística do sinal (resíduo). Além disso, será feito uma análise para determinar quais sinais serão utilizados na entrada e quantos atrasos dos mesmos serão necessários.
+\paragraph{}O PLD será decomposto em tendência, sazonalidade, ciclos senoidais e resíduo, de forma a fornecer como entrada da rede somente a parte não-determinística do sinal (resíduo). Além disso, será feito uma análise para determinar quais sinais serão utilizados na entrada e quantos atrasos dos mesmos serão necessários.
 
 \paragraph{}Finalmente serão treinadas redes neurais com somente uma camada oculta. Em um primeiro estágio será treinada uma rede que consiga obter o resíduo para o mesmo mês da entrada fornecida. Nos estágios seguintes serão treinadas redes para prever o resultado residual.
 
 
 \section{Descrição}
-\paragraph{}O capítulo 2 traz um resumo sobre as características e o funcionamento do setor elétrico brasileiro, além de fazer uma breve revisão bibliográfica. O capítulo 3 apresenta as técnicas que serão utilizadas no trabalho e descreve matematicamente o funcionamento das mesma. No capítulo 4 são descritos os métodos utilizados no trabalho, conectando os conhecimentos mostrados nos capítulos 2 e 3. No capítulo 5 são exibidos os resultados para cada um dos passos descritos no capítulo anterior. O capítulo 6 traz a conclusão e trabalhos futuros que podem ser realizados.
+\paragraph{}O capítulo 2 traz um resumo sobre as características e o funcionamento do setor elétrico brasileiro, além de fazer uma breve revisão bibliográfica. O capítulo 3 apresenta as técnicas que serão utilizadas no trabalho e descreve matematicamente o funcionamento das mesmas. No capítulo 4 são descritos os métodos utilizados no trabalho, conectando os conhecimentos mostrados nos capítulos 2 e 3. No capítulo 5 são exibidos os resultados para cada um dos passos descritos no capítulo anterior. O capítulo 6 traz a conclusão e trabalhos futuros que podem ser realizados.

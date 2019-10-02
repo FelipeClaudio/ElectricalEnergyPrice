@@ -14,7 +14,7 @@
 				
 				\includegraphics[width=\textwidth]{exemplo_tsa.jpg}
 				
-				\caption[\small{Exemplo de decomposição de série temporal \cite{shampooSales} }]{\label{exemploTSA} \small{Exemplo de decomposição de série temporal. Fonte:	Makridakis, Wheelwright and Hyndman (1998) \cite{shampooSales}}}
+				\caption[\small{Exemplo de decomposição de série temporal.}]{\label{exemploTSA} \small{Exemplo de decomposição de série temporal. Fonte:	Makridakis, Wheelwright and Hyndman (1998) \cite{shampooSales}}}
 				
 			\end{center}
 			
@@ -82,7 +82,7 @@ y_t = \sum_{j=0}^{\infty} \alpha (1 - \alpha)^j x_{t-j}
 				
 				\includegraphics[width=\textwidth]{exemplo2_tendencia.jpg}
 				
-				\caption[\small{Exemplo de extração de tendência com filtro de média \cite{birthNY} }]{\label{bNYtend} \small{Exemplo de extração de tendência com filtro de média. Fonte: Newton (1998). \cite{birthNY}}}
+				\caption[\small{Exemplo de extração de tendência com filtro de média.}]{\label{bNYtend} \small{Exemplo de extração de tendência com filtro de média. Fonte: Newton (1998). \cite{birthNY}}}
 				
 			\end{center}	
 		}
@@ -124,7 +124,7 @@ sz_t = sz[Resto(t/P)]
 				
 				\includegraphics[width=\textwidth]{exemplo2_sazonalidade.jpg}
 				
-				\caption[\small{Extração de sazonalidade com periodicidade anual ($P=12$) para o dataset de nascimentos em Nova York\cite{birthNY} }]{\label{bNYsaz} \small{Extração de sazonalidade com periodicidade anual ($P=12$) para o dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
+				\caption[\small{Extração de sazonalidade com periodicidade anual ($P=12$) para o dataset de nascimentos em Nova York.}]{\label{bNYsaz} \small{Extração de sazonalidade com periodicidade anual ($P=12$) para o dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
 				
 			\end{center}	
 		}
@@ -143,7 +143,7 @@ sz_t = sz[Resto(t/P)]
 				
 				\includegraphics[width=\textwidth]{exemplo2_autocorrelacao.jpg}
 				
-				\caption[\small{Autocorrelação para o sinal residual do dataset de nascimentos em Nova York\cite{birthNY} }]{\label{bNYautocorr} \small{Autocorrelação para o sinal residual do dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
+				\caption[\small{Autocorrelação para o sinal residual do dataset de nascimentos em Nova York.}]{\label{bNYautocorr} \small{Autocorrelação para o sinal residual do dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
 				
 			\end{center}	
 		}
@@ -172,7 +172,7 @@ cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 				
 				\includegraphics[width=\textwidth]{exemplo2_residual.jpg}
 				
-				\caption[\small{Residuo sem remoção de ciclos senoidasi para o dataset de nascimentos em Nova York\cite{birthNY} }]{\label{bNYres} \small{Resíduo sem remoção de ciclos senoidais para o dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
+				\caption[\small{Residuo sem remoção de ciclos senoidasi para o dataset de nascimentos em Nova York.}]{\label{bNYres} \small{Resíduo sem remoção de ciclos senoidais para o dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
 				
 			\end{center}	
 		}
@@ -188,7 +188,7 @@ cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 				
 				\includegraphics[scale=0.3]{exemplo2_residual_filtrado.jpg}
 				
-				\caption[\small{Residuo com remoção de ciclos senoidas para o dataset de nascimentos em Nova York. Filtro Notch com $\omega_0 = 0.135rad\\amostra$ e $Q=0.2$ \cite{birthNY} }]{\label{bNYresFilt} \small{Residuo com remoção de ciclos senoidais para o dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
+				\caption[\small{Resíduo com remoção de ciclos senoidais para o dataset de nascimentos em Nova York.}]{\label{bNYresFilt} \small{Resíduo com remoção de ciclos senoidais para o dataset de nascimentos em Nova York. \cite{birthNY}}}
 				
 			\end{center}	
 		}
@@ -198,7 +198,7 @@ cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 \end{figure}
 
 
-\paragraph{}Como pode-se observar, o sinal residual após a remoção de ciclos senoidais diminuiu-se a discrepância gerada pelas frequências próximas de $\omega_0 = 0.135rad\\amostra$ além de deixar a distribuição menos espaçada (O desvio padrão mudou de aproximadamente $\sigma=0.37$ para $\sigma=0.14$).
+\paragraph{}Como pode-se observar, a discrepância no sinal residual nas frequências próximas de $\omega_0 = 0.135rad\backslash amostra$ diminui. Além  disso, a distribuição se tornou menos espaçada (O desvio padrão mudou de aproximadamente $\sigma=0.37$ para $\sigma=0.14$).
 
 \begin{figure}[H]
 	\begin{center}
@@ -207,7 +207,7 @@ cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 				
 				\includegraphics[width=\textwidth]{exemplo2_residual_tempo.jpg}
 				
-				\caption[\small{Sinal residual no tempo para o dataset de nascimentos em Nova York \cite{birthNY} }]{\label{bNYresFiltTempo} \small{Sinal residual no tempo para o dataset de nascimentos em Nova York Fonte: Newton (1988). \cite{birthNY}}}
+				\caption[\small{Sinal residual no tempo para o dataset de nascimentos em Nova York \cite{birthNY}.}]{\label{bNYresFiltTempo} \small{Sinal residual no tempo para o dataset de nascimentos em Nova York Fonte: Newton (1988). \cite{birthNY}}}
 				
 			\end{center}	
 		}
@@ -244,7 +244,7 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 				
 				\includegraphics[scale=0.45]{notch.png}
 				
-				\caption[\small{Filtro Notch IIR digital\cite{introSP} }]{\label{Notch} \small{Filtro Notch IIR digital Fonte: Introduction to Signal Processing. \cite{introSP}}}
+				\caption[\small{Filtro Notch IIR digital.}]{\label{Notch} \small{Filtro Notch IIR digital Fonte: Introduction to Signal Processing. \cite{introSP}}}
 				
 			\end{center}	
 		}
@@ -263,7 +263,7 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 				
 				\includegraphics[height=0.25\textheight]{neuronio_biologico.jpg}
 				
-				\caption[\small{Neurônio \cite{neuronio} }]{\label{neuronio_biologico} \small{Neurônio. Fonte: \cite{neuronio}}}
+				\caption[\small{Neurônio biológico }]{\label{neuronio_biologico} \small{Neurônio biológico. Fonte: \cite{neuronio}}}
 				
 			\end{center}	
 		}
@@ -286,7 +286,7 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 				
 				\includegraphics[width=0.8\textwidth]{neuronio_artificial.jpg}
 				
-				\caption[\small{Neurônio \cite{neuronio_artificial} }]{\label{neuronio_artificial} \small{Neurônio Artificial. Fonte: \cite{neuronio_artificial}}}
+				\caption[\small{Neurônio artificial  }]{\label{neuronio_artificial} \small{Neurônio Artificial. Fonte: \cite{neuronio_artificial}}}
 				
 			\end{center}	
 		}
@@ -329,7 +329,7 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 				
 				\includegraphics[width=0.5\textwidth]{logistic_func.jpg}
 				
-				\caption[\small{Função logística \cite{funcoes_ativacao} }]{\label{logistic_func} \small{Neurônio Artificial. Fonte: \cite{funcoes_ativacao}}}
+				\caption[\small{Função logística. }]{\label{logistic_func} \small{Neurônio Artificial. Fonte: \cite{funcoes_ativacao}}}
 				
 			\end{center}	
 		}
@@ -351,7 +351,7 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 				
 				\includegraphics[width=0.5\textwidth]{tanh.jpg}
 				
-				\caption[\small{Tangente hiberbólica \cite{tanh} }]{\label{tanh} \small{Tangente Hiperbólica. Fonte: \cite{tanh}}}
+				\caption[\small{Tangente hiberbólica.}]{\label{tanh} \small{Tangente Hiperbólica. Fonte: \cite{tanh}}}
 				
 			\end{center}	
 		}
@@ -375,7 +375,7 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 				
 				\includegraphics[width=0.5\textwidth]{relu.jpg}
 				
-				\caption[\small{ReLU \cite{relu} }]{\label{relu} \small{ReLU. Fonte: \cite{relu}}}
+				\caption[\small{ReLU.}]{\label{relu} \small{ReLU. Fonte: \cite{relu}}}
 				
 			\end{center}	
 		}
@@ -410,7 +410,7 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 				
 				\includegraphics[width=\textwidth]{grad_desc.jpg}
 				
-				\caption[\small{Tangente hiberbólica \cite{relu} }]{\label{grad_desc_fig} \small{Gradiente Descendente desnormalizado e normalizado. Fonte: \cite{relu}}}
+				\caption[\small{Tangente hiberbólica.}]{\label{grad_desc_fig} \small{Gradiente Descendente desnormalizado e normalizado. Fonte: \cite{relu}}}
 				
 			\end{center}	
 		}
@@ -419,7 +419,7 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 	
 \end{figure}
 
-\subsection{Rede perceptron multicamadas - MLP}
+\subsection{Rede perceptron multicamadas}
 \paragraph{}Assim como no cérebro, os neurônios artificiais podem ser agrupados em estrutura mais complexas. Para uma camada inicial com N entradas têm se na J-ésima saída:
 \begin{equation}
 Y_{j}^{(1)} = g(\sum_{i = 0}^{N} W_{ji}^{(1)} \cdot X_i)
@@ -439,7 +439,7 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 				
 				\includegraphics[width=0.7\textwidth]{mlp.jpg}
 				
-				\caption[\small{Rede Perceptron Multicamadas \cite{relu} }]{\label{mlp} \small{Rede Perceptron Multicamadas. Fonte: \cite{mlp}}}
+				\caption[\small{Rede Perceptron Multicamadas.}]{\label{mlp} \small{Rede Perceptron Multicamadas. Fonte: \cite{mlp}}}
 				
 			\end{center}	
 		}
@@ -467,7 +467,7 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 					
 					\includegraphics[width=0.7\textwidth]{learning_rate.jpg}
 					
-					\caption[\small{Influência da taxa de aprendizado \cite{grad_desc} }]{\label{l_rate} \small{Influência da taxa de aprendizado. Fonte: \cite{grad_desc}}}
+					\caption[\small{Influência da taxa de aprendizado.}]{\label{l_rate} \small{Influência da taxa de aprendizado. Fonte: \cite{grad_desc}}}
 					
 				\end{center}	
 			}
@@ -484,7 +484,7 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 					
 					\includegraphics[width=0.7\textwidth]{validacao_cruzada.jpg}
 					
-					\caption[\small{Validacao Cruzadas \cite{validacao_cruzada} }]{\label{validacao_cruzada} \small{Validação cruzada. Fonte: \cite{validacao_cruzada}}}
+					\caption[\small{Validacao Cruzadas. .}]{\label{validacao_cruzada} \small{Validação cruzada. Fonte: \cite{validacao_cruzada}}}
 					
 				\end{center}	
 			}

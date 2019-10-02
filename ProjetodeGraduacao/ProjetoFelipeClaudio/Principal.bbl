@@ -1,78 +1,24 @@
 \begin{thebibliography}{10}
 \newcommand{\enquote}[1]{``#1''}
 
-\bibitem{ONS}
-ONS, \enquote{Operador Nacional do Sistema Elétrico}, http://ons.org.br/, 2019,
-  (Acesso em 27 Janeiro 2019).
-
-\bibitem{PrevisaoMultiPassos}
-FILHO, J. C.~R., \emph{Previsão multi-passo a frente do preço de energia
-  elétrica de curto prazo no mercado brasileiro}. Ph.D. dissertation,
-  Universidade Federal do Pará - Instituto de Tecnologia, programa de
-  pós-graduação em engenharia elétrica, 2014.
-
-\bibitem{CCEE}
-CCEE, \enquote{Câmara de Comercialização de Energia Elétrica},
-  https://www.ccee.org.br/, 2019, (Acesso em 31 Janeiro 2019).
-
-\bibitem{PSF_forecast}
-{Martinez Alvarez}, F., {Troncoso}, A., {Riquelme}, J.~C., \emph{et~al.},
-  \enquote{Energy Time Series Forecasting Based on Pattern Sequence
-  Similarity}, \emph{IEEE Transactions on Knowledge and Data Engineering},
-  v.~23, n.~8, pp.~1230--1243, Aug 2011.
-
-\bibitem{shampooSales}
-MAKRIDAKIS, W., HYNDMAN, \enquote{Sales of shampoo over a three year period},
-  https://datamarket.com/data/set/22r0/sales-of-shampoo-over-a-three-year-period\#!ds=22r0\&display=line,
-  1998, (Acesso em 9 de Abril 2019).
-
 \bibitem{birthNY}
 (1988), N., \enquote{Monthly New York City births: unknown scale. Jan 1946 ?
   Dec 1959},
   https://datamarket.com/data/set/22nv/monthly-new-york-city-births-unknown-scale-jan-1946-dec-1959\#!ds=22nv\&display=line,
   1988, (Acesso em 9 de Abril 2019).
 
-\bibitem{introSP}
-ORFANIDIS, S.~J., \emph{Introduction to Signal Processing}, 2002.
-
-\bibitem{neuronio}
-ESCOLA, B., \enquote{O que é neurônio?},
-  https://brasilescola.uol.com.br/o-que-e/biologia/o-que-e-neuronio.htm, 2019.
-
-\bibitem{neuronio_artificial}
-VINICIUS, A., \enquote{Redes Neurais Artificiais},
-  https://medium.com/@avinicius.adorno/redes-neurais-artificiais-418a34ea1a39,
-  2017.
-
-\bibitem{funcoes_ativacao}
-SHARMA, S., \enquote{Redes Neurais Artificiais},
-  https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6,
-  2017.
-
-\bibitem{tanh}
-BHATTARAI, S., \enquote{tanh-activation-function},
-  https://saugatbhattarai.com.np/what-is-activation-functions-in-neural-network-nn/logistic-sigmoid-unipolar-tanh-bipolar/,
-  2018.
-
-\bibitem{relu}
-SARKAR, K., \enquote{ReLU : Not a Differentiable Function: Why used in Gradient
-  Based Optimization? and Other Generalizations of ReLU.},
-  https://medium.com/@kanchansarkar/relu-not-a-differentiable-function-why-used-in-gradient-based-optimization-7fef3a4cece,
-  2018.
-
-\bibitem{grad_desc}
-DABBURA, I., \enquote{Gradient Descent Algorithm and Its Variants},
-  https://towardsdatascience.com/gradient-descent-algorithm-and-its-variants-10f652806a3,
-  2017.
-
-\bibitem{validacao_cruzada}
-COUTO, E., \enquote{Bias vs. Variância (Parte 2)},
-  https://ericcouto.wordpress.com/2013/07/18/bias-vs-variancia-parte-2/, 2013.
-
 \bibitem{EPE}
 EPE, \enquote{Empresa de Pesquisa Energética},
   http://www.epe.gov.br/pt/abcdenergia/matriz-energetica-e-eletrica, 2018,
   (Acesso em 26 Janeiro 2019).
+
+\bibitem{ONS}
+ONS, \enquote{Operador Nacional do Sistema Elétrico}, http://ons.org.br/, 2019,
+  (Acesso em 27 Janeiro 2019).
+
+\bibitem{CCEE}
+CCEE, \enquote{Câmara de Comercialização de Energia Elétrica},
+  https://www.ccee.org.br/, 2019, (Acesso em 31 Janeiro 2019).
 
 \bibitem{AlteracaoModeloComercializacao}
 SILVA, E. F.~D., \emph{Principais Condicionantes das alterações no modelo de
@@ -94,6 +40,12 @@ CASTRO, N. J.~D., LEITE, A. L. D.~S., \enquote{Preço spot de eletricidade:
 CAVALIERE, M.~A., \enquote{Previsão de preços futuros de energia eleétrica no
   ambiente de contratação livre - uma abordagem de equilíbrio de mercado sob
   incertezas}, 2017.
+
+\bibitem{PrevisaoMultiPassos}
+FILHO, J. C.~R., \emph{Previsão multi-passo a frente do preço de energia
+  elétrica de curto prazo no mercado brasileiro}. Ph.D. dissertation,
+  Universidade Federal do Pará - Instituto de Tecnologia, programa de
+  pós-graduação em engenharia elétrica, 2014.
 
 \bibitem{SmartGrid}
 BARRETTO, E. P. B.~M., \enquote{Smart grid: Eficiência energética e a geração
@@ -138,6 +90,12 @@ SOUSA, A. J. S.~D., \emph{Análise e Previsão da Volatilidade do Preçode
   Liquidação das Diferençasno Mercado Brasileiro Utilizando o Modelo GARCH}.
   M.Sc. dissertation, Universidade Federal da Bahia, 2013.
 
+\bibitem{PSF_forecast}
+{Martinez Alvarez}, F., {Troncoso}, A., {Riquelme}, J.~C., \emph{et~al.},
+  \enquote{Energy Time Series Forecasting Based on Pattern Sequence
+  Similarity}, \emph{IEEE Transactions on Knowledge and Data Engineering},
+  v.~23, n.~8, pp.~1230--1243, Aug 2011.
+
 \bibitem{simple_forecast}
 {Rodriguez}, C.~P., {Anders}, G.~J., \enquote{Energy price forecasting in the
   Ontario competitive power system market}, \emph{IEEE Transactions on Power
@@ -162,6 +120,11 @@ SHAFIE-KHAH, M., MOGHADDAM, M.~P., SHEIKH-EL-ESLAMI, M., \enquote{Price
 \bibitem{sTemp}
 EHLERS, R.~S., \emph{Análise de Séries Temporais}, 2009.
 
+\bibitem{shampooSales}
+MAKRIDAKIS, W., HYNDMAN, \enquote{Sales of shampoo over a three year period},
+  https://datamarket.com/data/set/22r0/sales-of-shampoo-over-a-three-year-period\#!ds=22r0\&display=line,
+  1998, (Acesso em 9 de Abril 2019).
+
 \bibitem{apostilaCaloba}
 CALôBA, L.~P., \emph{Introdução ao Uso de Redes Neurais na Modelagem de
   Sistemas Dinâmicos e Séries Temporais.}, 2002.
@@ -169,6 +132,9 @@ CALôBA, L.~P., \emph{Introdução ao Uso de Redes Neurais na Modelagem de
 \bibitem{tccDanilo}
 PEREIRA, D. F.~R., \enquote{Aprendizado de máquina e aprendizado profundo para
   apoio à decisão no mercado financeiro}, 2018.
+
+\bibitem{introSP}
+ORFANIDIS, S.~J., \emph{Introduction to Signal Processing}, 2002.
 
 \bibitem{ivan_nunes}
 SILVA, I. N.~D., SPATTI, D.~H., FLAUZINO, R.~A., \emph{Redes neurais
@@ -178,6 +144,15 @@ SILVA, I. N.~D., SPATTI, D.~H., FLAUZINO, R.~A., \emph{Redes neurais
 GURNEY, K., \emph{An Introduction to Neural Networks}. Bristol, PA, USA, Taylor
   \& Francis, Inc., 1997.
 
+\bibitem{neuronio}
+ESCOLA, B., \enquote{O que é neurônio?},
+  https://brasilescola.uol.com.br/o-que-e/biologia/o-que-e-neuronio.htm, 2019.
+
+\bibitem{neuronio_artificial}
+VINICIUS, A., \enquote{Redes Neurais Artificiais},
+  https://medium.com/@avinicius.adorno/redes-neurais-artificiais-418a34ea1a39,
+  2017.
+
 \bibitem{mlp_book}
 HILDEBRANDT, T.~H., DINGLE, A., \enquote{Improving C++ Performance Using
   Temporaries}, \emph{Computer}, v.~29, n.~03, pp.~31--41, mar 1998.
@@ -186,10 +161,26 @@ HILDEBRANDT, T.~H., DINGLE, A., \enquote{Improving C++ Performance Using
 BISHOP, C.~M., \emph{Pattern Recognition and Machine Learning (Information
   Science and Statistics)}. Berlin, Heidelberg, Springer-Verlag, 2006.
 
+\bibitem{funcoes_ativacao}
+SHARMA, S., \enquote{Redes Neurais Artificiais},
+  https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6,
+  2017.
+
+\bibitem{tanh}
+BHATTARAI, S., \enquote{tanh-activation-function},
+  https://saugatbhattarai.com.np/what-is-activation-functions-in-neural-network-nn/logistic-sigmoid-unipolar-tanh-bipolar/,
+  2018.
+
 \bibitem{K_He}
 HE, K., ZHANG, X., REN, S., \emph{et~al.}, \enquote{Delving Deep into
   Rectifiers: Surpassing Human-Level Performance on ImageNet Classification},
   \emph{CoRR}, v.~abs/1502.01852, 2015.
+
+\bibitem{relu}
+SARKAR, K., \enquote{ReLU : Not a Differentiable Function: Why used in Gradient
+  Based Optimization? and Other Generalizations of ReLU.},
+  https://medium.com/@kanchansarkar/relu-not-a-differentiable-function-why-used-in-gradient-based-optimization-7fef3a4cece,
+  2018.
 
 \bibitem{deep_learning_relu}
 AGARAP, A.~F., \enquote{Deep Learning using Rectified Linear Units (ReLU)},
@@ -249,9 +240,18 @@ HSIAO, T.-C.~R., LIN, C.-W., CHIANG, H.~K., \enquote{Partial least-squares
   Controlling bias via information usage}}, \emph{arXiv e-prints}, p.
   arXiv:1511.05219, Nov 2015.
 
+\bibitem{grad_desc}
+DABBURA, I., \enquote{Gradient Descent Algorithm and Its Variants},
+  https://towardsdatascience.com/gradient-descent-algorithm-and-its-variants-10f652806a3,
+  2017.
+
 \bibitem{crossValidation}
 {Arlot}, S., {Celisse}, A., \enquote{{A survey of cross-validation procedures
   for model selection}}, \emph{arXiv e-prints}, p. arXiv:0907.4728, Jul 2009.
+
+\bibitem{validacao_cruzada}
+COUTO, E., \enquote{Bias vs. Variância (Parte 2)},
+  https://ericcouto.wordpress.com/2013/07/18/bias-vs-variancia-parte-2/, 2013.
 
 \bibitem{minMaxScaler}
 LEARN, S., \enquote{sklearn.preprocessing.MinMaxScaler},

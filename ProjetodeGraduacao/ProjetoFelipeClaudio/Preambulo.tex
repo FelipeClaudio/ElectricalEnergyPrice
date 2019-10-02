@@ -5,7 +5,7 @@ Declaração de Autoria e de Direitos
 
 \vspace{0.5cm}
 
-Eu, \emph{Felipe Claudio da Silva Santos} CPF \emph{427.279.208-30}, autor da monografia \emph{título da monografia}, subscrevo para os devidos fins, as seguintes informações:\\
+Eu, \emph{Felipe Claudio da Silva Santos} CPF \emph{427.279.208-30}, autor da monografia \emph{Estimação do valor do preço de mercado da energia elétrica através de modelos não-lineares}, subscrevo para os devidos fins, as seguintes informações:\\
 1. O autor declara que o trabalho apresentado na disciplina de Projeto de Graduação da Escola Politécnica da UFRJ é de sua autoria, sendo original em forma e conteúdo.\\
 2. Excetuam-se do item 1. eventuais transcrições de texto, figuras, tabelas, conceitos e idéias, que identifiquem claramente a fonte original, explicitando as autorizações obtidas dos respectivos proprietários, quando necessárias.\\
 3. O autor permite que a UFRJ, por um prazo indeterminado, efetue em qualquer mídia de divulgação, a publicação do trabalho acadêmico em sua totalidade, ou em parte. Essa autorização não envolve ônus de qualquer natureza à UFRJ, ou aos seus representantes.\\
@@ -40,17 +40,6 @@ Rio de Janeiro - RJ      CEP 21949-900\\
 \paragraph{}É permitida a menção, reprodução parcial ou integral e a transmissão entre bibliotecas deste trabalho, sem modificação de seu texto, em qualquer meio que esteja ou venha a ser fixado, para pesquisa acadêmica, comentários e citações, desde que sem finalidade comercial e que seja feita a referência bibliográfica completa.
 \paragraph{}Os conceitos expressos neste trabalho são de responsabilidade do(s) autor(es).
 
-
-\pagebreak
-
-% Dedicatória
-\begin{center}
-\textbf{DEDICATÓRIA}
-\end{center}
-      \vspace{0.5cm}
-
-\paragraph{}Opcional.
-
 \pagebreak
 
 
@@ -60,20 +49,29 @@ Rio de Janeiro - RJ      CEP 21949-900\\
 \end{center}
       \vspace{0.5cm}
 
-\paragraph{}Sempre haverá. Se não estiver inspirado, aqui está uma sugestão: dedico este trabalho ao povo brasileiro que contribuiu de forma significativa à minha formação e estada nesta Universidade. Este projeto é uma pequena forma de retribuir o investimento e confiança em mim depositados.
+\paragraph{}Meus agradecimentos vão, em primeiro lugar para os meus pais Georgea e Ricardo e minha irmã Júlia, por todo o apoio dado durante a minha jornada acadêmica. Sem os mesmos não conseguiria trilhar metade do caminho que trilhei.
+
+\paragraph{}Gostaria também de agradecer meus orientadores Luiz Calôba e Natanael Moura por todo esforço, tempo investido, paciência e boa vontade mostrada. Além disso, agradeço o voto de confiança dado e espero ter retribuído ao nível merecido. Esses aprendizado proporcionado me tornaram um profissional melhor do que quando comecei o trabalho.
+
+\paragraph{}Gostaria de agradecer ao Gabriel Torres e ao Luiz Évora pela colaboração direta no trabalho. Hora trazendo um pouco da experiência, hora revisando o conteúdo do texto.
+
+\paragraph{}Gostaria de agradecer outros familiares que estiveram comigo nessa jornada assim como minha avó Sônia e minhas tias Silvia, Silvane e Maria
+
+\paragraph{}Em último lugar, mas não menos importante, gostaria de agradecer ao meus amigos que são parte chave na minha vida. Em especial, Rafael Chimielenski que sempre esteve comigo nos momentos mais complicados da minha vida.
 
 \pagebreak
-
-
 % Resumo
 \begin{center}
 \textbf{RESUMO}
 \end{center}
       \vspace{0.5cm}
 
-\paragraph{}Inserir o resumo do seu trabalho aqui. O objetivo é apresentar ao pretenso leitor do seu Projeto Final uma descrição genérica do seu trabalho. Você também deve tentar despertar no leitor o interesse pelo conteúdo deste documento.
+\paragraph{}Os contratos de fornecimento de energia são feitos com base em quantidades fixas de MWhs que devem ser entregues ao consumidor mensalmente. Geralmente o valor produzido não é exatamente igual ao valor combinado. A diferença entre o que foi contratado e o que foi efetivamente fornecido é liquidada no mercado de curto prazo ao valor do PLD - Preço da Liquidação das Diferenças, o qual é calculado semanalmente pela CCEE.
+
+\paragraph{}Este trabalho traz uma abordagem que utiliza decomposição em séries temporais, processamento de sinais e redes neurais para estimar o valor do PLD médio mensal. Ao final do trabalho são feitas estimativas para um período de até 10 meses, trazendo o comportamento da rede conforme o número de meses a frente.
+ 
 \paragraph{}
-\noindent Palavras-Chave: trabalho, resumo, interesse, projeto final.
+\noindent Palavras-Chave: PLD, séries temporais, redes neurais, MLP, aprendizado de máquina, setor elétrico brasileiro.
 
 \pagebreak
 
@@ -84,9 +82,12 @@ Rio de Janeiro - RJ      CEP 21949-900\\
 \end{center}
       \vspace{0.5cm}
 
-\paragraph{}Insert your abstract here. Insert your abstract here. Insert your abstract here. Insert your abstract here. Insert your abstract here.
+\paragraph{}The electrical power supply contracts use fixed amount of MWHs that must be provided to the consumer monthly. The generated power usually is not equal the value agreed upon contract. The diference between the supplied and the contracted amount is liquidated using PLD -  Diferences Liquidation Price. This values is calculated by CCEE.
+
+\paragraph{}This project uses times series decomposition, signal processing and neural networks to estimate PLD's monthly value. In the last part of this work, there are estimates for a 10 months period, showing the neural network behavior for each number of months ahead.
+
 \paragraph{}
-\noindent Key-words: word, word, word.
+\noindent Key-words: PLD, time series, neural networks, MLP, machine learning, Brazilian's Electrical Sector.
 
 \pagebreak
 
