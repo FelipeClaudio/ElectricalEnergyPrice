@@ -81,35 +81,35 @@
 \contentsline {paragraph}{}{5}
 \contentsline {paragraph}{}{6}
 \contentsline {paragraph}{}{8}
+\contentsline {paragraph}{}{8}
 \contentsline {paragraph}{}{9}
+\contentsline {section}{\numberline {2.2}O C\'alculo do Pre\c co da Liquida\c c\~ao das Diferen\c cas}{9}
 \contentsline {paragraph}{}{9}
-\contentsline {section}{\numberline {2.2}O C\'alculo do Pre\c co da Liquida\c c\~ao das Diferen\c cas}{10}
 \contentsline {paragraph}{}{10}
 \contentsline {paragraph}{}{10}
 \contentsline {paragraph}{}{11}
 \contentsline {paragraph}{}{11}
+\contentsline {paragraph}{}{11}
+\contentsline {paragraph}{}{12}
+\contentsline {paragraph}{}{12}
 \contentsline {paragraph}{}{12}
 \contentsline {paragraph}{}{12}
 \contentsline {paragraph}{}{13}
 \contentsline {paragraph}{}{13}
-\contentsline {paragraph}{}{13}
-\contentsline {paragraph}{}{13}
 \contentsline {paragraph}{}{14}
 \contentsline {paragraph}{}{14}
+\contentsline {paragraph}{}{14}
+\contentsline {section}{\numberline {2.3}Revis\~ao bibliogr\'afica}{15}
 \contentsline {paragraph}{}{15}
 \contentsline {paragraph}{}{15}
-\contentsline {paragraph}{}{15}
-\contentsline {section}{\numberline {2.3}Revis\~ao bibliogr\'afica}{16}
 \contentsline {paragraph}{}{16}
 \contentsline {paragraph}{}{16}
 \contentsline {paragraph}{}{17}
 \contentsline {paragraph}{}{17}
+\contentsline {paragraph}{}{17}
 \contentsline {paragraph}{}{18}
 \contentsline {paragraph}{}{18}
 \contentsline {paragraph}{}{18}
-\contentsline {paragraph}{}{19}
-\contentsline {paragraph}{}{19}
-\contentsline {paragraph}{}{19}
 \contentsline {chapter}{\numberline {3}Series Temporais e Aprendizado de M\'aquina}{20}
 \contentsline {paragraph}{}{20}
 \contentsline {section}{\numberline {3.1}S\'eries Temporais}{20}

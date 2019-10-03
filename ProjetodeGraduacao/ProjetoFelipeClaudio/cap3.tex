@@ -1,7 +1,7 @@
 \paragraph{}O objetivo deste capitulo é trazer a fundamentação teórica das técnicas utilizadas neste trabalho. Em primeiro lugar será abordada a teoria, aplicações e dificuldades relacionadas às séries temporais. Logo após, serão apresentados os modelos de aprendizados de máquina utilizados como redes neurais MLP.
 
 \section{Séries Temporais} \label{series_temporais}
-\paragraph{}Uma série temporal é composta por uma coleção de observações feitas de forma sequencial e dependente \cite{sTemp}. Essa ordem da sequência é dada pelo tempo, o qual pode ser contínuo ou discreto. No primeiro caso, $T = {t : t_1 < t < t_2}$ e a série temporal é definida como $\{X(t) : t \in T\}$, já no segundo caso, $T = \{t_1, t_2, ... , t_n\}$ e a série temporal é definida como $\{X_t : t \in T\}$, onde X é a variável observada. Geralmente define-se o T para o caso discreto como $T = \{1, 2, ..., n\}$ por questões de simplicidade. Neste trabalho será utilizado o caso discreto, dado que a amostragem do sinal tem periodicidade mensal. Sendo assim, os exemplos dados no trabalho serão discretos também.
+\paragraph{}Uma série temporal é composta por uma coleção de observações feitas de forma sequencial e dependente \cite{sTemp}. Essa ordem da sequência é dada pelo tempo, o qual pode ser contínuo ou discreto. No primeiro caso, $T = {t : t_1 < t < t_2}$ e a série temporal é definida como $\{X(t) : t \in T\}$, já no segundo caso, $T = \{t_1, t_2, ... , t_n\}$ e a série temporal é definida como $\{X_t : t \in T\}$, onde X é a variável observada. Geralmente define-se o T para o caso discreto como $T = \{1, 2, ..., n\}$ por questões de simplicidade. Neste trabalho só serão abordados os casos discretos, pois todos os sinais utilizados no mesmo são dessa natureza.
 
 \paragraph{}Assim como o tempo, os valores da variável $X_t$ podem ser contínuos ou discretos de acordo com o fenômeno que se observa. Alguns exemplos de fenômenos temporais com valores contínuos são a temperatura em um determinada região, volume de água em uma bacia hidrográfica e o peso de um indivíduo. Já como exemplo de fenômenos temporais com valores discretos podem ser citados o número  viagens de avião, quantidade de nascimentos, de carros produzidos por uma montadora etc. Todos esse casos estão relacionados com um período de observação próprio, podendo ser uma janela de meses, anos, até mesmo décadas de observações de uma determinada variável.
 
@@ -24,7 +24,7 @@
 	
 \end{figure}
 
-\paragraph{}Buscando tornar a análise das séries temporais mais simples, além de facilitar a extração de informações importantes de maneira gráfica, é comum decompor a série em outras mais simples. A decomposição utilizada será a seguinte, conforme visto em \cite{apostilaCaloba}:
+\paragraph{}Séries temporais geralmente são decompostas em outras mais simples. A decomposição utilizada será a seguinte, conforme visto em \cite{apostilaCaloba}:
 
 \begin{equation*}
 	X_t = tend_t + sz_t + cs_t + res_t
@@ -43,7 +43,7 @@ tend_t = \alpha + \beta t + \epsilon_t
 
 \paragraph{}A função utilizada na aproximação da tendência pode ser escolhida de acordo com a série que está sendo analisada. Uma forma bastante comum é a utilização de uma função polinomial na extração de tendência.
 
-\paragraph{}Na tendência polinomial \ref{eqTendPoli}, busca-se fazer uma extração boa o suficiente para obter-se ao final do processamento a componente residual estacionária com média zero. Para séries monotonicamente crescente ou decrescente, utilizar $p = 1$ (função linear)  ou $p = 2$ (função quadrática) geralmente é suficiente para a extração da tendência, porém caso a série seja mais complexa, pode ser necessário utilizar funções de ordem mais altas
+\paragraph{}Para séries monotonicamente crescente ou decrescente, utilizar $p = 1$ (função linear)  ou $p = 2$ (função quadrática) geralmente é suficiente para a extração da tendência, porém caso a série seja mais complexa, pode ser necessário utilizar funções de ordem mais altas.
 
 \begin{equation} \label{eqTendPoli}
 tend_t = \epsilon_t + \sum_{n=0}^{p} \beta_n t^n
@@ -67,7 +67,7 @@ y_t = \dfrac{1}{2q + 1} \sum_{j = -q}^{q} x_{t + j}
 	y_t =  \dfrac{1}{2q + 1} \sum_{j = -2q}^{0} x_{t+j}
 \end{equation} 
 
-\paragraph{}Outro problema observado nas abordagens de média móvel descritas acima é que somente é que só se obtém a tendência para $N - 2q$ pontos. Caso seja necessário obter a tendência para todos os pontos da série, pode-se aplicar métodos de extrapolação sobre o resultado obtido.
+\paragraph{}Outro problema observado nas abordagens de média móvel descritas acima é que somente se obtém a tendência para $N - 2q$ pontos. Caso seja necessário obter a tendência para todos os pontos da série, pode-se aplicar métodos de extrapolação sobre o resultado obtido.
 
 \paragraph{}Uma terceira abordagem para extração de tendência é utilizar um filtro com pesos que decaem geometricamente, com j, priorizando assim, as amostras mais recentes da série temporal:
 
@@ -134,7 +134,7 @@ sz_t = sz[Resto(t/P)]
 \end{figure}
 
 
-\paragraph{}Também pode-se obter a informação sobre o período através da observação do gráfico de autocorrelação, onde picos de magnitude seguindo um padrão de espaçamento podem indicar a periodicidade da sazonalidade.
+\paragraph{}Também pode-se obter a informação sobre o período através da observação do gráfico de autocorrelação, onde picos de magnitude que seguem um padrão de espaçamento podem indicar a periodicidade da sazonalidade.
 
 \begin{figure}[H]
 	\begin{center}
@@ -163,7 +163,7 @@ cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 \paragraph{}Os pontos onde a magnitude do sinal ($\sqrt{a² + b²}$) são muito maiores que os outros indicam provável ciclos senoidais que devem ser removidos.
 
 \subsection{Componente Residual} \label{Residuo}
-\paragraph{}Caso o processo de extração de componentes descrito nos tópicos acima seja realizado com sucesso, será obtida uma componente residual estacionária. Busca-se também uma distribuição próxima da normal para facilitar a análise. Seguindo esta abordagem, este sinal residual é a única parte aleatória do modelo. Sendo assim, o problema se reduz a prever o comportamento da parte residual da série temporal.
+\paragraph{}Caso o processo de extração de componentes descrito nos tópicos acima seja realizado com sucesso, será obtida uma componente residual estacionária. Seguindo esta abordagem, este sinal residual é a única parte aleatória do modelo. Sendo assim, o problema se reduz a prever o comportamento da parte residual da série temporal.
 
 \begin{figure}[H]
 	\begin{center}
@@ -222,7 +222,7 @@ cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 
 \paragraph{}No problema de remoção de ciclos senoidais, busca-se um filtro que remova somente a frequência com maior magnitude, sem afetar muito as magnitudes das outras frequências presentes no espectrograma. Para isso procura-se um filtro que seja rejeita-banda com a banda de rejeição bem estreita e banda de passagem aproximadamente plana.
 
-\paragraph{}Um filtro bastante conhecido na literatura que atende a esse critério é o Notch. A escolha pela versão IIRs se dá pela possibilidade de obter atenuações maiores e banda de rejeição mais estreita para um mesma ordem $N$ quando comparado com os filtros FIRs. A função de transferência do filtro Notch de segunda ordem se dá pela equação a seguir: \cite{introSP}:
+\paragraph{}Um filtro bastante conhecido na literatura que atende a esse critério é o Notch. A escolha pela versão IIRs se dá pela possibilidade de obter atenuações maiores e banda de rejeição mais estreita para um mesma ordem $N$ quando comparado com os filtros FIRs.  O custo dessa escolha é a existência de defasagem não linear, a qual não é problema para esta aplicação. A função de transferência do filtro Notch de segunda ordem se dá pela equação a seguir: \cite{introSP}:
 
 \begin{equation} \label{notch}
 H(z) = b \cdot \frac{1 - 2\cos \omega_0 z^{-1} + z^{-2}}{1 - 2b\cos \omega_0 z^{-1} + (2b - 1) z^{-2}}
@@ -390,7 +390,7 @@ u = \sum_{i = 0}^{n} w_i \cdot x_i
 \paragraph{}As funções de ativação \ref{func_logistica} e \ref{func_tanh} são deriváveis em todos os pontos e a \ref{func_relu} só não é derivável no ponto zero, porém contorna-se essa limitação fazendo $g'(0) = 0$. A ReLU tem sido essencial para o estado da arte de redes neurais \cite{relu} \cite{deep_learning_relu} \cite{relu_recomender} \cite{deep_learning_relu2} \label{reluSucesso}. A derivada da função de ativação é utilizada pelos algoritmos de treinamento baseados no gradiente do erro assim como será visto mais à frente.
 
 \subsection{Backpropagation}
-\paragraph{}O algoritmo de backpropagtion é bastante utilizado no treinamento de de redes neurais e utiliza o gradiente do erro como base dos cálculos, assim como mencionado anteriormente \cite{Bishop} \cite{backprop}. Busca-se mover o vetor dos pesos na direção do mínimo local. A expressão de atualização dos pesos é da seguinte forma:
+\paragraph{}O algoritmo de backpropagtion é bastante utilizado no treinamento de redes neurais e utiliza o gradiente do erro como base dos cálculos, assim como mencionado anteriormente \cite{Bishop} \cite{backprop}. Busca-se mover o vetor dos pesos na direção do mínimo global. A expressão de atualização dos pesos é da seguinte forma:
 \begin{equation} \label{grad_desc}
  w^{(\tau + 1)} = w^{(\tau)} - \eta\nabla E_n w^{(\tau)}
 \end{equation}
@@ -430,7 +430,7 @@ Y_{j}^{(1)} = g(\sum_{i = 0}^{N} W_{ji}^{(1)} \cdot X_i)
 Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 \end{equation}
 
-\paragraph{}As redes MLP tem sido utilizadas em diferentes classes de problemas como classificação de elementos e previsão de séries temporais \cite{apostilaCaloba} \cite{ivan_nunes}  \cite{mlp_atmosfera}. Com o grande crescimento do número de dados disponível para utilização e o desenvolvimento das tecnologias computacionais, têm-se atualmente redes com muitas camadas e neurônios em busca de obter maior capacidade de separação, previsão, além de poder obter informações relevantes sobre neurônios intermediários da rede \cite{deep_learning1} \cite{deep_learning_book} \cite{microsoft_dl}.
+\paragraph{}As redes MLP tem sido utilizadas em diferentes classes de problemas como classificação de elementos e previsão de séries temporais \cite{apostilaCaloba} \cite{ivan_nunes}  \cite{mlp_atmosfera}. Com o grande crescimento do número de dados disponível para utilização e o desenvolvimento das tecnologias computacionais, têm-se atualmente redes com muitas camadas e neurônios. Essas redes tem como objetivo aumentar a capacidade de separação, previsão, além de poder obter informações relevantes sobre neurônios intermediários da rede \cite{deep_learning1} \cite{deep_learning_book} \cite{microsoft_dl}.
 
 \begin{figure}[H]
 	\begin{center}
@@ -451,13 +451,13 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 \subsection{Treinamento} \label{treinamento_mlp}
 \paragraph{}Para que a rede consiga de fato "aprender" com os dados é necessário realizar o treinamento. Para que o mesmo seja bem sucedido deve-se atentar para alguns fatores como: 
 \begin{itemize}
-	\item {\textbf{Inicialização dos pesos: }Os pesos não devem se iniciados com o mesmo valor, pois isto faria com que cada neurônio interprete a entrada da mesma forma, gerando então uma estrutura simétrica \cite{relu} \cite{yam} \cite{ryanhsiao}}.
+	\item {\textbf{Inicialização dos pesos: }Os pesos não devem ser iniciados com o mesmo valor, pois isto faria com que cada neurônio interprete a entrada da mesma forma, gerando então uma estrutura simétrica \cite{relu} \cite{yam} \cite{ryanhsiao}}.
 	
 	\item {\textbf{Função custo: } Há necessidade de definir qual função de custo será utilizada na avaliação dos resultados da rede. A função mais comum é o erro médio quadrático - \textit{MSE}, porém dependendo da análise que se deseja fazer e do problema a ser resolvido, outras funções podem ser utilizadas como a o erro médio quadrático - \textit{RMSE}, erro absoluto -\textit{MAE} e acurácia - \textit{ACC} \cite{tccDanilo}}.
 		
 	\item {\textbf{Curva de aprendizado: }É comum também utilizar um gráfico do erro na saída em função da época de treinamento para o conjunto de treinamento e validação. Através do mesmo é possível observar características como overfitting e underfitting e selecionar o conjunto de pesos que tem o melhor compromisso \cite{data_overfit}.}
 		
-	\item {\textbf{Quantidade de dados $X$ complexidade da rede: } Outro fator importante a ser observado é a quantidade de dados disponível para treinamento, visto que quanto maior a complexidade estrutural da rede, maior a capacidade de gerar funções complexa, portanto torna-se necessário uma maior quantidade de dados para que a mesma seja treinada sem o efeito de overfitting.}
+	\item {\textbf{Quantidade de dados $X$ complexidade da rede: } Outro fator importante a ser observado é a quantidade de dados disponível para treinamento, visto que quanto maior a complexidade estrutural da rede, maior a capacidade de gerar funções mais complexas, portanto torna-se necessário uma maior quantidade de dados para que a mesma seja treinada sem o efeito de overfitting.}
 	
 	\item {\textbf{Taxa de aprendizado: }Caso o fator $\eta$ da fórmula \ref{grad_desc} seja um valor muito grande, o algoritmo não conseguirá convergir para um mínimo, porém se $\eta$ for um número muito grande, o treinamento pode levar muita épocas até convergir. Cabe então a quem especifica os parâmetros da rede neural escolher um $\eta$ adequado de forma com que a convergência ocorra e não demore demais.}
 	\begin{figure}[H]

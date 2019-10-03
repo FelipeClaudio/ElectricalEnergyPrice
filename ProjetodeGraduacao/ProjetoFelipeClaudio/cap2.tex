@@ -44,11 +44,8 @@
 	
 	\item{\textbf{Consumidores livres}: são consumidores que têm a opção de escolher o distribuidor de energia, diferente do que acontece no consumo doméstico.}
 	
-	\item{\textbf{Agentes importadores}: são agentes titulares de autorização expedida pela ANEEL para exercer as atividades de importação de energia elétrica.}
-	
-	\item{\textbf{Agentes exportadores}: são agentes titulares de autorização para implantação de sistemas de transmissão associados à exportação de energia elétrica.}
-	
-	\item{\textbf{Agente comercializador da energia de Itaipu}: por ser uma usina binacional, segue tratos específicos. Atualmente a comercialização desta energia é coordenada pela Eletrobras.}
+	\item{\textbf{Agentes comercializadores}: são agentes que negociam energia por meio de contratos bilaterais realizados no ambiente de contratação livre. Esse tipo de agente pode negociar a energia com outras comercializadoras, geradoras, consumidores livres e distribuidoras por meio de leilões de ajuste no ambiente de contratação regulada. Além desse, existem outros tipos de consumidores, assim como visto em \cite{CCEE}.}
+		
 \end{itemize}
 
 \begin{figure}[H]
@@ -85,7 +82,7 @@
 			\textbf{Demanda Mínima} & \textbf{Tensão mínima de fornecimento} & \textbf{\makecell{Data da ligação \\do consumidor}}\\ \hline \vspace{-1.0mm}
 			
 			3MW & Qualquer Tensão & Após 07/07/1995 \\ \hline 
-			3MW & 69KV & Após 07/07/1995 \\ \hline
+			3MW & 69KV & Antes 07/07/1995 \\ \hline
 		\end{tabular}
 		
 	\end{center} 
@@ -102,12 +99,12 @@
 	Despesa_{Consumidor} = (Energia_{Consumida} - Energia_{Contratada})  * PLD
 \end{equation}
 
-\paragraph{}Esse processo de liquidação das diferenças é realizado entre as partes envolvidas na negociação. A CCEE somente realiza o cálculo de quanto cada contraparte deve pagar ou receber. A importância do PLD não se resume somente ao MCP, pois muitos dos contratos do mercado livre são baseados nesse valor\cite{PrevisaoPrecoFuturoACL}. Isto permite que os agentes tomem estratégias diferentes para aumentar o lucro ou diminuir o prejuízo. Um exemplo disso seria um agente consumidor, que ao prever o aumento de preços nos próximos meses, pode buscar realizar contratos para abastecimento futuro a um preço menor do que seria pago. Outro exemplo seria um distribuidor, que ao prever um baixo PLD no MCP do mês atual, decide vender o excedente de energia contratada no mercado livre ao invés de receber o valor proporcional ao PLD.
+\paragraph{}Esse processo de liquidação das diferenças é realizado entre as partes envolvidas na negociação. A CCEE somente realiza o cálculo de quanto cada parte envolvida na negociação deve pagar ou receber. A importância do PLD não se resume somente ao MCP, pois muitos dos contratos do mercado livre são baseados nesse valor\cite{PrevisaoPrecoFuturoACL}. Isto permite que os agentes tomem estratégias diferentes para aumentar o lucro ou diminuir o prejuízo. Um exemplo disso seria um agente consumidor, que ao prever o aumento de preços nos próximos meses, pode buscar realizar contratos para abastecimento futuro a um preço menor do que seria pago. Outro exemplo seria um distribuidor, que ao prever um baixo PLD no MCP do mês atual, decide vender o excedente de energia contratada no mercado livre ao invés de receber o valor proporcional ao PLD.
 
 \section{O Cálculo do Preço da Liquidação das Diferenças}
 O grande desafio do setor é utilizar a energia de maneira eficiente, reduzindo o custo da mesma e o risco de deficit tanto no mês atual quanto nos meses seguintes. Isto demanda a criação e utilização de novas tecnologias auxiliares ao planejamento.
 
-\paragraph{}Conforme observado na figura abaixo, o preço depende diretamente da quantidade de água nos reservatórios e a previsão de quanto água estará armazenada nos meses futuros.
+\paragraph{}Conforme observado na figura abaixo, o preço depende diretamente da quantidade de água nos reservatórios no momento atual e nos meses futuros.
 
 \begin{figure}[H]
 	\begin{center}
@@ -148,9 +145,9 @@ O grande desafio do setor é utilizar a energia de maneira eficiente, reduzindo o
 	\label{fig:MatrizEletricaComparacao}
 \end{figure}
 
-\paragraph{}Uma tendência mundial no setor é a transição da rede elétrica atual para o smart grid. Este termo engloba uma série de tecnologias, tendo como foco o sensoriamento dos componentes que compõem a rede. Isto permite ter informações sobre o consumo em um período de tempo menor do que nas redes antigas, além de conseguir averiguar falhas na rede de maneira remota, mudando a postura das distribuidoras de reativa para ativa, pois torna-se possível resolver os erros antes que os clientes liguem para a concessionária.
+\paragraph{}Uma tendência mundial no setor é a transição da rede elétrica atual para os smart grids. Este termo engloba uma série de tecnologias, tendo como foco o sensoriamento dos componentes que compõem a rede. Isto permite ter informações sobre o consumo em um período de tempo menor do que nas redes antigas, além de conseguir averiguar falhas na rede de maneira remota, mudando a postura das distribuidoras de reativa para ativa, pois torna-se possível resolver os erros antes que os clientes liguem para a concessionária.
 
-\paragraph{}Assim como visto em \cite{SmartGrid}, no ano de 2012 a ANEEL aprovou a resolução normativa No 482 \cite{RES_NORMA_482}, que "Estabelece as condições gerais para o acesso de microgeração e minigeração distribuída aos sistemas de distribuição de energia elétrica, o sistema de compensação de energia elétrica, e dá outras providências". Desde março de 2016 é permitido que qualquer fonte de energia renovável participe do sistema de geração distribuído, não limitando somente à solar e à eólica. Sendo assim a tendência é que parte da produção de energia seja proveniente de pequenos geradores, diminuindo parcialmente a dependência de grandes produtores de energia, o que pode acarretar na redução do risco de deficit de energia.
+\paragraph{}Assim como visto em \cite{SmartGrid}, no ano de 2012 a ANEEL aprovou a resolução normativa N$^{\circ}$ 482 \cite{RES_NORMA_482}, que "Estabelece as condições gerais para o acesso de microgeração e minigeração distribuída aos sistemas de distribuição de energia elétrica, o sistema de compensação de energia elétrica, e dá outras providências". Desde março de 2016 é permitido que qualquer fonte de energia renovável participe do sistema de geração distribuído, não limitando somente à solar e eólica. Sendo assim a tendência é que parte da produção de energia seja proveniente de pequenos geradores, diminuindo parcialmente a dependência de grandes produtores de energia, o que pode acarretar na redução do risco de deficit de energia.
 
 \begin{figure}[H]
 	\centering
@@ -158,9 +155,9 @@ O grande desafio do setor é utilizar a energia de maneira eficiente, reduzindo o
 	\caption[\small{Instituições do setor elétrico brasileiro.}]{\label{PLDMensal} \small{PLD mensal. Fonte: CCEE \cite{CCEE}.}}
 \end{figure}
 
-\paragraph{}No gráfico acima observa-se que existem pontos onde o SIN foi afetado por crises, fazendo com que o PLD aumentasse abruptamente. No ano de 2007 ocorreu a primeira mostrada no gráfico. O SEB tinha passado por uma recente reestruturação da organização, a qual não foi suficiente para evitar o acontecimento. Durante o período de racionamento (2001/06 - 2002/02) a demanda foi menor do que a oferta, porém com o passar do anos ela voltou a se aproximar da curva de oferta. Após abril de 2005, houve um período sem investimento na capacidade energética sistema. Junto com esse fato, ocorreu um período de baixa afluência nas usinas hidrelétricas.
+\paragraph{}No gráfico acima observa-se que existem pontos onde o SIN foi afetado por crises, fazendo com que o PLD aumentasse abruptamente. No ano de 2007 ocorreu a primeira crise mostrada no gráfico. O SEB tinha passado por uma recente reestruturação da organização, a qual não foi suficiente para evitar o acontecimento. Durante o período de racionamento (2001/06 - 2002/02) a demanda foi menor do que a oferta, porém com o passar do anos ela voltou a se aproximar da curva de oferta. Após abril de 2005, houve um período sem investimento na capacidade energética sistema. Junto com esse fato, ocorreu um período de baixa afluência nas usinas hidrelétricas.
 
-\paragraph{}Outra crise notável ocorreu no ano de 2014, onde segundo \cite{CRISE_2014}, houve a diminuição das tarifas imposta pelo governo em um momento de demanda crescente, o atraso em obras de geração e transmissão, além da escassez de chuvas.
+\paragraph{}Outra crise notável ocorreu no ano de 2014, onde segundo \cite{CRISE_2014}, houve a diminuição das tarifas impostas pelo governo em um momento de demanda crescente, o atraso em obras de geração e transmissão, além da escassez de chuvas.
 
 \paragraph{}O PLD é calculado semanalmente e disponibilizado sexta-feira pela CCEE conforme a fórmula \ref{FormulaPrecoPLD}, com vigência na semana seguinte. Para cada um dos submercados do SIN são divulgados valores para os três patamares de carga: leve, médio e pesado. Esses estão relacionados com a hora do dia e o consumo, sendo que o patamar é pesado em horários de alto consumo e leve nos período de baixo demanda energética. O PLD mensal por subsistema é calculado também pela CCEE através da média dos preços ponderadas pelo tempo em cada patamar.
 
@@ -195,7 +192,7 @@ PLD_{s, r, \omega} = min(max(CMO_{s, r, \omega}, PLD_{min_{ano}}), PLD_{max_{ano
 
 \paragraph{}O PLD máximo é calculado com base no custo variável unitário - CVU mais elevado de uma Usina térmica - UTE em operação comercial, a gás natural, contratada por meio Contrato de Comercialização de Energia Elétrica no Ambiente Regulado - CCEAR , definido no planejamento mensal de operação - PMO de dezembro e será aplicado entre a primeira e última semana operativa do ano subsequente, para todos os submercados.
 
-\paragraph{}O PLD mínimo é calculado com base no maior valor entre: i) o calculado com base na Receita Anual de Geração- RAG  das usinas hidrelétricas em regime de cotas, nos termos da Lei nº 12.783/2013, excluídos os valores relacionados à remuneração e reintegração de investimentos, e adicionada a estimativa de Compensação Financeira pelo Uso dos Recursos Hídricos - CFURH; e ii) as estimativas dos custos de geração da usina de Itaipu para o ano seguinte, fornecidas pela Itaipu Binacional para fins de reajustes e/ou revisões tarifárias.
+\paragraph{}O PLD mínimo é calculado com base no maior valor entre: i) o calculado com base na Receita Anual de Geração - RAG  das usinas hidrelétricas em regime de cotas, nos termos da Lei nº 12.783/2013, excluídos os valores relacionados à remuneração e reintegração de investimentos, e adicionada a estimativa de Compensação Financeira pelo Uso dos Recursos Hídricos - CFURH; e ii) as estimativas dos custos de geração da usina de Itaipu para o ano seguinte, fornecidas pela Itaipu Binacional para fins de reajustes e/ou revisões tarifárias.
 
 O valores de definidos para os últimos 5 anos foram:
 \begin{table}[H]
@@ -253,11 +250,11 @@ cálculo do PLD é feito com base no CMO obtido do programa DECOMP, o qual é dispo
 	\label{ArquivosEntradaDECOMP}
 	
 \end{table}
-\paragraph{}O Termo MLT - Média de Longo Termo se refere à média com período anual, utilizando uma série histórica dos valores de ENA - Energia Natural Afluente para cada um dos meses desde 1931. A ENA, por sua vez é a energia que pode ser gerada através a partir da vazão da água em uma determinada bacia.
+\paragraph{}O Termo MLT - Média de Longo Termo refere-se à média com período anual, utilizando uma série histórica dos valores de ENA - Energia Natural Afluente para cada um dos meses desde 1931. A ENA, por sua vez é a energia que pode ser gerada através da vazão da água em uma determinada bacia.
 
-\paragraph{}O arquivo HIDR.DAT, MLT.DAT e VAZOES.DAT vem em formato binário e para serem lidos pelo operador, precisam de programas auxiliares para a conversão, sendo eles Hydroedit para o primeiro e Vazedit para os dois últimos. Ambos são fornecidos pela ONS. Já arquivo de dados gerais tem 43 parâmetros, sendo alguns deles contratos de importações/exportação de energia, custo de déficit e a função de custo futuro. Esta última determinada pelo NEWAVE.
+\paragraph{}Os arquivos HIDR.DAT, MLT.DAT e VAZOES.DAT vem em formato binário e para serem lidos pelo operador, precisam de programas auxiliares para a conversão, sendo eles Hydroedit para o primeiro e Vazedit para os dois últimos. Ambos são fornecidos pela ONS. Já o arquivo de dados gerais tem 43 parâmetros, sendo alguns deles contratos de importações/exportação de energia, custo de déficit e a função de custo futuro. Esta última determinada pelo NEWAVE.
 
-\paragraph{}Obter um modelo matemático baseado no DECOMP que possa ser utilizado na previsão do PLD é de interesse não só dos agentes que participam do mercado elétrico brasileiro, como também de empresas indiretamente relacionadas ao setor como consultorias e bancos, além de existir o viés acadêmico, pois o entendimento da dinâmica do preço pode ajudar na formulação de novos modelo de previsão e alteração do já existente, buscando melhoras nas atividades de planejamento feitas pelos órgãos.
+\paragraph{}Obter um modelo matemático baseado no DECOMP que possa ser utilizado na previsão do PLD é de interesse não só dos agentes que participam do mercado elétrico brasileiro, como também de empresas indiretamente relacionadas ao setor financeiro e o meio acadêmico, pois, o entendimento da dinâmica do preço pode ajudar na formulação de novos modelos de previsão e alteração do já existente, buscando melhoras nas atividades de planejamento feitas pelos órgãos.
 
 \section{Revisão bibliográfica}
 \paragraph{}Em \cite{TCC_PLD} foi utilizada uma abordagem onde são previstos os valores de energia afluente, energia proveniente de hidroelétricas, energia proveniente de usinas térmicas e carga dos subsistemas, a fim de obter o valor do PLD indiretamente. A outra forma proposta foi utilizar a própria informação sobre o PLD na previsão do mesmo. Em ambos os casos, foram utilizadas redes neurais artificiais autorregressiva não-linear - NARNET e os valores previstos são para até 3 semanas à frente.
@@ -341,11 +338,11 @@ cálculo do PLD é feito com base no CMO obtido do programa DECOMP, o qual é dispo
 
 \paragraph{}Em ambos o casos acima o autor realiza previsões para um período de 12 semanas à frente.
 
-\paragraph{}No trabalho visto em \cite{RNA_DIRETA_E_RECORRENTE}, , têm se a análise das variáveis utilizadas na entrada de cada submercado através da correlação. Além é feita a comparação entre os resultados obtidos pelo modelo ARIMA, rede neurais recorrentes, rede neural direta sem seleção de lags e com a seleção de lags. Já em \cite{RNA_PRECO_SPOT} foram utilizadas como variáveis de entrada a geração das hidroelétricas, térmicas e eólica, além da Energia Natural Afluente - ENA, ENA máxima, EAR - Energia Armazenada e o PLD para cada um dos patamares nas 4 últimas semanas, utilizando uma rede neural com 3 camadas ocultas. Como métrica de avaliação dos resultados, faz-se um plot do alvo pelo resultado previsto pela rede e então é feito uma ajuste linear \label{fit_linear}. No caso ideal a equação $y = a\cdot x + b$ se torna $y = x$ (previsão perfeita) \label{fit_perfeito}. Os preços são previstos em um horizonte de até 6 semanas. Em \cite{TCC_FABIANE} utiliza-se uma rede neural recorrente para obter previsões em um horizonte de até seis meses a frente.
+\paragraph{}No trabalho visto em \cite{RNA_DIRETA_E_RECORRENTE}, têm se a análise das variáveis utilizadas na entrada de cada submercado através da correlação. Além disso, é feita a comparação entre os resultados obtidos pelo modelo ARIMA, rede neurais recorrentes, rede neural direta sem seleção de lags e com a seleção de lags. Já em \cite{RNA_PRECO_SPOT} foram utilizadas como variáveis de entrada a geração das hidroelétricas, térmicas e eólica, além da Energia Natural Afluente - ENA, ENA máxima, EAR - Energia Armazenada e o PLD para cada um dos patamares nas 4 últimas semanas, utilizando uma rede neural com 3 camadas ocultas. Como métrica de avaliação dos resultados, faz-se um plot do alvo pelo resultado previsto pela rede e então é feito uma ajuste linear \label{fit_linear}. No caso ideal a equação $y = a\cdot x + b$ se torna $y = x$ (previsão perfeita) \label{fit_perfeito}. Os preços são previstos em um horizonte de até 6 semanas. Em \cite{TCC_FABIANE} utiliza-se uma rede neural recorrente para obter previsões em um horizonte de até seis meses a frente.
 
-\paragraph{}Outra abordagem diferente das observadas acima é a vista em \cite{GARCH_PLD}, onde o autor utiliza modelos \textit{Genralized Auto-Regressive Conditional Heteroscedasticity}- GARCH para a previsão do PLD. Para a estimação dos parâmetros foram utilizadas análises com base na funçao de autocorreções - ACF, autocorrelações parciais - PACF, função de verossimilhança (LLF) e testes estatísticos como o \textit{Akaike info criterion} - AIC.
+\paragraph{}Outra abordagem diferente das observadas acima é a vista em \cite{GARCH_PLD}, onde o autor utiliza modelos \textit{Genralized Auto-Regressive Conditional Heteroscedasticity}- GARCH para a previsão do PLD. Para a estimação dos parâmetros foram utilizadas análises com base na função de autocorreções - ACF, autocorrelações parciais - PACF, função de verossimilhança (LLF) e testes estatísticos como o \textit{Akaike info criterion} - AIC.
 
-\paragraph{}A previsão do preço da energia elétrica é um interesse comum de vários agentes envolvidos com o mercado de energia mundialmente. Em \cite{PSF_forecast} o autor utiliza o algoritmo \textit{K-means} para clusterizar os dados de entrada passados e o algoritmo \textit{Partial Sequence-based Forecasting} - PSF para prever o resultado com base na média dos resultados obtidos no clusters anteriores. O modelo obtido foi utilizado para prever preço e demanda de energia para o mercado espanhol, australiano e nova-iorquino e obteve resultados relevantes.
+\paragraph{}A previsão do preço da energia elétrica é um interesse comum de vários agentes envolvidos com o mercado de energia mundialmente. Em \cite{PSF_forecast} o autor utiliza o algoritmo \textit{K-means} para clusterizar os dados de entrada passados e o algoritmo \textit{Partial Sequence-based Forecasting} - PSF para prever o resultado com base na média dos resultados obtidos no \textit{clusters} anteriores. O modelo obtido foi utilizado para prever preço e demanda de energia para o mercado espanhol, australiano e nova-iorquino e obteve resultados relevantes.
 
 \begin{figure}[H]
 	\centering
@@ -353,9 +350,9 @@ cálculo do PLD é feito com base no CMO obtido do programa DECOMP, o qual é dispo
 	\caption[\small{Instituições do setor elétrico brasileiro.}]{\label{PSF_forecast} \small{Utilização do algoritmo PSF para previsão de séries temporais \cite{PSF_forecast}.}}
 \end{figure}
 
-\paragraph{}Em \cite{simple_forecast} são mostradas algumas abordagens simples para o problema de previsão do preço \textit{spot} (PLD é um exemplo de preço \textit{spot}) no mercado de energia de Ontário. Foi utilizada uma rede neural com uma camada escondida, uma rede neural misturada com lógica fuzzy e otimização com o algoritmo IMO. A previsão foi feita hora a hora para um período de 24 horas. Concluiu-se que a rede neural com lógica fuzzy obteve o melhor resultado, além disso a relevância das entradas para a previsão foi analisada e viu-se que as entradas mais relevantes eram a demanda e a interrupção do gerador. 
+\paragraph{}Em \cite{simple_forecast} são mostradas algumas abordagens simples para o problema de previsão do preço \textit{spot} (PLD é um exemplo de preço \textit{spot}) no mercado de energia de Ontário. Foi utilizada uma rede neural com uma camada escondida, uma rede neural misturada com lógica fuzzy e otimização com o algoritmo IMO. A previsão foi feita hora a hora para um período de 24 horas. Concluiu-se que a rede neural com lógica fuzzy obteve o melhor resultado, além disso a relevância das entradas para a previsão foi analisada e viu-se que as entradas mais relevantes eram a demanda e a interrupção da geração. 
 
-\paragraph{}A revista \cite{energy_magazine} traz a revisão de alguns resultados obtidos na previsão dos preços de mercados de energia elétrica como o da Noruega, Espanha e Califórnia. São utilizadas algumas abordagem lineares como AR, ARIMA e GARCH. Além disso são exibidos resultados de abordagens não lineares utilizando redes neurais. Alguns variantes mostrados são: RNA com lógica fuzzy, com filtro de Kalman extendido e com transformada de Fourier e Hartley como filtro para os preços. O paper \cite{price_forecast_competition} mostra os resultados para a a competição de global de previsão de energia, a qual ocorreu em 2014. São mostrados resultados tanto para previsão de preços da energia elétrica, carga de energia, energia eólica e solar.
+\paragraph{}A revista \cite{energy_magazine} traz a revisão de alguns resultados obtidos na previsão dos preços de mercados de energia elétrica como o da Noruega, Espanha e Califórnia. São utilizadas algumas abordagem lineares como AR, ARIMA e GARCH. Além disso são exibidos resultados de abordagens não lineares utilizando redes neurais. Alguns variantes mostrados são: RNA com lógica fuzzy, com filtro de Kalman extendido e com transformada de Fourier e Hartley como filtro para os dados de preço utilizados como entrada da rede. O paper \cite{price_forecast_competition} mostra os resultados para a a competição de global de previsão de energia, a qual ocorreu em 2014. São mostrados resultados tanto para previsão de preços da energia elétrica, carga de energia, energia eólica e solar.
 
 \paragraph{}Em \cite{hibrid_price_forecasting} foi utilizada uma abordagem híbrida, onde o modelo wavelet-ARIMA seria responsável por prever a parte linear e a parte composta pelo modelo \textit{Radial Basis Function Network} - RBFN seria responsável por corrigir o erro residual proveniente da primeira parte.
  
