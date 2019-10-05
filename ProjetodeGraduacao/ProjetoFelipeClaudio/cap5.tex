@@ -5,10 +5,10 @@
 
 \paragraph{} Para facilitar o processamento, foram retiradas todas as colunas que não fossem a data no formato "mês (por extenso) ano". Essas foram então renomeadas para "month" e "value" e o valor do dado referido (ex: MWh produzidos por usinas hidroelétricas no mês), facilitando o desenvolvimento do código. 
 
-\paragraph{}Dado que as regras para o cálculo do PLD variam durante os anos, utilizou-se somente os dados no período entre 01/2015 e 12/2018 de modo a tentar reduzir ao máximo esse efeito. Sendo assim, o \textit{dataset} possui 48 somente pontos.
+\paragraph{}Dado que as regras para o cálculo do PLD variam durante os anos, utilizou-se somente os dados para o período entre 01/2015 e 12/2018, de modo a tentar reduzir ao máximo esse efeito. Sendo assim, o \textit{dataset} possui 48 somente pontos.
 
 \section{Pré-Processamento}
-\paragraph{}Antes de poder utilizar o sinais obtidos no treinamento da rede, fez-se necessário selecionar quais sinais seriam realmente fornecidos como entrada para o modelo e quantos atrasos temporais seriam necessários para determinar a saída. Além disso há a necessidade de extrair a componente residual do PLD e normalizar os dados. Cada um desses tópicos será detalhado nos parágrafos a seguir.
+\paragraph{}Antes de poder utilizar o sinais obtidos no treinamento da rede, fez-se necessário selecionar quais sinais seriam realmente fornecidos como entrada para o modelo e quantos atrasos temporais seriam necessários para determinar a saída. Além disso, houve necessidade de extrair a componente residual do PLD e normalizar os dados. Cada um desses tópicos será detalhado nos parágrafos a seguir.
 
 \subsection{Seleção dos sinais de entrada}
 \paragraph{}Os sinais de entrada foram selecionado conforme a seguinte matriz de autocorrelação abaixo:
@@ -30,7 +30,7 @@
 \paragraph{}Observou-se alta correlação negativa entre a energia produzida pela hidroelétricas e térmicas. Isso ocorre pelo fato da energia gerada pelas termoelétricas ser a principal substituta para a energia proveniente de usinas térmicas. Sendo assim, decidiu-se então remover a série da energia gerada pelas UTEs de forma a remover a redundância dos dados fornecidos.
 
 \subsection{Seleção dos atrasos do sinal de saída}
-\paragraph{}O gráfico de autocorrelação expressa de forma numérica uma relação linear entre o valor atual e os atrasos. Com isso, têm-se os atrasos com maior importância na formação do sinal. Assim como descrito no capítulo anterior, foram selecionados os pontos que tinham correlação maior ou próximo do limite do intervalo de 95\% de confiança.
+\paragraph{}O gráfico de autocorrelação expressa de forma numérica uma relação linear entre o valor atual e os atrasos. Com isso, têm-se os atrasos com maior importância na formação do sinal. Foram selecionados os pontos que tinham correlação maior ou próximo do limite do intervalo de 95\% de confiança.
 
 \begin{figure}[H]
 	\begin{center}
@@ -66,7 +66,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Tendo como base o gráfico acima, observou-se que a extração proposta em \ref{maLinFit} obteve os melhores resultados e selecionou-se $W=12$. O parâmetro $K$ foi definido como $K=5$ de forma empírica, de forma a obter uma transição suave entre a regressão linear e a média móvel. Aplicando esse filtro obteve-se o seguinte resultado para a extração da tendência:
+\paragraph{}Tendo como base o gráfico acima, observou-se que a extração proposta em \ref{maLinFit} obteve os eres resultados e selecionou-se $W=12$. O parâmetro $K$ foi definido como $K=5$ de forma empírica, de forma a obter uma transição suave entre a regressão linear e a média móvel. Aplicando esse filtro obteve-se o seguinte resultado para a extração da tendência:
 
 \begin{figure}[H]
 	\begin{center}
@@ -100,7 +100,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Nesse caso observou-se que existe um mínimo local em $T=6$ e um mínimo global em $T=12$. Escolheu se o $T=6$ por ser um múltiplo comum dos dois. Entre as duas análises, a que trouxe melhores resultados foi a que utilizou somente a média móvel. Finalmente obteve-se como resultado da extração os seguintes gráficos:
+\paragraph{}Nesse caso, observou-se que existe um mínimo local em $T=6$ e um mínimo global em $T=12$. Escolheu se o $T=6$ por ser um múltiplo comum dos dois. Entre as duas análises, a que trouxe os melhores resultados foi a que utilizou somente a média móvel. Finalmente obteve-se como resultado da extração os seguintes gráficos:
 
 \begin{figure}[H]
 	\begin{center}
@@ -170,9 +170,9 @@
 \section{Treinamento das redes neurais}
 \paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Foram deixados 3 pontos da série temporal para realizar o teste. Para cada fold foram feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. Os 3 últimos foram separados para teste e os outros 25 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds. Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em \ref{treinamento_mlp}. 
 
-\paragraph{} O algoritmo de aprendizado utilizado foi o adadelta com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.  Foi utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhorasse o erro obtido em 25 épocas, o processamento seria então interrompido.
+\paragraph{} O algoritmo de aprendizado utilizado foi o AdaDelta com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.  Foi utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhorasse o erro obtido em 25 épocas, o processamento seria então interrompido.
 
-\paragraph{}Apesar das definições acima, ainda há necessidade de definir a quantidade de neurônios na camada intermediária. Foi feito então um treinamento variando o número de neurônios entre 1 e 90 e, a partir disso, gerou-se um gráfico com o RMSE pelo número de neurônios no conjunto de validação e de teste.
+\paragraph{} Foram realizados treinamento variando o número de neurônios entre 1 e 90, buscando obter o número de neurônios ideal na camada intermediária. A partir disso, gerou-se um gráfico com o RMSE pelo número de neurônios no conjunto de validação e de teste.
 
 \subsection{Treinamento da rede para obter a saída no mês atual}
 \paragraph{}Para o treinamento rede para a saída atual, obteve-se o seguinte gráfico de rmse pelo número de neurônios no conjunto de treinamento:
@@ -429,7 +429,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Pelo histograma é possível ver que a rede de correção do erro de estimação diminuiu o erro máximo e mínimo, porém a estrutura sem a correção do erro tem maior concentração de pontos próximos do zero. Sendo assim, espera-se que a saída com a correção de erro erre mais, porém com discrepância pequena, enquanto espera-se que sem a correção de erro o resultado seja melhor na maioria das vezes, podendo correr o risco de errar muito em alguns pontos.
+\paragraph{}Pelo histograma é possível ver que a rede de correção do erro de estimação diminuiu o erro máximo e mínimo, porém a estrutura sem a correção do erro tem maior concentração de pontos próximos do zero. Sendo assim, espera-se que a saída com a correção de erro erre mais, porém com discrepância menor, enquanto espera-se que sem a correção de erro o resultado seja melhor na maioria das vezes, podendo correr o risco de errar muito em alguns pontos.
 
 \paragraph{}Cabe a quem for utilizar analisar se compensa mais errar menos na média, porém ter uma chance de errar muito em casos extremos ou errar um pouco mais na média e ter o erro dentre de uma faixa menor.
 
@@ -466,7 +466,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}A tabela com os dados utilizados na seleção de cada modelo, o gráfico de convergência e os resultados obtidos  estão presente nos apêndice A.
+\paragraph{}A tabela com os dados utilizados na seleção de cada modelo, o gráfico de convergência e os resultados obtidos  estão presente no apêndice A.
 
 \paragraph{}Assim como o esperado, tanto o erro quanto o desvio padrão aumentam com o número de passos a frente, salvo algumas exceções. Sendo assim, a previsão para muitos passo a frente traz um risco maior para a análise. Cabe a quem for usar mensurar quanto de risco pode ser tolerado baseado nesses gráficos.
 

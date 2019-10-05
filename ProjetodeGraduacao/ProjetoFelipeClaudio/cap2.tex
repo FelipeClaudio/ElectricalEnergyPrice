@@ -3,12 +3,11 @@
 \section{Histórico do Setor Elétrico Brasileiro}
 \paragraph{}No começo da década de 90 a estrutura do setor elétrico brasileiro era verticalizada, composta por grandes estatais que tinham o controle sobre toda a cadeia produtiva (geração, transmissão e distribuição). Houve então uma reestruturação do setor (RE-SEB), baseado no princípio de que "a eficiência no setor elétrico será assegurada através da competição, onde possível, e da regulamentação, onde necessária" \cite{AlteracaoModeloComercializacao}. Sendo assim, o mercado foi aberto para o setor privado. O SEB foi então divido em empresas de geração, transmissão, distribuição e comercialização de energia. Muitas empresas públicas foram leiloadas, dentre elas a a Light (21/05/1996) e a CERJ(20/11//1996) \cite{EvolucaoSetorEletrico}.
 
-\paragraph{}Assim como mencionado, um dos pilares do RE-SEB foi a regulamentação. Então em 1996 foi criada a Agência Nacional de Energia Elétrica - ANEEL, a qual tinha como função regular e fiscalizar a produção, transmissão, distribuição e comercialização de energia elétrica segundo as diretrizes definidas pelo governo federal.
+\paragraph{}Um dos pilares do RE-SEB foi a regulamentação. Em 1996 foi criada a Agência Nacional de Energia Elétrica - ANEEL, a qual tem como função regular e fiscalizar a produção, transmissão, distribuição e comercialização de energia elétrica segundo as diretrizes definidas pelo governo federal.
 
-\paragraph{}Foram aprovadas medidas que incentivavam a realização de contratos de longo prazo entre distribuidores e geradores
-\cite{EvolucaoSetorEletrico}. Além disso, foi dado livre acesso aos pequenos produtores (potenciais hidráulicos menores que 1MW e usinas termoelétricas com potencial inferior a 5MW)  ao sistemas de transmissão e distribuição das concessionárias e permissionárias do serviço publico. Isto facilitou o aparecimento de novas fontes de energias e novos produtores no SEB.
+\paragraph{}Foram aprovadas medidas que incentivavam a realização de contratos de longo prazo entre distribuidores e geradores \cite{EvolucaoSetorEletrico}. Além disso, foi dado livre acesso aos pequenos produtores (potenciais hidráulicos menores que 1MW e usinas termoelétricas com potencial inferior a 5MW) ao sistemas de transmissão e distribuição das concessionárias e permissionárias do serviço publico.
 
-\paragraph{}Em 2001 houve uma grande crise energética no país que foi fruto de um período seco. Então, mudanças estruturais foram implantadas no SEB, buscando assim melhorar a gestão, evitar incidentes, garantir a qualidade e incentivar a expansão do mesmo. Com isso, a organização da estrutura foi modificada, sendo que as instituições responsáveis pelo pleno funcionamento deste modelo são descritas a seguir \cite{CCEE}:
+\paragraph{}Em 2001 houve uma grande crise energética no país que foi fruto de um conjunto de fatores, sendo a seca um deles. Então, mudanças estruturais foram implantadas no SEB, buscando assim melhorar a gestão, evitar incidentes, garantir a qualidade e incentivar a expansão do mesmo. Com isso, a organização da estrutura foi modificada, sendo que as instituições responsáveis pelo pleno funcionamento deste modelo são descritas a seguir \cite{CCEE}:
 
 \begin{itemize}
 	\item { \textbf{Ministério de Minas e Energias - MME}: Reponsável pela formulação e implantação de políticas relacionadas ao setor elétrico.}
@@ -92,17 +91,16 @@
 
 \paragraph{} Dado o dinamismo do consumo, dificilmente a energia utilizada será igual a contratada. Uma das funções da CCEE é realizar medições tanto do que é produzido quanto o que é consumido. Esta instituição concentra informações sobre o montante de energia negociado em cada contrato do SEB. A diferença entre o que foi negociado e o que foi consumido  é liquidado utilizando como multiplicador o Preço de Liquidação das Diferença - PLD, o qual será explicado mais a frente. O saldo dos agentes no mercado de curto prazo se dá pelas seguintes equações\cite{PRECO_SPOT}. 
 
-\begin{equation} \label{ReceitaGerador}
-	Receita_{Gerador} = (Energia_{Gerada} - Energia_{Contratada})  * PLD
-\end{equation}
-\begin{equation} \label{ReceitaConsumidor}
-	Despesa_{Consumidor} = (Energia_{Consumida} - Energia_{Contratada})  * PLD
+\begin{equation}
+	Saldo_{t, p} = SaldoEnergetico_{t, p} * PLD_t
 \end{equation}
 
-\paragraph{}Esse processo de liquidação das diferenças é realizado entre as partes envolvidas na negociação. A CCEE somente realiza o cálculo de quanto cada parte envolvida na negociação deve pagar ou receber. A importância do PLD não se resume somente ao MCP, pois muitos dos contratos do mercado livre são baseados nesse valor\cite{PrevisaoPrecoFuturoACL}. Isto permite que os agentes tomem estratégias diferentes para aumentar o lucro ou diminuir o prejuízo. Um exemplo disso seria um agente consumidor, que ao prever o aumento de preços nos próximos meses, pode buscar realizar contratos para abastecimento futuro a um preço menor do que seria pago. Outro exemplo seria um distribuidor, que ao prever um baixo PLD no MCP do mês atual, decide vender o excedente de energia contratada no mercado livre ao invés de receber o valor proporcional ao PLD.
+\paragraph{}Onde $t$ é oa semana para qual a fórmula é analisada e p é a parte para a qual o cálculo será realizado (gerador ou carga). O saldo energético pode ser positivo ou negativo, dependendo de onde se aplica a fórmula. Um exemplo seria um gerador que produziu menos energia do que a contratada. Essa diferença seria multiplicada pelo PLD na semana em que se faz a liquidação. Nesse caso o gerador teria que pagar esse valor calculado.
+
+\paragraph{}Esse processo de liquidação das diferenças é realizado entre as partes envolvidas na negociação. A CCEE somente realiza o cálculo de quanto cada parte envolvida na negociação deve pagar ou receber. A importância do PLD não se resume somente ao MCP, pois muitos dos contratos do mercado livre são baseados nesse valor\cite{PrevisaoPrecoFuturoACL}. Isto permite que os agentes tomem estratégias diferentes para aumentar o faturamento ou diminuir o risco. Um exemplo disso seria um agente consumidor, que ao prever o aumento de preços nos próximos meses, pode buscar realizar contratos para abastecimento futuro a um preço menor do que seria pago. Outro exemplo seria um distribuidor, que ao prever um baixo PLD no MCP do mês atual, decide vender o excedente de energia contratada no mercado livre ao invés de receber o valor proporcional ao PLD.
 
 \section{O Cálculo do Preço da Liquidação das Diferenças}
-O grande desafio do setor é utilizar a energia de maneira eficiente, reduzindo o custo da mesma e o risco de deficit tanto no mês atual quanto nos meses seguintes. Isto demanda a criação e utilização de novas tecnologias auxiliares ao planejamento.
+O grande desafio do setor é utilizar a energia produzida de maneira eficiente, reduzindo o custo da mesma e o risco de deficit tanto no mês atual quanto nos meses seguintes. Isto demanda a criação e utilização de novas tecnologias auxiliares ao planejamento.
 
 \paragraph{}Conforme observado na figura abaixo, o preço depende diretamente da quantidade de água nos reservatórios no momento atual e nos meses futuros.
 
@@ -155,9 +153,9 @@ O grande desafio do setor é utilizar a energia de maneira eficiente, reduzindo o
 	\caption[\small{Instituições do setor elétrico brasileiro.}]{\label{PLDMensal} \small{PLD mensal. Fonte: CCEE \cite{CCEE}.}}
 \end{figure}
 
-\paragraph{}No gráfico acima observa-se que existem pontos onde o SIN foi afetado por crises, fazendo com que o PLD aumentasse abruptamente. No ano de 2007 ocorreu a primeira crise mostrada no gráfico. O SEB tinha passado por uma recente reestruturação da organização, a qual não foi suficiente para evitar o acontecimento. Durante o período de racionamento (2001/06 - 2002/02) a demanda foi menor do que a oferta, porém com o passar do anos ela voltou a se aproximar da curva de oferta. Após abril de 2005, houve um período sem investimento na capacidade energética sistema. Junto com esse fato, ocorreu um período de baixa afluência nas usinas hidrelétricas.
+\paragraph{}No gráfico acima observa-se que existem pontos onde o PLD aumentou abruptamente. No ano de 2007, o SEB tinha passado por uma recente reestruturação da organização, a qual não foi suficiente para evitar o acontecimento. Durante o período de racionamento (2001/06 - 2002/02) a demanda foi menor do que a oferta, porém com o passar do anos ela voltou a se aproximar da curva de oferta. Após abril de 2005, houve um período sem investimento na capacidade energética sistema. Junto com esse fato, ocorreu um período de baixa afluência nas usinas hidrelétricas. Além disso, entre 2007 e 2008 ocorreu a crise mundial do setor financeiro \cite{FinancialCrisis}.
 
-\paragraph{}Outra crise notável ocorreu no ano de 2014, onde segundo \cite{CRISE_2014}, houve a diminuição das tarifas impostas pelo governo em um momento de demanda crescente, o atraso em obras de geração e transmissão, além da escassez de chuvas.
+\paragraph{}Outro ponto relevante é visto no ano de 2014, onde segundo \cite{CRISE_2014}, o governo diminui, via decreto, as tarifas impostas em um momento de demanda crescente. Além disso, o atraso em obras de geração e transmissão e a escassez de chuvas colaboraram com o fato observado.
 
 \paragraph{}O PLD é calculado semanalmente e disponibilizado sexta-feira pela CCEE conforme a fórmula \ref{FormulaPrecoPLD}, com vigência na semana seguinte. Para cada um dos submercados do SIN são divulgados valores para os três patamares de carga: leve, médio e pesado. Esses estão relacionados com a hora do dia e o consumo, sendo que o patamar é pesado em horários de alto consumo e leve nos período de baixo demanda energética. O PLD mensal por subsistema é calculado também pela CCEE através da média dos preços ponderadas pelo tempo em cada patamar.
 
@@ -224,37 +222,11 @@ Algum deles são \cite{MANUAIS}:
 	\item{NEWAVE: Utilizado no planejamento de médio prazo (até 5 anos), com espaçamento mensal entre as previsões}
 	\item{DECOMP: Utilizado no planejamento de curto prazo (até 12) com base semanal}
 \end{itemize}
-cálculo do PLD é feito com base no CMO obtido do programa DECOMP, o qual é disponibilizado somente para agentes cadastrados no CCEE e tem como entrada os seguintes dados:
+cálculo do PLD é feito com base no CMO obtido do programa DECOMP, o qual é disponibilizado somente para agentes cadastrados no CCEE e tem como entrada alguns dados como as vazões para uma determinada bacia, o MLT - Média de Longo Termo, perdas do sistema entre outros. A lista completa de dados utilizados na entrada pode ser vista em \cite{MANUAIS}, 
 
-\begin{table}[H]
-	
-	\begin{center}
-		
-		\caption{Arquivos de entrada do DECOMP.}
-		
-		\begin{tabular}{|c|c|}\hline
-			
-			\textbf{Arquivo} & \textbf{Conteúdo}\\ \hline \vspace{-1.0mm}
-			
-			CASO.DAT & Contém o nome do Arquivo índice\\ \hline \vspace{-1.0mm}
-			Arquivo Índice & \makecell{Contém a lista de arquivos de entrada \\ sob gerenciamento do usuário}\\ \hline \vspace{-1.0mm}
-			DADGER.DAT & Dados gerais de planejamento\\ \hline \vspace{-1.0mm}
-			VAZOES.XXX & \makecell{Vazões incrementais afluentes aos aproveitamentos da \\ configuração considerada}\\ \hline \vspace{-1.0mm}
-			HIDR.DAT & Cadastros de dados das usinas\\ \hline \vspace{-1.0mm}
-			MLT.DAT & Médias mensais de longo termo\\ \hline \vspace{-1.0mm}
-			LOSS.DAT & Perdas no sistema\\ \hline
-			DADGNL.XXX & dados de usinas térmicas\\ \hline
-		\end{tabular}
-		
-	\end{center} 
-	\label{ArquivosEntradaDECOMP}
-	
-\end{table}
-\paragraph{}O Termo MLT - Média de Longo Termo refere-se à média com período anual, utilizando uma série histórica dos valores de ENA - Energia Natural Afluente para cada um dos meses desde 1931. A ENA, por sua vez é a energia que pode ser gerada através da vazão da água em uma determinada bacia.
+\paragraph{}O acrônimo MLT - Média de Longo Termo refere-se à média com período anual, utilizando uma série histórica dos valores de ENA - Energia Natural Afluente para cada um dos meses desde 1931. A ENA, por sua vez é a energia que pode ser gerada através da vazão da água em uma determinada bacia.
 
-\paragraph{}Os arquivos HIDR.DAT, MLT.DAT e VAZOES.DAT vem em formato binário e para serem lidos pelo operador, precisam de programas auxiliares para a conversão, sendo eles Hydroedit para o primeiro e Vazedit para os dois últimos. Ambos são fornecidos pela ONS. Já o arquivo de dados gerais tem 43 parâmetros, sendo alguns deles contratos de importações/exportação de energia, custo de déficit e a função de custo futuro. Esta última determinada pelo NEWAVE.
-
-\paragraph{}Obter um modelo matemático baseado no DECOMP que possa ser utilizado na previsão do PLD é de interesse não só dos agentes que participam do mercado elétrico brasileiro, como também de empresas indiretamente relacionadas ao setor financeiro e o meio acadêmico, pois, o entendimento da dinâmica do preço pode ajudar na formulação de novos modelos de previsão e alteração do já existente, buscando melhoras nas atividades de planejamento feitas pelos órgãos.
+\paragraph{}A busca por um modelo matemático baseado no DECOMP que possa ser utilizado na previsão do PLD é de interesse não só dos agentes que participam do mercado elétrico brasileiro, como também de empresas indiretamente relacionadas ao setor financeiro e meio acadêmico. O entendimento da dinâmica do preço pode ajudar na formulação de novos modelos de previsão e alteração dos já existentes (DECOMP e NEWAVE). Com isso, pode-se obter melhorias nas atividades de planejamento feitas pelos órgãos.
 
 \section{Revisão bibliográfica}
 \paragraph{}Em \cite{TCC_PLD} foi utilizada uma abordagem onde são previstos os valores de energia afluente, energia proveniente de hidroelétricas, energia proveniente de usinas térmicas e carga dos subsistemas, a fim de obter o valor do PLD indiretamente. A outra forma proposta foi utilizar a própria informação sobre o PLD na previsão do mesmo. Em ambos os casos, foram utilizadas redes neurais artificiais autorregressiva não-linear - NARNET e os valores previstos são para até 3 semanas à frente.
@@ -342,7 +314,7 @@ cálculo do PLD é feito com base no CMO obtido do programa DECOMP, o qual é dispo
 
 \paragraph{}Outra abordagem diferente das observadas acima é a vista em \cite{GARCH_PLD}, onde o autor utiliza modelos \textit{Genralized Auto-Regressive Conditional Heteroscedasticity}- GARCH para a previsão do PLD. Para a estimação dos parâmetros foram utilizadas análises com base na função de autocorreções - ACF, autocorrelações parciais - PACF, função de verossimilhança (LLF) e testes estatísticos como o \textit{Akaike info criterion} - AIC.
 
-\paragraph{}A previsão do preço da energia elétrica é um interesse comum de vários agentes envolvidos com o mercado de energia mundialmente. Em \cite{PSF_forecast} o autor utiliza o algoritmo \textit{K-means} para clusterizar os dados de entrada passados e o algoritmo \textit{Partial Sequence-based Forecasting} - PSF para prever o resultado com base na média dos resultados obtidos no \textit{clusters} anteriores. O modelo obtido foi utilizado para prever preço e demanda de energia para o mercado espanhol, australiano e nova-iorquino e obteve resultados relevantes.
+\paragraph{}Existem pesquisas para obter modelos de previsão de preços para diferentes mercados de energia ao redor do mundo. Em \cite{PSF_forecast} o autor utiliza o algoritmo \textit{K-means} para clusterizar os dados de entrada passados e o algoritmo \textit{Partial Sequence-based Forecasting} - PSF para prever o resultado com base na média dos resultados obtidos no \textit{clusters} anteriores. O modelo obtido foi utilizado para prever preço e demanda de energia para o mercado espanhol, australiano e nova-iorquino e obteve resultados relevantes.
 
 \begin{figure}[H]
 	\centering

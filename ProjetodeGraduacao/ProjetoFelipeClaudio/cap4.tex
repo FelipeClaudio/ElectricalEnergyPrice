@@ -17,7 +17,7 @@
 \section{Coleta de dados}
 \paragraph{}Serão utilizados nos modelos os seguintes dados do setor elétrico:
 
-\begin{table}[h]	
+\begin{table}[H]	
 	\begin{center}
 		\caption{Dados utilizado no trabalho.}	
 		\begin{tabular}{|c|c|c|}\hline \label{table:DadosDeEntrada}
@@ -39,7 +39,7 @@
 
 \paragraph{}Todos os dados acima estão disponíveis publicamente e são séries temporais com intervalo de amostragem de 1 mês.
 
-\paragraph{}Para a obtenção da soma das vazões, utilizou-se o arquivo VAZOES.DAT fornecido pela CCEE. Este arquivo é binário e para ser lido precisa da utilização do executável vazedit também fornecido pela CCEE. Após o processamento deste programa, obtém-se um arquivo texto com as vazões de cada posto fluviométrico para cada mês em cada ano desde de 1931. Esses valores foram somados para os postos que pertencem exclusivamente à região Sudeste.
+\paragraph{}Para o cálculo da soma das vazões, utilizou-se o arquivo VAZOES.DAT fornecido pela CCEE. Este arquivo é binário e para ser lido precisa da utilização do executável vazedit também fornecido pela CCEE. Após o processamento deste programa, obtém-se um arquivo texto com as vazões de cada posto fluviométrico para cada mês em cada ano desde de 1931. Esses valores foram somados para os postos que pertencem exclusivamente à região Sudeste.
 
 \paragraph{}O "valor útil da soma das vazões afluentes" é um cálculo semelhante ao descrito no parágrafo anterior, porém removendo em cada posto a vazão mínima necessária para a produção de energia. Para obter essa informação, utiliza-se o arquivo HIDR.DAT, também fornecido pela CCEE, o qual possui o cadastro de todas as usinas consideradas nos cálculos do PLD. Assim como no caso do arquivo VAZOES.DAT, o HIDR.DAT também é binário. Para processar o mesmo é necessário um executável também fornecido pela CCEE chamado hidroedit.
 
@@ -77,10 +77,10 @@ MA(W), & \mbox{se } i > W
 \end{cases}
 \end{equation}
 
-\paragraph{}As duas fórmulas acima dependem do parâmetro ($W$) o qual varia conforme o problema a ser resolvido. A escolha do $W$ foi feita a partir da análise do MSE pelo tamanho da janela. Como o objetivo é obter uma função que tenha a capacidade de prever a tendência um passo à frente com o mínimo erro possível, busca-se um valor de $W$ que não seja pequeno demais (pouca generalização) nem muito grande (pouco sensível às variações).
+\paragraph{}As duas fórmulas acima dependem do parâmetro ($W$) o qual varia conforme o problema a ser resolvido. A escolha do $W$ foi feita a partir da análise do MSE pelo tamanho da janela. Como o objetivo é obter uma função que tenha a capacidade de prever a tendência um passo à frente com o mínimo erro possível, busca-se um valor de $W$ que não seja pequeno demais (pouca capacidade de generalização) nem muito grande (pouco sensível às variações).
 
 \subsection{Sazonalidade}
-\paragraph{}Após a extração da tendência, o sinal restante é descrito pela seguinte fórmula: $s_{1t} = sz_t + cs_t + res_t$. A o método de extração é similar ao descrito acima, porém, no caso da sazonalidade a série é decimada conforme um parâmetro T que indica o tamanho do lag temporal utilizado.
+\paragraph{}Após a extração da tendência, o sinal restante é descrito pela seguinte fórmula: $s_{1t} = sz_t + cs_t + res_t$. A o método de extração é similar ao descrito acima, porém, no caso da sazonalidade a série é decimada conforme um parâmetro T que indica o valor do atraso temporal utilizado.
 
 \paragraph{}As fórmulas utilizadas na extração da sazonalidade foram as seguintes:
 \begin{equation} \label{linFitSz}
@@ -104,32 +104,32 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 \paragraph{} Em \ref{linFitSz} utiliza-se a regressão linear dos pontos decimados para tentar prever a sazonalidade, já em \ref{maSz} utiliza-se a média móvel. Em ambos os casos utilizam-se todos os pontos fornecidos ao filtro como base para a previsão, eliminando o problema de selecionar o parâmetro $W$. Todavia, ainda existe o problema de selecionar o valor correto do parâmetro $T$ para que se obtenha o menor erro possível na extração da componente sazonal.
 
 \subsection{Ciclos Senoidais e Resíduo}
-\paragraph{}O ciclo senoidal foi obtido através da seleção do maior pico na transformada de Fourier do sinal. Para a extração do mesmo foi utilizado o filtro Notch. O resultado dessa operação é um sinal composto somente pela componente residual. Esta é a parte não determinística da série. Finalmente o sinal é normalizado utilizando a técnica \textit{MinMaxScaler} \cite{minMaxScaler}.
+\paragraph{}O ciclo senoidal será obtido através da seleção do maior pico na transformada de Fourier do sinal. Para a extração do mesmo será utilizado o filtro Notch. O resultado dessa operação é um sinal composto somente pela componente residual. Esta é a parte não determinística da série. Finalmente o sinal é normalizado utilizando a técnica \textit{MinMaxScaler} \cite{minMaxScaler}.
 
 \section{Seleção dos sinais de entrada}
-\paragraph{}A seleção dos sinais de entrada foi feita através do gráfico de correlação dos mesmos. Buscou-se sinais com alta correlação, para que pudesse ser removido um dos pares, visto que isso é um indicativo de que há uma redundância na informação fornecida no modelo. A remoção dos sinais com alta correlação diminui o tempo de treinamento e também pode diminuir o ruído na entrada, fazendo assim com que o treinamento tenha uma precisão maior.
+\paragraph{}A seleção dos sinais de entrada será feita através do gráfico de correlação dos mesmos. Buscou-se sinais com alta correlação, para que pudesse ser removido um dos pares, visto que isso é um indicativo de que há uma redundância na informação fornecida no modelo. A remoção dos sinais com alta correlação diminui o tempo de treinamento e também pode diminuir o ruído na entrada, fazendo assim com que o treinamento tenha uma precisão maior.
 
 \subsection{Seleção dos atrasos do sinal de saída}
-\paragraph{}A entrada do modelo é composta por sinais no tempo atual e sinais defasados em períodos de tempo específicos. A seleção das defasagens foi feita através do cálculo da autocorrelação do sinal de saída. Todos os valores com autocorrelação maior ou próximo do limite do intervalo de 95\% de confiança foram selecionados. Os valores de defasagem foram replicados para todos os sinais utilizados na entrada do modelo. A função de ativação ser
+\paragraph{}A entrada do modelo é composta por sinais no tempo atual e sinais defasados em períodos de tempo específicos. A seleção das defasagens será feita através do cálculo da autocorrelação do sinal de saída. Todos os valores com autocorrelação maior ou próximo do limite do intervalo de 95\% de confiança foram selecionados. Os valores de defasagem foram replicados para todos os sinais utilizados na entrada do modelo. A função de ativação ser
 
 \section{Rede Neural}
 \paragraph{}Foi definido que a rede neural utilizada será um MLP de uma camada escondida somente, com ReLU \ref{relu} como função de ativação. A saída conterá somente um neurônio com função de ativação linear, de modo a conseguir obter o sinal utilizado na previsão do resíduo do PLD.
 
 \subsection{Treinamento das redes neurais}
-\paragraph{}O treinamento será realizado modificando o número de neurônios na camada intermediária, de forma a avaliar qual arquitetura fornece o menor erro na saída. Para a avaliação dos resultados será utilizado como métrica o RMSE no conjunto de validação pelo número de neurônios. Outro critério para a avaliação utilizado também foi o gráfico de pontos do dado previsto pelo original de forma similar ao visto em \ref{fit_perfeito}.
+\paragraph{}O treinamento será realizado modificando o número de neurônios na camada intermediária, de forma a avaliar qual arquitetura fornece o menor erro na saída. Para a avaliação dos resultados será utilizado como métrica o RMSE no conjunto de validação pelo número de neurônios. Outro critério para a avaliação utilizado também será o gráfico de pontos do dado previsto pelo original de forma similar ao visto em \ref{fit_perfeito}.
 
-\paragraph{}Dado que as entradas foram selecionadas e previamente processadas, restou definir a arquitetura da rede neural utilizada. Devido à simplicidade e a boa capacidade de solução de problemas, foi utilizada a rede Perceptron Multicamadas com somente uma camada intermediária. Foi definido para a camada de entrada e intermediária que a função de ativação utilizada seria a ReLU, dado a velocidade de processamento e os bons resultados obtidos em pesquisas recentes \ref{reluSucesso}. 
+\paragraph{}O passo seguinte desse trabalho será a definição da arquitetura utilizada pela rede neural. Devido à simplicidade e a boa capacidade de solução de problemas, foi utilizada a rede Perceptron Multicamadas com somente uma camada intermediária. Foi definido para a camada de entrada e intermediária que a função de ativação utilizada seria a ReLU, dado a velocidade de processamento e os bons resultados obtidos em pesquisas recentes \ref{reluSucesso}. 
 
-\paragraph{}Para a camada de saída, a função de ativação escolhida foi a linear, para que se possa construir a série temporal. O algoritmo de aprendizado utilizado foi o AdaDelta. O $\alpha$, parâmetro que regula a taxa de aprendizado, foi escolhido de forma a fazer com que o gráfico de erro no dataset de treino pelo número de neurônios convergisse para todos os folds utilizados na validação cruzada.
+\paragraph{}Para a camada de saída, a função de ativação escolhida será a linear, para que se possa construir a série temporal. O algoritmo de aprendizado utilizado será o AdaDelta. O $\alpha$, parâmetro que regula a taxa de aprendizado, será escolhido de forma a fazer com que o gráfico de erro no dataset de treino pelo número de neurônios convergisse para todos os folds utilizados na validação cruzada.
 
-\paragraph{}O modelo foi treinado utilizando validação cruzada. Em cada fold foram feitas algumas inicializações aleatórias utilizando o algoritmo visto em \cite{K_He}, de forma a reduzir o impacto de uma inicialização ruim do modelo. 
+\paragraph{}O modelo será treinado utilizando validação cruzada. Em cada fold foram feitas algumas inicializações aleatórias utilizando o algoritmo visto em \cite{K_He}, de forma a reduzir o impacto de uma inicialização ruim do modelo. 
 
-\paragraph{}Para facilitar a seleção dos modelos, foi feito uma tabela contendo informações sobre o erro médio, desvio padrão, coeficiente angular e offset médios para o dataset de validação. Criou-se a métrica para medir o desvio do coeficiente angular ($a$) e do offset($b$) de cada modelo, fazendo com que um primeiro erro fosse obtido através da fórmula $\epsilon_1 = ABS(1-a)$ e um segundo fosse obtido por $\epsilon_2 = ABS(b)$, onde $ABS$ é o valor absoluto do número. Além disso, para fins de ranqueamento, criou-se uma terceira métrica descrita como $\epsilon_3 = NORM(\epsilon_1) + NORM(\epsilon_2)$, onde $NORM$ é a normalização feita dividindo todos os valores pela norma infinita do vetor. O modelo a ser utilizado é então o que tiver o menor erro $\epsilon_3$.
+\paragraph{}Para facilitar a seleção dos modelos, será feita uma tabela contendo informações sobre o erro médio, desvio padrão, coeficiente angular e offset médios para o dataset de validação. Sendo assim, será utilizada a métrica para medir o desvio do coeficiente angular ($a$) e do offset($b$) de cada modelo, fazendo com que um primeiro erro seja obtido através da fórmula $\epsilon_1 = ABS(1-a)$ e um segundo seja obtido por $\epsilon_2 = ABS(b)$, onde $ABS$ é o valor absoluto do número. Além disso, para fins de ranqueamento, definiu-se uma terceira métrica descrita como $\epsilon_3 = NORM(\epsilon_1) + NORM(\epsilon_2)$, onde $NORM$ é a normalização feita dividindo todos os valores pela norma infinita do vetor. O modelo a ser utilizado é então o que tiver o menor erro $\epsilon_3$.
 
-\paragraph{}Na primeira fase do treinamento, fez-se uma rede que tinha como entrada $x(t)$ e obtém-se como saída $y(t)$, de modo a verificar se o processo utilizado no treinamento e seleção da rede estava adequado, além de servir como caso base para os modelos de previsão. Dado que as previsões são somente variações desse modelo básico, torna-se de extrema importância a boa adesão do modelo ao problema. 
+\paragraph{}Na primeira fase do treinamento, será treinada uma rede, onde a entrada no mês atual, $x(t)$, será utilizada para estimar a saída para o mês atual, $y(t)$. Com isso será possível verificar se o processo utilizado no treinamento e seleção da rede está adequado ao problema e realizar os ajustes necessários. Além disso, essa rede servirá como caso base para os modelos de previsão. Dado que as previsões são somente variações desse modelo básico, torna-se de extrema importância a boa adesão do modelo ao problema. 
 
-\paragraph{}A saída utilizada no processamento foi o sinal residual do PLD, dado que a tendência, sazonalidade e ciclos sazonais são determinísticos. Sendo assim, para obter valor final da PLD é necessário combinar a parte prevista pela rede com a parte determinística.
+\paragraph{}A saída utilizada no processamento foi o sinal residual do PLD médio mensal, dado que a tendência, sazonalidade e ciclos sazonais são determinísticos. Sendo assim, para obter valor final da PLD é necessário combinar a parte prevista pela rede com a parte determinística.
 
-\paragraph{}Da segunda fase em diante foram feitas previsões do resíduo do PLD mensal de fato. Na segunda fase em específico, previu-se o resíduo PLD para o mês seguinte. Além disso, propôs-se uma abordagem com o treinamento de uma segunda rede neural para corrigir o erro entre a previsão feita pela primeira rede e o sinal original.
+\paragraph{}Da segunda fase em diante, foram feitas previsões do resíduo do PLD mensal de fato. Na segunda fase em específico, previu-se o resíduo PLD para o mês seguinte. Além disso, propôs-se uma abordagem com o treinamento de uma segunda rede neural para corrigir o erro entre a previsão feita pela primeira rede e o sinal original.
 
-\paragraph{}Nos passos seguintes somente foi feita a comparação entre o resíduo original e o previsto para $N$ meses a frente. Ao final pode-se obter um gráfico com o erro e desvio padrão pela quantidade de meses a frente.
+\paragraph{}Nos passos seguintes somente foi feita a comparação entre o resíduo original e o previsto para $N$ meses a frente. Ao final, será possível obter um gráfico com o erro e desvio padrão pela quantidade de meses a frente.

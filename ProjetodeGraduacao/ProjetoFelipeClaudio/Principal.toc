@@ -80,6 +80,7 @@
 \contentsline {paragraph}{}{4}
 \contentsline {paragraph}{}{5}
 \contentsline {paragraph}{}{6}
+\contentsline {paragraph}{}{7}
 \contentsline {paragraph}{}{8}
 \contentsline {paragraph}{}{8}
 \contentsline {paragraph}{}{9}
@@ -89,11 +90,10 @@
 \contentsline {paragraph}{}{10}
 \contentsline {paragraph}{}{11}
 \contentsline {paragraph}{}{11}
-\contentsline {paragraph}{}{11}
 \contentsline {paragraph}{}{12}
 \contentsline {paragraph}{}{12}
 \contentsline {paragraph}{}{12}
-\contentsline {paragraph}{}{12}
+\contentsline {paragraph}{}{13}
 \contentsline {paragraph}{}{13}
 \contentsline {paragraph}{}{13}
 \contentsline {paragraph}{}{14}
@@ -101,9 +101,9 @@
 \contentsline {paragraph}{}{14}
 \contentsline {section}{\numberline {2.3}Revis\~ao bibliogr\'afica}{15}
 \contentsline {paragraph}{}{15}
-\contentsline {paragraph}{}{15}
 \contentsline {paragraph}{}{16}
 \contentsline {paragraph}{}{16}
+\contentsline {paragraph}{}{17}
 \contentsline {paragraph}{}{17}
 \contentsline {paragraph}{}{17}
 \contentsline {paragraph}{}{17}
@@ -168,36 +168,36 @@
 \contentsline {paragraph}{}{38}
 \contentsline {section}{\numberline {4.1}Coleta de dados}{38}
 \contentsline {paragraph}{}{38}
-\contentsline {paragraph}{}{38}
 \contentsline {paragraph}{}{39}
 \contentsline {paragraph}{}{39}
-\contentsline {section}{\numberline {4.2}Pr\'e-processamento}{39}
 \contentsline {paragraph}{}{39}
+\contentsline {section}{\numberline {4.2}Pr\'e-processamento}{40}
+\contentsline {paragraph}{}{40}
 \contentsline {subsection}{\numberline {4.2.1}Tend\^encia}{40}
 \contentsline {paragraph}{}{40}
 \contentsline {paragraph}{}{40}
-\contentsline {paragraph}{}{40}
-\contentsline {paragraph}{}{40}
+\contentsline {paragraph}{}{41}
+\contentsline {paragraph}{}{41}
 \contentsline {subsection}{\numberline {4.2.2}Sazonalidade}{41}
 \contentsline {paragraph}{}{41}
 \contentsline {paragraph}{}{41}
 \contentsline {paragraph}{}{41}
 \contentsline {paragraph}{}{41}
-\contentsline {subsection}{\numberline {4.2.3}Ciclos Senoidais e Res\IeC {\'\i }duo}{41}
-\contentsline {paragraph}{}{41}
+\contentsline {subsection}{\numberline {4.2.3}Ciclos Senoidais e Res\IeC {\'\i }duo}{42}
+\contentsline {paragraph}{}{42}
 \contentsline {section}{\numberline {4.3}Sele\c c\~ao dos sinais de entrada}{42}
 \contentsline {paragraph}{}{42}
 \contentsline {subsection}{\numberline {4.3.1}Sele\c c\~ao dos atrasos do sinal de sa\IeC {\'\i }da}{42}
 \contentsline {paragraph}{}{42}
 \contentsline {section}{\numberline {4.4}Rede Neural}{42}
 \contentsline {paragraph}{}{42}
-\contentsline {subsection}{\numberline {4.4.1}Treinamento das redes neurais}{42}
-\contentsline {paragraph}{}{42}
+\contentsline {subsection}{\numberline {4.4.1}Treinamento das redes neurais}{43}
 \contentsline {paragraph}{}{43}
 \contentsline {paragraph}{}{43}
 \contentsline {paragraph}{}{43}
 \contentsline {paragraph}{}{43}
 \contentsline {paragraph}{}{43}
+\contentsline {paragraph}{}{44}
 \contentsline {paragraph}{}{44}
 \contentsline {paragraph}{}{44}
 \contentsline {paragraph}{}{44}
