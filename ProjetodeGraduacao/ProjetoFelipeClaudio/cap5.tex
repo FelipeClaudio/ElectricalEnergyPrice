@@ -66,7 +66,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Tendo como base o gráfico acima, observou-se que a extração proposta em \ref{maLinFit} obteve os eres resultados e selecionou-se $W=12$. O parâmetro $K$ foi definido como $K=5$ de forma empírica, de forma a obter uma transição suave entre a regressão linear e a média móvel. Aplicando esse filtro obteve-se o seguinte resultado para a extração da tendência:
+\paragraph{}Tendo como base o gráfico acima, observou-se que a extração proposta em \ref{maLinFit} obteve os melhores resultados (gráfico na parte superior) e selecionou-se $W=12$. O parâmetro $K$ foi definido como $K=5$ de forma empírica, buscando obter uma transição suave entre a regressão linear e a média móvel. Aplicando esse filtro obteve-se o seguinte resultado para a extração da tendência:
 
 \begin{figure}[H]
 	\begin{center}
@@ -83,6 +83,7 @@
 	\end{center}	
 \end{figure}
 
+\paragraph{}No gráfico acima é possível ver que, assim como esperado, a tendência do sinal possui componentes acentuadas na alta frequência. Já no gráfico de distribuição, observa-se que o preço no sinal está concentrado em 2 patamares, sendo eles: 100-200 R\$/MWh e 300-400 R\$/MWh.
 
 \subsection{Sazonalidade}
 \begin{figure}[H]
@@ -100,7 +101,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Nesse caso, observou-se que existe um mínimo local em $T=6$ e um mínimo global em $T=12$. Escolheu se o $T=6$ por ser um múltiplo comum dos dois. Entre as duas análises, a que trouxe os melhores resultados foi a que utilizou somente a média móvel. Finalmente obteve-se como resultado da extração os seguintes gráficos:
+\paragraph{}Nesse caso, observou-se que existe um mínimo local em $T=6$ e um mínimo global em $T=12$. Escolheu se o $T=6$ por ser um múltiplo comum dos dois. Entre as duas análises, a que trouxe os melhores resultados foi a que utilizou somente a média móvel (gráfico abaixo). O resultado mostra que os eventos sazonais que influenciam o preço do PLD são de característica anual majoritariamente. Finalmente obteve-se como resultado da extração os seguintes gráficos:
 
 \begin{figure}[H]
 	\begin{center}
@@ -115,6 +116,8 @@
 		}	
 	\end{center}	
 \end{figure}
+
+\paragraph{}No gráfico acima é possível ver que a distribuição do erro já está centrada perto de um ponto e que este está próximo de zero. No gráfico da FFT, observa-se que diferentemente da FFT vista extração do ciclo senoidal, existe um pico por volta de 0.18 rad/amostra. Isso era é esperado, uma vez que a parte de baixa frequência foi removida na extração anterior. 
 
 \subsection{Ciclos Senoidais e Resíduo}
 \paragraph{}Após o processamento descrito acima, obtém sinal $s_{2t}=cs_t+res_t$, o qual tem a seguinte distribuição e FFT.
@@ -168,14 +171,14 @@
 \end{figure}
 
 \section{Treinamento das redes neurais}
-\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Foram deixados 3 pontos da série temporal para realizar o teste. Para cada fold foram feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. Os 3 últimos foram separados para teste e os outros 25 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds. Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em \ref{treinamento_mlp}. 
+\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Foram deixados 3 pontos da série temporal para realizar o teste. Para cada fold foram feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. Os 3 últimos foram separados para teste e os outros 25 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds. Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em na seção \ref{treinamento_mlp}. 
 
 \paragraph{} O algoritmo de aprendizado utilizado foi o AdaDelta com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.  Foi utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhorasse o erro obtido em 25 épocas, o processamento seria então interrompido.
 
 \paragraph{} Foram realizados treinamento variando o número de neurônios entre 1 e 90, buscando obter o número de neurônios ideal na camada intermediária. A partir disso, gerou-se um gráfico com o RMSE pelo número de neurônios no conjunto de validação e de teste.
 
 \subsection{Treinamento da rede para obter a saída no mês atual}
-\paragraph{}Para o treinamento rede para a saída atual, obteve-se o seguinte gráfico de rmse pelo número de neurônios no conjunto de treinamento:
+\paragraph{}Para o treinamento rede para a saída atual, obteve-se o seguinte gráfico de RMSE pelo número de neurônios no conjunto de treinamento:
 \begin{figure}[H]
 	\begin{center}
 		{

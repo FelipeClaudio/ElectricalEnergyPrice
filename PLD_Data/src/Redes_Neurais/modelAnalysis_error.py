@@ -190,7 +190,7 @@ plt.plot(y_original.index, reco_error, 'g', label='sinal com resíduo previsto e
 plt.plot(y_original.index, y_original, 'b', label='original')
 #plt.plot(y_original.index, y_deterministico, 'y', label='sinal sem resíduo')
 y_std = np.std(y_original.price - reco_error.value)
-plt.errorbar(y_original.index, reco_error.value, yerr=y_std, fmt='g', ecolor='black')
+plt.errorbar(y_original.index, reco_error.value, yerr=y_std, fmt='g', ecolor='black', label='desvio padrão')
 plt.legend()
 plt.xlabel('Amostra')
 plt.ylabel('Valor PLD')

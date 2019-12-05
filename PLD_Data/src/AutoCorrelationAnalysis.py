@@ -59,7 +59,7 @@ SAVE_FIG = True
 SAVE_INPUT = True
 #Settings
 ax = autocorrelation_plot(mPLDSE)
-ax.legend(['99% confiança', '95% confiança'])
+ax.legend(['99% confiança', '95% confiança'], fontsize='large')
 ax.set_title('Autocorrelação do PLD')
 ax.set_ylabel('Autocorrelação')
 ax.set_xlabel('Atrasos temporais')

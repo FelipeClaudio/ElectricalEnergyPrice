@@ -54,7 +54,7 @@ mPLDSE.index.inferred_freq
 BEST_WINDOW_SIZE_MA = 12
 T_SEASONAL = 6
 plt.close('all')
-SAVE_FIG = False
+SAVE_FIG = True
 
 MIN_WINDOW_SIZE = 3
 bestWString =  ' W=' + str(BEST_WINDOW_SIZE_MA)
@@ -124,11 +124,11 @@ ax1 = plt.subplot(1, 2, 1)
 util.PlotDistribution(mPLDSE.price, xTitle=textVec["pld_price"][language], yTitle=textVec["n_occur"][language],\
                       plotTitle=textVec["pld_dist"][language],\
                       filepath=PLOT_DIR+'distributionPLD' + suffix + '.jpg',\
-                      ax=ax1, SAVE_FIGURE = False)
+                      ax=ax1, SAVE_FIGURE = SAVE_FIG)
 ax2= plt.subplot(1, 2, 2)
 util.FFT(mPLDSE.price, xlabel=textVec["norm_freq"][language], ylabel='Magnitude', \
          title=textVec["fft_orig"][language], figureName=PLOT_DIR+'fftPLD'+suffix+'.jpg', \
-         ax=ax2, showPlot=True, SAVE_FIGURE=False)
+         ax=ax2, showPlot=True, SAVE_FIGURE=SAVE_FIG)
 fig.suptitle(textVec["original_fft_dist"][language])
 
 if SAVE_FIG:
@@ -143,7 +143,7 @@ pldTrend = tr.GetMovingAverage(mPLDSE.price, BEST_WINDOW_SIZE_MA, transitionType
 util.PlotDistribution(pldTrend, xTitle=textVec["pld_price"][language], yTitle=textVec["n_occur"][language],\
                       plotTitle=textVec["trend_ext"][language] + bestWString,\
                       filepath=PLOT_DIR+'distributionTrend'+ suffix +'.jpg',\
-                      ax=ax1, SAVE_FIGURE = False)
+                      ax=ax1, SAVE_FIGURE = SAVE_FIG)
 
 ax2= plt.subplot(1, 2, 2)
 util.FFT(pldTrend, xlabel=textVec["norm_freq"][language], ylabel='Magnitude', \
@@ -172,14 +172,14 @@ bestWLinFit, minMSELinFit, mseLinFit = tr.GetTrendAnalysisByMovingAverageLinFit(
                                          MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
                                          transitionType='smooth',\
                                          filepath=PLOT_DIR+'mseTrendLinFitAnalysis'+ suffix +'.jpg',\
-                                         ax=ax1, SAVE_FIGURE=False)
+                                         ax=ax1, SAVE_FIGURE=SAVE_FIG)
 
 ax2 = plt.subplot(2, 1, 2)
 bestWMA,  minMSEMA, mseMA = tr.GetTrendAnalysisByMovingAverageOnly(mPLDSE.price, \
                                          title=textVec["trend_mse_ma"][language],\
                                          MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
                                          filepath=PLOT_DIR+'mseTrendMAOnlyAnalysis'+ suffix +'.jpg',\
-                                         ax=ax2, SAVE_FIGURE=False)
+                                         ax=ax2, SAVE_FIGURE=SAVE_FIG)
 plt.subplots_adjust(hspace=0.3)
 
 if SAVE_FIG:
@@ -193,14 +193,14 @@ bestTLinFit,  minTLinFit, mseTLinFit = tr.GetSeasonAnalysisByMovingAverageLinFit
                                          title=textVec["seasonal_mse_linfit"][language],\
                                          MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
                                          filepath=PLOT_DIR+'mseSeasonalLinFitAnalysis.jpg',\
-                                         ax=ax1, SAVE_FIGURE = False)
+                                         ax=ax1, SAVE_FIGURE = SAVE_FIG)
 
 ax2 = plt.subplot(2, 1, 2)
 bestTMA,  minTMa, mseTMA = tr.GetSeasonAnalysisByMovingAverageOnly(tsaSeasonal.price, \
                                          title=textVec["seasonal_mse_ma"][language],\
                                          MIN_WINDOW_SIZE = MIN_WINDOW_SIZE, \
                                          filepath=PLOT_DIR+'mseSeasonalMAOnlyAnalysis.jpg',\
-                                         ax=ax2, SAVE_FIGURE = False)
+                                         ax=ax2, SAVE_FIGURE = SAVE_FIG)
 
 plt.subplots_adjust(hspace=0.3)
 if SAVE_FIG:
@@ -215,12 +215,12 @@ pldResidue = mPLDSE.price - pldTrend - pldSeasonal
 util.PlotDistribution(pldSeasonal, xTitle=textVec["pld_price"][language], yTitle=textVec["n_occur"][language],\
                       plotTitle=textVec["seasonal_dist"][language] + bestParamString,\
                       filepath=PLOT_DIR+'distributionSeasonal'+ suffix +'.jpg',\
-                      ax=ax1, SAVE_FIGURE=False)
+                      ax=ax1, SAVE_FIGURE=SAVE_FIG)
 
 ax2= plt.subplot(1, 2, 2)
 util.FFT(pldSeasonal, xlabel=textVec["norm_freq"][language], ylabel=textVec["norm_mag"][language], \
          title=textVec["seasonal_fft"][language] + bestParamString, figureName=PLOT_DIR+'fftSeasonal.jpg', \
-         ax=ax2, showPlot=True, SAVE_FIGURE=False)
+         ax=ax2, showPlot=True, SAVE_FIGURE=SAVE_FIG)
 
 fig.suptitle(textVec["seasonal_fft_dist"][language] + bestParamString)
 
@@ -234,12 +234,12 @@ ax1 = plt.subplot(1, 2, 1)
 util.PlotDistribution(pldResidue, xTitle=textVec["pld_price"][language], yTitle=textVec["n_occur"][language],\
                       plotTitle=textVec["filt_res_dist"][language] + bestParamString,\
                       filepath=PLOT_DIR+'distributionResidual'+ suffix +'.jpg',\
-                      ax=ax1, SAVE_FIGURE=False)
+                      ax=ax1, SAVE_FIGURE=SAVE_FIG)
 
 ax2= plt.subplot(1, 2, 2)
 util.FFT(pldResidue, xlabel=textVec["norm_freq"][language], ylabel=textVec["norm_mag"][language], \
          title='FFT of residual extraction' + bestParamString, figureName=PLOT_DIR+'fftResidual'+ suffix +'.jpg', \
-         ax= ax2, showPlot=True, SAVE_FIGURE=False)
+         ax= ax2, showPlot=True, SAVE_FIGURE=SAVE_FIG)
 
 fig.suptitle(textVec["res_fft_dist"][language] )
 
@@ -256,7 +256,7 @@ fig = plt.figure()
 ax1 = plt.subplot(1, 2, 1)
 util.PlotDistribution(filteredResidual, xTitle=textVec["norm_price"][language], yTitle=textVec["n_occur"][language], \
                       plotTitle=textVec["filt_res_dist"][language] + bestParamString + filterParams , \
-                      filepath=PLOT_DIR+'filteredResidualDistribution.'+ suffix +'jpg', \
+                      filepath=PLOT_DIR+'filteredResidualDistribution.'+ suffix +'.jpg', \
                       ax=ax1, SAVE_FIGURE=SAVE_FIG)
 
 ax2= plt.subplot(1, 2, 2)

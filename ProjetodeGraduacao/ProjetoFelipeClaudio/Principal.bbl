@@ -1,6 +1,10 @@
 \begin{thebibliography}{10}
 \newcommand{\enquote}[1]{``#1''}
 
+\bibitem{CCEE}
+CCEE, \enquote{Câmara de Comercialização de Energia Elétrica},
+  https://www.ccee.org.br/, 2019, (Acesso em 31 Janeiro 2019).
+
 \bibitem{birthNY}
 (1988), N., \enquote{Monthly New York City births: unknown scale. Jan 1946 ?
   Dec 1959},
@@ -12,18 +16,14 @@ EPE, \enquote{Empresa de Pesquisa Energética},
   http://www.epe.gov.br/pt/abcdenergia/matriz-energetica-e-eletrica, 2018,
   (Acesso em 26 Janeiro 2019).
 
-\bibitem{ONS}
-ONS, \enquote{Operador Nacional do Sistema Elétrico}, http://ons.org.br/, 2019,
-  (Acesso em 27 Janeiro 2019).
-
-\bibitem{CCEE}
-CCEE, \enquote{Câmara de Comercialização de Energia Elétrica},
-  https://www.ccee.org.br/, 2019, (Acesso em 31 Janeiro 2019).
-
 \bibitem{AlteracaoModeloComercializacao}
 SILVA, E. F.~D., \emph{Principais Condicionantes das alterações no modelo de
   comercialização}. M.Sc. dissertation, Escola Politécnica da Universidade de
   São Paulo, 2008.
+
+\bibitem{ONS}
+ONS, \enquote{Operador Nacional do Sistema Elétrico}, http://ons.org.br/, 2019,
+  (Acesso em 27 Janeiro 2019).
 
 \bibitem{EvolucaoSetorEletrico}
 SILVA, B. G.~D., \emph{Evolução do setor elétrico brasileiro no contexto

@@ -33,7 +33,7 @@
 \paragraph{}Onde $tend_t$ é a tendência, $sz_t$ é a sazonalidade, $cs_t$ é o ciclo senoidal e $res_t$ é o resíduo. Tanto a tendência, quanto a sazonalidade e os ciclos senoidais são determinísticos. Conforme \cite{tccDanilo}, boa parte das séries temporais são não estacionárias, sendo que as componentes de tendência e sazonalidade são as maiores responsáveis por esse efeito. Para que o modelo com redes neurais faça boas previsões, que é o que se busca nesse trabalho, é necessário utilizar séries estacionárias, portanto somente a parte residual será usada na entrada das redes neurais.
 
 \subsection{Tendência}
-\paragraph{}Segundo \cite{sTemp}, a tendência pode ser vista como "uma mudança de longo prazo no nível médio da série" e a forma mais simples de modelar pode ser vista pela equação a seguir. 
+\paragraph{}Segundo \cite{sTemp}, a tendência pode ser vista como ``uma mudança de longo prazo no nível médio da série" e a forma mais simples de modelar pode ser vista pela equação a seguir. 
 
 \begin{equation}
 tend_t = \alpha + \beta t + \epsilon_t
@@ -107,7 +107,7 @@ y_t = x_t - x_{t-1} = \nabla x_t
 sz_t = \dfrac{1}{Int(N/P)} \sum_{k = 0}^{Int(N/P)} s_i (i + kP) \quad \quad i=1,...,P
 \end{equation}
 
-\paragraph{} Onde $N$ é o número de amostras, $P$ é o período sazonal, $Int(N/P)$ é o resultado inteiro da divisão de $N/P$ e $s_i$ é o sinal com a tendência previamente removida. Sendo assim, é feito uma média dos pontos da série temporal espaçados pelo período $P$. A sazonalidade se repete durante a série temporal, então, caso seja desejado obter a sazonalidade em um tempo $0 < t < N$ utiliza-se a seguinte fórmula:
+\paragraph{} Onde $N$ é o número de amostras, $P$ é o período sazonal, $Int(N/P)$ é o resultado inteiro da divisão de $N/P$ e $s_i$ é o sinal com a tendência previamente removida. Sendo assim, é feito uma média dos pontos da série temporal espaçados pelo período $P$. A sazonalidade se repete durante a série temporal, então, caso seja desejado obter a sazonalidade em um tempo $0 < t < N$, utiliza-se a seguinte fórmula:
 
 \begin{equation}
 sz_t = sz[Resto(t/P)]
@@ -254,7 +254,7 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 \end{figure}
 
 \section{Redes Neurais Artificiais}
-\paragraph{}Redes Neurais artificiais são modelos computacionais que tentam reproduzir o comportamento observado na estrutura cerebral dos seres vivos. O neurônio pode ser considerado a célula básica de processamento do cérebro humano. Sua estrutura é divida em três partes principais \cite{apostilaCaloba}  \cite{ivan_nunes} \cite{Gurney}:
+\paragraph{}Redes Neurais artificiais são modelos computacionais que tentam reproduzir o comportamento observado na estrutura cerebral dos seres vivos. O neurônio pode ser considerado a célula básica de processamento do cérebro humano. Sua estrutura é divida em três partes principais \cite{apostilaCaloba}\cite{ivan_nunes}\cite{Gurney}:
 
 \begin{figure}[H]
 	\begin{center}
@@ -430,7 +430,7 @@ Y_{j}^{(1)} = g(\sum_{i = 0}^{N} W_{ji}^{(1)} \cdot X_i)
 Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 \end{equation}
 
-\paragraph{}As redes MLP tem sido utilizadas em diferentes classes de problemas como classificação de elementos e previsão de séries temporais \cite{apostilaCaloba} \cite{ivan_nunes}  \cite{mlp_atmosfera}. Com o grande crescimento do número de dados disponível para utilização e o desenvolvimento das tecnologias computacionais, têm-se atualmente redes com muitas camadas e neurônios. Essas redes tem como objetivo aumentar a capacidade de separação, previsão, além de poder obter informações relevantes sobre neurônios intermediários da rede \cite{deep_learning1} \cite{deep_learning_book} \cite{microsoft_dl}.
+\paragraph{}As redes MLP tem sido utilizadas em diferentes classes de problemas como classificação de elementos e previsão de séries temporais \cite{apostilaCaloba}\cite{ivan_nunes}\cite{mlp_atmosfera}. Com o grande crescimento do número de dados disponível para utilização e o desenvolvimento das tecnologias computacionais, têm-se atualmente redes com muitas camadas e neurônios. Essas redes tem como objetivo aumentar a capacidade de separação, previsão, além de poder obter informações relevantes sobre neurônios intermediários da rede \cite{deep_learning1}\cite{deep_learning_book}\cite{microsoft_dl}.
 
 \begin{figure}[H]
 	\begin{center}
@@ -449,9 +449,9 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 \end{figure}
 
 \subsection{Treinamento} \label{treinamento_mlp}
-\paragraph{}Para que a rede consiga de fato "aprender" com os dados é necessário realizar o treinamento. Para que o mesmo seja bem sucedido deve-se atentar para alguns fatores como: 
+\paragraph{}Para que a rede consiga de fato ``aprender" com os dados é necessário realizar o treinamento. Para que o mesmo seja bem sucedido deve-se atentar para alguns fatores como: 
 \begin{itemize}
-	\item {\textbf{Inicialização dos pesos: }Os pesos não devem ser iniciados com o mesmo valor, pois isto faria com que cada neurônio interprete a entrada da mesma forma, gerando então uma estrutura simétrica \cite{relu} \cite{yam} \cite{ryanhsiao}}.
+	\item {\textbf{Inicialização dos pesos: }Os pesos não devem ser iniciados com o mesmo valor, pois isto faria com que cada neurônio interprete a entrada da mesma forma, gerando então uma estrutura simétrica \cite{relu}\cite{yam}\cite{ryanhsiao}}.
 	
 	\item {\textbf{Função custo: } Há necessidade de definir qual função de custo será utilizada na avaliação dos resultados da rede. A função mais comum é o erro médio quadrático - \textit{MSE}, porém dependendo da análise que se deseja fazer e do problema a ser resolvido, outras funções podem ser utilizadas como a o erro médio quadrático - \textit{RMSE}, erro absoluto -\textit{MAE} e acurácia - \textit{ACC} \cite{tccDanilo}}.
 		

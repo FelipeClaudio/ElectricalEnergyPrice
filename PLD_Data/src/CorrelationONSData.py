@@ -67,7 +67,7 @@ language = util.language.PT.value
 suffix = "_pt"
 textVec = {
             "correlation_matrix": ["Correlation between ONS DATA and PLD between in traning set",\
-                                   "Correalção entre os dados fornecidos pela ONS e o PLD"],
+                                   "Correlação entre os dados fornecidos pela ONS e o PLD"],
             "TotalEnergy": ["Total Stored Energy","Energia Total Armazenda"],
             "UHEEnergy": ["UHE Generated Energy", "Energia Gerada por UHEs"],
             "UNEnergy": ["UN Generated Energy", "Energia gerada por UNs"],

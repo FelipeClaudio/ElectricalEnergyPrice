@@ -2,10 +2,10 @@
 
 \section{Tema}
 \paragraph{}O sistema elétrico brasileiro é funciona de maneira bem diferente dos demais sistemas elétricos pelo mundo, pois há grande abundância de energia barata gerada a partir de fontes hídricas. Essas fontes são responsáveis por aproximadamente 65,2\% da energia consumida no país \cite{EPE}. 
-\paragraph{}A volatilidade desses recursos torna bastante complexa a atividade de prever e planejar a utilização de forma a diminuir o custo da energia elétrica. A diferença entre a quantidade de energia negociada e efetivamente gerada é liquidada utilizando como base o PLD - Preço da Liquidação das Diferenças, o qual deseja-se determinar através de modelos matemáticos.
+\paragraph{}A volatilidade desses recursos torna bastante complexa a atividade de prever e planejar a utilização de forma a diminuir o custo da energia elétrica \cite{EPE} \cite{AlteracaoModeloComercializacao}. A diferença entre a quantidade de energia negociada e efetivamente gerada é liquidada utilizando como base o PLD - Preço da Liquidação das Diferenças, o qual deseja-se determinar através de modelos matemáticos.
 
 \section{Delimitação}
-\paragraph{}O trabalho tem como foco a previsão do PLD mensal e tem aplicação para os seguintes setores: elétrico, bancário, planejamento e pequisa. Para isso serão utilizados dados públicos presentes em \cite{ONS} e \cite{CCEE} para treinar redes multicamadas Perceptron - \textit{MLP} para prever a parte residual do PLD médio mensal.
+\paragraph{}O trabalho tem como foco a previsão do PLD mensal e tem aplicação para os seguintes setores: elétrico, bancário, planejamento e pequisa. Para isso serão utilizados dados públicos presentes em \cite{CCEE} e \cite{ONS} para treinar redes neurais artificiais multicamadas - \textit{MLP}; Os dados serão tratados como séries temporais, sendo decompostos nas seguintes componentes aditivas: tendência, sazonalidade, ciclos senoidais e resíduo. Esse último elemento será o sinal restante após remover as outras componentes. O mesmo será utilizado como entrada para rede neural. Ao final do processo, será possível estimar a parte residual do PLD médio mensal.
 
 \section{Justificativa}
 \paragraph{}Os resultados da pesquisa são de interesse do setor elétrico, pois permitem, por exemplo, que comercializadoras de energia elétrica consigam obter lucro com a compra e venda de energia.
@@ -25,4 +25,4 @@
 
 
 \section{Descrição}
-\paragraph{}O capítulo 2 traz um resumo sobre as características e o funcionamento do setor elétrico brasileiro, além de fazer uma breve revisão bibliográfica. O capítulo 3 apresenta as técnicas que serão utilizadas no trabalho e descreve matematicamente o funcionamento das mesmas. No capítulo 4 são descritos os métodos utilizados no trabalho, conectando os conhecimentos mostrados nos capítulos 2 e 3. No capítulo 5 são exibidos os resultados para cada um dos passos descritos no capítulo anterior. O capítulo 6 traz a conclusão e trabalhos futuros que podem ser realizados.
+\paragraph{}O Capítulo 2 traz um resumo sobre as características e o funcionamento do setor elétrico brasileiro, além de fazer uma breve revisão bibliográfica. O Capítulo 3 apresenta as técnicas que serão utilizadas no trabalho e descreve matematicamente o funcionamento das mesmas. No Capítulo 4 são descritos os métodos utilizados no trabalho, conectando os conhecimentos mostrados nos capítulos 2 e 3. No Capítulo 5 são exibidos os resultados para cada um dos passos descritos no Capítulo anterior. O Capítulo 6 traz a conclusão e trabalhos futuros que podem ser realizados.

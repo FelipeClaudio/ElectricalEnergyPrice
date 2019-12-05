@@ -64,7 +64,7 @@ MA(W), & \mbox{se } i \geq W + K
 
 \paragraph{}Para um filtro de média de comprimento $W$ com $K$ passos de transição e com $0 \leq \alpha \leq 1 $ proporcional ao número de passos de transição, define-se o filtro acima para resolver o problema da falta de pontos para realizar a média móvel. LR se refere à regressão linear e MA refere-se à média móvel e a qual é definida pela seguinte equação:
 \begin{equation}
-MA(M) = \dfrac{1}{W + 1} \sum_{j = -W}^{0} x_{t+j}  
+MA(W) = \dfrac{1}{W + 1} \sum_{j = -W}^{0} x_{t+j}  
 \end{equation}
 
 \paragraph{}A outra proposta de extração de tendência utilizada foi a seguinte:
@@ -124,7 +124,7 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 
 \paragraph{}O modelo será treinado utilizando validação cruzada. Em cada fold foram feitas algumas inicializações aleatórias utilizando o algoritmo visto em \cite{K_He}, de forma a reduzir o impacto de uma inicialização ruim do modelo. 
 
-\paragraph{}Para facilitar a seleção dos modelos, será feita uma tabela contendo informações sobre o erro médio, desvio padrão, coeficiente angular e offset médios para o dataset de validação. Sendo assim, será utilizada a métrica para medir o desvio do coeficiente angular ($a$) e do offset($b$) de cada modelo, fazendo com que um primeiro erro seja obtido através da fórmula $\epsilon_1 = ABS(1-a)$ e um segundo seja obtido por $\epsilon_2 = ABS(b)$, onde $ABS$ é o valor absoluto do número. Além disso, para fins de ranqueamento, definiu-se uma terceira métrica descrita como $\epsilon_3 = NORM(\epsilon_1) + NORM(\epsilon_2)$, onde $NORM$ é a normalização feita dividindo todos os valores pela norma infinita do vetor. O modelo a ser utilizado é então o que tiver o menor erro $\epsilon_3$.
+\paragraph{}Para facilitar a seleção dos modelos, será feita uma tabela contendo informações sobre o erro médio, desvio padrão, coeficiente angular e offset médios para o dataset de validação. Sendo assim, será utilizada a métrica para medir o desvio do coeficiente angular ($a$) e do offset($b$) de cada modelo, fazendo com que um primeiro erro seja obtido através da fórmula $\epsilon_1 = NORM(ABS(1-a))$ e um segundo seja obtido por $\epsilon_2 = NORM(ABS(b))$, onde $ABS$ é o valor absoluto do número. Além disso, para fins de ranqueamento, definiu-se uma terceira métrica descrita como $\epsilon_3 = \epsilon_1 + \epsilon_2$, onde $NORM$ é a normalização feita dividindo todos os valores pela norma infinita do vetor. O modelo a ser utilizado é então o que tiver o menor erro $\epsilon_3$.
 
 \paragraph{}Na primeira fase do treinamento, será treinada uma rede, onde a entrada no mês atual, $x(t)$, será utilizada para estimar a saída para o mês atual, $y(t)$. Com isso será possível verificar se o processo utilizado no treinamento e seleção da rede está adequado ao problema e realizar os ajustes necessários. Além disso, essa rede servirá como caso base para os modelos de previsão. Dado que as previsões são somente variações desse modelo básico, torna-se de extrema importância a boa adesão do modelo ao problema. 
 
