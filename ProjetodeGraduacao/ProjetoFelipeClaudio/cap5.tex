@@ -138,7 +138,7 @@
 \end{figure}
 
 
-\paragraph{}Para a extração do resíduo de fato utilizou-se um filtro notch com frequência $w=0.10869$ rad/amostra e $Q=0.01$ removendo então a frequência com maior energia na transformada de Fourier. Obtendo a seguinte distribuição e FFT:
+\paragraph{}A distribuição observada está centrada em $0$ R\$/MWh e, dentre os picos observados na FFT, o com maior módulo é o que está presente na frequência $w=0.10869$ rad/amostra. Sendo assim, a extração do resíduo de foi feita com um filtro Notch na maior frequência observada e $Q=0.01$ removendo então a frequência com maior energia na transformada de Fourier. Após este processamento, obteve-se os seguintes resultados:
 
 \begin{figure}[H]
 	\begin{center}
@@ -154,6 +154,8 @@
 		}	
 	\end{center}	
 \end{figure}
+
+\paragraph{}É possível observar que a distribuição continuou centrada em torno de $0$ R\$/MWh, porém com um formato diferente. Além disso, a FFT mostra que as magnitudes estão espalhadas por todo o espectro ao invés de concentradas em poucas frequências. Isso atende à expectativa de que o ruído obtido ao final do processamento deveria estar distribuído ter componentes de frequência com intensidades similares por todo espectro.
 
 \paragraph{}Ao final do processo, os seguintes resultados foram obtidos:
 \begin{figure}[H]

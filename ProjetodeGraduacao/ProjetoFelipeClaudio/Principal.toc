@@ -224,35 +224,36 @@
 \contentsline {subsection}{\numberline {5.2.5}Ciclos Senoidais e Res\IeC {\'\i }duo}{49}
 \contentsline {paragraph}{}{49}
 \contentsline {paragraph}{}{50}
-\contentsline {paragraph}{}{50}
+\contentsline {paragraph}{}{51}
+\contentsline {paragraph}{}{51}
 \contentsline {section}{\numberline {5.3}Treinamento das redes neurais}{51}
 \contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
-\contentsline {paragraph}{}{51}
+\contentsline {paragraph}{}{52}
+\contentsline {paragraph}{}{52}
 \contentsline {subsection}{\numberline {5.3.1}Treinamento da rede para obter a sa\IeC {\'\i }da no m\^es atual}{52}
 \contentsline {paragraph}{}{52}
 \contentsline {paragraph}{}{52}
-\contentsline {paragraph}{}{52}
 \contentsline {paragraph}{}{53}
 \contentsline {paragraph}{}{53}
 \contentsline {paragraph}{}{54}
 \contentsline {paragraph}{}{54}
-\contentsline {subsection}{\numberline {5.3.2}Treinamento da rede para obter a sa\IeC {\'\i }da um m\^es a frente}{54}
 \contentsline {paragraph}{}{54}
+\contentsline {subsection}{\numberline {5.3.2}Treinamento da rede para obter a sa\IeC {\'\i }da um m\^es a frente}{55}
 \contentsline {paragraph}{}{55}
-\contentsline {paragraph}{}{56}
+\contentsline {paragraph}{}{55}
 \contentsline {paragraph}{}{56}
 \contentsline {paragraph}{}{57}
 \contentsline {paragraph}{}{57}
 \contentsline {paragraph}{}{58}
 \contentsline {paragraph}{}{59}
+\contentsline {paragraph}{}{59}
 \contentsline {paragraph}{}{60}
 \contentsline {paragraph}{}{60}
-\contentsline {subsection}{\numberline {5.3.3}Treinamento da rede para obter a sa\IeC {\'\i }da para v\'arios meses a frente}{60}
-\contentsline {paragraph}{}{60}
-\contentsline {paragraph}{}{60}
+\contentsline {subsection}{\numberline {5.3.3}Treinamento da rede para obter a sa\IeC {\'\i }da para v\'arios meses a frente}{61}
 \contentsline {paragraph}{}{61}
 \contentsline {paragraph}{}{61}
+\contentsline {paragraph}{}{62}
+\contentsline {paragraph}{}{62}
 \contentsline {paragraph}{}{62}
 \contentsline {chapter}{\numberline {6}Conclus\~oes}{63}
 \contentsline {paragraph}{}{63}
