@@ -220,6 +220,8 @@ plt.title('Histograma do erro entre o sinal reconstruido e previsão')
 plt.hist( (y_original.price - reco.value), color='red', alpha=0.5, label='erro entre o sinal original e sinal previsto reconstruído' )
 plt.hist( (y_original.price \
                          - reco_error.value), color='green', alpha=0.5, label='erro entre o sinal original e sinal previsto reconstruído com rede para diminuir erro')
+plt.xlabel('Erro')
+plt.ylabel('Número de ocorrências')
 plt.legend()
 plt.savefig('original_pred_rede_erro_hist.jpg')
 

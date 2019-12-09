@@ -173,7 +173,7 @@
 \end{figure}
 
 \section{Treinamento das redes neurais}
-\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Foram deixados 3 pontos da série temporal para realizar o teste. Para cada fold foram feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. Os 3 últimos foram separados para teste e os outros 25 foram utilizados na validação cruzada. Essa será feita com valores entre 3 e 8 folds. Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em na seção \ref{treinamento_mlp}. 
+\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Foram deixados 3 pontos da série temporal para realizar o teste. Para cada fold foram feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. Os 3 últimos foram separados para teste e os outros 25 foram utilizados na validação cruzada. Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em na seção \ref{treinamento_mlp}. 
 
 \paragraph{} O algoritmo de aprendizado utilizado foi o AdaDelta com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.  Foi utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhorasse o erro obtido em 25 épocas, o processamento seria então interrompido.
 
@@ -211,7 +211,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}As 5 melhores estruturas de redes ranqueadas pelo critério $\epsilon_3$ definido anteriormente são as seguintes:
+\paragraph{}Esperava-se que o gráfico do RMSE pelo número de neurônios na camada intermediária fosse decrescente, mas o resultado obtido oscilou em torno de um valor de RMSE. Isso pode ser uma das consequências da pouca quantidade de dados tanto para teste quanto para a validação. Redes neurais geralmente necessitam de grande conjuntos de dados para que se possa definir os pesos das conexões sinápticas de forma correta. Sendo assim, esse gráfico não foi suficiente para determinar qual estrutura seria utilizada para realizar as previsões. Para poder ranquear as estruturas e, então, escolher a utilizada nas previsões, fez a seguinte tabela. Os dados mostrado a seguir contém as 5 melhores estruturas de redes ranqueadas pelo critério $\epsilon_3$ definido anteriormente:
 \begin{table}[H]
 	
 	\begin{center}	

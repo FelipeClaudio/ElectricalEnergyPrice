@@ -53,6 +53,7 @@ matplotlib.rcParams['text.color'] = 'k'
 ROOT_FOLDER  = '/home/felipe/Materias/TCC/PLD_Data/src/Redes_Neurais'
 INPUT_FOLDER = ROOT_FOLDER + '/InputNN'
 MODELS_FOLDER = ROOT_FOLDER + '/modelos_pld/t_'
+#MODELS_FOLDER = ROOT_FOLDER + '/modelos_pld/t_1/ModelosErro_'
 #MODELS_FOLDER = ROOT_FOLDER + '/Modelos_adadelta_100epocas/'
 #CLEAR_SESSION = False
 
@@ -104,8 +105,8 @@ n_steps = 6
 # train a simple classifier
 n_folds = 8
 n_inits = 3
-MIN_NEURONS = 57
-MAX_NEURONS = 57
+MIN_NEURONS = 1
+MAX_NEURONS = 90
 
 STEPS_FORECAST = n_steps
 X_train = X_norm.iloc[:-(N_TEST_ROWS + STEPS_FORECAST),:]
@@ -141,9 +142,13 @@ READ_BEST_MODEL = True
 results = pd.DataFrame(columns=['rmse', 'std', 'a', 'b'], index=np.arange(MAX_NEURONS) + 1)
 resultsFolds = pd.DataFrame(columns=['rmse', 'std', 'a(mean)', 'b(mean)'], index=np.arange(MAX_NEURONS) + 1)
 resultsFoldsTest = pd.DataFrame(columns=['rmse', 'std', 'a(mean)', 'b(mean)'], index=np.arange(MAX_NEURONS) + 1)
+fig, ax1 = plt.subplots(4, 2)
+plt.subplots_adjust(hspace=0.5)
+fig.text(0.5, 0.04, 'RMSE', va='center', ha='center', fontsize=rcParams['axes.labelsize'])
+fig.text(0.04, 0.5, 'Número de épocas', va='center', ha='center', rotation='vertical', fontsize=rcParams['axes.labelsize'])
 
 for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
-    subplotidx = 1
+    subplotidx = 0
     if PLOT:
         plt.figure()
         
@@ -152,6 +157,7 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
         train_id, validation_id = CVO[ifold]
         best_mse = 9999999
         current_models_folder = MODELS_FOLDER +  str(n_steps) + '/Modelos_' + str(n_folds) + '/'
+        #current_models_folder = MODELS_FOLDER +  str(n_folds) + '/'
         print(str(n_neurons) + ' neurons')
         if (n_steps > 1):
             modelPath = current_models_folder + str(n_neurons) + ACTIVATION_HIDDEN_LAYER + 'hiddenlayer_' + str(ifold) \
@@ -204,18 +210,21 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
         del model 
         
            
-        if SHOW_HISTORY:
-            ax1 = plt.subplot(np.ceil(n_folds/2), 2, subplotidx)
-            plt.plot(np.sqrt(hist['mean_squared_error']), label='erro no treinamento')
-            plt.plot(np.sqrt(hist['val_mean_squared_error']), label='erro na validação')
-            plt.legend()
-            ax1.set_title('Fold ' + str(subplotidx))
-            plt.suptitle('RMSE na validação cruzada para  ' + str(n_neurons) + ' neurônios na camada intermediária')
+        if SHOW_HISTORY:     
+            ax1[subplotidx//2][subplotidx % 2].plot(np.sqrt(hist['mean_squared_error']), label='erro no treinamento')
+            ax1[subplotidx//2][subplotidx % 2].plot(np.sqrt(hist['val_mean_squared_error']), label='erro na validação')
+            ax1[subplotidx//2][subplotidx % 2].set_title('Fold ' + str(subplotidx + 1))
+            fig.suptitle('RMSE na validação cruzada para  ' + str(n_neurons) + ' neurônios na camada intermediária')         
+            if subplotidx == (n_folds - 1):
+                ax1[0][0].legend(bbox_to_anchor=(1.3, 1.55), loc='upper right')
+                
             subplotidx += 1
+
+
 
     #plot mse for validation set in folder
     plt.savefig(str(n_neurons) + '_convergence.jpg')
-    plt.close('all')
+    #plt.close('all')
       
     '''
     #plot mean mse by neurons number
@@ -270,7 +279,7 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
     plt.savefig(str(n_neurons) + '_test_hist_norm.jpg')
     plt.close('all')
     '''
-    
+
     #scatter plot
     #plt.figure()
 
@@ -290,6 +299,7 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
                                     
     plt.title('Scatter Série prevista X residual para o conjunto completo')
     y_comp = model.predict(X_norm)
+
     '''
     plt.scatter(y_comp, y_norm)
     plt.xlabel('Série prevista')
@@ -301,6 +311,7 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
     plt.savefig(str(n_neurons) + '_residual_scatter.jpg')
     plt.close('all')
     '''
+
     results.loc[n_neurons] = [
             np.sqrt(mean_squared_error(y_original.iloc[-N_TEST_ROWS:,:], y_comp[-N_TEST_ROWS:])), \
            np.std(y_original.iloc[-N_TEST_ROWS:,:] - y_comp[-N_TEST_ROWS:]), params[0], params[1]]
@@ -313,13 +324,16 @@ for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
             np.std(y_pred_test - y_test), params_test[0], params_test[1]]
     del model
     print(str(n_neurons) + " neurons")
-    
+
+
 #results.plot(title="RMSE absoluto no conjunto de validação por número de neurônios na camada intermediária")
 x_val = np.arange(results.iloc[:,0].size)
 plt.plot(x_val, results['rmse'], label='rmse')
 plt.title('RMSE absoluto no conjunto de validação por número de neurônios na camada intermediária')
 plt.legend()
-plt.savefig('rmse_val_set.jpg')
+plt.xlabel('Número de neurônios')
+plt.ylabel('RMSE')
+plt.savefig('rmse_val_set_t'+str(n_steps)+'.jpg')
 ax = plt.gca()
 ax.ticklabel_format(useOffset=False)
 plt.close('all')
@@ -331,8 +345,10 @@ plt.close('all')
 x_test = np.arange(resultsFoldsTest.iloc[:,0].size)
 plt.plot(x_test, resultsFoldsTest['rmse'], label='rmse')
 plt.title('RMSE absoluto no conjunto de teste por número de neurônios na camada intermediária')
+plt.xlabel('Número de neurônios')
+plt.ylabel('RMSE')
 plt.legend()
-plt.savefig('rmse_test_set.jpg')
+plt.savefig('rmse_test_set_t'+str(n_steps)+'.jpg')
 ax = plt.gca()
 ax.ticklabel_format(useOffset=False)
 plt.close('all')
