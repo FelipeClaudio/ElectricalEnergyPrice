@@ -194,7 +194,7 @@ plt.errorbar(y_original.index, reco_error.value, yerr=y_std, fmt='g', ecolor='bl
 plt.legend()
 plt.xlabel('Amostra')
 plt.ylabel('Valor PLD')
-plt.title('PLD médio mensal previsto X real para o mês atual '+ str(MAX_NEURONS) + ' neurônios')
+plt.title('PLD médio mensal previsto X real para 1 mês à frente com '+ str(MAX_NEURONS) + ' neurônios')
 plt.show()
 plt.savefig('sinal_completo_t' + str(n_steps) + '.jpg')
 

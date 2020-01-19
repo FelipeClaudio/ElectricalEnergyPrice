@@ -117,7 +117,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}No gráfico acima é possível ver que a distribuição do erro já está centrada perto de um ponto e que este está próximo de zero. No gráfico da FFT, observa-se que diferentemente da FFT vista extração do ciclo senoidal, existe um pico por volta de 0.18 rad/amostra. Isso era é esperado, uma vez que a parte de baixa frequência foi removida na extração anterior. 
+\paragraph{}No gráfico acima é possível ver que a distribuição do erro está centrada próxima de $0$ R\$/MWh. No gráfico da FFT, observa-se que diferentemente da FFT vista extração do ciclo senoidal, existe um pico por volta de 0.18 rad/amostra. Isso era é esperado, uma vez que a parte de baixa frequência foi removida na extração anterior. 
 
 \subsection{Ciclos Senoidais e Resíduo}
 \paragraph{}Após o processamento descrito acima, obtém sinal $s_{2t}=cs_t+res_t$, o qual tem a seguinte distribuição e FFT.
@@ -138,7 +138,7 @@
 \end{figure}
 
 
-\paragraph{}A distribuição observada está centrada em $0$ R\$/MWh e, dentre os picos observados na FFT, o com maior módulo é o que está presente na frequência $w=0.10869$ rad/amostra. Sendo assim, a extração do resíduo de foi feita com um filtro Notch na maior frequência observada e $Q=0.01$ removendo então a frequência com maior energia na transformada de Fourier. Após este processamento, obteve-se os seguintes resultados:
+\paragraph{}A distribuição observada está centrada em $0$ R\$/MWh e, dentre os picos observados na FFT, o com maior valo absoluto é o que está presente na frequência $w=0.10869$ rad/amostra. Sendo assim, a extração do resíduo de foi feita com um filtro Notch na maior frequência observada e $Q=0.01$ removendo então a frequência com maior energia na transformada de Fourier. Após este processamento, obteve-se os seguintes resultados:
 
 \begin{figure}[H]
 	\begin{center}
@@ -243,6 +243,8 @@
 	\end{center}	
 \end{figure}
 
+\paragraph{}Apesar de usar um fator de treinamento menor do que o padrão, ainda assim o algoritmo AdaDelta teve dificuldade em convergir para um valor de RMSE Assim como esperado, o erro no conjunto de validação foi ser maior que no conjunto de teste.
+
 \paragraph{}E os seguintes resultados foram obtidos:
 \begin{figure}[H]
 	\begin{center}
@@ -251,7 +253,7 @@
 				
 				\includegraphics[width=\textwidth]{sinal_completo_t0.jpg}
 				
-				\caption[\small{Sinal completo.}]{\label{completoT0} \small{Sinal completo.}}
+				\caption[\small{Comparação entre o sinal original e o resultado obtido.}]{\label{completoT0} \small{Comparação entre o sinal original e o resultado obtido.}}
 				
 			\end{center}
 		}	
@@ -295,6 +297,8 @@
 	\end{center}	
 \end{figure}
 
+\paragraph{}Novamente observou-se que o gráfico de RMSE pelo número de neurônios não seguiu um formato decrescente contínuo. Sendo assim, utilizou-se a tabela com informações adicionais sobre cada treinamento para auxiliar a escolha do melhor modelo. Os resultados são vistos a seguir:
+
 \begin{table}[H]
 	
 	\begin{center}
@@ -334,12 +338,14 @@
 				
 				\includegraphics[width=\textwidth]{sinal_completo_t1.jpg}
 				
-				\caption[\small{Sinal completo.}]{\label{completoT1} \small{Sinal completo.}}
+				\caption[\small{Comparação entre o sinal original e o resultado obtido.}]{\label{completoT1} \small{Comparação entre o sinal original e o resultado obtido.}}
 				
 			\end{center}
 		}	
 	\end{center}	
 \end{figure}
+
+\paragraph{}Uma rápida análise qualitativa mostra que a previsão do modelo 
 
 \paragraph{}Para essa previsão, foi treinada uma rede para reduzir o erro de estimação usando como entrada os dados já mencionados anteriormente. Os erros de estimação entre o sinal reconstruído e o original foram utilizados como alvos da rede. Obteve-se então os seguintes resultados:
 
@@ -413,7 +419,7 @@
 				
 				\includegraphics[width=\textwidth]{sinal_completo_t1_error.jpg}
 				
-				\caption[\small{Sinal completo.}]{\label{completoT1Error} \small{Sinal completo.}}
+				\caption[\small{Comparação entre o sinal original e o resultado obtido.}]{\label{completoT1Error} \small{Comparação entre o sinal original e o resultado obtido.}}
 				
 			\end{center}
 		}	
@@ -436,10 +442,10 @@
 
 \paragraph{}Pelo histograma é possível ver que a rede de correção do erro de estimação diminuiu o erro máximo e mínimo, porém a estrutura sem a correção do erro tem maior concentração de pontos próximos do zero. Sendo assim, espera-se que a saída com a correção de erro erre mais, porém com discrepância menor, enquanto espera-se que sem a correção de erro o resultado seja melhor na maioria das vezes, podendo correr o risco de errar muito em alguns pontos.
 
-\paragraph{}Cabe a quem for utilizar analisar se compensa mais errar menos na média, porém ter uma chance de errar muito em casos extremos ou errar um pouco mais na média e ter o erro dentre de uma faixa menor.
+\paragraph{}Realizando novamente uma análise qualitativa, observa-se que o sinal com a rede de correção do erro não parece trazer resultados melhores. O resultado discutido no parágrafo acima é, de fato, observável no gráfico. Cabe a quem for utilizar analisar se compensa mais errar menos na média, porém ter uma chance de errar muito em casos extremos ou errar um pouco mais na média e ter o erro dentre de uma faixa menor.
 
 \subsection{Treinamento da rede para obter a saída para vários meses a frente}
-\paragraph{}A rede para vários meses à frente foi treinada de forma similar ao observado anteriormente, porém nesse caso observou-se somente a parte residual e não foi treinada uma rede secundária para corrigir o erro de estimação em cada caso.
+\paragraph{}A rede para vários meses à frente foi treinada de forma similar ao observado anteriormente, porém nesse caso, observou-se somente a parte residual e não foi treinada uma rede secundária para corrigir o erro de estimação em cada caso.
 
 \paragraph{}A partir dos resultados, gerou-se o seguinte gráfico que mostra o erro da rede em relação ao sinal original para diferentes números de passos a frente:
 
@@ -464,7 +470,7 @@
 				
 				\includegraphics[width=\textwidth]{mean_std_comp_best_prev.jpg}
 				
-				\caption[\small{Erro no sinal residual pelo número de passos no conjunto de dados completo.}]{\label{rmsePassosVomp} \small{Erro no sinal residual pelo número de passos no conjunto de dados de completo.}}
+				\caption[\small{Erro no sinal residual pelo número de passos no conjunto de dados completo.}]{\label{rmsePassosComp} \small{Erro no sinal residual pelo número de passos no conjunto de dados de completo.}}
 				
 			\end{center}
 		}	
@@ -476,3 +482,7 @@
 \paragraph{}Assim como o esperado, tanto o erro quanto o desvio padrão aumentam com o número de passos a frente, salvo algumas exceções. Sendo assim, a previsão para muitos passo a frente traz um risco maior para a análise. Cabe a quem for usar mensurar quanto de risco pode ser tolerado baseado nesses gráficos.
 
 \paragraph{}Ainda assim cabe ressaltar que o a análise foi feita somente para a parte residual. Provavelmente ao reconstruir o PLD, os erros ainda devem aumentar, pois serão somados os erros de estimação da tendência, sazonalidade e ciclos senoidais. A estratégia da rede para a correção dos erros pode ser aplicada para cada um dos casos buscando deixar a distribuição do erro mais concentrada em torno do zero.
+
+\paragraph{}Ao final do processo obteve-se um modelo de estimação do PLD para o mês atual que foi utilizado como base para as análises seguintes. Além disso, criou-se um método de ranqueamento dos modelos com baseada em parâmetros como o coeficiente angular e offset no \textit{scatter plot}. Outra abordagem explorada nesse texto foi uma rede para corrigir o erro de uma primeira rede. 
+
+\paragraph{}O resultado final do trabalho foi, então, a definição de um método para avaliar estruturas de redes neurais em casos onde há poucos dados. Este método pode ser usado e replicado em outras aplicações. Os gráficos \ref{rmsePassosTeste} e \ref{rmsePassosComp} mostram que, assim como esperado para um modelo de previsão com número de passos variáveis, o erro cresce conforme a necessidade de prever eventos mais à frente.

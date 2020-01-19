@@ -127,7 +127,7 @@ def PlotTSA(original, trend, seasonal, residual, \
     plt.plot(original.index, residual)
     plt.ylabel('Resíduo')
     
-    plt.xlabel('Amostra')
+    plt.xlabel('Mês')
     
     if SAVE_FIGURE:
         plt.savefig(resultPlotFileName, bbox_inches='tight')

@@ -101,12 +101,12 @@ X_norm = pd.DataFrame(data=X_scaler.transform(X), columns=X.columns, index=X.ind
 y_scaler = copy.deepcopy(scaler).fit(y)
 y_norm = pd.DataFrame(data=y_scaler.transform(y), columns=y.columns, index=y.index)
 
-n_steps = 6  
+n_steps = 10  
 # train a simple classifier
 n_folds = 8
 n_inits = 3
-MIN_NEURONS = 1
-MAX_NEURONS = 90
+MIN_NEURONS = 74
+MAX_NEURONS = 74
 
 STEPS_FORECAST = n_steps
 X_train = X_norm.iloc[:-(N_TEST_ROWS + STEPS_FORECAST),:]
@@ -144,8 +144,8 @@ resultsFolds = pd.DataFrame(columns=['rmse', 'std', 'a(mean)', 'b(mean)'], index
 resultsFoldsTest = pd.DataFrame(columns=['rmse', 'std', 'a(mean)', 'b(mean)'], index=np.arange(MAX_NEURONS) + 1)
 fig, ax1 = plt.subplots(4, 2)
 plt.subplots_adjust(hspace=0.5)
-fig.text(0.5, 0.04, 'RMSE', va='center', ha='center', fontsize=rcParams['axes.labelsize'])
-fig.text(0.04, 0.5, 'Número de épocas', va='center', ha='center', rotation='vertical', fontsize=rcParams['axes.labelsize'])
+fig.text(0.5, 0.04, 'Número de épocas', va='center', ha='center', fontsize=rcParams['axes.labelsize'])
+fig.text(0.04, 0.5, 'RMSE', va='center', ha='center', rotation='vertical', fontsize=rcParams['axes.labelsize'])
 
 for n_neurons in range(MIN_NEURONS, MAX_NEURONS + 1):
     subplotidx = 0
@@ -433,7 +433,7 @@ plt.errorbar(y_original.index, reco, yerr=resultsFolds.loc[MAX_NEURONS]['std'], 
 plt.legend()
 plt.xlabel('Amostra')
 plt.ylabel('Valor PLD')
-plt.title('PLD médio mensal previsto X real para o mês atual '+ str(MAX_NEURONS) + ' neurônios')
+plt.title('PLD médio mensal previsto X real para o '+ str(n_steps) +' meses à frente com '+ str(MAX_NEURONS) + ' neurônios')
 plt.show()
 plt.savefig('sinal_completo_t' + str(n_steps) + '.jpg')
 

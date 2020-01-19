@@ -104,8 +104,10 @@ filterParams = ' Q='+ str(Q) + ' W0='+ str(w0) + ' ' +  textVec["rad_sample"][la
 mPLDSE = util.ExtractTrainTestSetFromTemporalSeries(mPLDSE, finalDate=FINAL_DATE)[0]
 mPLDSE_PT = deepcopy(mPLDSE)
 mPLDSE_PT.columns=['preço']
+mPLDSE_PT.index.rename('mês', inplace=True)
 mPLDSE_PT.plot()
 plt.title(textVec["pld_plot"][language])
+plt.ylabel('preço')
 if SAVE_FIG:
     plt.savefig(PLOT_DIR  + "pld" + suffix + ".jpg", bbox_inches='tight')
 
