@@ -27,12 +27,12 @@ plt.style.use('fivethirtyeight')
 rcParams['figure.figsize'] = 18, 8
 
 #setting plotting window parameters
-'''
+
 matplotlib.rcParams['axes.labelsize'] = 14
 matplotlib.rcParams['xtick.labelsize'] = 12
 matplotlib.rcParams['ytick.labelsize'] = 12
 matplotlib.rcParams['text.color'] = 'k'
-'''
+
 
 ROOT_FOLDER  = '/home/felipe/Materias/TCC/'
 #loading PLD data
@@ -49,8 +49,8 @@ PLOT_DIR = ROOT_FOLDER + '/PLD_Data/src/plots/SeriesTemporais/'
 INITIAL_DATE = '01/2015'
 FINAL_DATE = '12/2018'
 mPLDSE = meanPLD[['Mês', 'SE/CO']]
-mPLDSE.columns = ['month', 'price']
-mPLDSE.set_index('month', inplace=True)
+mPLDSE.columns = ['MÊs', 'PLD']
+mPLDSE.set_index('MÊs', inplace=True)
 mPLDSE = mPLDSE.sort_index()
 mPLDSE = mPLDSE.loc[mPLDSE.index >= INITIAL_DATE]
 mPLDSE = mPLDSE.loc[mPLDSE.index <= FINAL_DATE]
