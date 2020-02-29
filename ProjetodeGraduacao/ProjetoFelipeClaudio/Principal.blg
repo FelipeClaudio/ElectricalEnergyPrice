@@ -1,50 +1,59 @@
 This is BibTeX, Version 0.99d (TeX Live 2019/dev/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: Principal.aux
+Case mismatch error between cite keys adadelta and AdaDelta
+---line 521 of file Principal.aux
+ : \citation{adadelta
+ :                   }
+I'm skipping whatever remains of this command
 The style file: coppe.bst
 Database file #1: biblio.bib
+Repeated entry---line 1221 of file biblio.bib
+ :  adadelta
+ :          ,
+I'm skipping whatever remains of this entry
 Warning--empty publisher in sTemp
 Warning--empty publisher in apostilaCaloba
 Warning--empty publisher in introSP
-You've used 56 entries,
+You've used 58 entries,
             2465 wiz_defined-function locations,
-            877 strings with 13915 characters,
-and the built_in function-call counts, 12316 in all, are:
-= -- 1390
-> -- 352
+            887 strings with 14152 characters,
+and the built_in function-call counts, 12528 in all, are:
+= -- 1404
+> -- 360
 < -- 14
-+ -- 144
-- -- 88
-* -- 735
-:= -- 1949
-add.period$ -- 68
-call.type$ -- 56
-change.case$ -- 60
++ -- 148
+- -- 90
+* -- 741
+:= -- 1978
+add.period$ -- 70
+call.type$ -- 58
+change.case$ -- 62
 chr.to.int$ -- 0
-cite$ -- 59
-duplicate$ -- 650
-empty$ -- 1331
-format.name$ -- 88
-if$ -- 3072
+cite$ -- 61
+duplicate$ -- 659
+empty$ -- 1363
+format.name$ -- 90
+if$ -- 3121
 int.to.chr$ -- 0
-int.to.str$ -- 56
-missing$ -- 34
-newline$ -- 172
-num.names$ -- 56
-pop$ -- 222
+int.to.str$ -- 58
+missing$ -- 33
+newline$ -- 178
+num.names$ -- 58
+pop$ -- 237
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 309
+skip$ -- 312
 stack$ -- 0
 substring$ -- 437
-swap$ -- 244
+swap$ -- 246
 text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 3
-while$ -- 77
-width$ -- 58
-write$ -- 577
-(There were 3 warnings)
+while$ -- 79
+width$ -- 60
+write$ -- 593
+(There were 2 error messages)

@@ -75,6 +75,8 @@ y_t = \dfrac{1}{2q + 1} \sum_{j = -q}^{q} x_{t + j}
 y_t = \sum_{j=0}^{\infty} \alpha (1 - \alpha)^j x_{t-j}
 \end{equation}
 
+\paragraph{}Um exemplo de extração de tendência pode ser visto na figura \ref{bNYtend}, a qual contém informações sobre o número de nascimentos em Nova Iorque por ano.
+
 \begin{figure}[H]
 	\begin{center}
 		{
@@ -124,7 +126,7 @@ sz_t = sz[Resto(t/P)]
 				
 				\includegraphics[width=\textwidth]{exemplo2_sazonalidade.jpg}
 				
-				\caption[\small{Extração de sazonalidade com periodicidade anual ($P=12$) para o dataset de nascimentos em Nova York.}]{\label{bNYsaz} \small{Extração de sazonalidade com periodicidade anual ($P=12$) para o dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
+				\caption[\small{Extração de sazonalidade com periodicidade anual ($P=12$) para o conjunto de dados de nascimentos em Nova Iorque.}]{\label{bNYsaz} \small{Extração de sazonalidade com periodicidade anual ($P=12$) para o conjunto de dados de nascimentos em Nova Iorque. Fonte: Newton (1988). \cite{birthNY}}}
 				
 			\end{center}	
 		}
@@ -143,7 +145,7 @@ sz_t = sz[Resto(t/P)]
 				
 				\includegraphics[width=\textwidth]{exemplo2_autocorrelacao.jpg}
 				
-				\caption[\small{Autocorrelação para o sinal residual do dataset de nascimentos em Nova York.}]{\label{bNYautocorr} \small{Autocorrelação para o sinal residual do dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
+				\caption[\small{Autocorrelação para o sinal residual do conjunto de dados de nascimentos em Nova Iorque.}]{\label{bNYautocorr} \small{Autocorrelação para o sinal residual do conjunto de dados de nascimentos em Nova Iorque. Fonte: Newton (1988). \cite{birthNY}}}
 				
 			\end{center}	
 		}
@@ -172,7 +174,7 @@ cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 				
 				\includegraphics[width=\textwidth]{exemplo2_residual.jpg}
 				
-				\caption[\small{Residuo sem remoção de ciclos senoidasi para o dataset de nascimentos em Nova York.}]{\label{bNYres} \small{Resíduo sem remoção de ciclos senoidais para o dataset de nascimentos em Nova York. Fonte: Newton (1988). \cite{birthNY}}}
+				\caption[\small{Residuo sem remoção de ciclos senoidais para o conjunto de dados de nascimentos em Nova Iorque.}]{\label{bNYres} \small{Resíduo sem remoção de ciclos senoidais para o conjunto de dados de nascimentos em Nova Iorque. Fonte: Newton (1988). \cite{birthNY}}}
 				
 			\end{center}	
 		}
@@ -188,7 +190,7 @@ cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 				
 				\includegraphics[scale=0.3]{exemplo2_residual_filtrado.jpg}
 				
-				\caption[\small{Resíduo com remoção de ciclos senoidais para o dataset de nascimentos em Nova York.}]{\label{bNYresFilt} \small{Resíduo com remoção de ciclos senoidais para o dataset de nascimentos em Nova York. \cite{birthNY}}}
+				\caption[\small{Resíduo com remoção de ciclos senoidais para o conjunto de dados de nascimentos em Nova Iorque.}]{\label{bNYresFilt} \small{Resíduo com remoção de ciclos senoidais para o conjunto de dados de nascimentos em Nova Iorque. \cite{birthNY}}}
 				
 			\end{center}	
 		}
@@ -198,7 +200,7 @@ cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 \end{figure}
 
 
-\paragraph{}Como pode-se observar, a discrepância no sinal residual nas frequências próximas de $\omega_0 = 0.135rad\backslash amostra$ diminui. Além  disso, a distribuição se tornou menos espaçada (O desvio padrão mudou de aproximadamente $\sigma=0.37$ para $\sigma=0.14$).
+\paragraph{}Como pode-se observar nas figuras \ref{bNYres} e \ref{bNYresFilt}, a discrepância no sinal residual nas frequências próximas de $\omega_0 = 0.135rad\backslash amostra$ diminui. Além  disso, a distribuição se tornou menos espaçada (O desvio padrão mudou de aproximadamente $\sigma=0.37$ para $\sigma=0.14$).
 
 \begin{figure}[H]
 	\begin{center}
@@ -207,7 +209,7 @@ cs_t = a \cdot \cos(2\pi f t) + b \cdot \sin(2 \pi f t)
 				
 				\includegraphics[width=\textwidth]{exemplo2_residual_tempo.jpg}
 				
-				\caption[\small{Sinal residual no tempo para o dataset de nascimentos em Nova York \cite{birthNY}.}]{\label{bNYresFiltTempo} \small{Sinal residual no tempo para o dataset de nascimentos em Nova York Fonte: Newton (1988). \cite{birthNY}}}
+				\caption[\small{Sinal residual no tempo para o conjunto de dados de nascimentos em Nova Iorque \cite{birthNY}.}]{\label{bNYresFiltTempo} \small{Sinal residual no tempo para o conjunto de dados de nascimentos em Nova Iorque Fonte: Newton (1988). \cite{birthNY}}}
 				
 			\end{center}	
 		}
@@ -254,7 +256,7 @@ b = \frac{1}{ 1 + \beta} = \frac{1}{1 + \frac{\sqrt{1 - G_b²}}{G_b} \tan(\frac{\
 \end{figure}
 
 \section{Redes Neurais Artificiais}
-\paragraph{}Redes Neurais artificiais são modelos computacionais que tentam reproduzir o comportamento observado na estrutura cerebral dos seres vivos. O neurônio pode ser considerado a célula básica de processamento do cérebro humano. Sua estrutura é divida em três partes principais \cite{apostilaCaloba}\cite{ivan_nunes}\cite{Gurney}:
+\paragraph{}Redes Neurais artificiais são modelos computacionais inspiradas no comportamento observado na estrutura cerebral dos seres vivos. O neurônio pode ser considerado a célula básica de processamento do cérebro humano. Sua estrutura é divida em três partes principais \cite{apostilaCaloba}\cite{ivan_nunes}\cite{Gurney}:
 
 \begin{figure}[H]
 	\begin{center}
@@ -430,7 +432,7 @@ Y_{j}^{(1)} = g(\sum_{i = 0}^{N} W_{ji}^{(1)} \cdot X_i)
 Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 \end{equation}
 
-\paragraph{}As redes MLP tem sido utilizadas em diferentes classes de problemas como classificação de elementos e previsão de séries temporais \cite{apostilaCaloba}\cite{ivan_nunes}\cite{mlp_atmosfera}. Com o grande crescimento do número de dados disponível para utilização e o desenvolvimento das tecnologias computacionais, têm-se atualmente redes com muitas camadas e neurônios. Essas redes tem como objetivo aumentar a capacidade de separação, previsão, além de poder obter informações relevantes sobre neurônios intermediários da rede \cite{deep_learning1}\cite{deep_learning_book}\cite{microsoft_dl}.
+\paragraph{}As redes MLP - MultiLayer Perceptron  tem sido utilizadas em diferentes classes de problemas como classificação de elementos e previsão de séries temporais \cite{apostilaCaloba}\cite{ivan_nunes}\cite{mlp_atmosfera}. Com o grande crescimento do número de dados disponível para utilização e o desenvolvimento das tecnologias computacionais, têm-se atualmente redes com muitas camadas e neurônios. Essas redes tem como objetivo aumentar a capacidade de separação, previsão, além de poder obter informações relevantes sobre neurônios intermediários da rede \cite{deep_learning1}\cite{deep_learning_book}\cite{microsoft_dl}.
 
 \begin{figure}[H]
 	\begin{center}
@@ -459,7 +461,7 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 		
 	\item {\textbf{Quantidade de dados $X$ complexidade da rede: } Outro fator importante a ser observado é a quantidade de dados disponível para treinamento, visto que quanto maior a complexidade estrutural da rede, maior a capacidade de gerar funções mais complexas, portanto torna-se necessário uma maior quantidade de dados para que a mesma seja treinada sem o efeito de \textit{overfitting}.}
 	
-	\item {\textbf{Taxa de aprendizado: }Caso o fator $\eta$ da fórmula \ref{grad_desc} seja um valor muito grande, o algoritmo não conseguirá convergir para um mínimo, porém se $\eta$ for um número muito grande, o treinamento pode levar muita épocas até convergir. Cabe então a quem especifica os parâmetros da rede neural escolher um $\eta$ adequado de forma com que a convergência ocorra e não demore demais.}
+	\item {\textbf{Taxa de aprendizado: }Caso o fator $\eta$ da fórmula \ref{grad_desc} seja um valor muito grande, o algoritmo não conseguirá convergir para um mínimo, porém se $\eta$ for um número muito grande, o treinamento pode levar muita épocas até convergir. Cabe então a quem especifica os parâmetros da rede neural escolher um $\eta$ adequado de forma com que a convergência ocorra e não demore demais. A figura \ref{grad_desc} mostra como esse fator $\eta$ pode influenciar a maneira como a taxa de aprendizado muda durante as épocas de treinamento}
 	\begin{figure}[H]
 		\begin{center}
 			{
@@ -476,7 +478,7 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 		
 	\end{figure}
 	
-	\item {\textbf{Divisão dos dados de entrada: }Uma prática comum para se obter resultados consistentes é dividir os dados em um conjunto de testes e outro de validação, de forma que o conjunto de testes não seja usado no treinamento, sendo assim usado para verificar o quão bom são os resultados da rede para dados desconhecidos. Outra prática comum é dividir o conjunto de treinamento em treino e validação e utilizar a validação cruzada, de forma a realizar vários treinos com a mesma arquitetura, permitindo obter melhores resultados no treinamento  \cite{crossValidation}.}
+	\item {\textbf{Divisão dos dados de entrada: }Uma prática comum para se obter resultados consistentes é dividir os dados em um conjunto de testes e outro de validação, este último é utilizado para avaliar os resultados do treinamento com dados externos até então desconhecidos para o modelo. Sendo assim, o conjunto de testes não é usado no treinamento, e, portanto, pode ser utilizado para verificar o quão bom são os resultados da rede para dados desconhecidos. Outra prática comum é dividir o conjunto de treinamento em treino e validação e utilizar a validação cruzada. Nesta abordagem, a cada roda de treinamento da rede neural, uma parte do conjunto de treino (geralmente escolhida de forma aleatória) é separada para avaliação enquanto o resto é utilizado para o treino de fato. Isso permite realizar vários treinos com a mesma arquitetura, podendo obter melhores resultados no treinamento  \cite{crossValidation}.}
 		\begin{figure}[H]
 		\begin{center}
 			{
@@ -484,7 +486,7 @@ Y_{P}^{(H)} = g(\sum_{i = 0}^{M} W_{pi}^{(H)} \cdot Y_{i}^{(H-1)})
 					
 					\includegraphics[width=0.7\textwidth]{validacao_cruzada.jpg}
 					
-					\caption[\small{Validacao Cruzadas. .}]{\label{validacao_cruzada} \small{Validação cruzada. Fonte: \cite{validacao_cruzada}}}
+					\caption[\small{Validação Cruzada. .}]{\label{validacao_cruzada} \small{Validação cruzada. Fonte: \cite{validacao_cruzada}}}
 					
 				\end{center}	
 			}

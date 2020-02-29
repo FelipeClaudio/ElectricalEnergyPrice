@@ -554,10 +554,12 @@ INPUT ./figuras/rmse_val_set_t10.jpg
 INPUT ./figuras/rmse_test_set_t10.jpg
 INPUT ./figuras/rmse_test_set_t10.jpg
 INPUT ./figuras/rmse_test_set_t10.jpg
-INPUT ./figuras/convergence_t3.jpg
-INPUT ./figuras/convergence_t3.jpg
-INPUT ./figuras/sinal_completo_t3.jpg
-INPUT ./figuras/sinal_completo_t3.jpg
+INPUT ./figuras/convergence_t10.jpg
+INPUT ./figuras/convergence_t10.jpg
+INPUT ./figuras/convergence_t10.jpg
+INPUT ./figuras/sinal_completo_t10.jpg
+INPUT ./figuras/sinal_completo_t10.jpg
+INPUT ./figuras/sinal_completo_t10.jpg
 INPUT /home/felipe/Materias/TCC/ProjetodeGraduacao/ProjetoFelipeClaudio/Principal.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb

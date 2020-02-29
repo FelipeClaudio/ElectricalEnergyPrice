@@ -31,6 +31,15 @@ SILVA, B. G.~D., \emph{Evolução do setor elétrico brasileiro no contexto
   Ph.D. dissertation, Universidade de São Paulo - Programa de pós-graduação em
   energia EP-FEA-IEE-IF, 2011.
 
+\bibitem{ANEEL}
+ANEEL, \enquote{Bem-vindo à ANEEL!}, https://www.aneel.gov.br/a-aneel, 2020,
+  (Acesso em 29 Fevereiro 2020).
+
+\bibitem{DECRETO_2003}
+JURíDICOS, S. P.~A., \enquote{DECRETO Nº 2.003, DE 10 DE SETEMBRO DE 1996},
+  http://www.planalto.gov.br/ccivil\_03/decreto/D2003.html, 2020, (Acesso em 29
+  Fevereiro 2020).
+
 \bibitem{PRECO_SPOT}
 CASTRO, N. J.~D., LEITE, A. L. D.~S., \enquote{Preço spot de eletricidade:
   teoria e evidências do caso brasileiro}, \emph{IV Encontro de Enconomia
@@ -52,7 +61,7 @@ BARRETTO, E. P. B.~M., \enquote{Smart grid: Eficiência energética e a geração
   distribuida a partir das redes inteligentes}, 2018.
 
 \bibitem{RES_NORMA_482}
-ANEEL, \enquote{Resolução normativa nº 482, de 17 de abrid de 2012},
+ANEEL, \enquote{Resolução normativa nº 482, de 17 de abril de 2012},
   http://www2.aneel.gov.br/cedoc/ren2012482.pdf, 2019, (Acesso em 26 Fevereiro
   2019).
 
@@ -263,8 +272,7 @@ LEARN, S., \enquote{sklearn.preprocessing.MinMaxScaler},
   https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html,
   2019.
 
-\bibitem{adadelta}
-ZEILER, M.~D., \enquote{{ADADELTA:} An Adaptive Learning Rate Method},
-  \emph{CoRR}, v.~abs/1212.5701, 2012.
+\bibitem{AdaDelta}
+ZEILER, M.~D., \enquote{ADADELTA: An Adaptive Learning Rate Method}, 2012.
 
 \end{thebibliography}

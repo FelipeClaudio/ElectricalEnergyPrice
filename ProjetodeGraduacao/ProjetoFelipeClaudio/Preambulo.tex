@@ -68,7 +68,7 @@ Rio de Janeiro - RJ      CEP 21949-900\\
 
 
 
-\paragraph{}A energia elétrica é insumo fundamental para o desenvolvimento econômico do país. O Brasil depende bastante da energia proveniente de fontes hidrelétrica para manutenção do fornecimento contínuo. Essa fonte de energia, apesar de ser a que tem menor custo, também possui algumas características que tornam mais complexo o planejamento. Uma delas é a dependência de condições meteorológicas para que as bacias tenham água suficiente para geração de eletricidade. Uma parte da energia produzida é negociada através de leilões onde participam empresas geradoras e distribuidoras. Os contratos de fornecimento de energia são feitos com base em quantidades fixas de MWhs que devem ser entregues ao consumidor periodicamente. Geralmente o valor produzido não é exatamente igual ao valor combinado. A diferença entre o que foi contratado e o que foi efetivamente fornecido é liquidada no mercado de curto prazo ao valor do PLD - Preço da Liquidação das Diferenças, o qual é calculado semanalmente pela CCEE \cite{CCEE}. Neste trabalho, a informação sobre o preço em cada mês foi analisada como uma série temporal. Sendo assim, os dados foram tratados como sequência de observações em intervalos definidos. Além disso, foram utilizadas redes neurais artificiais multicamadas, para tratar os dados da série temporal e obter um modelo capaz de prever o valor do PLD médio mensal. O elemento básico dessa abordagem é o neurônio artificial, o qual gera um sinal na saída, conforme a combinação de sinais na entrada. Ao final do trabalho são feitas estimativas para um período de até 10 meses, trazendo o comportamento da rede conforme o número de meses a frente com erros médios variando entre 55 e 310 R\$/MW/H para o conjunto de testes.
+\paragraph{}A energia elétrica é insumo fundamental para o desenvolvimento econômico do país. O Brasil depende bastante da energia proveniente de fontes hidrelétricas para manutenção do fornecimento contínuo. Essa fonte de energia, apesar de ser a que tem menor custo, também possui algumas características que tornam mais complexo o planejamento do abastecimento elétrico do país. Uma delas é a dependência de condições meteorológicas para que as bacias tenham água suficiente para geração de eletricidade. Uma parte da energia produzida é negociada através de leilões onde participam empresas geradoras e distribuidoras. Os contratos de fornecimento de energia são feitos com base em quantidades fixas de MWhs que devem ser entregues ao consumidor periodicamente. Geralmente o valor produzido não é exatamente igual ao valor combinado. A diferença entre o que foi contratado e o que foi efetivamente fornecido é liquidada no mercado de curto prazo ao valor do PLD - Preço da Liquidação das Diferenças, o qual é calculado semanalmente pela CCEE - Câmara de Comercialização de Energia Elétrica \cite{CCEE}. Neste trabalho, a informação sobre o preço em cada mês foi analisada como uma série temporal. Sendo assim, os dados foram tratados como uma sequência de observações em intervalos definidos. Além disso, foram utilizadas redes neurais artificiais multicamadas para obter um modelo capaz de prever o valor do PLD médio mensal. O elemento básico dessa abordagem é o neurônio artificial, o qual gera um sinal na saída conforme a combinação de sinais na entrada. Ao final do trabalho são feitas estimativas para um período de até 10 meses, retornando o resultado para o número de meses determinado com erros médios variando entre 55 e 310 R\$/MW/H utilizando o conjunto de teste.
  
 \paragraph{}
 \noindent Palavras-Chave: PLD, séries temporais, redes neurais, MLP, aprendizado de máquina, setor elétrico brasileiro.
@@ -82,7 +82,7 @@ Rio de Janeiro - RJ      CEP 21949-900\\
 \end{center}
       \vspace{0.5cm}
 
-\paragraph{}Electrical energy is a fundamental resource for a country's economic development. Brazil highly depends on hydraulic power sources. It is the cheaper power source but also has some drawbacks like the high complexity of usage planning. The dependency on meteorological conditions to fulfill hydrographic basins is one of the difficulties faced in this context. Generators and distributors participate in auctions where a part of the produced energy is auctioned.  The negotiated contracts use a fixed amount of MWHs that must be provided to the consumer periodically. The generated power usually is not equal to the value agreed upon contract. The difference between supplied and contracted amount is liquidated using PLD -  Differences Liquidation Price. This value is calculated by CCEE\cite{CCEE} weekly. In this project, monthly price information was analyzed as a time series, meaning that the data was treated as a sequence of pre-defined  time observations. Multilayer artificial neural nets were used to process time-series data, to predict PLD's price. This project uses time series decomposition, signal processing, and neural networks to estimate PLD's mean monthly value. The main element of this approach is the artificial neuron, which generates an output by combining inputs. In the last part of this work, there are estimates for 10 months, showing the neural network behavior for each number of months ahead. Errors ranged between 50 and for test data.
+\paragraph{}Electrical energy is a fundamental resource for a country's economic development. Brazil highly depends on hydraulic power sources to keep a continuous energy supply. It is the cheapest power source but also has some drawbacks like the high complexity of planning to fulfill the country's power supply demand. The dependency on meteorological conditions to fulfill hydrographic basins is one of the difficulties faced in this context. Generators and distributors participate in auctions where a part of the produced energy is auctioned.  The negotiated contracts use a fixed amount of MWHs that must be provided to the consumer periodically. The generated power usually is not equal to the value agreed upon contract. The difference between supplied and contracted amount is liquidated using PLD -  Differences Liquidation Price. This value is calculated by CCEE - Chamber of Commercialization of Electric Energy  \cite{CCEE} weekly. In this project, monthly price information was analyzed as a time series, meaning that the data was treated as a sequence of pre-defined time observations. Multilayer artificial neural nets were used to predict PLD's price. The main element of this approach is the artificial neuron, which generates an output by combining inputs. In the last part of this work, there are estimates for 10 months, returning results for the determined amount of months. Errors ranged between 50 and 310 310 R\$/MW/H for test data.
 
 \paragraph{}
 \noindent Key-words: PLD, time series, neural networks, MLP, machine learning, Brazilian's Electrical Sector.
@@ -96,47 +96,47 @@ Rio de Janeiro - RJ      CEP 21949-900\\
 \end{center}
       \vspace{0.5cm}
 
-\paragraph{}UFRJ - Universidade Federal do Rio de Janeiro
-\paragraph{}EPE - Empresa de Pesquisa Energética
-\paragraph{}SIN - Sistema Interligado Nacional
-\paragraph{}SEB - Sistema Elétrico Brasileiro
-\paragraph{}RE-SEB - Reestruturação do Sistema Elétrico Brasileiro
-\paragraph{}ANEEL - Agência Nacional de Energia Elétrica
-\paragraph{}MME - Ministério de Minas e Energias
-\paragraph{}CCEE - Câmara de Comercialização de Energia Elétrica 
-\paragraph{}EPE - Empresa de Energia Elétrica
-\paragraph{}ONS - Operador Nacional do Sistema Elétrico
-\paragraph{}MAE - Mercado Atacadista de Energia
-\paragraph{}CMSE - Comitê de Monitoramento do Setor Elétrico
-\paragraph{}ACR - Ambiente de Contratação Regulada
+\paragraph{}ACC - Accuracy
+\paragraph{}ACF - Autocorrelation Function
 \paragraph{}ACL - Ambiente de Contratação Livre
-\paragraph{}PLD - Preço de Liquidação das Diferenças
-\paragraph{}MCP - Mercado de Curto Prazo
-\paragraph{}CMO - Custo Marginal de Operação
-\paragraph{}CVU - Custo Variável Unitário
-\paragraph{}UTE - Usina Térmica
-\paragraph{}ENA - Energia Natural Armazenada
-\paragraph{}EAR - Energia Armazenada
-\paragraph{}CCEAR - Contrato de Comercialização de Energia ELétrica no Ambiente Regulado
-\paragraph{}PMO - Planejamento Mensal de Operação
-\paragraph{}CFURH - Compensação Financeira pelo Uso dos Recursos Hídricos
-\paragraph{}MLP - Multilayer Perceptron
-\paragraph{}FFT - Fast Fourier Transform
-\paragraph{}IIR - Infinite Impulse Response
-\paragraph{}FIR - Finite Impulse Response
+\paragraph{}ACR - Ambiente de Contratação Regulada
+\paragraph{}AIC - Akaike Info Criterion
+\paragraph{}ANEEL - Agência Nacional de Energia Elétrica
 \paragraph{}AR - Autoregressive
 \paragraph{}ARIMA - Autoregressive Integrated Moving Average
+\paragraph{}CCEAR - Contrato de Comercialização de Energia ELétrica no Ambiente Regulado
+\paragraph{}CCEE - Câmara de Comercialização de Energia Elétrica 
+\paragraph{}CFURH - Compensação Financeira pelo Uso dos Recursos Hídricos
+\paragraph{}CMO - Custo Marginal de Operação
+\paragraph{}CMSE - Comitê de Monitoramento do Setor Elétrico
+\paragraph{}CSV - Comma Separated Values
+\paragraph{}CVU - Custo Variável Unitário
+\paragraph{}EAR - Energia Armazenada
+\paragraph{}ENA - Energia Natural Armazenada
+\paragraph{}EPE - Empresa de Energia Elétrica
+\paragraph{}EPE - Empresa de Pesquisa Energética
+\paragraph{}FFT - Fast Fourier Transform
+\paragraph{}FIR - Finite Impulse Response
 \paragraph{}GARCH - Genralized Auto-Regressive Conditional Heteroscedasticity
-\paragraph{}ACF - Autocorrelation Function
+\paragraph{}IIR - Infinite Impulse Response
+\paragraph{}LSTM - Long Short-Term Memory
+\paragraph{}MAE - Mercado Atacadista de Energia
+\paragraph{}MCP - Mercado de Curto Prazo
+\paragraph{}MLP - Multilayer Perceptron
+\paragraph{}MME - Ministério de Minas e Energias
+\paragraph{}MSE - Mean Squared Error
+\paragraph{}ONS - Operador Nacional do Sistema Elétrico
 \paragraph{}PACF - Partial Autocorrelation Function
-\paragraph{}AIC - Akaike Info Criterion
+\paragraph{}PLD - Preço de Liquidação das Diferenças
+\paragraph{}PMO - Planejamento Mensal de Operação
 \paragraph{}PSF - Partial Sequence-based Forecasting
 \paragraph{}RBFN - Radial Basis Function Network
-\paragraph{}CSV - Comma Separated Values
-\paragraph{}MSE - Mean Squared Error
+\paragraph{}RE-SEB - Reestruturação do Sistema Elétrico Brasileiro
 \paragraph{}RMSE - Root Mean Squared Error
-\paragraph{}ACC - Accuracy
-\paragraph{}LSTM - Long Short-Term Memory
+\paragraph{}SEB - Sistema Elétrico Brasileiro
+\paragraph{}SIN - Sistema Interligado Nacional
+\paragraph{}UFRJ - Universidade Federal do Rio de Janeiro
+\paragraph{}UTE - Usina Térmica
 \pagebreak
 
 

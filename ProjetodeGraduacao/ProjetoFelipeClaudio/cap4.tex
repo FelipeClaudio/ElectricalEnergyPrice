@@ -1,19 +1,5 @@
 \paragraph{}O objetivo deste capitulo é descrever o método utilizado no desenvolvimento do trabalho. Será descrito o fluxo de dados utilizado na previsão do PLD. Isso inclui o pré-processamento dos dados e o treinamento das redes neurais.
 
-\begin{figure}[H]
-	\begin{center}
-		{
-			\begin{center}
-				
-				\includegraphics[width=\textwidth]{esquema_processamento_tcc.jpg}		
-				\caption[\small{Diagrama do Método.}]{\label{esquematicoProcessamento} \small{Diagrama do Método.}}
-				
-			\end{center}
-			
-		}	
-	\end{center}	
-\end{figure}
-
 \section{Coleta de dados}
 \paragraph{}Serão utilizados nos modelos os seguintes dados do setor elétrico:
 
@@ -110,7 +96,7 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 \paragraph{}A seleção dos sinais de entrada será feita através do gráfico de correlação dos mesmos. Buscou-se sinais com alta correlação, para que pudesse ser removido um dos pares, visto que isso é um indicativo de que há uma redundância na informação fornecida no modelo. A remoção dos sinais com alta correlação diminui o tempo de treinamento e também pode diminuir o ruído na entrada, fazendo assim com que o treinamento tenha uma precisão maior.
 
 \subsection{Seleção dos atrasos do sinal de saída}
-\paragraph{}A entrada do modelo é composta por sinais no tempo atual e sinais defasados em períodos de tempo específicos. A seleção das defasagens será feita através do cálculo da autocorrelação do sinal de saída. Todos os valores com autocorrelação maior ou próximo do limite do intervalo de 95\% de confiança foram selecionados. Os valores de defasagem foram replicados para todos os sinais utilizados na entrada do modelo. A função de ativação ser
+\paragraph{}A entrada do modelo é composta por sinais no tempo atual e sinais defasados em períodos de tempo específicos. A seleção das defasagens será feita através do cálculo da autocorrelação do sinal de saída. Todos os valores com autocorrelação maior ou próximo do limite do intervalo de 95\% de confiança foram selecionados. Os valores de defasagem foram replicados para todos os sinais utilizados na entrada do modelo.
 
 \section{Rede Neural}
 \paragraph{}Foi definido que a rede neural utilizada será um MLP de uma camada escondida somente, com ReLU \ref{relu} como função de ativação. A saída conterá somente um neurônio com função de ativação linear, de modo a conseguir obter o sinal utilizado na previsão do resíduo do PLD.
@@ -120,7 +106,7 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 
 \paragraph{}O passo seguinte desse trabalho será a definição da arquitetura utilizada pela rede neural. Devido à simplicidade e a boa capacidade de solução de problemas, foi utilizada a rede Perceptron Multicamadas com somente uma camada intermediária. Foi definido para a camada de entrada e intermediária que a função de ativação utilizada seria a ReLU, dado a velocidade de processamento e os bons resultados obtidos em pesquisas recentes \ref{reluSucesso}. 
 
-\paragraph{}Para a camada de saída, a função de ativação escolhida será a linear, para que se possa construir a série temporal. O algoritmo de aprendizado utilizado será o AdaDelta. O $\alpha$, parâmetro que regula a taxa de aprendizado, será escolhido de forma a fazer com que o gráfico de erro no dataset de treino pelo número de neurônios convergisse para todos os folds utilizados na validação cruzada.
+\paragraph{}Para a camada de saída, a função de ativação escolhida será a linear, para que se possa construir a série temporal. O algoritmo de aprendizado utilizado será o AdaDelta\cite{AdaDelta}. O $\alpha$, parâmetro que regula a taxa de aprendizado, será escolhido de forma a fazer com que o gráfico de erro no conjunto de treino pelo número de neurônios convergisse para todos os subconjuntos utilizados na validação cruzada.
 
 \paragraph{}O modelo será treinado utilizando validação cruzada. Em cada fold foram feitas algumas inicializações aleatórias utilizando o algoritmo visto em \cite{K_He}, de forma a reduzir o impacto de uma inicialização ruim do modelo. 
 
@@ -133,3 +119,19 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 \paragraph{}Da segunda fase em diante, foram feitas previsões do resíduo do PLD mensal de fato. Na segunda fase em específico, previu-se o resíduo PLD para o mês seguinte. Além disso, propôs-se uma abordagem com o treinamento de uma segunda rede neural para corrigir o erro entre a previsão feita pela primeira rede e o sinal original.
 
 \paragraph{}Nos passos seguintes somente foi feita a comparação entre o resíduo original e o previsto para $N$ meses a frente. Ao final, será possível obter um gráfico com o erro e desvio padrão pela quantidade de meses a frente.
+
+\paragraph{}Sendo assim, o diagrama que resume o modelo exposto nesse capítulo pode ser visto na figura \ref{esquematicoProcessamento}
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[width=\textwidth]{esquema_processamento_tcc.jpg}		
+				\caption[\small{Diagrama do Método.}]{\label{esquematicoProcessamento} \small{Diagrama do Método.}}
+				
+			\end{center}
+			
+		}	
+	\end{center}	
+\end{figure}

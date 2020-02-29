@@ -58,7 +58,7 @@
 				
 				\includegraphics[width=\textwidth]{mseComparation_trend_pt.jpg}
 				
-				\caption[\small{Análise do mse pelo tamanho da janela na extração da tendência.}]{\label{mseTrend} \small{Análise do mse pelo tamanho da janela na extração da tendência.}}
+				\caption[\small{Análise do MSE pelo tamanho da janela na extração da tendência.}]{\label{mseTrend} \small{Análise do MSE pelo tamanho da janela na extração da tendência.}}
 				
 			\end{center}
 			
@@ -93,7 +93,7 @@
 				
 				\includegraphics[width=\textwidth]{mseComparation_tseasonal_pt.jpg}
 				
-				\caption[\small{Análise do mse pelo tamanho da janela na extração da sazonalidade.}]{\label{mseSazonal} \small{Análise do mse pelo tamanho da janela na extração da sazonalidade.}}
+				\caption[\small{Análise do MSE pelo tamanho da janela na extração da sazonalidade.}]{\label{mseSazonal} \small{Análise do MSE pelo tamanho da janela na extração da sazonalidade.}}
 				
 			\end{center}
 			
@@ -129,7 +129,7 @@
 				
 				\includegraphics[width=\textwidth]{fftAndDistribution_residual_pt.jpg}
 				
-				\caption[\small{Análise do mse pelo tamanho da janela na extração da sazonalidade.}]{\label{fftAndDistCS} \small{Análise do mse pelo tamanho da janela na extração da sazonalidade.}}
+				\caption[\small{Análise do MSE pelo tamanho da janela na extração da sazonalidade.}]{\label{fftAndDistCS} \small{Análise do MSE pelo tamanho da janela na extração da sazonalidade.}}
 				
 			\end{center}
 			
@@ -165,7 +165,7 @@
 				
 				\includegraphics[width=\textwidth]{resultPld_tsa_pt.jpg}
 				
-				\caption[\small{Resultado Final com as componentes separadas utilizando o método descrito acima.}]{\label{resultado_Extracao} \small{Resultado Final com as componentes separadas utilizando o método descrito acima.}}
+				\caption[\small{Resultado final com as componentes separadas utilizando o método descrito acima.}]{\label{resultado_Extracao} \small{Resultado Final com as componentes separadas utilizando o método descrito acima.}}
 				
 			\end{center}
 		}	
@@ -173,7 +173,7 @@
 \end{figure}
 
 \section{Treinamento das redes neurais}
-\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 folds no dataset de treinamento. Foram deixados 3 pontos da série temporal para realizar o teste. Para cada fold foram feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. Os 3 últimos foram separados para teste e os outros 25 foram utilizados na validação cruzada. Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em na seção \ref{treinamento_mlp}. 
+\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 subconjuntos no dataset de treinamento. Foram deixados 3 pontos da série temporal para realizar o teste. Para cada subconjunto foram feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. Os 3 últimos foram separados para teste e os outros 25 foram utilizados na validação cruzada. Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em na seção \ref{treinamento_mlp}. 
 
 \paragraph{} O algoritmo de aprendizado utilizado foi o AdaDelta com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.  Foi utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhorasse o erro obtido em 25 épocas, o processamento seria então interrompido.
 
@@ -188,7 +188,7 @@
 				
 				\includegraphics[width=\textwidth]{rmse_val_set_t0.jpg}
 				
-				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{mseValT0} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação no mês atual.}]{\label{mseValT0} \small{RMSE pelo número de neurônios no conjunto de validação no mês atual.}}
 				
 			\end{center}
 		}	
@@ -204,7 +204,7 @@
 				
 				\includegraphics[width=\textwidth]{rmse_test_set_t0.jpg}
 				
-				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{mseTestT0} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste no mês atual.}]{\label{mseTestT0} \small{RMSE pelo número de neurônios no conjunto de teste no mês atual.}}
 				
 			\end{center}
 		}	
@@ -215,7 +215,7 @@
 \begin{table}[H]
 	
 	\begin{center}	
-		\caption{Resultados obtidos com as redes no dataset de validação.}		
+		\caption{Resultados obtidos com as redes no dataset de validação no mês atual.}		
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT0}
 			 
 			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}61 &64,435 & 61,180 &  0,998 & 0,008 & -0,007 & 0,175 & 0,184 \\ \hline
@@ -227,7 +227,7 @@
 	\end{center} 
 \end{table}
 
-\paragraph{}E com isso o modelo com 61 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas e por folds:
+\paragraph{}E com isso o modelo com 61 neurônios foi escolhido. O treinamento dessa estrutura obteve os seguintes erros pelo número de épocas e por subconjuntos:
 
 \begin{figure}[H]
 	\begin{center}
@@ -236,7 +236,7 @@
 				
 				\includegraphics[width=\textwidth]{convergence_t0.jpg}
 				
-				\caption[\small{Erro pelo número de época e por fold.}]{\label{convT0} \small{Erro pelo número de época e por fold.}}
+				\caption[\small{Erro pelo número de época e por subconjunto no mês atual.}]{\label{convT0} \small{Erro pelo número de época e por subconjunto no mês atual.}}
 				
 			\end{center}
 		}	
@@ -253,7 +253,7 @@
 				
 				\includegraphics[width=\textwidth]{sinal_completo_t0.jpg}
 				
-				\caption[\small{Comparação entre o sinal original e o resultado obtido.}]{\label{completoT0} \small{Comparação entre o sinal original e o resultado obtido.}}
+				\caption[\small{Comparação entre o sinal original e o resultado obtido no mês atual.}]{\label{completoT0} \small{Comparação entre o sinal original e o resultado obtido no mês atual.}}
 				
 			\end{center}
 		}	
@@ -274,7 +274,7 @@
 				
 				\includegraphics[width=\textwidth]{rmse_val_set_t1.jpg}
 				
-				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{rmseValT1} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação no mês seguinte.}]{\label{rmseValT1} \small{RMSE pelo número de neurônios no conjunto de validação no mês seguinte.}}
 				
 			\end{center}
 		}	
@@ -290,7 +290,7 @@
 				
 				\includegraphics[width=\textwidth]{rmse_test_set_t1.jpg}
 				
-				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{rmseTestT1} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste no mês seguinte.}]{\label{rmseTestT1} \small{RMSE pelo número de neurônios no conjunto de teste no mês seguinte.}}
 				
 			\end{center}
 		}	
@@ -302,7 +302,7 @@
 \begin{table}[H]
 	
 	\begin{center}
-		\caption{Resultados obtidos com as redes no dataset de validação.}	
+		\caption{Resultados obtidos com as redes no dataset de validação no mês seguinte.}	
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT1}
 			
 			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}63 & 82,911 & 69,521 & 0,993 & 0,002 & 0,005 & 0,003 & 0,004 \\ \hline
@@ -323,7 +323,7 @@
 				
 				\includegraphics[width=\textwidth]{convergence_t1.jpg}
 				
-				\caption[\small{Erro pelo número de épocas e por fold.}]{\label{convT1} \small{Erro pelo número de épocas e por fold.}}
+				\caption[\small{Erro pelo número de épocas e por subconjunto no mês seguinte.}]{\label{convT1} \small{Erro pelo número de épocas e por subconjunto no mês seguinte.}}
 				
 			\end{center}
 		}	
@@ -338,7 +338,7 @@
 				
 				\includegraphics[width=\textwidth]{sinal_completo_t1.jpg}
 				
-				\caption[\small{Comparação entre o sinal original e o resultado obtido.}]{\label{completoT1} \small{Comparação entre o sinal original e o resultado obtido.}}
+				\caption[\small{Comparação entre o sinal original e o resultado obtido no mês seguinte.}]{\label{completoT1} \small{Comparação entre o sinal original e o resultado obtido no mês seguinte.}}
 				
 			\end{center}
 		}	
@@ -356,7 +356,7 @@
 				
 				\includegraphics[width=\textwidth]{rmse_val_set_t1_error.jpg}
 				
-				\caption[\small{RMSE pelo número de neurônios no conjunto de validação.}]{\label{mseValT1Error} \small{RMSE pelo número de neurônios no conjunto de validação.}}
+				\caption[\small{RMSE pelo número de neurônios no conjunto de validação no mês seguinte com correção de erro.}]{\label{mseValT1Error} \small{RMSE pelo número de neurônios no conjunto de validação no mês seguinte com correção de erro.}}
 				
 			\end{center}
 		}	
@@ -372,7 +372,7 @@
 				
 				\includegraphics[width=\textwidth]{rmse_test_set_t1_error.jpg}
 				
-				\caption[\small{RMSE pelo número de neurônios no conjunto de teste.}]{\label{mseTestT1Error} \small{RMSE pelo número de neurônios no conjunto de teste.}}
+				\caption[\small{RMSE pelo número de neurônios no conjunto de teste no mês seguinte com correção de erro.}]{\label{mseTestT1Error} \small{RMSE pelo número de neurônios no conjunto de teste no mês seguinte com correção de erro.}}
 				
 			\end{center}
 		}	
@@ -382,7 +382,7 @@
 \begin{table}[H]
 	
 	\begin{center}
-		\caption{Resultados obtidos com as redes no dataset de validação.}			
+		\caption{Resultados obtidos com as redes no dataset de validação no mês seguinte com correção de erro.}			
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT1Erro}
 			
 			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}90 & 126,678 & 101,233 & 1,029 & 0,001 & -0,001 & 0,000 & 0,001  \\ \hline
@@ -404,7 +404,7 @@
 				
 				\includegraphics[width=\textwidth]{convergence_t1_error.jpg}
 				
-				\caption[\small{Erro pelo número de épocas e por fold.}]{\label{convT1erro} \small{Erro pelo número de épocas e por fold.}}
+				\caption[\small{Erro pelo número de épocas e por subconjunto no mês seguinte com correção de erro.}]{\label{convT1erro} \small{Erro pelo número de épocas e por subconjunto no mês seguinte com correção de erro.}}
 				
 			\end{center}
 		}	
@@ -419,7 +419,7 @@
 				
 				\includegraphics[width=\textwidth]{sinal_completo_t1_error.jpg}
 				
-				\caption[\small{Comparação entre o sinal original e o resultado obtido.}]{\label{completoT1Error} \small{Comparação entre o sinal original e o resultado obtido.}}
+				\caption[\small{Comparação entre o sinal original e o resultado obtido no mês seguinte com correção de erro.}]{\label{completoT1Error} \small{Comparação entre o sinal original e o resultado obtido no mês seguinte com correção de erro.}}
 				
 			\end{center}
 		}	
