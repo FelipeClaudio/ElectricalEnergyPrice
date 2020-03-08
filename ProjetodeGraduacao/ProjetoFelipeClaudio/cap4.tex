@@ -1,7 +1,13 @@
 \paragraph{}O objetivo deste capitulo é descrever o método utilizado no desenvolvimento do trabalho. Será descrito o fluxo de dados utilizado na previsão do PLD. Isso inclui o pré-processamento dos dados e o treinamento das redes neurais.
 
 \section{Coleta de dados}
-\paragraph{}Serão utilizados nos modelos os seguintes dados do setor elétrico:
+\paragraph{}Serão utilizados nos modelos os seguintes dados do setor elétrico. Todos os dados da tabela \ref{table:DadosDeEntrada} estão disponíveis publicamente e são séries temporais com intervalo de amostragem de 1 mês.:
+
+\paragraph{}No início do trabalho definiu-se que o foco seria a região sudeste, sendo assim, todos os dados utilizados foram filtrados para a região SE/CO. Os dados provenientes da ONS foram baixados direto do site no formato \textit{Comma Separated Values} - CSV.
+
+\paragraph{}Para facilitar o processamento, serão retiradas todas as colunas que não fossem a data no formato "mês (por extenso) ano". Então, essas serão renomeadas para \textit{month} e \textit{value} e o valor do dado referido (ex: MWh produzidos por usinas hidroelétricas no mês), facilitando o desenvolvimento do código. 
+
+\paragraph{}Dado que as regras para o cálculo do PLD variam durante os anos, serão utilizados somente os dados para o período entre 01/2015 e 12/2018, de modo a tentar reduzir ao máximo esse efeito. Sendo assim, o conjunto de dados possuirá um total de 48 pontos.
 
 \begin{table}[H]	
 	\begin{center}
@@ -23,11 +29,73 @@
 	\end{center}
 \end{table}
 
-\paragraph{}Todos os dados acima estão disponíveis publicamente e são séries temporais com intervalo de amostragem de 1 mês.
+\paragraph{}Os dados do PLD são fornecidos no formato tabelar no site da CCEE\cite{CCEE}, assim como visto na figura \ref{PLDCCEESite}. Sendo assim, os dados que interessantes ao problema serão copiados para uma planilha e importados no por um código python usando a biblioteca Pandas\cite{Pandas}.
 
-\paragraph{}Para o cálculo da soma das vazões, utilizou-se o arquivo VAZOES.DAT fornecido pela CCEE. Este arquivo é binário e para ser lido precisa da utilização do executável vazedit também fornecido pela CCEE. Após o processamento deste programa, obtém-se um arquivo texto com as vazões de cada posto fluviométrico para cada mês em cada ano desde de 1931. Esses valores foram somados para os postos que pertencem exclusivamente à região Sudeste.
+\paragraph{}Os dados da ONS serão retirados de uma aplicação online com Tableau para visualizar os dados, assim como visto na figura \ref{dadosONS}. Os dados serão então extraídos no formato CSV. Após a extração, serão removidas as colunas que não são necessárias para a análise que será feita. Ao final sobrarão duas colunas, sendo que uma será nomeada "month" e terá a informação sobre o mês relacionado ao dado. A outra coluna será nomeada como "value", e trará o valor numérico do dados que está sendo analisado. Ao final do processo, a planilha será importada pelo código python préviamente citado.
 
-\paragraph{}O "valor útil da soma das vazões afluentes" é um cálculo semelhante ao descrito no parágrafo anterior, porém removendo em cada posto a vazão mínima necessária para a produção de energia. Para obter essa informação, utiliza-se o arquivo HIDR.DAT, também fornecido pela CCEE, o qual possui o cadastro de todas as usinas consideradas nos cálculos do PLD. Assim como no caso do arquivo VAZOES.DAT, o HIDR.DAT também é binário. Para processar o mesmo é necessário um executável também fornecido pela CCEE chamado hidroedit.
+\paragraph{}Para o cálculo da soma das vazões, será utilizado o arquivo VAZOES.DAT fornecido pela CCEE. Este arquivo é binário e para ser lido precisa da utilização do executável vazedit também fornecido pela CCEE, visto na figura \ref{vazedit}. Após o processamento deste programa, obtém-se um arquivo texto com as vazões de cada posto fluviométrico para cada mês em cada ano desde de 1931, assim como exibido na figura \ref{vazoesTxt}. Esses valores foram somados para os postos que pertencem exclusivamente à região Sudeste.
+
+\paragraph{}O "valor útil da soma das vazões afluentes" é um cálculo semelhante ao descrito no parágrafo anterior, porém removendo em cada posto a vazão mínima necessária para a produção de energia. Para obter essa informação, será utilizado o arquivo HIDR.DAT, também fornecido pela CCEE, o qual possui o cadastro de todas as usinas consideradas nos cálculos do PLD. Assim como no caso do arquivo VAZOES.DAT, o HIDR.DAT também é binário. Para processar o mesmo será necessário um executável também fornecido pela CCEE chamado hydroedit, visto na figura \ref{hydroedit}. 
+
+\paragraph{}Os resultados, já no formato texto, serão lidos pelo arquivo python. A inconsistência observado nos dados para o ano de 1931 será removida por meio de código. Além disso, será necessário filtrar os postos, também por meio do código, para só importar dados do subsistema SE/CO. 
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[height=0.6\textwidth]{pld_ccee.png}		
+				\caption[\small{Tabela de PLD médio na CCEE}]{\label{PLDCCEESite}\small{Tabela de PLD médio na CCEE\cite{CCEE}}}
+				
+			\end{center}
+			
+		}	
+	\end{center}	
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[height=0.6\textwidth]{dados_ons.png}		
+				\caption[\small{Histórico de geração de energia elétrica entre 2015 e 2019 segundo ONS}]{\label{dadosONS} \small{Histórico de geração de energia elétrica entre 2015 e 2019 segundo ONS\cite{ONS}}}
+				
+			\end{center}
+			
+		}	
+	\end{center}	
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.47\textwidth}
+		\centering
+			\includegraphics[height=0.75\textwidth]{vazedit.png}		
+			\caption[\small{Interface Vazedit}]{\label{vazedit} \small{Interface Vazedit}}
+	\end{subfigure}
+	\begin{subfigure}{.47\textwidth}
+		\centering
+			\includegraphics[height=0.75\textwidth]{vazoes.png}		
+			\caption[\small{Arquivo de vazões no formato texto}]{\label{vazoesTxt} \small{Arquivo de vazões no formato texto}}
+	\end{subfigure}
+	\caption{Previsão do PLD utilizando o modelo híbrido}		
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{center}
+		{
+			\begin{center}
+				
+				\includegraphics[height=0.35\textheight]{hydroedit.png}		
+				\caption[\small{Hydroedit sendo usado para converter o as informações sobre as usinas para o formato csv}]{\label{hydroedit} \small{Hydroedit sendo usado para converter o as informações sobre as usinas para o formato csv}}
+					
+			\end{center}
+				
+		}	
+	\end{center}	
+\end{figure}    
 
 \section{Pré-processamento}
 \paragraph{}A etapa de pré-processamento descrita nessa seção foi aplicada tanto nos sinais de entrada quanto na saída. Busca-se decompor o sinal conforme mencionado em \ref{series_temporais}. Ao final do processamento, o sinal $X_t$ poderá ser obtido através das soma dos sinais extraídos, assim como visto na formula a seguir: $X_t = tend_t + sz_t + cs_t + res_t$. O primeiro passo a ser realizado é a extração da tendência.
@@ -101,16 +169,18 @@ MA(1, X^{*}), & \mbox{se } i > 2T
 \section{Rede Neural}
 \paragraph{}Foi definido que a rede neural utilizada será um MLP de uma camada escondida somente, com ReLU \ref{relu} como função de ativação. A saída conterá somente um neurônio com função de ativação linear, de modo a conseguir obter o sinal utilizado na previsão do resíduo do PLD.
 
-\subsection{Treinamento das redes neurais}
+\subsection{Treinamento das redes neurais} \label{treinamentoRedes}
 \paragraph{}O treinamento será realizado modificando o número de neurônios na camada intermediária, de forma a avaliar qual arquitetura fornece o menor erro na saída. Para a avaliação dos resultados será utilizado como métrica o RMSE no conjunto de validação pelo número de neurônios. Outro critério para a avaliação utilizado também será o gráfico de pontos do dado previsto pelo original de forma similar ao visto em \ref{fit_perfeito}.
 
 \paragraph{}O passo seguinte desse trabalho será a definição da arquitetura utilizada pela rede neural. Devido à simplicidade e a boa capacidade de solução de problemas, foi utilizada a rede Perceptron Multicamadas com somente uma camada intermediária. Foi definido para a camada de entrada e intermediária que a função de ativação utilizada seria a ReLU, dado a velocidade de processamento e os bons resultados obtidos em pesquisas recentes \ref{reluSucesso}. 
 
-\paragraph{}Para a camada de saída, a função de ativação escolhida será a linear, para que se possa construir a série temporal. O algoritmo de aprendizado utilizado será o AdaDelta\cite{AdaDelta}. O $\alpha$, parâmetro que regula a taxa de aprendizado, será escolhido de forma a fazer com que o gráfico de erro no conjunto de treino pelo número de neurônios convergisse para todos os subconjuntos utilizados na validação cruzada.
+\paragraph{}O treinamento será feito utilizando validação cruzada com 8 subconjuntos no conjunto de dados de treinamento. Serão deixados 3 pontos da série temporal para realizar o teste. Para cada subconjunto serão feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. Os 3 últimos elementos serão separados para teste e os outros 25 serão utilizados na validação cruzada. Após a extração residual, os dados serão normalizados para facilitar a convergência do treinamento, assim como mostrado em na seção \ref{treinamento_mlp}. 
 
-\paragraph{}O modelo será treinado utilizando validação cruzada. Em cada fold foram feitas algumas inicializações aleatórias utilizando o algoritmo visto em \cite{K_He}, de forma a reduzir o impacto de uma inicialização ruim do modelo. 
+\paragraph{}O algoritmo de aprendizado que será utilizado é o AdaDelta com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final. Será utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhore o erro obtido em 25 épocas, o processamento será então interrompido. Para a camada de saída, a função de ativação escolhida será a linear, para que se possa construir a série temporal
 
-\paragraph{}Para facilitar a seleção dos modelos, será feita uma tabela contendo informações sobre o erro médio, desvio padrão, coeficiente angular e offset médios para o dataset de validação. Sendo assim, será utilizada a métrica para medir o desvio do coeficiente angular ($a$) e do offset($b$) de cada modelo, fazendo com que um primeiro erro seja obtido através da fórmula $\epsilon_1 = NORM(ABS(1-a))$ e um segundo seja obtido por $\epsilon_2 = NORM(ABS(b))$, onde $ABS$ é o valor absoluto do número. Além disso, para fins de ranqueamento, definiu-se uma terceira métrica descrita como $\epsilon_3 = \epsilon_1 + \epsilon_2$, onde $NORM$ é a normalização feita dividindo todos os valores pela norma infinita do vetor. O modelo a ser utilizado é então o que tiver o menor erro $\epsilon_3$.
+\paragraph{} Serão realizados treinamentos variando o número de neurônios entre 1 e 90, buscando obter o número de neurônios ideal na camada intermediária. O limite superior é arbitrariamente grande de formar a buscar que o melhor modelo esteja dentro desse intervalo. A partir disso, será gerado um gráfico com o RMSE pelo número de neurônios no conjunto de validação e de teste. 
+
+\paragraph{}Para facilitar a seleção dos modelos, será feita uma tabela contendo informações sobre o erro médio, desvio padrão, coeficiente angular e offset médios para o conjunto de dados de validação. Sendo assim, será utilizada a métrica para medir o desvio do coeficiente angular ($a$) e do \textit{offset}($b$) de cada modelo, fazendo com que um primeiro erro seja obtido através da fórmula $\epsilon_1 = NORM(ABS(1-a))$ e um segundo seja obtido por $\epsilon_2 = NORM(ABS(b))$, onde $ABS$ é o valor absoluto do número. Além disso, para fins de ranqueamento, definiu-se uma terceira métrica descrita como $\epsilon_3 = \epsilon_1 + \epsilon_2$, onde $NORM$ é a normalização feita dividindo todos os valores pela norma infinita do vetor. O modelo a ser utilizado é então o que tiver o menor erro $\epsilon_3$.
 
 \paragraph{}Na primeira fase do treinamento, será treinada uma rede, onde a entrada no mês atual, $x(t)$, será utilizada para estimar a saída para o mês atual, $y(t)$. Com isso será possível verificar se o processo utilizado no treinamento e seleção da rede está adequado ao problema e realizar os ajustes necessários. Além disso, essa rede servirá como caso base para os modelos de previsão. Dado que as previsões são somente variações desse modelo básico, torna-se de extrema importância a boa adesão do modelo ao problema. 
 

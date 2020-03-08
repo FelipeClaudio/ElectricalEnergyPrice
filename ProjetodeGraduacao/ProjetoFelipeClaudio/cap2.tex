@@ -239,6 +239,8 @@ Algum deles são \cite{MANUAIS}:
 	\label{fig:PrevisaoDiretaPLDUFOP}	
 \end{figure}
 
+\paragraph{}Para a a previsão indireta do PLD, foram treinadas duas estruturas. Na primeira obteve-se desvio padrão de 89.759 e erro médio de 20.4226. Na segunda os valores foram $105,45$ e $-9,5961$, respectivamente. Para a previsão direta do PLD, obteve-se $90,321$ de desvio padrão e $7,8684$ de erro médio para primeira estrutura. Na segunda estrutura os valores foram: $95,9$ e $7.8621$, respectivamente. Os resultados obtidos, apesar do erro médio pequeno, possuem alto desvio padrão. Os gráficos vistos em \ref{PrevisaoIndiretaPLDUFOP} e \ref{PrevisaoDiretaPLDUFOP} evidenciam esse fenômeno, pois apesar do erro ser qualitativamente pequeno, existem pontos onde a previsão diverge bastante do sinal original.
+
 \paragraph{}Outras abordagens são vistas em \cite{PrevisaoMultiPassos}, onde é proposto um modelo híbrido com a utilização de \textit{Autoregressive Integrated Moving Average} - ARIMA, análise de componentes principais e redes neurais, conforme a figura a seguir:
 
 \begin{figure}[H]
@@ -279,7 +281,9 @@ Algum deles são \cite{MANUAIS}:
 	\label{fig:ResultadoPrevisaoMultiPassosClassificador}		
 \end{figure}
 
-\paragraph{}Em ambos o casos acima o autor realiza previsões para um período de 12 semanas à frente.
+\paragraph{}Em ambos o casos acima o autor realiza previsões para um período de 12 semanas à frente. Na primeira abordagem (modelo híbrido), obteve erro médio por amostra de $4.066$, desvio padrão de $11.30$ e correlação linear de $0.99$ para o subsistema SE/CO no horizonte de até 12 semanas. Esse resultado é melhor que o observado em \cite{TCC_PLD}. Ainda assim, um desvio padrão de 11.30 pode ser alto dependendo da aplicação deserjada.  
+
+\paragraph{}Na segunda abordagem o autor obteve um erro máximo de classificação de $3.27\%$ para previsão 5 passos a frente, sendo um resultado muito bom. Para o exemplo exibido na tese (subsistema N), ocorreram alguns casos bastante discrepantes onde um patamar muito baixo foi classificado como alto e o contrário também ocorreu. Isso pode acarretar em riscos elevados dependendo de como será utilizada a aplicação.
 
 \paragraph{}No trabalho visto em \cite{RNA_DIRETA_E_RECORRENTE}, têm se a análise das variáveis utilizadas na entrada de cada submercado através da correlação. Além disso, é feita a comparação entre os resultados obtidos pelo modelo ARIMA, rede neurais recorrentes, rede neural direta sem seleção de lags e com a seleção de lags. Já em \cite{RNA_PRECO_SPOT} foram utilizadas como variáveis de entrada a geração das hidroelétricas, térmicas e eólica, além da Energia Natural Afluente - ENA, ENA máxima, EAR - Energia Armazenada e o PLD para cada um dos patamares nas 4 últimas semanas, utilizando uma rede neural com 3 camadas ocultas. Como métrica de avaliação dos resultados, faz-se um plot do alvo pelo resultado previsto pela rede e então é feito uma ajuste linear \label{fit_linear}. No caso ideal a equação $y = a\cdot x + b$ se torna $y = x$ (previsão perfeita) \label{fit_perfeito}. Os preços são previstos em um horizonte de até 6 semanas. Em \cite{TCC_FABIANE} utiliza-se uma rede neural recorrente para obter previsões em um horizonte de até seis meses a frente.
 
@@ -293,7 +297,7 @@ Algum deles são \cite{MANUAIS}:
 	\caption[\small{Instituições do setor elétrico brasileiro.}]{\label{PSF_forecast} \small{Utilização do algoritmo PSF para previsão de séries temporais \cite{PSF_forecast}.}}
 \end{figure}
 
-\paragraph{}Em \cite{simple_forecast} são mostradas algumas abordagens simples para o problema de previsão do preço \textit{spot} (PLD é um exemplo de preço \textit{spot}) no mercado de energia de Ontário. Foi utilizada uma rede neural com uma camada escondida, uma rede neural misturada com lógica fuzzy e otimização com o algoritmo IMO. A previsão foi feita hora a hora para um período de 24 horas. Concluiu-se que a rede neural com lógica fuzzy obteve o melhor resultado, além disso a relevância das entradas para a previsão foi analisada e viu-se que as entradas mais relevantes eram a demanda e a interrupção da geração. 
+\paragraph{}Em \cite{simple_forecast} são mostradas algumas abordagens simples para o problema de previsão do preço \textit{spot} (PLD é um exemplo de preço \textit{spot}) no mercado de energia do Canadá. Foi utilizada uma rede neural com uma camada escondida, uma rede neural misturada com lógica fuzzy e otimização com o algoritmo IMO. A previsão foi feita hora a hora para um período de 24 horas. Concluiu-se que a rede neural com lógica fuzzy obteve o melhor resultado, além disso a relevância das entradas para a previsão foi analisada e viu-se que as entradas mais relevantes eram a demanda e a interrupção da geração. 
 
 \paragraph{}A revista \cite{energy_magazine} traz a revisão de alguns resultados obtidos na previsão dos preços de mercados de energia elétrica como o da Noruega, Espanha e Califórnia. São utilizadas algumas abordagem lineares como AR, ARIMA e GARCH. Além disso são exibidos resultados de abordagens não lineares utilizando redes neurais. Alguns variantes mostrados são: RNA com lógica fuzzy, com filtro de Kalman extendido e com transformada de Fourier e Hartley como filtro para os dados de preço utilizados como entrada da rede. O artigo \cite{price_forecast_competition} mostra os resultados para a a competição de global de previsão de energia, a qual ocorreu em 2014. São mostrados resultados tanto para previsão de preços da energia elétrica, carga de energia, energia eólica e solar.
 

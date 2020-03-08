@@ -1,17 +1,10 @@
 \paragraph{}Neste capítulo, são mostrados os resultados obtidos através da aplicação do método descrito no capítulo anterior. Serão detalhados as características dos sinais utilizados assim como os valores dos parâmetros aplicados em cada algoritmo. Alguns resultados obtidos serão expostos no apêndice para facilitar a leitura.
 
-\section{Aquisição dos dados}
-\paragraph{}Os dados utilizados e suas respectivas fontes podem ser observados na tabela \ref{table:DadosDeEntrada}. No início do trabalho definiu-se que o foco seria a região sudeste, sendo assim, todos os dados utilizados foram filtrados para a região SE/CO. Os dados provenientes da ONS foram baixados direto do site no formato \textit{Comma Separated Values} - CSV.
-
-\paragraph{} Para facilitar o processamento, foram retiradas todas as colunas que não fossem a data no formato "mês (por extenso) ano". Essas foram então renomeadas para "month" e "value" e o valor do dado referido (ex: MWh produzidos por usinas hidroelétricas no mês), facilitando o desenvolvimento do código. 
-
-\paragraph{}Dado que as regras para o cálculo do PLD variam durante os anos, utilizou-se somente os dados para o período entre 01/2015 e 12/2018, de modo a tentar reduzir ao máximo esse efeito. Sendo assim, o \textit{dataset} possui 48 somente pontos.
-
 \section{Pré-Processamento}
 \paragraph{}Antes de poder utilizar o sinais obtidos no treinamento da rede, fez-se necessário selecionar quais sinais seriam realmente fornecidos como entrada para o modelo e quantos atrasos temporais seriam necessários para determinar a saída. Além disso, houve necessidade de extrair a componente residual do PLD e normalizar os dados. Cada um desses tópicos será detalhado nos parágrafos a seguir.
 
 \subsection{Seleção dos sinais de entrada}
-\paragraph{}Os sinais de entrada foram selecionado conforme a seguinte matriz de autocorrelação abaixo:
+\paragraph{}Os sinais de entrada foram selecionados conforme a seguinte matriz de autocorrelação abaixo:
 
 \begin{figure}[H]
 	\begin{center}
@@ -28,6 +21,10 @@
 \end{figure}
 
 \paragraph{}Observou-se alta correlação negativa entre a energia produzida pela hidroelétricas e térmicas. Isso ocorre pelo fato da energia gerada pelas termoelétricas ser a principal substituta para a energia proveniente de usinas térmicas. Sendo assim, decidiu-se então remover a série da energia gerada pelas UTEs de forma a remover a redundância dos dados fornecidos.
+
+\paragraph{}Outra correlação forte observada é a existente entre a ENA, as vazões afluentes e as vazões afluentes úteis. Uma possível explicação para o fato observado é a de todas as variáveis tem um objetivo em comum: calcular quanto de energia pode ser gerada dado uma quantidade de água presente na bacia.
+
+\paragraph{}Por fim, é observada alta correlação entre ENA e a energia produzida pelas usina hidroelétricas. Isso é esperado, pois a ENA é um indicativo de quanta energia pode ser gerada através de meios hidráulicos. 
 
 \subsection{Seleção dos atrasos do sinal de saída}
 \paragraph{}O gráfico de autocorrelação expressa de forma numérica uma relação linear entre o valor atual e os atrasos. Com isso, têm-se os atrasos com maior importância na formação do sinal. Foram selecionados os pontos que tinham correlação maior ou próximo do limite do intervalo de 95\% de confiança.
@@ -46,10 +43,10 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Os atrasos obtidos através dessas análises foram replicados para os sinais da entrada, podendo assim definir quantos atrasos seriam necessários para obter informação suficiente para reconstruir a saída. Como conclui-se pelo gráfico que até 20 atrasos temporais são necessários para representar o sinal, o \textit{dataset} de 48 pontos foi reduzido a 28 pontos.
+\paragraph{}Os atrasos obtidos através dessas análises foram replicados para os sinais da entrada, podendo assim definir quantos atrasos seriam necessários para obter informação suficiente para reconstruir a saída. Como conclui-se pelo gráfico que até 20 atrasos temporais são necessários para representar o sinal, o \textit{conjunto de dados} de 48 pontos foi reduzido a 28 pontos.
 
 \subsection{Tendência}
-\paragraph{}Para a definição do parâmetro $W$, responsável pelo tamanho da janela utilizada no processamento, fez-se um gráfico do MSE pelo tamanho da janela conforme visto na figura a seguir:
+\paragraph{}Para a definição do parâmetro $W$, responsável pelo tamanho da janela utilizada no processamento, fez-se um gráfico do MSE pelo tamanho da janela conforme visto na figura \ref{mseTrend}:
 
 \begin{figure}[H]
 	\begin{center}
@@ -66,7 +63,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Tendo como base o gráfico acima, observou-se que a extração proposta em \ref{maLinFit} obteve os melhores resultados (gráfico na parte superior) e selecionou-se $W=12$. O parâmetro $K$ foi definido como $K=5$ de forma empírica, buscando obter uma transição suave entre a regressão linear e a média móvel. Aplicando esse filtro obteve-se o seguinte resultado para a extração da tendência:
+\paragraph{}Tendo como base o gráfico acima, observou-se que a extração proposta em \ref{maLinFit} obteve os melhores resultados (na figura \ref{mseTrend}) e selecionou-se $W=12$. O parâmetro $K$ foi definido como $K=5$ de forma empírica, buscando obter uma transição suave entre a regressão linear e a média móvel. Aplicando esse filtro obteve-se o seguinte resultado para a extração da tendência:
 
 \begin{figure}[H]
 	\begin{center}
@@ -101,7 +98,9 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Nesse caso, observou-se que existe um mínimo local em $T=6$ e um mínimo global em $T=12$. Escolheu se o $T=6$ por ser um múltiplo comum dos dois. Entre as duas análises, a que trouxe os melhores resultados foi a que utilizou somente a média móvel (gráfico abaixo). O resultado mostra que os eventos sazonais que influenciam o preço do PLD são de característica anual majoritariamente. Finalmente obteve-se como resultado da extração os seguintes gráficos:
+\paragraph{}Nesse caso, observou-se que existe um mínimo local em $T=6$ e um mínimo global em $T=12$. Escolheu se o $T=6$ por ser um múltiplo comum dos dois. Entre as duas análises, a que trouxe os melhores resultados foi a que utilizou somente a média móvel (na figura \ref{fftAndDistSazonal}). O resultado mostra que os eventos sazonais que influenciam o preço do PLD são de característica anual majoritariamente. Finalmente obteve-se como resultado da extração os seguintes gráficos:
+
+\paragraph{}Na figura \ref{fftAndDistSazonal} é possível ver que a distribuição do erro está centrada próxima de $0$ R\$/MWh. No gráfico da FFT, observa-se que diferentemente da FFT vista extração do ciclo senoidal, existe um pico por volta de 0.18 rad/amostra. Isso era é esperado, uma vez que a parte de baixa frequência foi removida na extração anterior. 
 
 \begin{figure}[H]
 	\begin{center}
@@ -116,8 +115,6 @@
 		}	
 	\end{center}	
 \end{figure}
-
-\paragraph{}No gráfico acima é possível ver que a distribuição do erro está centrada próxima de $0$ R\$/MWh. No gráfico da FFT, observa-se que diferentemente da FFT vista extração do ciclo senoidal, existe um pico por volta de 0.18 rad/amostra. Isso era é esperado, uma vez que a parte de baixa frequência foi removida na extração anterior. 
 
 \subsection{Ciclos Senoidais e Resíduo}
 \paragraph{}Após o processamento descrito acima, obtém sinal $s_{2t}=cs_t+res_t$, o qual tem a seguinte distribuição e FFT.
@@ -155,7 +152,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}É possível observar que a distribuição continuou centrada em torno de $0$ R\$/MWh, porém com um formato diferente. Além disso, a FFT mostra que as magnitudes estão espalhadas por todo o espectro ao invés de concentradas em poucas frequências. Isso atende à expectativa de que o ruído obtido ao final do processamento deveria estar distribuído ter componentes de frequência com intensidades similares por todo espectro.
+\paragraph{}É possível observar que a distribuição continuou centrada em torno de $0$ R\$/MWh, porém com um formato diferente. Além disso, a FFT mostra que as magnitudes estão espalhadas por todo o espectro ao invés de concentradas em poucas frequências. Isso atende à expectativa de que o ruído obtido ao final do processamento deveria estar linearmente distribuído pelo espectro.
 
 \paragraph{}Ao final do processo, os seguintes resultados foram obtidos:
 \begin{figure}[H]
@@ -173,11 +170,7 @@
 \end{figure}
 
 \section{Treinamento das redes neurais}
-\paragraph{}O treinamento foi feito utilizando validação cruzada com 8 subconjuntos no dataset de treinamento. Foram deixados 3 pontos da série temporal para realizar o teste. Para cada subconjunto foram feitas 3 inicializações aleatórias utilizando o método chamado \textit{he uniform}, o qual está descrito em \cite{K_He}. Os 3 últimos foram separados para teste e os outros 25 foram utilizados na validação cruzada. Após a extração residual, os dados são normalizados para facilitar a convergência do treinamento, assim como mostrado em na seção \ref{treinamento_mlp}. 
-
-\paragraph{} O algoritmo de aprendizado utilizado foi o AdaDelta com learning rate de $\alpha = 0.01$ \cite{adadelta} por conta dos bons resultados obtidos no treinamento e rápida convergência para o estado final.  Foi utilizado o critério de parada antecipada \textit{early stop} para que caso a rede não melhorasse o erro obtido em 25 épocas, o processamento seria então interrompido.
-
-\paragraph{} Foram realizados treinamento variando o número de neurônios entre 1 e 90, buscando obter o número de neurônios ideal na camada intermediária. A partir disso, gerou-se um gráfico com o RMSE pelo número de neurônios no conjunto de validação e de teste.
+\paragraph{}Os resultados dos treinamentos presentes nessa seção seguiram a metodologia descrita em \ref{treinamentoRedes}. Sendo assim, o primeiro treinamento realizado foi para determinar a estrutura da rede de estimação da saída para o mês atual.
 
 \subsection{Treinamento da rede para obter a saída no mês atual}
 \paragraph{}Para o treinamento rede para a saída atual, obteve-se o seguinte gráfico de RMSE pelo número de neurônios no conjunto de treinamento:
@@ -211,11 +204,11 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Esperava-se que o gráfico do RMSE pelo número de neurônios na camada intermediária fosse decrescente, mas o resultado obtido oscilou em torno de um valor de RMSE. Isso pode ser uma das consequências da pouca quantidade de dados tanto para teste quanto para a validação. Redes neurais geralmente necessitam de grande conjuntos de dados para que se possa definir os pesos das conexões sinápticas de forma correta. Sendo assim, esse gráfico não foi suficiente para determinar qual estrutura seria utilizada para realizar as previsões. Para poder ranquear as estruturas e, então, escolher a utilizada nas previsões, fez a seguinte tabela. Os dados mostrado a seguir contém as 5 melhores estruturas de redes ranqueadas pelo critério $\epsilon_3$ definido anteriormente:
+\paragraph{}Esperava-se que o gráfico do RMSE pelo número de neurônios na camada intermediária fosse decrescente, mas o resultado obtido oscilou em torno do valor médio do RMSE (em torno e 0.22). Isso pode ser uma das consequências da pouca quantidade de dados tanto para teste quanto para a validação. Redes neurais geralmente necessitam de grande conjuntos de dados para que se possa definir os pesos das conexões sinápticas de forma correta. Sendo assim, esse gráfico não foi suficiente para determinar qual estrutura seria utilizada para realizar as previsões. Para poder ranquear as estruturas e, então, escolher a utilizada nas previsões, fez a seguinte tabela. Os dados mostrado a seguir contém as 5 melhores estruturas de redes ranqueadas pelo critério $\epsilon_3$ definido anteriormente:
 \begin{table}[H]
 	
 	\begin{center}	
-		\caption{Resultados obtidos com as redes no dataset de validação no mês atual.}		
+		\caption{Resultados obtidos com as redes no conjunto de dados de validação no mês atual.}		
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT0}
 			 
 			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}61 &64,435 & 61,180 &  0,998 & 0,008 & -0,007 & 0,175 & 0,184 \\ \hline
@@ -243,7 +236,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Apesar de usar um fator de treinamento menor do que o padrão, ainda assim o algoritmo AdaDelta teve dificuldade em convergir para um valor de RMSE Assim como esperado, o erro no conjunto de validação foi ser maior que no conjunto de teste.
+\paragraph{}Apesar de usar um fator de treinamento menor do que o padrão, ainda assim o algoritmo AdaDelta teve dificuldade em convergir para um valor de RMSE Assim como esperado, o erro no conjunto de validação foi maior que no conjunto de teste.
 
 \paragraph{}E os seguintes resultados foram obtidos:
 \begin{figure}[H]
@@ -253,7 +246,7 @@
 				
 				\includegraphics[width=\textwidth]{sinal_completo_t0.jpg}
 				
-				\caption[\small{Comparação entre o sinal original e o resultado obtido no mês atual.}]{\label{completoT0} \small{Comparação entre o sinal original e o resultado obtido no mês atual.}}
+				\caption[\small{Comparação entre o PLD médio e o resultado obtido no mês atual.}]{\label{completoT0} \small{Comparação entre o PLD médio e o resultado obtido no mês atual.}}
 				
 			\end{center}
 		}	
@@ -262,7 +255,7 @@
 
 \paragraph{}Os 3 últimos pontos são do conjunto de dados de teste. Observa-se que a rede não conseguiu prevê-los tão bem quanto os pontos do conjunto de treinamento, assim como esperado.
 
-\paragraph{}Dado a pouca quantidade de dados, a rede não obteve o comportamento esperado nos treinamentos, porém o resultado obtido mostrou que a mesma conseguiu mapear bem a entrada na saída. Sendo assim, viu-se que a rede está sendo treinada de forma coerente para obter $y(t)$ a partir de $x(t)$. Esse caso também será utilizado como base para as previsões, pois espera-se que o erro para $N$ passos a frente seja sempre maior ou igual ao caso base.
+\paragraph{}Dado a pouca quantidade de dados, a rede não obteve o comportamento esperado nos treinamentos por validação cruzada, porém o resultado obtido mostrou que a mesma conseguiu mapear bem a entrada na saída. Sendo assim, viu-se que a rede está sendo treinada de forma coerente para obter $y(t)$ a partir de $x(t)$. Esse caso também será utilizado como base para as previsões, pois espera-se que o erro para $N$ passos a frente seja sempre maior ou igual ao caso base.
 
 \subsection{Treinamento da rede para obter a saída um mês a frente}
 \paragraph{}Seguindo o procedimento previamente determinado, obteve-se os seguintes resultados para a previsão do PLD para 1 mês a frente:
@@ -302,7 +295,7 @@
 \begin{table}[H]
 	
 	\begin{center}
-		\caption{Resultados obtidos com as redes no dataset de validação no mês seguinte.}	
+		\caption{Resultados obtidos com as redes no conjunto de dados de validação no mês seguinte.}	
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT1}
 			
 			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}63 & 82,911 & 69,521 & 0,993 & 0,002 & 0,005 & 0,003 & 0,004 \\ \hline
@@ -345,7 +338,7 @@
 	\end{center}	
 \end{figure}
 
-\paragraph{}Uma rápida análise qualitativa mostra que a previsão do modelo 
+\paragraph{}Uma rápida análise qualitativa mostra que a previsão do ruído do sinal fez com que o erro obtido no conjunto de treino fosse menor, porém no conjunto de testes (últimos 3 pontos), o erro foi maior do que o modelo sem ruído.
 
 \paragraph{}Para essa previsão, foi treinada uma rede para reduzir o erro de estimação usando como entrada os dados já mencionados anteriormente. Os erros de estimação entre o sinal reconstruído e o original foram utilizados como alvos da rede. Obteve-se então os seguintes resultados:
 
@@ -382,7 +375,7 @@
 \begin{table}[H]
 	
 	\begin{center}
-		\caption{Resultados obtidos com as redes no dataset de validação no mês seguinte com correção de erro.}			
+		\caption{Resultados obtidos com as redes no conjunto de dados de validação no mês seguinte com correção de erro.}			
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline \label{table:tabelaT1Erro}
 			
 			\textbf{\#neurônios} & \textbf{RMSE} & \textbf{STD} & \textbf{$a$ (média)} & \textbf{$\epsilon_1$} & \textbf{$b$ (média)} & \textbf{$\epsilon_2$} & \textbf{$\epsilon_3$}\\ \hline \vspace{-1.0mm}90 & 126,678 & 101,233 & 1,029 & 0,001 & -0,001 & 0,000 & 0,001  \\ \hline
@@ -479,7 +472,9 @@
 
 \paragraph{}A tabela com os dados utilizados na seleção de cada modelo, o gráfico de convergência e os resultados obtidos  estão presente no apêndice A.
 
-\paragraph{}Assim como o esperado, tanto o erro quanto o desvio padrão aumentam com o número de passos a frente, salvo algumas exceções. Sendo assim, a previsão para muitos passo a frente traz um risco maior para a análise. Cabe a quem for usar mensurar quanto de risco pode ser tolerado baseado nesses gráficos.
+\paragraph{}Assim como o esperado, tanto o erro quanto o desvio padrão aumentam com o número de passos a frente, salvo algumas exceções. Além disso, após o quinto mês, os erros de previsão aumentam bastante, tornando pouco informativa a previsão para os meses posteriores
+
+\paragraph{}Sendo assim, a previsão para muitos passo a frente traz um risco maior para a análise. Cabe a quem for usar mensurar quanto de risco pode ser tolerado baseado nesses gráficos.
 
 \paragraph{}Ainda assim cabe ressaltar que o a análise foi feita somente para a parte residual. Provavelmente ao reconstruir o PLD, os erros ainda devem aumentar, pois serão somados os erros de estimação da tendência, sazonalidade e ciclos senoidais. A estratégia da rede para a correção dos erros pode ser aplicada para cada um dos casos buscando deixar a distribuição do erro mais concentrada em torno do zero.
 
